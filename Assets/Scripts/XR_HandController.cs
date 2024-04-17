@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.XR;
+#nullable enable
 
 public enum HandType
 {
@@ -19,6 +20,7 @@ public class XR_HandController : MonoBehaviour
     private float indexValue;
     private float thumbValue;
     private float threeFingersValue;
+    private bool handsAvailable = true;
 
 
     // Start is called before the first frame update
@@ -31,7 +33,9 @@ public class XR_HandController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        AnimateHand();
+        if (handsAvailable) {
+            AnimateHand();
+        }
     }
 
     InputDevice GetInputDevice()
@@ -50,7 +54,17 @@ public class XR_HandController : MonoBehaviour
         List<InputDevice> inputDevices = new List<InputDevice>();
         InputDevices.GetDevicesWithCharacteristics(controllerCharacteristic, inputDevices);
 
-        return inputDevices[0];
+        if (inputDevices.Count > 0)
+        {
+            handsAvailable = true;
+            return inputDevices[0];
+        }
+        else
+        {
+            handsAvailable = false;
+            return new InputDevice();
+        }
+        
     }
 
     void AnimateHand()
