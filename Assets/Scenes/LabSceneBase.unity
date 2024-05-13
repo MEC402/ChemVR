@@ -1433,6 +1433,7 @@ GameObject:
   - component: {fileID: 337481332}
   - component: {fileID: 337481331}
   - component: {fileID: 337481330}
+  - component: {fileID: 337481334}
   m_Layer: 0
   m_Name: Glove Hygiene PopUp
   m_TagString: Untagged
@@ -1541,6 +1542,18 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 337481328}
   m_Mesh: {fileID: 10209, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!114 &337481334
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 337481328}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 934103e0ac00abe4dadaea6439fac7fd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &348589127
 GameObject:
   m_ObjectHideFlags: 0
@@ -3657,6 +3670,7 @@ GameObject:
   - component: {fileID: 881190438}
   - component: {fileID: 881190437}
   - component: {fileID: 881190436}
+  - component: {fileID: 881190441}
   m_Layer: 0
   m_Name: Chemical Change PopUp
   m_TagString: Untagged
@@ -3765,6 +3779,18 @@ Transform:
   - {fileID: 1978885670}
   m_Father: {fileID: 1301685951}
   m_LocalEulerAnglesHint: {x: -90, y: 0, z: 0}
+--- !u!114 &881190441
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 881190435}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 934103e0ac00abe4dadaea6439fac7fd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &891393426
 GameObject:
   m_ObjectHideFlags: 0
@@ -4005,6 +4031,50 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 912060940}
   m_CullTransparentMesh: 1
+--- !u!1 &913906124
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 913906126}
+  - component: {fileID: 913906125}
+  m_Layer: 0
+  m_Name: GameEventsManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &913906125
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 913906124}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 51a420e03ffec2f49b3df8ba8761d10a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!4 &913906126
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 913906124}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 6.325755, y: -0.834693, z: 4.8620806}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &923621581
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -6788,6 +6858,7 @@ GameObject:
   - component: {fileID: 1619482378}
   - component: {fileID: 1619482377}
   - component: {fileID: 1619482376}
+  - component: {fileID: 1619482380}
   m_Layer: 0
   m_Name: Tutorial PopUp
   m_TagString: Untagged
@@ -6896,6 +6967,18 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1619482374}
   m_Mesh: {fileID: 10209, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!114 &1619482380
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1619482374}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 934103e0ac00abe4dadaea6439fac7fd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1633446990
 GameObject:
   m_ObjectHideFlags: 0
@@ -8162,7 +8245,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4704240698125147210, guid: 048249d9a15aa3c459399751e860bde7, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 59.955
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4704240698125147210, guid: 048249d9a15aa3c459399751e860bde7, type: 3}
       propertyPath: m_AnchoredPosition.y
@@ -9383,6 +9466,7 @@ GameObject:
   - component: {fileID: 1994256156}
   - component: {fileID: 1994256155}
   - component: {fileID: 1994256154}
+  - component: {fileID: 1994256158}
   m_Layer: 0
   m_Name: Glassware Use PopUp
   m_TagString: Untagged
@@ -9491,6 +9575,18 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1994256152}
   m_Mesh: {fileID: 10209, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!114 &1994256158
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1994256152}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 934103e0ac00abe4dadaea6439fac7fd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &2002975685
 GameObject:
   m_ObjectHideFlags: 0
@@ -9993,3 +10089,4 @@ SceneRoots:
   - {fileID: 4328823861779731879}
   - {fileID: 1744109868}
   - {fileID: 761575867}
+  - {fileID: 913906126}
