@@ -98,6 +98,60 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxCapacity: 100
   currentVolume: 50
+--- !u!1 &4525122392640469038
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4926626338852509953}
+  - component: {fileID: 3140481453088582994}
+  m_Layer: 19
+  m_Name: Opening
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4926626338852509953
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4525122392640469038}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0.969, z: 0.000000029942}
+  m_LocalScale: {x: 2, y: 0.063342705, z: 2}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 6296302989668283365}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!64 &3140481453088582994
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4525122392640469038}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 5
+  m_Convex: 1
+  m_CookingOptions: 30
+  m_Mesh: {fileID: 10206, guid: 0000000000000000e000000000000000, type: 0}
 --- !u!1 &7832762279814371678
 GameObject:
   m_ObjectHideFlags: 0
@@ -167,6 +221,7 @@ Transform:
   m_Children:
   - {fileID: 3826320881645993385}
   - {fileID: 6766410071183746032}
+  - {fileID: 4926626338852509953}
   - {fileID: 3266549629021598320}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -287,7 +342,9 @@ MonoBehaviour:
   internalFluid: {fileID: 4985436292045738544}
   pourPoint: {fileID: 7832762279814371678}
   hitMarker: {fileID: 8096439375644397138}
-  recipient: {fileID: 0}
+  opening: {fileID: 4525122392640469038}
+  pouringUsesActivator: 0
+  pourActivator: {fileID: 0}
 --- !u!114 &8344422183745361866
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -339,10 +396,36 @@ MonoBehaviour:
       m_Calls: []
   m_SelectEntered:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: -3269607274162277407, guid: e05b66f66d82464448a3c165a26673ef, type: 3}
+        m_TargetAssemblyTypeName: GrabbedObjectReporter, Assembly-CSharp
+        m_MethodName: Grab
+        m_Mode: 2
+        m_Arguments:
+          m_ObjectArgument: {fileID: 8344422183745361866}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.XR.Interaction.Toolkit.XRBaseInteractable,
+            Unity.XR.Interaction.Toolkit
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   m_SelectExited:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: -3269607274162277407, guid: e05b66f66d82464448a3c165a26673ef, type: 3}
+        m_TargetAssemblyTypeName: GrabbedObjectReporter, Assembly-CSharp
+        m_MethodName: Drop
+        m_Mode: 2
+        m_Arguments:
+          m_ObjectArgument: {fileID: 8344422183745361866}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.XR.Interaction.Toolkit.XRBaseInteractable,
+            Unity.XR.Interaction.Toolkit
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   m_FirstFocusEntered:
     m_PersistentCalls:
       m_Calls: []
