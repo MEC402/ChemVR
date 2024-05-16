@@ -10,6 +10,7 @@ public class GameEventsManager : MonoBehaviour
     public TaskEvents taskEvents;
     public InteractableEvents interactableEvents;
     public PlayerEvents playerEvents;
+    public InputEvents inputEvents;
 
     private void Awake()
     {
@@ -24,5 +25,6 @@ public class GameEventsManager : MonoBehaviour
         taskEvents = new TaskEvents();
         interactableEvents = new InteractableEvents();
         playerEvents = new PlayerEvents();
+        inputEvents = new InputEvents();
     }
 }

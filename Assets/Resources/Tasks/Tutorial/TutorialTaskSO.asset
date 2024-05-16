@@ -10,12 +10,13 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 74ba500645eaaa548a89f669db174eda, type: 3}
-  m_Name: ZeroTaskInfoSO
+  m_Name: TutorialTaskSO
   m_EditorClassIdentifier: 
-  <id>k__BackingField: 
+  <id>k__BackingField: TutorialTaskSO
   displayName: 
   experimentRequirement: 0
   pointRequirement: 0
-  taskPrerequisites: []
+  taskPrerequisites:
+  - {fileID: 11400000, guid: 0481ba03e7469d340913a2bd46cb0b7e, type: 2}
   taskStepPrefabs: []
   pointsReward: 0
