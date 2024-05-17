@@ -1,27 +1,27 @@
-﻿using System.Collections;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.XR;
 using UnityEngine.XR.Interaction.Toolkit;
 
-
-
-public class ToggleText : MonoBehaviour
+public class Tutorial_Task_1 : TaskStep
 {
-    private GameObject text;
+    private int buttonPress = 0;
+    [SerializeField]
+    public GameObject currText; // Set this to the popup text for this step.
     private InputDevice inputDevice;
     public HandType handType;
     private bool handsAvailable = true;
     private bool isHeld = false;
 
-
-    void Start()
+    private void Awake()
     {
+        currText.SetActive(true);
         inputDevice = GetInputDevice();
-        text = this.gameObject.transform.GetChild(0).gameObject;
+
     }
 
-    void Update()
+    private void Update()
     {
         // Check if the left thumbstick is clicked on the XR controller
         if (handsAvailable && (handType == HandType.Left))
@@ -29,16 +29,9 @@ public class ToggleText : MonoBehaviour
             inputDevice.TryGetFeatureValue(CommonUsages.primaryButton, out bool primaryPressed);
             if (primaryPressed)
             {
-                if (!isHeld) // This prevents flickering when button is held.
+                if (!isHeld) // This prevents spamming the press when button is held.
                 {
-                    if (text.activeInHierarchy)
-                    {
-                        text.SetActive(false);
-                    }
-                    else
-                    {
-                        text.SetActive(true);
-                    }
+                    buttonPress += 1;
                     isHeld = true;
                 }
             }
@@ -47,6 +40,17 @@ public class ToggleText : MonoBehaviour
                 isHeld = false;
             }
         }
+
+        if (buttonPress >= 2)
+        {
+            // Hide associated text
+            currText.SetActive(false);
+            FinishTaskStep();
+        }
+    }
+    protected override void SetTaskStepState(string state)
+    {
+        throw new System.NotImplementedException();
     }
 
     InputDevice GetInputDevice()
@@ -77,5 +81,9 @@ public class ToggleText : MonoBehaviour
         }
 
     }
+
+
+
+
 
 }

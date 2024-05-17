@@ -10,13 +10,15 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 74ba500645eaaa548a89f669db174eda, type: 3}
-  m_Name: TutorialTaskSO
+  m_Name: Tutorial_Task
   m_EditorClassIdentifier: 
-  <id>k__BackingField: TutorialTaskSO
+  <id>k__BackingField: Tutorial_Task
   displayName: 
   experimentRequirement: 0
   pointRequirement: 0
-  taskPrerequisites:
-  - {fileID: 11400000, guid: 0481ba03e7469d340913a2bd46cb0b7e, type: 2}
-  taskStepPrefabs: []
+  taskPrerequisites: []
+  taskStepPrefabs:
+  - {fileID: 4699847568084369348, guid: bb20e39b3ee0cc145b29728d0c062053, type: 3}
+  - {fileID: 3968988724387229646, guid: 8afff0c0f8423f04da900d2fb764c274, type: 3}
+  - {fileID: 8063497031622063715, guid: 6244363c48145e243bb4e47852611865, type: 3}
   pointsReward: 0
