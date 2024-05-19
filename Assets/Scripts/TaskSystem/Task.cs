@@ -41,6 +41,15 @@ public class Task
         }
     }
 
+    public void StartOver()
+    {
+        for (int i = currentTaskStepIndex; i >= 0; i--)
+        {
+            // Fill this in later.
+        }
+        currentTaskStepIndex = 0;
+    }
+
     public void MoveToNextStep()
     {
         currentTaskStepIndex++;

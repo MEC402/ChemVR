@@ -5,7 +5,7 @@ using UnityEngine;
 public class TaskManager : MonoBehaviour
 {
     [Header("Config")]
-    [SerializeField] private bool loadTaskState = true;
+    [SerializeField] private bool loadTaskState = false; 
 
     private Dictionary<string, Task> taskMap;
 
@@ -39,15 +39,20 @@ public class TaskManager : MonoBehaviour
 
     private void Start()
     {
+        
         foreach (Task task in taskMap.Values)
         {
-            // initialize any loaded task steps
-            if (task.state == TaskState.IN_PROGRESS)
+            if (loadTaskState)
             {
-                task.InstantiateCurrentTaskStep(this.transform);
+                // initialize any loaded task steps
+                if (task.state == TaskState.IN_PROGRESS)
+                {
+                    task.InstantiateCurrentTaskStep(this.transform);
+                }
             }
             // broadcast the initial state of all quests on startup
             GameEventsManager.instance.taskEvents.TaskStateChange(task);
+            
         }
     }
 
@@ -102,6 +107,10 @@ public class TaskManager : MonoBehaviour
     private void StartTask(string id)
     {
         Task task = GetTaskById(id);
+        if (!loadTaskState)
+        {
+            task.StartOver();
+        }
         task.InstantiateCurrentTaskStep(this.transform);
         ChangeTaskState(task.info.id, TaskState.IN_PROGRESS);
     }

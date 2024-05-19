@@ -12,7 +12,7 @@ public class Tutorial_Task_1 : TaskStep
 
     void OnEnable()
     {
-        //GameEventsManager.instance.inputEvents.onXButtonPressed += TextToggleTutorial;
+        GameEventsManager.instance.inputEvents.onXButtonPressed += TextToggleTutorial;
     }
 
     void OnDisable()
@@ -27,6 +27,7 @@ public class Tutorial_Task_1 : TaskStep
 
     private void Update()
     {
+
         if (buttonPress >= 2)
         {
             FinishTaskStep();
