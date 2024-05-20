@@ -5,11 +5,11 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.UI;
 
-public class Tutorial_Task_0 : TaskStep
+public class GH_Task_0 : TaskStep
 {
     public void Start()
     {
-        Button tutorialButton = GameObject.Find("Tutorial Button").GetComponent<Button>();
+        Button tutorialButton = GameObject.Find("Glove Hygiene Button").GetComponent<Button>();
 
         tutorialButton.onClick.AddListener(Complete);
     }

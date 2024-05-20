@@ -8,5 +8,8 @@ public class StartTasks : MonoBehaviour
     void Start()
     {
         GameEventsManager.instance.taskEvents.StartTask("Tutorial_Task");
+        GameEventsManager.instance.taskEvents.StartTask("Chemical_Change_Task");
+        GameEventsManager.instance.taskEvents.StartTask("Glassware_Use_Task");
+        GameEventsManager.instance.taskEvents.StartTask("Glove_Hygiene_Task");
     }
 }

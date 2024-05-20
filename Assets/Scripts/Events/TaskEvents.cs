@@ -23,6 +23,15 @@ public class TaskEvents
         }
     }
 
+    public event Action<string> onAbandonTask;
+    public void AbandonTask(string id)
+    {
+        if (onAbandonTask != null)
+        {
+            onAbandonTask(id);
+        }
+    }
+
     public event Action<string> onFinishTask;
     public void FinishTask(string id)
     {

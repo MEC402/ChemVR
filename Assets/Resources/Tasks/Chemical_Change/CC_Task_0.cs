@@ -5,11 +5,11 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.UI;
 
-public class Tutorial_Task_0 : TaskStep
+public class CC_Task_0 : TaskStep
 {
     public void Start()
     {
-        Button tutorialButton = GameObject.Find("Tutorial Button").GetComponent<Button>();
+        Button tutorialButton = GameObject.Find("Chemical Change Button").GetComponent<Button>();
 
         tutorialButton.onClick.AddListener(Complete);
     }
