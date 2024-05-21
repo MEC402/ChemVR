@@ -27,7 +27,10 @@ public class Tutorial_Task_1 : TaskStep
 
     private void Update()
     {
-
+        if (Keyboard.current.zKey.wasPressedThisFrame)
+        {
+            buttonPress++;
+        }
         if (buttonPress >= 2)
         {
             FinishTaskStep();

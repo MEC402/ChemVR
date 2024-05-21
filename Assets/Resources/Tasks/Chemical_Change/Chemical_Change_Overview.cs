@@ -25,7 +25,17 @@ public class Chemical_Change_Overview : MonoBehaviour
     void OnDisable()
     {
         //Remove any listeners
-        if (curStep == 1)
+        this.gameObject.GetComponent<ToggleTextSimple>().enabled = false;
+        disableAll();
+    }
+
+    void disableAll()
+    {
+        if (curStep == 0)
+        {
+            GameEventsManager.instance.taskEvents.onAdvanceTask -= cc_task0Complete;
+        }
+        else if(curStep == 1)
         {
             GameEventsManager.instance.taskEvents.onAdvanceTask -= cc_task1Complete;
         }
@@ -39,10 +49,7 @@ public class Chemical_Change_Overview : MonoBehaviour
         if (ccPop != null)
         {
             ccPop.SetActive(false);
-            if (curStep == 1)
-            {
-                GameEventsManager.instance.taskEvents.onAdvanceTask -= cc_task1Complete;
-            }
+            disableAll();
             curStep = 0;
             GameEventsManager.instance.taskEvents.onAdvanceTask += cc_task0Complete;
         }
@@ -54,7 +61,7 @@ public class Chemical_Change_Overview : MonoBehaviour
         {
             this.gameObject.GetComponent<ToggleTextSimple>().enabled = true;
             curStep += 1;
-            ccText.text = "This is the Chemical Change PopUp";
+            ccText.text = "Welcome!\nBefore we begin the lab, you need to put on your lab gear.\n\nYou should be wearing closed toed shoes and have your hair tied back.\n\nFind gloves, goggles, and a lab coat and put them on with (B).";
             GameEventsManager.instance.taskEvents.onAdvanceTask += cc_task1Complete;
             GameEventsManager.instance.taskEvents.onAdvanceTask -= cc_task0Complete;
         }

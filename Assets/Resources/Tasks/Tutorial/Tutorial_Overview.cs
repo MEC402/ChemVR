@@ -25,6 +25,12 @@ public class Tutorial_Overview : MonoBehaviour
     void OnDisable()
     {
         //Remove any listeners
+        this.gameObject.GetComponent<ToggleTextSimple>().enabled = false;
+        disableAll();
+    }
+
+    void disableAll()
+    {
         if (curStep == 0)
         {
             GameEventsManager.instance.taskEvents.onAdvanceTask -= tu_task0Complete;
@@ -47,14 +53,7 @@ public class Tutorial_Overview : MonoBehaviour
         if (tutPop != null)
         {
             tutPop.SetActive(false);
-            if (curStep == 1)
-            {
-                GameEventsManager.instance.taskEvents.onAdvanceTask -= tu_task1Complete;
-            }
-            else if (curStep == 2)
-            {
-                GameEventsManager.instance.taskEvents.onAdvanceTask -= tu_task2Complete;
-            }
+            disableAll();
             curStep = 0;
             GameEventsManager.instance.taskEvents.onAdvanceTask += tu_task0Complete;
         }
@@ -76,7 +75,7 @@ public class Tutorial_Overview : MonoBehaviour
         if (context.Contains("Tutorial_Task"))
         {
             curStep += 1;
-            tutText.text = "Good Job!\n\nNow approach the table with beakers on it.\n\nNotice that it is inside the blue square on the floor.";
+            tutText.text = "Good Job!\n\nYou can use the analog sticks to look and move around.\n\nApproach the table with beakers on it, it is inside the blue square on the floor.";
             GameEventsManager.instance.taskEvents.onAdvanceTask += tu_task2Complete;
             GameEventsManager.instance.taskEvents.onAdvanceTask -= tu_task1Complete;
         }
