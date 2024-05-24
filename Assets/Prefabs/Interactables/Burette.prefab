@@ -199,7 +199,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 7407e8e8d19f13546b999d820ac4ffc1, type: 2}
+  - {fileID: 2100000, guid: 07a56c9202c7d9144be1d51b7c70d235, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -233,8 +233,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 45ced10cc162de644a3ae5eb4cc76916, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxCapacity: 0
-  currentVolume: 0
+  fill: 0.596
+  color: {r: 0, g: 0, b: 0, a: 0}
+  remapBounds: {x: -0.145, y: 0.143}
+  material: {fileID: 0}
 --- !u!1 &2668097028338455311
 GameObject:
   m_ObjectHideFlags: 0
@@ -244,6 +246,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2448611196332414896}
+  - component: {fileID: 3158680496749844671}
   m_Layer: 0
   m_Name: Stopcock
   m_TagString: Untagged
@@ -269,6 +272,19 @@ Transform:
   - {fileID: 5960394941518198569}
   m_Father: {fileID: 7472417117428286974}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &3158680496749844671
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2668097028338455311}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8e2273aad9210d44184bc81dd379d7a5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  activated: 0
 --- !u!1 &3243908945683073337
 GameObject:
   m_ObjectHideFlags: 0
@@ -478,6 +494,7 @@ Transform:
   - {fileID: 7341321640894603412}
   - {fileID: 2948556557108400394}
   - {fileID: 7447770821097390623}
+  - {fileID: 7851217177456220530}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!33 &5097141102212049625
@@ -607,36 +624,10 @@ MonoBehaviour:
       m_Calls: []
   m_SelectEntered:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: -3269607274162277407, guid: e05b66f66d82464448a3c165a26673ef, type: 3}
-        m_TargetAssemblyTypeName: GrabbedObjectReporter, Assembly-CSharp
-        m_MethodName: Grab
-        m_Mode: 2
-        m_Arguments:
-          m_ObjectArgument: {fileID: 7334900541798629560}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.XR.Interaction.Toolkit.XRBaseInteractable,
-            Unity.XR.Interaction.Toolkit
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
   m_SelectExited:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: -3269607274162277407, guid: e05b66f66d82464448a3c165a26673ef, type: 3}
-        m_TargetAssemblyTypeName: GrabbedObjectReporter, Assembly-CSharp
-        m_MethodName: Drop
-        m_Mode: 2
-        m_Arguments:
-          m_ObjectArgument: {fileID: 7334900541798629560}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.XR.Interaction.Toolkit.XRBaseInteractable,
-            Unity.XR.Interaction.Toolkit
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
   m_FirstFocusEntered:
     m_PersistentCalls:
       m_Calls: []
@@ -770,15 +761,49 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 175f44913ea6a854e956852389d010d6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  internalFluid: {fileID: 7645702468594848029}
+  pourPoint: {fileID: 4252842799344432394}
+  opening: {fileID: 5240846808147729399}
+  pourEffect: {fileID: 5222752418215526562}
+  pourActivator: {fileID: 3158680496749844671}
   maxVolume: 100
   currentVolume: 0
   pourRate: 5
-  internalFluid: {fileID: 7645702468594848029}
-  pourPoint: {fileID: 4252842799344432394}
-  hitMarker: {fileID: 609268100246598871}
-  opening: {fileID: 5240846808147729399}
-  pouringUsesActivator: 1
-  pourActivator: {fileID: 2668097028338455311}
+  pourAngle: 90
+  flags:
+    pouringUsesActivator: 1
+    infiniteFluid: 0
+    infiniteCapacity: 0
+    pourAngleUsesPhysics: 0
+    pourRateUsesPhysics: 0
+    useSimpleFluidLevel: 0
+  pourPhysics:
+    minPourRate: 5
+    maxPourRate: 50
+    minPourAngle: 25
+    maxPourAngle: 115
+    minParticleSize: 0.05
+    maxParticleSize: 0.2
+    minParticleEmissionRate: 50
+    maxParticleEmissionRate: 100
+  defaults:
+    originalVolume: 0
+    originalPourRate: 5
+    originalPourAngle: 90
+  reInitialize: 0
+  initialContents: []
+  chemFluid:
+    totalVolume: 0
+    chems:
+    - name: WATER
+      type: 0
+      volume: 0
+    - name: HYDROCHLORIC_ACID
+      type: 1
+      volume: 0
+    - name: SODIUM_HYDROXIDE
+      type: 2
+      volume: 0
 --- !u!64 &7498411071407025348
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -884,3 +909,70 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8334890354222538803}
   m_Mesh: {fileID: 2534964839176971238, guid: aeeab90edce87b2468638becc921ee0d, type: 3}
+--- !u!1001 &7332085216286542721
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 7472417117428286974}
+    m_Modifications:
+    - target: {fileID: 663696850408051443, guid: 315fad10dc99f784f83a21b5f67d51e9, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 663696850408051443, guid: 315fad10dc99f784f83a21b5f67d51e9, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 663696850408051443, guid: 315fad10dc99f784f83a21b5f67d51e9, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 663696850408051443, guid: 315fad10dc99f784f83a21b5f67d51e9, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 663696850408051443, guid: 315fad10dc99f784f83a21b5f67d51e9, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 663696850408051443, guid: 315fad10dc99f784f83a21b5f67d51e9, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 663696850408051443, guid: 315fad10dc99f784f83a21b5f67d51e9, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 663696850408051443, guid: 315fad10dc99f784f83a21b5f67d51e9, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 663696850408051443, guid: 315fad10dc99f784f83a21b5f67d51e9, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 663696850408051443, guid: 315fad10dc99f784f83a21b5f67d51e9, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6774973484123949442, guid: 315fad10dc99f784f83a21b5f67d51e9, type: 3}
+      propertyPath: m_Name
+      value: Pour Effect Particle System
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 315fad10dc99f784f83a21b5f67d51e9, type: 3}
+--- !u!198 &5222752418215526562 stripped
+ParticleSystem:
+  m_CorrespondingSourceObject: {fileID: 3295013212380695331, guid: 315fad10dc99f784f83a21b5f67d51e9, type: 3}
+  m_PrefabInstance: {fileID: 7332085216286542721}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &7851217177456220530 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 663696850408051443, guid: 315fad10dc99f784f83a21b5f67d51e9, type: 3}
+  m_PrefabInstance: {fileID: 7332085216286542721}
+  m_PrefabAsset: {fileID: 0}

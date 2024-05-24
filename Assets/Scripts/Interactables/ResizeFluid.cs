@@ -4,34 +4,36 @@ using UnityEngine;
 
 public class ResizeFluid : MonoBehaviour
 {
-    public float maxCapacity;
-    public float currentVolume;
-    private Vector3 scaleAtFull;
-    private Vector3 defaultPosition;    
+    [Range(0, 1)]
+    public float fill = 0;
 
-    // Start is called before the first frame update
-    void Start()
+    public Color color;
+    private Color topColor;
+    private Color sideColor;
+    public Vector2 remapBounds;
+
+    public Material material;
+
+    private void Start()
     {
-        scaleAtFull = transform.localScale;
-        defaultPosition = transform.localPosition;
+        Renderer renderer = GetComponent<Renderer>();
+        material = renderer.material;
+        sideColor = color;
+        topColor = color * 1.1f;
     }
 
-    // Update is called once per frame
-    void Update()
+    private void Update()
     {
-        float percentFilled = Mathf.Clamp(currentVolume / maxCapacity, 0, 1);
-        if (percentFilled == 0)
-        {
-            currentVolume = 0;
-        } else if (percentFilled == 1)
-        {
-            currentVolume = maxCapacity;
-        }
-        float delta = scaleAtFull.y * (1  - percentFilled);
-        Vector3 scaleChange = Vector3.up * delta;
-        Vector3 positionChange = Vector3.up * delta;
-        transform.localScale = scaleAtFull - scaleChange;
-        transform.localPosition = defaultPosition - positionChange; 
-        
+        sideColor = color;
+        topColor = color * 1.1f;
+        material.SetFloat("_Fill", fill);
+        material.SetColor("_TopColor", topColor);
+        material.SetColor("_SideColor", sideColor);
+        material.SetVector("_RemapBounds", remapBounds);
+    }
+
+    private void OnDestroy()
+    {
+        Destroy(material);
     }
 }

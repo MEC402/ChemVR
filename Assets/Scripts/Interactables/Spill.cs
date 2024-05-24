@@ -11,7 +11,7 @@ public class Spill : MonoBehaviour
     public int maxTicksToFill = 25; // max ticks to reach minVolume before object is destroyed
     public const float minVolume = Mathf.PI;
 
-    // The square root of (pi * 10^4), used in computing spill radius given fluid volume in milliliters
+    // The square root of (pi * 10^4), used in computing spill radius given chemFluid volume in milliliters
     private const float SQRT_10K_PI = 0.00564189583548f;
 
     // Start is called before the first frame update

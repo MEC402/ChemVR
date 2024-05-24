@@ -22,4 +22,13 @@ public class InteractableEvents
             onPlayerDropInteractable(interactable);
         }
     }
+
+    public event Action<GameObject> onPlayerActivateInteractable;
+    public void PlayerActivateInteractable(GameObject interactable)
+    {
+        if (onPlayerActivateInteractable != null)
+        {
+            onPlayerActivateInteractable(interactable);
+        }
+    }
 }
