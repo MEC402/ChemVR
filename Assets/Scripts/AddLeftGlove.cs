@@ -1,37 +1,67 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem;
+using UnityEngine.XR.Interaction.Toolkit;
 
 public class AddLeftGlove : MonoBehaviour
 {
-    public Material gloves;
-    public GameObject leftHand;
+    public Material gloves; 
+    public GameObject glovebox; 
+    private GameObject leftHand; 
     private Material original;
-    private bool wearingGloves;
+    private bool touching = false;
+    static private bool wearingLeftGlove;
+    Renderer boxRen;
+    Renderer handRen;
+
     void Start()
     {
-        original = leftHand.GetComponent<Renderer>().material;
-        wearingGloves = false;
+        // Get and store the original material
+        leftHand = GameObject.Find("left hand model");
+        original = leftHand.GetComponent<SkinnedMeshRenderer>().material;
+        wearingLeftGlove = false;
+        boxRen = glovebox.GetComponent<Renderer>();
+        handRen = leftHand.GetComponent<Renderer>();
+
+        GameEventsManager.instance.inputEvents.onXButtonPressed += OnXPress;
     }
-   
-    void OnTriggerStay(Collider col)
+
+    void OnXPress(InputAction.CallbackContext context)
     {
-        if(col.gameObject.tag.Equals("Glove Box"))
+        if (IsTouching())
         {
-	/*
-            if (OVRInput.GetDown(OVRInput.Button.Four))
-            {
-                wearingGloves = true;
-                leftHand.GetComponent<Renderer>().material = gloves;
-            }
-        */
-	}
-	
+            PutOn();
+        }
     }
 
-    public bool HasGloves()
+    private bool IsTouching()
     {
-        return wearingGloves;
+        // Check if the bounds of the renderers intersect
+        return handRen.bounds.Intersects(boxRen.bounds);
     }
 
+    void OnTriggerExit(Collider other)
+    {
+        if (other == leftHand.GetComponent<Collider>())
+        {
+            touching = false;
+        }
+    }
+
+    void PutOn()
+    {
+        if (!wearingLeftGlove)
+        {
+            wearingLeftGlove = true;
+            leftHand.GetComponent<SkinnedMeshRenderer>().material = gloves;
+            Debug.Log("Left glove put on!");
+        }
+    }
+
+    static public bool HasGloves()
+    {
+        return wearingLeftGlove;
+    }
 }

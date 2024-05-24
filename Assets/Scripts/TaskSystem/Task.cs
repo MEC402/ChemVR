@@ -41,6 +41,36 @@ public class Task
         }
     }
 
+    public void StartOver()
+    {
+        if (this.currentTaskStepIndex > 0)
+        {
+            if(CurrentStepExists())
+            {
+                string destroy = GetCurrentTaskStepPrefab().GetComponent<TaskStep>().ToString();
+                if (destroy.Contains("("))
+                {
+                    //Replace duplicate task name with clone
+                    int start = destroy.IndexOf("(") + 1;
+                    int end = destroy.IndexOf(")");
+                    destroy = destroy.Remove(start, (end - start));
+                    destroy = destroy.Insert(start, "Clone");
+
+                    // Remove space before (Clone)
+                    destroy = destroy.Remove(start - 2, 1);
+                }
+                Object.Destroy(GameObject.Find(destroy));
+            }                      
+        }
+        this.state = TaskState.CAN_START;
+
+        currentTaskStepIndex = 0;
+    }
+
+    public int getStep()
+    {
+        return currentTaskStepIndex;
+    }
     public void MoveToNextStep()
     {
         currentTaskStepIndex++;
@@ -70,7 +100,7 @@ public class Task
         }
         else
         {
-            Debug.LogWarning("Tried to get task step prefab, but stepIndex was out of range indicating that " +
+            Debug.LogError("Tried to get task step prefab, but stepIndex was out of range indicating that " +
                 "there's no current step: TaskId=" + info.id + ", stepIndex=" + currentTaskStepIndex);
         }
         return taskStepPrefab;
