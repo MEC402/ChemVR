@@ -9,15 +9,12 @@ public class GH_Task_1 : TaskStep
         throw new System.NotImplementedException();
     }
 
-    // Start is called before the first frame update
-    void Start()
+    private void Update()
     {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
+        // If wearing both gloves, the coat, and goggles.
+        if ((AddLeftGlove.HasGloves() && AddRightGlove.HasGloves()) && (WearCoat.IsWearing()) && (WearGoggles.IsWearing()))
+        {
+            FinishTaskStep();
+        }
     }
 }

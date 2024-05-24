@@ -113,7 +113,7 @@ public class Glove_Hygiene_Overview : MonoBehaviour
         {
             this.gameObject.GetComponent<ToggleTextSimple>().enabled = true;
             curStep += 1;
-            ghText.text = "Welcome!\nBefore we begin the lab, you need to put on your lab gear.\n\nYou should be wearing closed toed shoes and have your hair tied back.\n\nFind gloves, goggles, and a lab coat and put them on with (B).";
+            ghText.text = "Welcome!\nBefore we begin the lab, you need to put on your lab gear.\n\nYou should be wearing closed toed shoes and have your hair tied back.\n\nFind gloves, goggles, and a lab coat and put them on with (A).";
             GameEventsManager.instance.taskEvents.onAdvanceTask += gh_task1Complete;
             GameEventsManager.instance.taskEvents.onAdvanceTask -= gh_task0Complete;
         }
