@@ -44,18 +44,26 @@ public class Tutorial_Overview : MonoBehaviour
             GameEventsManager.instance.taskEvents.onAdvanceTask -= tu_task2Complete;
         }
     }
-
+    public void restart()
+    {
+        tu_abandonMe("Tutorial_Overview");
+        this.gameObject.GetComponent<ToggleTextSimple>().enabled = true;
+    }
     public void tu_abandonMe(string context)
     {
-        this.gameObject.GetComponent<ToggleTextSimple>().enabled = false;
-        GameObject tutPop = GameObject.Find("Tutorial PopUp");
-        tutText.text = "Don't look at me I'm inactive.";
-        if (tutPop != null)
+        if (context.Contains("Tutorial"))
         {
-            tutPop.SetActive(false);
-            disableAll();
-            curStep = 0;
-            GameEventsManager.instance.taskEvents.onAdvanceTask += tu_task0Complete;
+            this.gameObject.GetComponent<ToggleTextSimple>().enabled = false;
+            GameObject tutPop = GameObject.Find("Tutorial PopUp");
+            tutText.text = "Don't look at me I'm inactive.";
+            if (tutPop != null)
+            {
+                //Debug.LogWarning("Disabling: " + context);
+                tutPop.SetActive(false);
+                disableAll();
+                curStep = 0;
+                GameEventsManager.instance.taskEvents.onAdvanceTask += tu_task0Complete;
+            }
         }
     }
 

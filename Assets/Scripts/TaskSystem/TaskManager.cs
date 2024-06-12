@@ -21,7 +21,7 @@ public class TaskManager : MonoBehaviour
     {
         GameEventsManager.instance.taskEvents.onStartTask += StartTask;
         GameEventsManager.instance.taskEvents.onAdvanceTask += AdvanceTask;
-        GameEventsManager.instance.taskEvents.onStartTask += AbandonTask;
+        GameEventsManager.instance.taskEvents.onAbandonTask += AbandonTask;
         GameEventsManager.instance.taskEvents.onFinishTask += FinishTask;
         GameEventsManager.instance.taskEvents.onTaskStepStateChange += TaskStepStateChange;
 
@@ -32,7 +32,7 @@ public class TaskManager : MonoBehaviour
     {
         GameEventsManager.instance.taskEvents.onStartTask -= StartTask;
         GameEventsManager.instance.taskEvents.onAdvanceTask -= AdvanceTask;
-        GameEventsManager.instance.taskEvents.onStartTask -= AbandonTask;
+        GameEventsManager.instance.taskEvents.onAbandonTask -= AbandonTask;
         GameEventsManager.instance.taskEvents.onFinishTask -= FinishTask;
         GameEventsManager.instance.taskEvents.onTaskStepStateChange -= TaskStepStateChange;
 
@@ -140,6 +140,7 @@ public class TaskManager : MonoBehaviour
     {
         Task task = GetTaskById(id);
         task.StartOver();
+        task.Kill();
         ChangeTaskState(task.info.id, TaskState.CAN_START);
     }
 

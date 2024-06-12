@@ -11,7 +11,6 @@ public class AddLeftGlove : MonoBehaviour
     public GameObject glovebox; 
     private GameObject leftHand; 
     private Material original;
-    private bool touching = false;
     static private bool wearingLeftGlove;
     Renderer boxRen;
     Renderer handRen;
@@ -40,14 +39,6 @@ public class AddLeftGlove : MonoBehaviour
     {
         // Check if the bounds of the renderers intersect
         return handRen.bounds.Intersects(boxRen.bounds);
-    }
-
-    void OnTriggerExit(Collider other)
-    {
-        if (other == leftHand.GetComponent<Collider>())
-        {
-            touching = false;
-        }
     }
 
     void PutOn()

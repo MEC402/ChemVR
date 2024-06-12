@@ -42,6 +42,7 @@ public class ToggleTextSimple : MonoBehaviour
     void OnDisable()
     {
         GameEventsManager.instance.inputEvents.onXButtonPressed -= TextToggle;
+        GameEventsManager.instance.taskEvents.onAdvanceTask -= popUp;
     }
 
     void TextToggle(InputAction.CallbackContext context)

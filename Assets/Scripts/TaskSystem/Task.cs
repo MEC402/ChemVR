@@ -43,6 +43,7 @@ public class Task
 
     public void StartOver()
     {
+
         if (this.currentTaskStepIndex > 0)
         {
             if(CurrentStepExists())
@@ -65,6 +66,12 @@ public class Task
         this.state = TaskState.CAN_START;
 
         currentTaskStepIndex = 0;
+    }
+
+    public void Kill()
+    {
+        string destroy = this.info.name + "_" + currentTaskStepIndex + "(Clone)";
+        Object.Destroy(GameObject.Find(destroy));
     }
 
     public int getStep()

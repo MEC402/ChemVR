@@ -28,7 +28,11 @@ public class Chemical_Change_Overview : MonoBehaviour
         this.gameObject.GetComponent<ToggleTextSimple>().enabled = false;
         disableAll();
     }
-
+    public void restart()
+    {
+        cc_abandonMe("Chemical_Change_Overview");
+        this.gameObject.GetComponent<ToggleTextSimple>().enabled = true;
+    }
     void disableAll()
     {
         if (curStep == 0)
@@ -43,15 +47,19 @@ public class Chemical_Change_Overview : MonoBehaviour
 
     public void cc_abandonMe(string context)
     {
-        this.gameObject.GetComponent<ToggleTextSimple>().enabled = false;
-        GameObject ccPop = GameObject.Find("Chemical Change PopUp");
-        ccText.text = "Don't look at me I'm inactive.";
-        if (ccPop != null)
+        if (context.Contains("Chemical"))
         {
-            ccPop.SetActive(false);
-            disableAll();
-            curStep = 0;
-            GameEventsManager.instance.taskEvents.onAdvanceTask += cc_task0Complete;
+            this.gameObject.GetComponent<ToggleTextSimple>().enabled = false;
+            GameObject ccPop = GameObject.Find("Chemical Change PopUp");
+            ccText.text = "Don't look at me I'm inactive.";
+            if (ccPop != null)
+            {
+                //Debug.LogWarning("Disabling: " + context);
+                ccPop.SetActive(false);
+                disableAll();
+                GameEventsManager.instance.taskEvents.onAdvanceTask += cc_task0Complete;
+                curStep = 0;
+            }
         }
     }
 
