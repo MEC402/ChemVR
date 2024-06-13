@@ -12,21 +12,22 @@ public class Glove_Hygiene_Overview : MonoBehaviour
     void OnEnable()
     {
         this.gameObject.GetComponent<ToggleTextSimple>().enabled = false;
-        curStep = 0;
+        curStep = -1;
         ghText.text = "Not reading events.";
         if (GameEventsManager.instance == null)
         {
             ghText.text = "There is no game events manager";
         }
-        GameEventsManager.instance.taskEvents.onAdvanceTask += gh_task0Complete;
         GameEventsManager.instance.taskEvents.onAbandonTask += gh_abandonMe;
+        GameEventsManager.instance.taskEvents.onAdvanceTask += AdvanceGloTask;
     }
 
     void OnDisable()
     {
         //Remove any listeners
         this.gameObject.GetComponent<ToggleTextSimple>().enabled = false;
-        disableAll();
+        GameEventsManager.instance.taskEvents.onAdvanceTask -= AdvanceGloTask;
+        GameEventsManager.instance.taskEvents.onAbandonTask -= gh_abandonMe;
     }
     public void restart()
     {
@@ -34,67 +35,29 @@ public class Glove_Hygiene_Overview : MonoBehaviour
         this.gameObject.GetComponent<ToggleTextSimple>().enabled = true;
     }
 
-    void disableAll()
+    string[] text = {"Welcome!\nBefore we begin the lab, you need to put on your lab gear.\n\nYou should be wearing closed toed shoes and have your hair tied back.\n\nFind gloves, goggles, and a lab coat and put them on with (A).",
+                    "For this lab, bring the following to a table in the red zone:\nBeaker\nErlenmeyer flask with white chemical\nErlenmeyer flask w/ red chemical.\n\n\nSkip with A",
+                    "You're getting a call! It might be urgent.\n\nYour phone is in the office, pick it up and press (B) to answer it.\n\n\nSkip with A",
+                    "Phew, that was close.\n\nNow return to the experiment in the red zone.\n\n\nSkip with A",
+                    "You need to set up a burette.\n\nAttach a funnel and a burette to the holder at your table.\n\n\nSkip with A",
+                    "Next, fill the beaker with 5 drop from the Erlenmeyer flask with the white chemical.\n\n\nSkip with A",
+                    "It's time for a break.\n\nI think I saw some coffee in your office. Pick it up and press (B) to take a drink.\n\n\nSkip with A",
+                    "Breaks over!\n\nFinish filling the beaker with 5 drop from the Erlenmeyer flask with the white chemical.\n\n\nSkip with A",
+                    "Now fill the burette with 10 drops from the Erlenmeyer flask with the red chemical.\n\n\nSkip with A",
+                    "Titrate until you see a change of color in the beaker, or until you run out of red chemical. When you're done, bring the beaker into the yellow zone.\n\n\nSkip with A",
+                    "Uh Oh!\n\nThe printer is acting up again, and it's printing important data. Smack it once or twice with your hand to get it running right.\n\n\nSkip with A",
+                    "Return to the red zone and titrate until you see a change of color in the beaker, or until you run out of red chemical. When you're done, bring the beaker into the yellow zone.\n\n\nSkip with A",
+                    "Record your findings using the pencil and data sheet on the tables near the office. Touch the pencil to the paper to do so.\n\n\nSkip with A",
+                    "The titration experiment is now complete. Please go to the trash to remove your gloves.\n\n\nSkip with A",
+                    "This completes the glove hygiene module. We will now display all of the chemical spills created throughout the experience.\n(X) Hides Popup\n(Y) Opens Menu"
+                    };
+    void AdvanceGloTask(string context)
     {
-        if (curStep == 0)
+        if (context.Contains("Glove_Hygiene_Task"))
         {
-            GameEventsManager.instance.taskEvents.onAdvanceTask -= gh_task0Complete;
-        }
-        else if (curStep == 1)
-        {
-            GameEventsManager.instance.taskEvents.onAdvanceTask -= gh_task1Complete;
-        }
-        else if (curStep == 2)
-        {
-            GameEventsManager.instance.taskEvents.onAdvanceTask -= gh_task2Complete;
-        }
-        else if (curStep == 3)
-        {
-            GameEventsManager.instance.taskEvents.onAdvanceTask -= gh_task3Complete;
-        }
-        else if (curStep == 4)
-        {
-            GameEventsManager.instance.taskEvents.onAdvanceTask -= gh_task4Complete;
-        }
-        else if (curStep == 5)
-        {
-            GameEventsManager.instance.taskEvents.onAdvanceTask -= gh_task5Complete;
-        }
-        else if (curStep == 6)
-        {
-            GameEventsManager.instance.taskEvents.onAdvanceTask -= gh_task6Complete;
-        }
-        else if (curStep == 7)
-        {
-            GameEventsManager.instance.taskEvents.onAdvanceTask -= gh_task7Complete;
-        }
-        else if (curStep == 8)
-        {
-            GameEventsManager.instance.taskEvents.onAdvanceTask -= gh_task8Complete;
-        }
-        else if (curStep == 9)
-        {
-            GameEventsManager.instance.taskEvents.onAdvanceTask -= gh_task9Complete;
-        }
-        else if (curStep == 10)
-        {
-            GameEventsManager.instance.taskEvents.onAdvanceTask -= gh_task10Complete;
-        }
-        else if (curStep == 11)
-        {
-            GameEventsManager.instance.taskEvents.onAdvanceTask -= gh_task11Complete;
-        }
-        else if (curStep == 12)
-        {
-            GameEventsManager.instance.taskEvents.onAdvanceTask -= gh_task12Complete;
-        }
-        else if (curStep == 13)
-        {
-            GameEventsManager.instance.taskEvents.onAdvanceTask -= gh_task13Complete;
-        }
-        else if (curStep == 14)
-        {
-            GameEventsManager.instance.taskEvents.onAdvanceTask -= gh_task14Complete;
+            this.gameObject.GetComponent<ToggleTextSimple>().enabled = true;
+            curStep += 1;
+            ghText.text = text[curStep];
         }
     }
 
@@ -107,177 +70,9 @@ public class Glove_Hygiene_Overview : MonoBehaviour
             ghText.text = "Don't look at me I'm inactive.";
             if (ghPop != null)
             {
-                //Debug.LogWarning("Disabling: " + context);
                 ghPop.SetActive(false);
-                disableAll();
-                curStep = 0;
-                GameEventsManager.instance.taskEvents.onAdvanceTask += gh_task0Complete;
+                curStep = -1;
             }
-        }
-    }
-
-    void gh_task0Complete(string context)
-    {
-        if (context.Contains("Glove_Hygiene_Task"))
-        {
-            this.gameObject.GetComponent<ToggleTextSimple>().enabled = true;
-            curStep += 1;
-            ghText.text = "Welcome!\nBefore we begin the lab, you need to put on your lab gear.\n\nYou should be wearing closed toed shoes and have your hair tied back.\n\nFind gloves, goggles, and a lab coat and put them on with (A).";
-            GameEventsManager.instance.taskEvents.onAdvanceTask += gh_task1Complete;
-            GameEventsManager.instance.taskEvents.onAdvanceTask -= gh_task0Complete;
-        }
-    }
-
-    void gh_task1Complete(string context)
-    {
-        if (context.Contains("Glove_Hygiene_Task"))
-        {
-            curStep += 1;
-            ghText.text = "For this lab, bring the following to a table in the red zone:\nBeaker\nErlenmeyer flask with white chemical\nErlenmeyer flask w/ red chemical.\n\n\nSkip with A";
-            GameEventsManager.instance.taskEvents.onAdvanceTask += gh_task2Complete;
-            GameEventsManager.instance.taskEvents.onAdvanceTask -= gh_task1Complete;
-        }
-    }
-
-    void gh_task2Complete(string context)
-    {
-        if (context.Contains("Glove_Hygiene_Task"))
-        {
-            curStep += 1;
-            ghText.text = "You're getting a call! It might be urgent.\n\nYour phone is in the office, pick it up and press (B) to answer it.\n\n\nSkip with A";
-            GameEventsManager.instance.taskEvents.onAdvanceTask += gh_task3Complete;
-            GameEventsManager.instance.taskEvents.onAdvanceTask -= gh_task2Complete;
-        }
-    }
-
-    void gh_task3Complete(string context)
-    {
-        if (context.Contains("Glove_Hygiene_Task"))
-        {
-            curStep += 1;
-            ghText.text = "Phew, that was close.\n\nNow return to the experiment in the red zone.\n\n\nSkip with A";
-            GameEventsManager.instance.taskEvents.onAdvanceTask += gh_task4Complete;
-            GameEventsManager.instance.taskEvents.onAdvanceTask -= gh_task3Complete;
-        }
-    }
-
-    void gh_task4Complete(string context)
-    {
-        if (context.Contains("Glove_Hygiene_Task"))
-        {
-            curStep += 1;
-            ghText.text = "You need to set up a burette.\n\nAttach a funnel and a burette to the holder at your table.\n\n\nSkip with A";
-            GameEventsManager.instance.taskEvents.onAdvanceTask += gh_task5Complete;
-            GameEventsManager.instance.taskEvents.onAdvanceTask -= gh_task4Complete;
-        }
-    }
-
-    void gh_task5Complete(string context)
-    {
-        if (context.Contains("Glove_Hygiene_Task"))
-        {
-            curStep += 1;
-            ghText.text = "Next, fill the beaker with 5 drop from the Erlenmeyer flask with the white chemical.\n\n\nSkip with A";
-            GameEventsManager.instance.taskEvents.onAdvanceTask += gh_task6Complete;
-            GameEventsManager.instance.taskEvents.onAdvanceTask -= gh_task5Complete;
-        }
-    }
-
-    void gh_task6Complete(string context)
-    {
-        if (context.Contains("Glove_Hygiene_Task"))
-        {
-            curStep += 1;
-            ghText.text = "It's time for a break.\n\nI think I saw some coffee in your office. Pick it up and press (B) to take a drink.\n\n\nSkip with A";
-            GameEventsManager.instance.taskEvents.onAdvanceTask += gh_task7Complete;
-            GameEventsManager.instance.taskEvents.onAdvanceTask -= gh_task6Complete;
-        }
-    }
-
-    void gh_task7Complete(string context)
-    {
-        if (context.Contains("Glove_Hygiene_Task"))
-        {
-            curStep += 1;
-            ghText.text = "Breaks over!\n\nFinish filling the beaker with 5 drop from the Erlenmeyer flask with the white chemical.\n\n\nSkip with A";
-            GameEventsManager.instance.taskEvents.onAdvanceTask += gh_task8Complete;
-            GameEventsManager.instance.taskEvents.onAdvanceTask -= gh_task7Complete;
-        }
-    }
-
-    void gh_task8Complete(string context)
-    {
-        if (context.Contains("Glove_Hygiene_Task"))
-        {
-            curStep += 1;
-            ghText.text = "Now fill the burette with 10 drops from the Erlenmeyer flask with the red chemical.\n\n\nSkip with A";
-            GameEventsManager.instance.taskEvents.onAdvanceTask += gh_task9Complete;
-            GameEventsManager.instance.taskEvents.onAdvanceTask -= gh_task8Complete;
-        }
-    }
-
-    void gh_task9Complete(string context)
-    {
-        if (context.Contains("Glove_Hygiene_Task"))
-        {
-            curStep += 1;
-            ghText.text = "Titrate until you see a change of color in the beaker, or until you run out of red chemical. When you're done, bring the beaker into the yellow zone.\n\n\nSkip with A";
-            GameEventsManager.instance.taskEvents.onAdvanceTask += gh_task10Complete;
-            GameEventsManager.instance.taskEvents.onAdvanceTask -= gh_task9Complete;
-        }
-    }
-
-    void gh_task10Complete(string context)
-    {
-        if (context.Contains("Glove_Hygiene_Task"))
-        {
-            curStep += 1;
-            ghText.text = "Uh Oh!\n\nThe printer is acting up again, and it's printing important data. Smack it once or twice with your hand to get it running right.\n\n\nSkip with A";
-            GameEventsManager.instance.taskEvents.onAdvanceTask += gh_task11Complete;
-            GameEventsManager.instance.taskEvents.onAdvanceTask -= gh_task10Complete;
-        }
-    }
-
-    void gh_task11Complete(string context)
-    {
-        if (context.Contains("Glove_Hygiene_Task"))
-        {
-            curStep += 1;
-            ghText.text = "Return to the red zone and titrate until you see a change of color in the beaker, or until you run out of red chemical. When you're done, bring the beaker into the yellow zone.\n\n\nSkip with A";
-            GameEventsManager.instance.taskEvents.onAdvanceTask += gh_task12Complete;
-            GameEventsManager.instance.taskEvents.onAdvanceTask -= gh_task11Complete;
-        }
-    }
-
-    void gh_task12Complete(string context)
-    {
-        if (context.Contains("Glove_Hygiene_Task"))
-        {
-            curStep += 1;
-            ghText.text = "Record your findings using the pencil and data sheet on the tables near the office. Touch the pencil to the paper to do so.\n\n\nSkip with A";
-            GameEventsManager.instance.taskEvents.onAdvanceTask += gh_task13Complete;
-            GameEventsManager.instance.taskEvents.onAdvanceTask -= gh_task12Complete;
-        }
-    }
-
-    void gh_task13Complete(string context)
-    {
-        if (context.Contains("Glove_Hygiene_Task"))
-        {
-            curStep += 1;
-            ghText.text = "The titration experiment is now complete. Please go to the trash to remove your gloves.\n\n\nSkip with A";
-            GameEventsManager.instance.taskEvents.onAdvanceTask += gh_task14Complete;
-            GameEventsManager.instance.taskEvents.onAdvanceTask -= gh_task13Complete;
-        }
-    }
-
-    void gh_task14Complete(string context)
-    {
-        if (context.Contains("Glove_Hygiene_Task"))
-        {
-            curStep += 1;
-            ghText.text = "This completes the glove hygiene module. We will now display all of the chemical spills created throughout the experience.\n(X) Hides Popup\n(Y) Opens Menu";
-            GameEventsManager.instance.taskEvents.onAdvanceTask -= gh_task14Complete;
         }
     }
 }

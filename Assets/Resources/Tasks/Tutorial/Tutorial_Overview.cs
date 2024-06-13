@@ -12,13 +12,13 @@ public class Tutorial_Overview : MonoBehaviour
     void OnEnable()
     {
         this.gameObject.GetComponent<ToggleTextSimple>().enabled = false;
-        curStep = 0;
+        curStep = -1;
         tutText.text = "Not reading events.";
         if (GameEventsManager.instance == null)
         {
             tutText.text = "There is no game events manager";
         }
-        GameEventsManager.instance.taskEvents.onAdvanceTask += tu_task0Complete;
+        GameEventsManager.instance.taskEvents.onAdvanceTask += AdvanceTutTask;
         GameEventsManager.instance.taskEvents.onAbandonTask += tu_abandonMe;
     }
 
@@ -26,24 +26,10 @@ public class Tutorial_Overview : MonoBehaviour
     {
         //Remove any listeners
         this.gameObject.GetComponent<ToggleTextSimple>().enabled = false;
-        disableAll();
+        GameEventsManager.instance.taskEvents.onAdvanceTask -= AdvanceTutTask;
+        GameEventsManager.instance.taskEvents.onAbandonTask -= tu_abandonMe;
     }
 
-    void disableAll()
-    {
-        if (curStep == 0)
-        {
-            GameEventsManager.instance.taskEvents.onAdvanceTask -= tu_task0Complete;
-        }
-        else if (curStep == 1)
-        {
-            GameEventsManager.instance.taskEvents.onAdvanceTask -= tu_task1Complete;
-        }
-        else if (curStep == 2)
-        {
-            GameEventsManager.instance.taskEvents.onAdvanceTask -= tu_task2Complete;
-        }
-    }
     public void restart()
     {
         tu_abandonMe("Tutorial_Overview");
@@ -58,45 +44,22 @@ public class Tutorial_Overview : MonoBehaviour
             tutText.text = "Don't look at me I'm inactive.";
             if (tutPop != null)
             {
-                //Debug.LogWarning("Disabling: " + context);
                 tutPop.SetActive(false);
-                disableAll();
-                curStep = 0;
-                GameEventsManager.instance.taskEvents.onAdvanceTask += tu_task0Complete;
+                curStep = -1;
             }
         }
     }
-
-    void tu_task0Complete(string context)
+    string[] text = {"Welcome to the tutorial!\n\nYou can hide this popup with the primary button on your left controller, (X).\n\nTry hiding this popup and re-opening it by pressing (X) twice!",
+                    "Good Job!\n\nYou can use the analog sticks to look and move around.\n\nApproach the table with beakers on it, it is inside the blue square on the floor.",
+                    "Tutorial complete!\n\nOne more thing!\nPress the secondary button (Y) on your left controller anytime to exit the module and return to the menu.\n\nGive it a try!"
+                    };
+    void AdvanceTutTask(string context)
     {
         if (context.Contains("Tutorial_Task"))
         {
             this.gameObject.GetComponent<ToggleTextSimple>().enabled = true;
             curStep += 1;
-            tutText.text = "Welcome to the tutorial!\n\nYou can hide this popup with the primary button on your left controller, (X).\n\nTry hiding this popup and re-opening it by pressing (X) twice!";
-            GameEventsManager.instance.taskEvents.onAdvanceTask += tu_task1Complete;
-            GameEventsManager.instance.taskEvents.onAdvanceTask -= tu_task0Complete;
-        }
-    }
-    void tu_task1Complete(string context)
-    {
-        if (context.Contains("Tutorial_Task"))
-        {
-            curStep += 1;
-            tutText.text = "Good Job!\n\nYou can use the analog sticks to look and move around.\n\nApproach the table with beakers on it, it is inside the blue square on the floor.";
-            GameEventsManager.instance.taskEvents.onAdvanceTask += tu_task2Complete;
-            GameEventsManager.instance.taskEvents.onAdvanceTask -= tu_task1Complete;
-        }
-    }
-    void tu_task2Complete(string context)
-    {
-        if (context.Contains("Tutorial_Task"))
-        {
-            curStep += 1;
-            tutText.text = "Tutorial complete!\n\nOne more thing!\nPress the secondary button (Y) on your left controller anytime to exit the module and return to the menu.\n\nGive it a try!";
-            //tutText.text = "Great!\n\nYou can pick up objects using the main triggers on either hand.\n\nNow that you're here, give it a try.";
-            //GameEventsManager.instance.taskEvents.onAdvanceTask += task3Complete;
-            GameEventsManager.instance.taskEvents.onAdvanceTask -= tu_task2Complete;
+            tutText.text = text[curStep];
         }
     }
 }

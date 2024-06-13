@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 
 
-public class Chemical_Change_Task_1 : TaskStep
+public class Chemical_Change_Task_6 : TaskStep
 {
     protected override void SetTaskStepState(string state)
     {
