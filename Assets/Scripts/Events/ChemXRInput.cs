@@ -101,6 +101,7 @@ public class ChemXRInput : MonoBehaviour
         foreach (InputAction action in ChemXRActionMap)
         {
             action.performed += ActionPerformed;
+            action.canceled += ActionCancelled;
         }        
     }
 
@@ -151,6 +152,43 @@ public class ChemXRInput : MonoBehaviour
                 break;
             case "R Thumbstick Click":
                 GameEventsManager.instance.inputEvents.RThumbstickClicked(context);
+                break;
+        }
+    }
+
+    private void ActionCancelled(InputAction.CallbackContext context)
+    {
+        switch (context.action.name)
+        {
+            case "X Button":
+                GameEventsManager.instance.inputEvents.XButtonReleased(context);
+                break;
+            case "Y Button":
+                GameEventsManager.instance.inputEvents.YButtonReleased(context);
+                break;
+            case "A Button":
+                GameEventsManager.instance.inputEvents.AButtonReleased(context);
+                break;
+            case "B Button":
+                GameEventsManager.instance.inputEvents.BButtonReleased(context);
+                break;
+            case "L Trigger":
+                //GameEventsManager.instance.inputEvents.LTriggerReleased(context);
+                break;
+            case "R Trigger":
+                //GameEventsManager.instance.inputEvents.RTriggerReleased(context);
+                break;
+            case "L Grip":
+                //GameEventsManager.instance.inputEvents.LGripReleased(context);
+                break;
+            case "R Grip":
+                //GameEventsManager.instance.inputEvents.RGripReleased(context);
+                break;
+            case "L Thumbstick Click":
+                //GameEventsManager.instance.inputEvents.LThumbstickClicked(context);
+                break;
+            case "R Thumbstick Click":
+                //GameEventsManager.instance.inputEvents.RThumbstickClicked(context);
                 break;
         }
     }

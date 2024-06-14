@@ -95,72 +95,72 @@ public class InputEvents
             onRThumbstickClicked(context);
         }
     }
-
+    /*
     public event Action<InputAction.CallbackContext> onXButtonHeld;
-    public void OnXButtonHeld(InputAction.CallbackContext context)
+    public void XButtonHeld(InputAction.CallbackContext context)
     {
         if (onXButtonHeld != null)
         {
             onXButtonHeld(context);
         }
-    }
+    }*/
 
     public event Action<InputAction.CallbackContext> onXButtonReleased;
-    public void OnXButtonReleased(InputAction.CallbackContext context)
+    public void XButtonReleased(InputAction.CallbackContext context)
     {
         if (onXButtonReleased != null)
         {
             onXButtonReleased(context);
         }
     }
-
+    /*
     public event Action<InputAction.CallbackContext> onYButtonHeld;
-    public void OnYButtonHeld(InputAction.CallbackContext context)
+    public void YButtonHeld(InputAction.CallbackContext context)
     {
         if (onYButtonHeld != null)
         {
             onYButtonHeld(context);
         }
-    }
+    }*/
 
     public event Action<InputAction.CallbackContext> onYButtonReleased;
-    public void OnYButtonReleased(InputAction.CallbackContext context)
+    public void YButtonReleased(InputAction.CallbackContext context)
     {
         if (onYButtonReleased != null)
         {
             onYButtonReleased(context);
         }
     }
-
+    /*
     public event Action<InputAction.CallbackContext> onAButtonHeld;
-    public void OnAButtonHeld(InputAction.CallbackContext context)
+    public void AButtonHeld(InputAction.CallbackContext context)
     {
         if (onAButtonHeld != null)
         {
             onAButtonHeld(context);
         }
-    }
+    }*/
 
     public event Action<InputAction.CallbackContext> onAButtonReleased;
-    public void OnAButtonReleased(InputAction.CallbackContext context)
+    public void AButtonReleased(InputAction.CallbackContext context)
     {
         if (onAButtonReleased != null)
         {
             onAButtonReleased(context);
         }
     }
-
+    /*
     public event Action<InputAction.CallbackContext> onBButtonHeld;
-    public void OnBButtonHeld(InputAction.CallbackContext context)
+    public void BButtonHeld(InputAction.CallbackContext context)
     {
         if (onBButtonHeld != null)
         {
             onBButtonHeld(context);
         }
-    }
+    }*/
 
     public event Action<InputAction.CallbackContext> onBButtonReleased;
-    public void OnBButtonReleased(InputAction.CallbackContext context)
+    public void BButtonReleased(InputAction.CallbackContext context)
     {
         if (onBButtonReleased != null)
         {

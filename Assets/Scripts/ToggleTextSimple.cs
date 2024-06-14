@@ -33,7 +33,8 @@ public class ToggleTextSimple : MonoBehaviour
     //This code makes sure that if you complete a task the next popup appears without the need to toggle
     private void popUp(string obj)
     {
-        if (this.isActiveAndEnabled && !(text.transform.GetChild(0).transform.GetChild(0).GetComponent<TMP_Text>().text == "Welcome to the tutorial!\n\nYou can hide this popup with the primary button on your left controller, (X).\n\nTry hiding this popup and re-opening it by pressing (X) twice!"))
+        
+        if (this.isActiveAndEnabled && !((obj.Contains("Tutorial"))) && GameObject.Find("Tutorial_Task_1(Clone)"))
         {
             text.SetActive(true);
         }
