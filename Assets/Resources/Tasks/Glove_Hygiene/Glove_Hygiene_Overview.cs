@@ -35,13 +35,13 @@ public class Glove_Hygiene_Overview : MonoBehaviour
         this.gameObject.GetComponent<ToggleTextSimple>().enabled = true;
     }
 
-    string[] text = {"Welcome!\nBefore we begin the lab, you need to put on your lab gear.\n\nYou should be wearing closed toed shoes and have your hair tied back.\n\nFind gloves, goggles, and a lab coat and put them on with (A).",
+    string[] text = {"Welcome!\nBefore we begin the lab, you need to put on your lab gear.\n\nYou should be wearing closed toed shoes and have your hair tied back.\n\nFind gloves, goggles, and a lab coat and put them on with (A/X).",
                     "For this lab, bring the following to a table in the red zone:\nBeaker\nErlenmeyer flask with white chemical\nErlenmeyer flask w/ red chemical.\n\n\nSkip with A",
-                    "You're getting a call! It might be urgent.\n\nYour phone is in the office, pick it up and press (B) to answer it.\n\n\nSkip with A",
-                    "Phew, that was close.\n\nNow return to the experiment in the red zone.\n\n\nSkip with A",
-                    "You need to set up a burette.\n\nAttach a funnel and a burette to the holder at your table.\n\n\nSkip with A",
-                    "Next, fill the beaker with 5 drop from the Erlenmeyer flask with the white chemical.\n\n\nSkip with A",
-                    "It's time for a break.\n\nI think I saw some coffee in your office. Pick it up and press (B) to take a drink.\n\n\nSkip with A",
+                    "You're getting a call! It might be urgent.\n\nYour phone is in the office, pick it up and press (A/X) to answer it.",
+                    "Phew, that was close.\n\nNow return to the experiment in the red zone.",
+                    "You need to set up a burette.\n\nAttach a funnel and a burette to the holder at your table.",
+                    "Next, fill the beaker with 5 drop from the Erlenmeyer flask with the white chemical.\n\n\nSkip with A", //After 2 drops, interrupt with next one!
+                    "It's time for a break.\n\nI think I saw some coffee in your office. Pick it up and press (A/X) to take a drink.\n\n\nSkip with A",
                     "Breaks over!\n\nFinish filling the beaker with 5 drop from the Erlenmeyer flask with the white chemical.\n\n\nSkip with A",
                     "Now fill the burette with 10 drops from the Erlenmeyer flask with the red chemical.\n\n\nSkip with A",
                     "Titrate until you see a change of color in the beaker, or until you run out of red chemical. When you're done, bring the beaker into the yellow zone.\n\n\nSkip with A",

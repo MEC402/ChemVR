@@ -7,10 +7,13 @@ using UnityEngine.InputSystem;
 public class Tutorial_Overview : MonoBehaviour
 {
     public TextMeshProUGUI tutText;
+    public GameObject controllerDiagrams;
+    Controller_Diagram diagramController;
     int curStep;
 
     void OnEnable()
     {
+        diagramController = controllerDiagrams.GetComponent<Controller_Diagram>();
         this.gameObject.GetComponent<ToggleTextSimple>().enabled = false;
         curStep = -1;
         tutText.text = "Not reading events.";
@@ -49,9 +52,12 @@ public class Tutorial_Overview : MonoBehaviour
             }
         }
     }
-    string[] text = {"Welcome to the tutorial!\n\nYou can hide this popup with the primary button on your left controller, (X).\n\nTry hiding this popup and re-opening it by pressing (X) twice!",
-                    "Good Job!\n\nYou can use the analog sticks to look and move around.\n\nApproach the table with beakers on it, it is inside the blue square on the floor.",
-                    "Tutorial complete!\n\nOne more thing!\nPress the secondary button (Y) on your left controller anytime to exit the module and return to the menu.\n\nGive it a try!"
+    string[] text = {"Welcome to the tutorial!\n\nYou can hide this popup with the secondary button on your right controller, (B).\n\nTry hiding this popup and re-opening it by pressing (B) twice!",
+                    "Good Job!\n\nYou can use the analog sticks to look and move around.\n\nYou can walk around smoothly using the Left Toggle and by turning your head. You'll notice there are colored squares on the floor, walk into the blue square.",
+                    "The right toggle is used to move quickly.\nToggle left and right to rotate 45 degrees, toggle down to turn around.\nTo teleport, push the right toggle forward and release at the desired location.\n\nTry teleporting into the red square.",
+                    "The triggers on the back of your controller can be used to grab and interact with items.\n\nTry opening a glass cabinet door and grabbing a flask.\n\n\nSkip with A",
+                    "The primary buttons, (A) and (X) are your main way of interacting with objects!\n\nPress one to show you know where they are.",
+                    "The secondary buttons, (B) and (Y) are your way of interacting with menus!\nPress the secondary button (Y) on your left controller anytime to exit the module and return to the menu.\n\nGive it a try, as the Tutorial is complete!"
                     };
     void AdvanceTutTask(string context)
     {
@@ -60,6 +66,40 @@ public class Tutorial_Overview : MonoBehaviour
             this.gameObject.GetComponent<ToggleTextSimple>().enabled = true;
             curStep += 1;
             tutText.text = text[curStep];
+            handleDiagrams();
         }
+    }
+
+    void handleDiagrams()
+    {
+        diagramController.hideAllDiagrams();
+        if (curStep == 0)
+        {
+            diagramController.showRightController();
+            diagramController.showBButton();
+        } else if (curStep == 1)
+        {
+            diagramController.showLeftController();
+            diagramController.showLeftToggle();
+        } else if (curStep == 2)
+        {
+            diagramController.showRightController();
+            diagramController.showRightToggle();
+        } else if (curStep == 3)
+        {
+            // Make options to show toggles
+        } else if (curStep == 4)
+        {
+            diagramController.showAllDiagrams();
+            diagramController.showAButton();
+            diagramController.showXButton();
+        }
+        else if (curStep == 5)
+        {
+            diagramController.showAllDiagrams();
+            diagramController.showBButton();
+            diagramController.showYButton();
+        }
+
     }
 }

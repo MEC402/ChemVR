@@ -1,31 +1,22 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.InputSystem;
 
-public class Glove_Hygiene_Task_4 : TaskStep
+public class Tutorial_Task_3 : TaskStep
 {
-    protected override void SetTaskStepState(string state)
-    {
-        throw new System.NotImplementedException();
-    }
     GameObject mainCamera;
     void Awake()
     {
         mainCamera = GameObject.Find("Main Camera");
-        if (mainCamera == null)
-        {
-            Debug.LogError("No camera registered");
-        }
     }
 
 
     void Update()
     {
-        float upperX = 3.93f;
-        float lowerX = -3.34f;
-        float upperZ = 21.08f;
-        float lowerZ = 13.88f;
+        float upperX = 4.02f;
+        float lowerX = -3.37f;
+        float upperZ = 21.07f;
+        float lowerZ = 13.85f;
         float xPos = mainCamera.transform.position.x;
         float zPos = mainCamera.transform.position.z;
 
@@ -34,7 +25,11 @@ public class Glove_Hygiene_Task_4 : TaskStep
 
         if (((xPos > lowerX) && (xPos < upperX)) && ((zPos > lowerZ) && (zPos < upperZ)))
         {
-            FinishTaskStep();
+           FinishTaskStep();
         }
+    }
+    protected override void SetTaskStepState(string state)
+    {
+        throw new System.NotImplementedException();
     }
 }

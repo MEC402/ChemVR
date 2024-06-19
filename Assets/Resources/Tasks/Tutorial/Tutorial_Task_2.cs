@@ -13,10 +13,10 @@ public class Tutorial_Task_2 : TaskStep
 
     void Update()
     {
-        float upperX = 3.15f;
-        float lowerX = 1.10f;
-        float upperZ = 4.21f;
-        float lowerZ = 3.38f;
+        float upperX = 3.96f;
+        float lowerX = -3.24f;
+        float upperZ = 11.19f;
+        float lowerZ = 3.79f;
         float xPos = mainCamera.transform.position.x;
         float zPos = mainCamera.transform.position.z;
 

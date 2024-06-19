@@ -11,6 +11,7 @@ public class GameEventsManager : MonoBehaviour
     public InteractableEvents interactableEvents;
     public PlayerEvents playerEvents;
     public InputEvents inputEvents;
+    public MiscellaneousEvents miscEvents;
 
     private void Awake()
     {
@@ -26,5 +27,6 @@ public class GameEventsManager : MonoBehaviour
         interactableEvents = new InteractableEvents();
         playerEvents = new PlayerEvents();
         inputEvents = new InputEvents();
+        miscEvents = new MiscellaneousEvents();
     }
 }

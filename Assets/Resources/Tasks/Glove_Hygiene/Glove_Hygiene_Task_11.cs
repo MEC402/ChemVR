@@ -1,31 +1,35 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.XR.Interaction.Toolkit;
 
 public class Glove_Hygiene_Task_11 : TaskStep
 {
+    int slapCount;
     protected override void SetTaskStepState(string state)
     {
-        throw new System.NotImplementedException();
+        //Not needed
     }
-    private void Update()
+    void OnEnable()
     {
-        if (Keyboard.current.cKey.wasPressedThisFrame)
+        slapCount = 0;
+        GameEventsManager.instance.miscEvents.onPrinterSlap += Slap; 
+    }
+
+    void OnDisable()
+    {
+        GameEventsManager.instance.miscEvents.onPrinterSlap -= Slap;
+    }
+
+    private void Slap()
+    {
+        slapCount += 1;
+        if (slapCount >= 3)
         {
             FinishTaskStep();
         }
     }
-    void OnEnable()
-    {
-        GameEventsManager.instance.inputEvents.onAButtonPressed += SkipTask;
-    }
-    void OnDisable()
-    {
-        GameEventsManager.instance.inputEvents.onAButtonPressed -= SkipTask;
-    }
-    private void SkipTask(InputAction.CallbackContext obj)
-    {
-        FinishTaskStep();
-    }
+
 }
