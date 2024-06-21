@@ -48,7 +48,7 @@ public class Glove_Hygiene_Overview : MonoBehaviour
                     "Uh Oh!\n\nThe printer is acting up again, and it's printing important data. Smack it once or twice with your hand to get it running right.\n\n\nSkip with A",
                     "Return to the red zone and titrate until you see a change of color in the beaker, or until you run out of red chemical. When you're done, bring the beaker into the yellow zone.\n\n\nSkip with A",
                     "Record your findings using the pencil and data sheet on the tables near the office. Touch the pencil to the paper to do so.\n\n\nSkip with A",
-                    "The titration experiment is now complete. Please go to the trash to remove your gloves.\n\n\nSkip with A",
+                    "The titration experiment is now complete. Please go to the trash to remove your gloves.\n\nHold your hands over or in the trash and press A/X",
                     "This completes the glove hygiene module. We will now display all of the chemical spills created throughout the experience.\n(X) Hides Popup\n(Y) Opens Menu"
                     };
     void AdvanceGloTask(string context)
