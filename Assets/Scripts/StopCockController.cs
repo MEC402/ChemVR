@@ -5,11 +5,9 @@ public class StopCockController : MonoBehaviour
 {
     private Rigidbody rb;
     private XRGrabInteractable grabInteractable;
-    private HingeJoint hinge;
     private void Awake()
     {
         rb = GetComponent<Rigidbody>();
-        hinge = this.gameObject.GetComponent<HingeJoint>();
         grabInteractable = GetComponent<XRGrabInteractable>();
     }
 

@@ -90,6 +90,7 @@ public class ChemContainer : MonoBehaviour {
     [Tooltip("The angle (from the world +y-axis) at which to activate pouring")]
     public float pourAngle = 90;
 
+
     [Header("DEV OPTIONS")]
     [SerializeField, Tooltip("Various settings for changing the behavior of the ChemContainer.")]
     private Flags flags = new Flags(false, false, false, false, false, false);
@@ -221,6 +222,17 @@ public class ChemContainer : MonoBehaviour {
 
             ChemContainer recipient = hit.collider.gameObject.GetComponentInParent<ChemContainer>();            
             float amountPoured = Mathf.Min(pourRate * Time.fixedDeltaTime, currentVolume, (recipient.flags.infiniteCapacity ? float.MaxValue : recipient.maxVolume - recipient.currentVolume));
+
+            //TODO: adjust this so it is more accurate, this is temporary
+            if (flags.pouringUsesActivator)
+            {
+                if (pourActivator.isPercentActivated)
+                {
+                    Debug.Log(amountPoured + " * " + pourActivator.getFlow());
+                    amountPoured *= pourActivator.getFlow();
+                }
+            }
+
             if (amountPoured > 0 && flags.useSimpleFluidLevel == recipient.flags.useSimpleFluidLevel) {
 
                 if (flags.useSimpleFluidLevel) {

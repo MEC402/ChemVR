@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.XR.Interaction.Toolkit;
 
-public class DiffSnapFunnel2Burette : MonoBehaviour
+public class SnapFunnel2Burette : MonoBehaviour
 {
     private XRGrabInteractable grabInteractable; //XRGrabInteractable of attached gameObject
     private Rigidbody myRb; //Rigidbody of attached gameObject
@@ -103,7 +103,6 @@ public class DiffSnapFunnel2Burette : MonoBehaviour
         buret = null;
         stand = null;
         myRb.useGravity = true;
-        myRb.isKinematic = false;
         this.gameObject.GetComponent<SphereCollider>().enabled = false;
         this.gameObject.GetComponent<MeshCollider>().enabled = true;
     }
@@ -151,7 +150,6 @@ public class DiffSnapFunnel2Burette : MonoBehaviour
         {
             snap = true;
             myRb.useGravity = false;
-            myRb.isKinematic = true;
             this.gameObject.GetComponent<MeshCollider>().enabled = false;
             this.gameObject.GetComponent<SphereCollider>().enabled = true;
             if (buret.GetComponent<SnapBurette2Holder>().isSnapped()) // is the buret already on a holder?
