@@ -58,7 +58,7 @@ public class Chemical_Change_Overview : MonoBehaviour
                     "Place the beaker of solution on a hot plate.\n\n\nSkip with A",
                     "Turns the dial to ON, level 3 on the hot plate.\n\n\nSkip with A", //Liquid slowly boils and vapor comes off top of the beaker.
                     "Is this a chemical change?\nYes or no?\n\n\nSkip with A", //Tell them if correct for each
-                    "This concludes the chemical change use module. Thank you for your time.\n(X) Hides Popup\n(Y) Exits Module"
+                    "This concludes the chemical change use module. Thank you for your time.\n\n(X) Hides Popup\n(Y) Exits Module"
             };
     void AdvanceCheTask(string context)
     {

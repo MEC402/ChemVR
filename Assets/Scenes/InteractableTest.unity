@@ -2703,12 +2703,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6fc0d34940dd44129c17bc6d4396b866, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_StepButtonTextField: {fileID: 338254692}
   m_StepList:
   - stepObject: {fileID: 1202946878}
-    buttonText: Continue
   - stepObject: {fileID: 795878290}
-    buttonText: Continue
 --- !u!114 &591612276
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8776,8 +8773,20 @@ PrefabInstance:
       propertyPath: m_Constraints
       value: 126
       objectReference: {fileID: 0}
+    - target: {fileID: 2704174135099157379, guid: 899f3301c08d3254ca9044fec4f9c049, type: 3}
+      propertyPath: m_IsKinematic
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3158680496749844671, guid: 899f3301c08d3254ca9044fec4f9c049, type: 3}
       propertyPath: activated
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6569873712037196801, guid: 899f3301c08d3254ca9044fec4f9c049, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7334900541798629560, guid: 899f3301c08d3254ca9044fec4f9c049, type: 3}
+      propertyPath: m_Enabled
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7472417117428286974, guid: 899f3301c08d3254ca9044fec4f9c049, type: 3}

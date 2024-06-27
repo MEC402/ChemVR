@@ -4974,6 +4974,10 @@ PrefabInstance:
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: -1504981713932161579, guid: 8b1fccf7026733848916c86ba0246c9c, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: -1504981713932161579, guid: 8b1fccf7026733848916c86ba0246c9c, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
       objectReference: {fileID: 2100000, guid: 377a24320b3adeb438edc10508f4ced8, type: 2}
@@ -5005,7 +5009,10 @@ PrefabInstance:
       addedObject: {fileID: 1343092212654101717}
     - targetCorrespondingSourceObject: {fileID: -927199367670048503, guid: 8b1fccf7026733848916c86ba0246c9c, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 162508993985103719}
+      addedObject: {fileID: 3819594728752799848}
+    - targetCorrespondingSourceObject: {fileID: -927199367670048503, guid: 8b1fccf7026733848916c86ba0246c9c, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 4842552554848769010}
   m_SourcePrefab: {fileID: 100100000, guid: 8b1fccf7026733848916c86ba0246c9c, type: 3}
 --- !u!1 &6214960644601533522 stripped
 GameObject:
@@ -5236,7 +5243,28 @@ MeshCollider:
   m_Convex: 1
   m_CookingOptions: 30
   m_Mesh: {fileID: -5287425419667122880, guid: 8b1fccf7026733848916c86ba0246c9c, type: 3}
---- !u!114 &162508993985103719
+--- !u!135 &3819594728752799848
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6214960644601533522}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Radius: 5.4
+  m_Center: {x: -0.00000047683716, y: 0.00000047683707, z: 10.1}
+--- !u!114 &4842552554848769010
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -5245,7 +5273,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 6214960644601533522}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c75ef5254a615aa4eb1014f03ad58c97, type: 3}
+  m_Script: {fileID: 11500000, guid: ed659023688b8f144b9a238b0c568089, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!4 &6945852583623206465 stripped

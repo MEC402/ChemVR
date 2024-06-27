@@ -6,47 +6,45 @@ using UnityEngine.InputSystem;
 
 public class Glove_Hygiene_Task_5 : TaskStep
 {
-    bool funnelOn;
-    bool buretOn;
+    HashSet<GameObject> buretsOnHolders;
+    HashSet<GameObject> buretsWithFunnels;
     protected override void SetTaskStepState(string state)
     {
         throw new System.NotImplementedException();
     }
     void OnEnable()
     {
-        funnelOn = false;
-        buretOn = false;
         GameEventsManager.instance.miscEvents.onBuretSnaptoHolder += Buret2Hold;
         GameEventsManager.instance.miscEvents.onFunnelSnaptoBuret += Funnel2Buret;
         GameEventsManager.instance.miscEvents.onBuretUnSnaptoHolder += BuretOFFHold;
         GameEventsManager.instance.miscEvents.onFunnelUnSnaptoBuret += FunnelOFFBuret;
     }
 
-    private void Funnel2Buret()
+    private void Funnel2Buret(GameObject funnel, GameObject buret)
     {
-        funnelOn = true;
-        if (buretOn)
+        buretsWithFunnels.Add(buret);
+        if(buretsOnHolders.Contains(buret))
         {
             FinishTaskStep();
         }
     }
 
-    private void Buret2Hold()
+    private void Buret2Hold(GameObject buret, GameObject holder)
     {
-        buretOn = true;
-        if (funnelOn)
+        buretsOnHolders.Add(buret);
+        if (buretsWithFunnels.Contains(buret))
         {
             FinishTaskStep();
         }
     }
-    private void FunnelOFFBuret()
+    private void FunnelOFFBuret(GameObject funnel, GameObject buret)
     {
-        funnelOn = false;
+        buretsWithFunnels.Remove(buret);
     }
 
-    private void BuretOFFHold()
+    private void BuretOFFHold(GameObject buret, GameObject holder)
     {
-        buretOn = false;
+        buretsOnHolders.Remove(buret);
     }
 
     void OnDisable()

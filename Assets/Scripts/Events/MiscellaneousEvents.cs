@@ -42,42 +42,41 @@ public class MiscellaneousEvents
         }
     }
 
-    // Funnel related events
-    public event Action onBuretSnaptoHolder;
-    public void BuretSnaptoHolder()
+    // Burret related events
+    public event Action<GameObject, GameObject> onBuretSnaptoHolder;
+    public void BuretSnaptoHolder(GameObject buret, GameObject holder)
     {
         if (onBuretSnaptoHolder != null)
         {
-            onBuretSnaptoHolder();
+            onBuretSnaptoHolder(buret, holder);
         }
     }
-
-    public event Action onFunnelSnaptoBuret;
-    public void FunnelSnaptoBuret()
-    {
-        if (onFunnelSnaptoBuret != null)
-        {
-            onFunnelSnaptoBuret();
-        }
-    }
-    public event Action onBuretUnSnaptoHolder;
-    public void BuretUnSnaptoHolder()
+    public event Action<GameObject, GameObject> onBuretUnSnaptoHolder;
+    public void BuretUnSnaptoHolder(GameObject buret, GameObject holder)
     {
         if (onBuretUnSnaptoHolder != null)
         {
-            onBuretUnSnaptoHolder();
+            onBuretUnSnaptoHolder(buret, holder);
         }
     }
-
-    // Printer related events
-    public event Action onFunnelUnSnaptoBuret;
-    public void FunnelUnSnaptoBuret()
+    // Funnel related events
+    public event Action<GameObject, GameObject> onFunnelSnaptoBuret;
+    public void FunnelSnaptoBuret(GameObject funnel, GameObject buret)
+    {
+        if (onFunnelSnaptoBuret != null)
+        {
+            onFunnelSnaptoBuret(funnel, buret);
+        }
+    }
+    public event Action<GameObject, GameObject> onFunnelUnSnaptoBuret;
+    public void FunnelUnSnaptoBuret(GameObject funnel, GameObject buret)
     {
         if (onFunnelUnSnaptoBuret != null)
         {
-            onFunnelUnSnaptoBuret();
+            onFunnelUnSnaptoBuret(funnel, buret);
         }
     }
+    // Printer related events
 
     public event Action onPrinterSlap;
     public void PrinterSlap()

@@ -61,7 +61,7 @@ public class Glassware_Use_Overview : MonoBehaviour
                     "Invert the glassware to allow excess water to drain.\n\n\nSkip with A",
                     "Return materials to their original places, and close the glass doors.\n\nThis will protect them from dust and contaminants.\n\n\nSkip with A",
                     "Go to the trash to remove your gloves, and then wash your hands in the sink with soap.\n\n\nSkip with A",
-                    "This concludes the glassware use module. Thank you for your time.\n(X) Hides Popup\n(Y) Exits Module"
+                    "This concludes the glassware use module. Thank you for your time.\n\n(X) Hides Popup\n(Y) Exits Module"
                      };
     void AdvanceGlaTask(string context)
     {

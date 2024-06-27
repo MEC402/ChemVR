@@ -10,26 +10,43 @@ public class SnapBurette2Holder : MonoBehaviour
     private bool touching;
     private bool snap;
     private GameObject holder;
+    private Rigidbody stopcockRb;
 
     private void Update()
     {
         if (snap)
         {
-            Quaternion additionalRotation = Quaternion.Euler(0, 180, 0);
-            Quaternion newRotation = holder.transform.rotation * additionalRotation;
-            this.transform.SetPositionAndRotation(holder.transform.position, newRotation);
-            this.transform.Translate(new Vector3(0.0504f, 0.531f, 0));
+            SetPosition();
         }
     }
 
+    private void SetPosition()
+    {
+        Quaternion additionalRotation = Quaternion.Euler(0, 180, 0);
+        Quaternion newRotation = holder.transform.rotation * additionalRotation;
+        this.transform.SetPositionAndRotation(holder.transform.position, newRotation);
+        this.transform.Translate(new Vector3(0.0504f, 0.531f, 0));
+    }
     void OnEnable()
     {
         //Initialize
         touching = false;
         snap = false;
+
+        //get components
         myRb = GetComponent<Rigidbody>();
-        //Initialize grab interactable for listening
         grabInteractable = this.GetComponent<XRGrabInteractable>();
+        Rigidbody[] rbList = this.gameObject.GetComponentsInChildren<Rigidbody>();
+        //Find the rigidbody of the stopcock
+        foreach (Rigidbody rb in rbList)
+        {
+            if (rb != myRb)
+            {
+                stopcockRb = rb;
+            }
+        }
+
+        //Initialize grab interactable for listening
         if (grabInteractable == null)
         {
             Debug.LogError("XRGrabInteractable component is missing.");
@@ -65,21 +82,33 @@ public class SnapBurette2Holder : MonoBehaviour
     }
     private void OnGrab(SelectEnterEventArgs arg0)
     {
-        snap = false;
+        if(snap)
+        {
+            snap = false;
+            stopcockRb.isKinematic = false;
+            GameEventsManager.instance.miscEvents.BuretUnSnaptoHolder(this.gameObject, holder);
+        }
+        holder = null;
+        myRb.useGravity = true;
     }
     private void OnRelease(SelectExitEventArgs arg0)
     {
         if (touching)
         {
+            stopcockRb.isKinematic = true;
             snap = true;
             myRb.useGravity = false;
-            GameEventsManager.instance.miscEvents.BuretSnaptoHolder();
-        } else
-        {
-            snap = false;
-            holder = null;
-            myRb.useGravity = true;
-            GameEventsManager.instance.miscEvents.BuretUnSnaptoHolder();
+            SetPosition();
+            GameEventsManager.instance.miscEvents.BuretSnaptoHolder(this.gameObject, holder);
         }
+    }
+
+    public bool isSnapped()
+    {
+        return snap;
+    }
+    public GameObject getStand()
+    {
+        return holder;
     }
 }

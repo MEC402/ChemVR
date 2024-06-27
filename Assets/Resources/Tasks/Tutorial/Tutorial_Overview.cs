@@ -28,6 +28,7 @@ public class Tutorial_Overview : MonoBehaviour
     void OnDisable()
     {
         //Remove any listeners
+        diagramController.hideAllDiagrams();
         this.gameObject.GetComponent<ToggleTextSimple>().enabled = false;
         GameEventsManager.instance.taskEvents.onAdvanceTask -= AdvanceTutTask;
         GameEventsManager.instance.taskEvents.onAbandonTask -= tu_abandonMe;
@@ -42,6 +43,7 @@ public class Tutorial_Overview : MonoBehaviour
     {
         if (context.Contains("Tutorial"))
         {
+            diagramController.hideAllDiagrams();
             this.gameObject.GetComponent<ToggleTextSimple>().enabled = false;
             GameObject tutPop = GameObject.Find("Tutorial PopUp");
             tutText.text = "Don't look at me I'm inactive.";

@@ -10,8 +10,12 @@ public class Glove_Hygiene_Task_14 : TaskStep
     bool wearingRightGlove;
     private void Start()
     {
-        wearingLeftGlove = GameObject.Find("left hand model").GetComponent<SkinnedMeshRenderer>().material.name.Contains("blue");
-        wearingRightGlove = GameObject.Find("right hand model").GetComponent<SkinnedMeshRenderer>().material.name.Contains("blue");
+        wearingLeftGlove = GameObject.Find("left hand model").GetComponent<SkinnedMeshRenderer>().material.name.ToLower().Contains("blue");
+        wearingRightGlove = GameObject.Find("right hand model").GetComponent<SkinnedMeshRenderer>().material.name.ToLower().Contains("blue");
+        if(!wearingLeftGlove && !wearingRightGlove)
+        {
+            FinishTaskStep();
+        }
     }
     protected override void SetTaskStepState(string state)
     {
