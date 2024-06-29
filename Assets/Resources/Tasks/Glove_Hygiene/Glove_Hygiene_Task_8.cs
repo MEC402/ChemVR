@@ -9,23 +9,38 @@ public class Glove_Hygiene_Task_8 : TaskStep
     {
         throw new System.NotImplementedException();
     }
-    private void Update()
-    {
-        if (Keyboard.current.cKey.wasPressedThisFrame)
-        {
-            FinishTaskStep();
-        }
-    }
     void OnEnable()
     {
-        GameEventsManager.instance.inputEvents.onAButtonPressed += SkipTask;
+        GameEventsManager.instance.chemistryEvents.onPourIn += addChem;
     }
+
     void OnDisable()
     {
-        GameEventsManager.instance.inputEvents.onAButtonPressed -= SkipTask;
+        GameEventsManager.instance.chemistryEvents.onPourIn -= addChem;
     }
-    private void SkipTask(InputAction.CallbackContext obj)
+
+    private void addChem(ChemContainer container, ChemFluid chemMix)
     {
-        FinishTaskStep();
+        float quarterFull = container.maxVolume / 4;
+        if (container.name.ToLower().Contains("beaker"))
+        {
+            string wholeContents = container.getContents();
+            string[] sepWholeContents = wholeContents.Split('\n');
+            foreach (string s in sepWholeContents)
+            {
+                if (s.Contains("HYDROCHLORIC_ACID"))
+                {
+                    string strAmnt = s.Split(' ')[1];
+                    float amt;
+                    if (float.TryParse(strAmnt, out amt))
+                    {
+                        if (amt >= quarterFull)
+                        {
+                            FinishTaskStep();
+                        }
+                    }
+                }
+            }
+        }
     }
 }

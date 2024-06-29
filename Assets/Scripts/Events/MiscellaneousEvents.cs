@@ -86,4 +86,22 @@ public class MiscellaneousEvents
             onPrinterSlap();
         }
     }
+
+    // Table related events
+    public event Action<GameObject, GameObject> onItemOnTable;
+    public void ItemOnTable(GameObject item, GameObject table)
+    {
+        if (onItemOnTable != null)
+        {
+            onItemOnTable(item, table);
+        }
+    }
+    public event Action<GameObject, GameObject> onItemOffTable;
+    public void ItemOffTable(GameObject item, GameObject table)
+    {
+        if (onItemOffTable != null)
+        {
+            onItemOffTable(item, table);
+        }
+    }
 }

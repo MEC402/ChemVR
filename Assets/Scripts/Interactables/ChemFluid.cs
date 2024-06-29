@@ -173,7 +173,7 @@ public class ChemFluid
         string message = "";
         for (int i = 0; i < chems.Length; i++)
         {
-            message += $"{((ChemType)i).ToString()}: {chems[i]}\n";
+            message += $"{((ChemType)i).ToString()}: {chems[i].volume}\n";
         }
         message += $"TOTAL: {totalVolume}";
         return message;

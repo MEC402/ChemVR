@@ -4,28 +4,29 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 
 public class Glove_Hygiene_Task_12 : TaskStep
-{
-    protected override void SetTaskStepState(string state)
+{    protected override void SetTaskStepState(string state)
     {
-        throw new System.NotImplementedException();
-    }
-    private void Update()
-    {
-        if (Keyboard.current.cKey.wasPressedThisFrame)
-        {
-            FinishTaskStep();
-        }
+        // Not needed
     }
     void OnEnable()
     {
-        GameEventsManager.instance.inputEvents.onAButtonPressed += SkipTask;
+        GameEventsManager.instance.miscEvents.onItemOnTable += itemOnTable;
     }
+
+    private void itemOnTable(GameObject item, GameObject table)
+    {
+        string tableName = table.name.ToLower();
+        if (tableName.Contains("kitchen") && tableName.Contains("1"))
+        {
+            if(item.name.ToLower().Contains("beaker"))
+            {
+                FinishTaskStep();
+            }
+        }
+    }
+
     void OnDisable()
     {
-        GameEventsManager.instance.inputEvents.onAButtonPressed -= SkipTask;
-    }
-    private void SkipTask(InputAction.CallbackContext obj)
-    {
-        FinishTaskStep();
+        GameEventsManager.instance.miscEvents.onItemOnTable -= itemOnTable;
     }
 }

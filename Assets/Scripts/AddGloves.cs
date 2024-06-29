@@ -72,12 +72,12 @@ public class AddGloves : MonoBehaviour
     {
         leftHand.GetComponent<SkinnedMeshRenderer>().material = gloves;
         GameEventsManager.instance.miscEvents.PutOnLeftGlove();
-        Debug.Log("Left glove put on!");
+        //Debug.Log("Left glove put on!");
     }
     void PutOnRightGlove()
     {
         rightHand.GetComponent<SkinnedMeshRenderer>().material = gloves;
         GameEventsManager.instance.miscEvents.PutOnRightGlove();
-        Debug.Log("Right glove put on!");
+        //Debug.Log("Right glove put on!");
     }
 }

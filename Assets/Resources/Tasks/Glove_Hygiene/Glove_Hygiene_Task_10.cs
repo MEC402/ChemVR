@@ -5,27 +5,40 @@ using UnityEngine.InputSystem;
 
 public class Glove_Hygiene_Task_10 : TaskStep
 {
+    int blueDrops;
     protected override void SetTaskStepState(string state)
     {
         throw new System.NotImplementedException();
     }
-    private void Update()
+    void OnEnable()
     {
-        if (Keyboard.current.cKey.wasPressedThisFrame)
+        blueDrops = 0;
+        GameEventsManager.instance.chemistryEvents.onPourIn += addChem;
+    }
+
+    void OnDisable()
+    {
+        GameEventsManager.instance.chemistryEvents.onPourIn -= addChem;
+    }
+
+    private void addChem(ChemContainer container, ChemFluid chemMix)
+    {
+        if (container.name.ToLower().Contains("beaker"))
+        {
+            string contents = chemMix.ContentsToString();
+            string[] sepContents = contents.Split('\n');
+            foreach (string s in sepContents)
+            {
+                if (!s.EndsWith(": 0") && s.Contains("WATER"))
+                {
+                    blueDrops++;
+                }
+            }
+        }
+
+        if (blueDrops >= 1)
         {
             FinishTaskStep();
         }
-    }
-    void OnEnable()
-    {
-        GameEventsManager.instance.inputEvents.onAButtonPressed += SkipTask;
-    }
-    void OnDisable()
-    {
-        GameEventsManager.instance.inputEvents.onAButtonPressed -= SkipTask;
-    }
-    private void SkipTask(InputAction.CallbackContext obj)
-    {
-        FinishTaskStep();
     }
 }

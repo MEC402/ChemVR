@@ -6,8 +6,8 @@ using UnityEngine.InputSystem;
 
 public class Glove_Hygiene_Task_5 : TaskStep
 {
-    HashSet<GameObject> buretsOnHolders;
-    HashSet<GameObject> buretsWithFunnels;
+    HashSet<GameObject> buretsOnHolders = new HashSet<GameObject>();
+    HashSet<GameObject> buretsWithFunnels = new HashSet<GameObject>();
     protected override void SetTaskStepState(string state)
     {
         throw new System.NotImplementedException();

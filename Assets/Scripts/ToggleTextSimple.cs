@@ -34,10 +34,10 @@ public class ToggleTextSimple : MonoBehaviour
     private void popUp(string obj)
     {
         
-        if (this.isActiveAndEnabled && !((obj.Contains("Tutorial"))) && GameObject.Find("Tutorial_Task_1(Clone)"))
-        {
+        //if (this.isActiveAndEnabled && !((obj.Contains("Tutorial"))) && GameObject.Find("Tutorial_Task_1(Clone)"))
+        //{
             text.SetActive(true);
-        }
+        //}
     }
 
     void OnDisable()

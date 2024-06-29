@@ -5,27 +5,44 @@ using UnityEngine.InputSystem;
 
 public class Glove_Hygiene_Task_9 : TaskStep
 {
+    int blueDrops;
     protected override void SetTaskStepState(string state)
     {
         throw new System.NotImplementedException();
     }
-    private void Update()
-    {
-        if (Keyboard.current.cKey.wasPressedThisFrame)
-        {
-            FinishTaskStep();
-        }
-    }
     void OnEnable()
     {
-        GameEventsManager.instance.inputEvents.onAButtonPressed += SkipTask;
+        blueDrops = 0;
+        GameEventsManager.instance.chemistryEvents.onPourIn += addChem;
     }
+
     void OnDisable()
     {
-        GameEventsManager.instance.inputEvents.onAButtonPressed -= SkipTask;
+        GameEventsManager.instance.chemistryEvents.onPourIn -= addChem;
     }
-    private void SkipTask(InputAction.CallbackContext obj)
+
+    private void addChem(ChemContainer container, ChemFluid chemMix)
     {
-        FinishTaskStep();
+        float halfFull = container.maxVolume / 2;
+        if (container.name.ToLower().Contains("burette"))
+        {
+            string wholeContents = container.getContents();
+            string[] sepWholeContents = wholeContents.Split('\n');
+            foreach (string s in sepWholeContents)
+            {
+                if (s.Contains("WATER"))
+                {
+                    string strAmnt = s.Split(' ')[1];
+                    float amt;
+                    if (float.TryParse(strAmnt, out amt))
+                    {
+                        if (amt >= halfFull)
+                        {
+                            FinishTaskStep();
+                        }
+                    }
+                }
+            }
+        }
     }
 }

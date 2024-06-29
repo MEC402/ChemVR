@@ -220,15 +220,26 @@ public class ChemContainer : MonoBehaviour {
                 pourRate = defaults.originalPourRate;
             }
 
-            ChemContainer recipient = hit.collider.gameObject.GetComponentInParent<ChemContainer>();            
+            if(hit.Equals(null))
+            {
+                Debug.LogError("hit is null"); //skipped this on a throw
+            }
+            if (hit.collider == null) //.equals threw an error here
+            {
+                Debug.LogError("hit collider is null");
+            }
+            if (hit.collider.gameObject.Equals(null))
+            {
+                Debug.LogError("hit collider gameobject null");
+            } // last part wouldn't be null because it can safely return null
+            ChemContainer recipient = hit.collider.gameObject.GetComponentInParent<ChemContainer>();            // BUG! Every now and again if you drop a chem container a null error throws here. I'm trying to find it above.
             float amountPoured = Mathf.Min(pourRate * Time.fixedDeltaTime, currentVolume, (recipient.flags.infiniteCapacity ? float.MaxValue : recipient.maxVolume - recipient.currentVolume));
 
-            //TODO: adjust this so it is more accurate, this is temporary
+            //Adjust amount poured to match how much the turner is opened
             if (flags.pouringUsesActivator)
             {
                 if (pourActivator.isPercentActivated)
                 {
-                    Debug.Log(amountPoured + " * " + pourActivator.getFlow());
                     amountPoured *= pourActivator.getFlow();
                 }
             }
@@ -305,6 +316,10 @@ public class ChemContainer : MonoBehaviour {
         }
     }
 
+    public string getContents()
+    {
+        return chemFluid.ContentsToString();
+    }
 
     public void SelectEnter(XRBaseInteractable interactable) {
         GameEventsManager.instance.interactableEvents.PlayerGrabInteractable(gameObject);
