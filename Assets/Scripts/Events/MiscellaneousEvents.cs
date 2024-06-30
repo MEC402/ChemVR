@@ -104,4 +104,14 @@ public class MiscellaneousEvents
             onItemOffTable(item, table);
         }
     }
+
+    // Pencil to paper event
+    public event Action onPencilOnPaper;
+    public void PencilOnPaper()
+    {
+        if (onPencilOnPaper != null)
+        {
+            onPencilOnPaper();
+        }
+    }
 }

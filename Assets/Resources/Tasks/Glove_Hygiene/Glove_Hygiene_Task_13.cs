@@ -7,25 +7,14 @@ public class Glove_Hygiene_Task_13 : TaskStep
 {
     protected override void SetTaskStepState(string state)
     {
-        throw new System.NotImplementedException();
-    }
-    private void Update()
-    {
-        if (Keyboard.current.cKey.wasPressedThisFrame)
-        {
-            FinishTaskStep();
-        }
+        // Not necessary
     }
     void OnEnable()
     {
-        GameEventsManager.instance.inputEvents.onAButtonPressed += SkipTask;
+        GameEventsManager.instance.miscEvents.onPencilOnPaper += FinishTaskStep;
     }
     void OnDisable()
     {
-        GameEventsManager.instance.inputEvents.onAButtonPressed -= SkipTask;
-    }
-    private void SkipTask(InputAction.CallbackContext obj)
-    {
-        FinishTaskStep();
+        GameEventsManager.instance.miscEvents.onPencilOnPaper -= FinishTaskStep;
     }
 }
