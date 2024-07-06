@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-public class Tutorial_Task_5 : TaskStep
+public class Tutorial_Task_Last : TaskStep
 {
     private void Update()
     {

@@ -90,7 +90,6 @@ public class ChemXRInput : MonoBehaviour
             InputActionType.Button,
             binding: "<XRController>{LeftHand}/thumbstickClicked"
         );
-                
     }
 
     // Enables the InputActionMap defined in the Awake function.
@@ -173,22 +172,22 @@ public class ChemXRInput : MonoBehaviour
                 GameEventsManager.instance.inputEvents.BButtonReleased(context);
                 break;
             case "L Trigger":
-                //GameEventsManager.instance.inputEvents.LTriggerReleased(context);
+                GameEventsManager.instance.inputEvents.LTriggerReleased(context);
                 break;
             case "R Trigger":
-                //GameEventsManager.instance.inputEvents.RTriggerReleased(context);
+                GameEventsManager.instance.inputEvents.RTriggerReleased(context);
                 break;
             case "L Grip":
-                //GameEventsManager.instance.inputEvents.LGripReleased(context);
+                GameEventsManager.instance.inputEvents.LGripReleased(context);
                 break;
             case "R Grip":
-                //GameEventsManager.instance.inputEvents.RGripReleased(context);
+                GameEventsManager.instance.inputEvents.RGripReleased(context);
                 break;
             case "L Thumbstick Click":
-                //GameEventsManager.instance.inputEvents.LThumbstickClicked(context);
+                GameEventsManager.instance.inputEvents.LThumbstickReleased(context);
                 break;
             case "R Thumbstick Click":
-                //GameEventsManager.instance.inputEvents.RThumbstickClicked(context);
+                GameEventsManager.instance.inputEvents.RThumbstickReleased(context);
                 break;
         }
     }

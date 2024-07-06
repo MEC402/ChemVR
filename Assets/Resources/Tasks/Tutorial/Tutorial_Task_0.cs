@@ -9,14 +9,21 @@ public class Tutorial_Task_0 : TaskStep
 {
     public void Start()
     {
-        Button yesButton = GameObject.Find("VR Movement and Interaction/Complete XR Origin Set Up Variant/XR Origin (XR Rig)/Camera Offset/Left Controller/Left Hand/UI/Spatial Panel Manipulator Model (1)/CoachingCardRoot/Yes Button").GetComponent<Button>();
-        Button noButton = GameObject.Find("VR Movement and Interaction/Complete XR Origin Set Up Variant/XR Origin (XR Rig)/Camera Offset/Left Controller/Left Hand/UI/Spatial Panel Manipulator Model (1)/CoachingCardRoot/No Button").GetComponent<Button>();
-
-        yesButton.onClick.AddListener(Complete);
-        noButton.onClick.AddListener(Abandon);
+        GameEventsManager.instance.inputEvents.onAButtonPressed += Complete;
+        GameEventsManager.instance.inputEvents.onBButtonPressed += Abandon;
+    }
+    private void OnDisable()
+    {
+        GameEventsManager.instance.inputEvents.onAButtonPressed -= Complete;
+        GameEventsManager.instance.inputEvents.onBButtonPressed -= Abandon;
+    }
+    public void Complete(InputAction.CallbackContext obj)
+    {
+        Complete();
     }
     public void Complete()
     {
+        Debug.Log("Task 0 completed");
         Restart();
         FinishTaskStep();
     }
@@ -28,14 +35,19 @@ public class Tutorial_Task_0 : TaskStep
         for (int i = 0; i < childCount; i++)
         {
             GameObject child = taskManager.transform.GetChild(i).gameObject;
-            if (child.name.Contains("tut") && !child.name.Contains("0"))
+            if (child.name.Contains("tut") && !child.name.Contains("_0"))
             {
                 Destroy(child);
-            } else if (!child.name.Contains("tut"))
+            }
+            else if (!child.name.Contains("tut"))
             {
                 Destroy(child);
             }
         }
+    }
+    public void Abandon(InputAction.CallbackContext obj)
+    {
+        Abandon();
     }
     public void Abandon()
     {
@@ -46,5 +58,4 @@ public class Tutorial_Task_0 : TaskStep
     {
         throw new System.NotImplementedException();
     }
-
 }

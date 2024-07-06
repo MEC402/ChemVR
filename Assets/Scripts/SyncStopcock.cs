@@ -18,11 +18,6 @@ public class SyncStopcock : MonoBehaviour
             Debug.LogError("XRGrabInteractable component is missing.");
             return;
         }
-         /*
-        collisionDetector.transform.localRotation = Quaternion.Euler(0, 90, 0);
-        turner.transform.localRotation = Quaternion.Euler(0, 0, 90);
-        valve.transform.localRotation = Quaternion.Euler(0, 0, 90);
-         */
     }
 
 
@@ -32,7 +27,7 @@ public class SyncStopcock : MonoBehaviour
         float colliderRotation = collisionDetector.transform.localEulerAngles.z;
 
         // Apply the same rotation to Door 2 and Door 3
-        turner.transform.localRotation = Quaternion.Euler(0, 0, -colliderRotation);
-        valve.transform.localRotation = Quaternion.Euler(0, 0, -colliderRotation + 90);
+        turner.transform.localRotation = Quaternion.Euler(0, 0, colliderRotation);
+        valve.transform.localRotation = Quaternion.Euler(0, 0, colliderRotation - 90);
     }
 }

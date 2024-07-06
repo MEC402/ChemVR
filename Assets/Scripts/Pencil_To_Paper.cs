@@ -4,10 +4,12 @@ using UnityEngine;
 
 public class Pencil_To_Paper : MonoBehaviour
 {
-    private void OnCollisionEnter(Collision collision)
+    private void OnTriggerEnter(Collider obj)
     {
-        if (collision.gameObject.name.ToLower().Contains("pencil"))
+        Debug.Log(obj.name);
+        if (obj.name.ToLower().Contains("pencil"))
         {
+            Debug.Log("Pencil to paper");
             GameEventsManager.instance.miscEvents.PencilOnPaper();
         }
     }

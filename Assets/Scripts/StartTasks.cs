@@ -4,14 +4,6 @@ using UnityEngine;
 
 public class StartTasks : MonoBehaviour
 {
-    // Start is called before the first frame update
-    /**void Start()
-    {
-        GameEventsManager.instance.taskEvents.StartTask("Tutorial_Task");
-        GameEventsManager.instance.taskEvents.StartTask("Chemical_Change_Task");
-        GameEventsManager.instance.taskEvents.StartTask("Glassware_Use_Task");
-        GameEventsManager.instance.taskEvents.StartTask("Glove_Hygiene_Task");
-    }*/
     GameObject taskManager;
     
 
@@ -50,7 +42,7 @@ public class StartTasks : MonoBehaviour
         for (int i = 0; i < childCount; i++)
         {
             GameObject child = taskManager.transform.GetChild(i).gameObject;
-            if (child.name.Contains("0"))
+            if (child.name.Contains("_0"))
             {
                 Destroy(child);
             }

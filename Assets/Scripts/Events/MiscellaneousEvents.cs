@@ -114,4 +114,13 @@ public class MiscellaneousEvents
             onPencilOnPaper();
         }
     }
+
+    public event Action onTextPopUp;
+    public void TextPopUp()
+    {
+        if (onTextPopUp != null)
+        {
+            onTextPopUp();
+        }
+    }
 }

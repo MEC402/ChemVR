@@ -12,12 +12,12 @@ public class Tutorial_Task_1 : TaskStep
 
     void OnEnable()
     {
-        GameEventsManager.instance.inputEvents.onBButtonPressed += TextToggleTutorial;
+        GameEventsManager.instance.inputEvents.onLTriggerPressed += TextToggleTutorial;
     }
 
     void OnDisable()
     {
-        GameEventsManager.instance.inputEvents.onBButtonPressed -= TextToggleTutorial;
+        GameEventsManager.instance.inputEvents.onLTriggerPressed -= TextToggleTutorial;
     }
 
     void TextToggleTutorial(InputAction.CallbackContext context)

@@ -12,6 +12,10 @@ public class Controller_Diagram : MonoBehaviour
     private GameObject yButton;
     private GameObject leftToggle;
     private GameObject rightToggle;
+    private GameObject leftTrigger;
+    private GameObject rightTrigger;
+    private GameObject leftGrip;
+    private GameObject rightGrip;
     void Start()
     {
         leftController = GameObject.Find("ControllerLeftDiagram");
@@ -22,6 +26,10 @@ public class Controller_Diagram : MonoBehaviour
         yButton = GameObject.Find("Y Button");
         leftToggle = GameObject.Find("Left Toggle");
         rightToggle = GameObject.Find("Right Toggle");
+        leftTrigger = GameObject.Find("Left Trigger");
+        rightTrigger = GameObject.Find("Right Trigger");
+        leftGrip = GameObject.Find("Left Grip");
+        rightGrip = GameObject.Find("Right Grip");
 
         hideAllDiagrams();
     }
@@ -34,6 +42,8 @@ public class Controller_Diagram : MonoBehaviour
     {
         leftController.GetComponent<SpriteRenderer>().enabled = false;
         hideLeftToggle();
+        hideLeftTrigger();
+        hideLeftGrip();
         hideXButton();
         hideYButton();
     }
@@ -41,6 +51,8 @@ public class Controller_Diagram : MonoBehaviour
     {
         rightController.GetComponent<SpriteRenderer>().enabled = false;
         hideRightToggle();
+        hideRightTrigger();
+        hideRightGrip();
         hideAButton();
         hideBButton();
     }
@@ -71,6 +83,22 @@ public class Controller_Diagram : MonoBehaviour
     public void hideRightToggle()
     {
         rightToggle.GetComponent<MeshRenderer>().enabled = false;
+    }
+    public void hideLeftTrigger()
+    {
+        leftTrigger.GetComponent<MeshRenderer>().enabled = false;
+    }
+    public void hideRightTrigger()
+    {
+        rightTrigger.GetComponent<MeshRenderer>().enabled = false;
+    }
+    public void hideLeftGrip()
+    {
+        leftGrip.GetComponent<MeshRenderer>().enabled = false;
+    }
+    public void hideRightGrip()
+    {
+        rightGrip.GetComponent<MeshRenderer>().enabled = false;
     }
     public void showAllDiagrams()
     {
@@ -113,5 +141,21 @@ public class Controller_Diagram : MonoBehaviour
     public void showRightToggle()
     {
         rightToggle.GetComponent<MeshRenderer>().enabled = true;
+    }
+    public void showLeftTrigger()
+    {
+        leftTrigger.GetComponent<MeshRenderer>().enabled = true;
+    }
+    public void showRightTrigger()
+    {
+        rightTrigger.GetComponent<MeshRenderer>().enabled = true;
+    }
+    public void showLeftGrip()
+    {
+        leftGrip.GetComponent<MeshRenderer>().enabled = true;
+    }
+    public void showRightGrip()
+    {
+        rightGrip.GetComponent<MeshRenderer>().enabled = true;
     }
 }

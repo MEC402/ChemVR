@@ -26,23 +26,20 @@ public class ToggleTextSimple : MonoBehaviour
     }
     void OnEnable()
     {
-        GameEventsManager.instance.inputEvents.onBButtonPressed += TextToggle;
+        GameEventsManager.instance.inputEvents.onLTriggerPressed += TextToggle;
         GameEventsManager.instance.taskEvents.onAdvanceTask += popUp;
     }
 
     //This code makes sure that if you complete a task the next popup appears without the need to toggle
     private void popUp(string obj)
     {
-        
-        //if (this.isActiveAndEnabled && !((obj.Contains("Tutorial"))) && GameObject.Find("Tutorial_Task_1(Clone)"))
-        //{
-            text.SetActive(true);
-        //}
+        text.SetActive(true);
+        GameEventsManager.instance.miscEvents.TextPopUp();
     }
 
     void OnDisable()
     {
-        GameEventsManager.instance.inputEvents.onBButtonPressed -= TextToggle;
+        GameEventsManager.instance.inputEvents.onLTriggerPressed -= TextToggle;
         GameEventsManager.instance.taskEvents.onAdvanceTask -= popUp;
     }
 

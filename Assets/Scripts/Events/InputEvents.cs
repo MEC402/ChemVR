@@ -95,15 +95,6 @@ public class InputEvents
             onRThumbstickClicked(context);
         }
     }
-    /*
-    public event Action<InputAction.CallbackContext> onXButtonHeld;
-    public void XButtonHeld(InputAction.CallbackContext context)
-    {
-        if (onXButtonHeld != null)
-        {
-            onXButtonHeld(context);
-        }
-    }*/
 
     public event Action<InputAction.CallbackContext> onXButtonReleased;
     public void XButtonReleased(InputAction.CallbackContext context)
@@ -113,15 +104,6 @@ public class InputEvents
             onXButtonReleased(context);
         }
     }
-    /*
-    public event Action<InputAction.CallbackContext> onYButtonHeld;
-    public void YButtonHeld(InputAction.CallbackContext context)
-    {
-        if (onYButtonHeld != null)
-        {
-            onYButtonHeld(context);
-        }
-    }*/
 
     public event Action<InputAction.CallbackContext> onYButtonReleased;
     public void YButtonReleased(InputAction.CallbackContext context)
@@ -131,15 +113,6 @@ public class InputEvents
             onYButtonReleased(context);
         }
     }
-    /*
-    public event Action<InputAction.CallbackContext> onAButtonHeld;
-    public void AButtonHeld(InputAction.CallbackContext context)
-    {
-        if (onAButtonHeld != null)
-        {
-            onAButtonHeld(context);
-        }
-    }*/
 
     public event Action<InputAction.CallbackContext> onAButtonReleased;
     public void AButtonReleased(InputAction.CallbackContext context)
@@ -149,15 +122,6 @@ public class InputEvents
             onAButtonReleased(context);
         }
     }
-    /*
-    public event Action<InputAction.CallbackContext> onBButtonHeld;
-    public void BButtonHeld(InputAction.CallbackContext context)
-    {
-        if (onBButtonHeld != null)
-        {
-            onBButtonHeld(context);
-        }
-    }*/
 
     public event Action<InputAction.CallbackContext> onBButtonReleased;
     public void BButtonReleased(InputAction.CallbackContext context)
@@ -165,6 +129,60 @@ public class InputEvents
         if (onBButtonReleased != null)
         {
             onBButtonReleased(context);
+        }
+    }
+
+    public event Action<InputAction.CallbackContext> onLGripReleased;
+    public void LGripReleased(InputAction.CallbackContext context)
+    {
+        if (onLGripReleased != null)
+        {
+            onLGripReleased(context);
+        }
+    }
+
+    public event Action<InputAction.CallbackContext> onRGripReleased;
+    public void RGripReleased(InputAction.CallbackContext context)
+    {
+        if (onRGripReleased != null)
+        {
+            onRGripReleased(context);
+        }
+    }
+
+    public event Action<InputAction.CallbackContext> onLTriggerReleased;
+    public void LTriggerReleased(InputAction.CallbackContext context)
+    {
+        if (onLTriggerReleased != null)
+        {
+            onLTriggerReleased(context);
+        }
+    }
+
+    public event Action<InputAction.CallbackContext> onRTriggerReleased;
+    public void RTriggerReleased(InputAction.CallbackContext context)
+    {
+        if (onRTriggerReleased != null)
+        {
+            onRTriggerReleased(context);
+        }
+    }
+
+    public event Action<InputAction.CallbackContext> onLThumbstickReleased;
+    public void LThumbstickReleased(InputAction.CallbackContext context)
+    {
+        if (onLThumbstickReleased != null)
+        {
+            onLThumbstickReleased(context);
+        }
+    }
+
+    public event Action<InputAction.CallbackContext> onRThumbstickReleased;
+    public void RThumbstickReleased(InputAction.CallbackContext context)
+    {
+        if (onRThumbstickReleased != null)
+        {
+            onRThumbstickReleased(context);
         }
     }
 }

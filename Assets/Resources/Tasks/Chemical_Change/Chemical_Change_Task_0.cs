@@ -9,11 +9,17 @@ public class Chemical_Change_Task_0 : TaskStep
 {
     public void Start()
     {
-        Button yesButton = GameObject.Find("VR Movement and Interaction/Complete XR Origin Set Up Variant/XR Origin (XR Rig)/Camera Offset/Left Controller/Left Hand/UI/Spatial Panel Manipulator Model (1)/CoachingCardRoot/Yes Button").GetComponent<Button>();
-        Button noButton = GameObject.Find("VR Movement and Interaction/Complete XR Origin Set Up Variant/XR Origin (XR Rig)/Camera Offset/Left Controller/Left Hand/UI/Spatial Panel Manipulator Model (1)/CoachingCardRoot/No Button").GetComponent<Button>();
-
-        yesButton.onClick.AddListener(Complete);
-        noButton.onClick.AddListener(Abandon);
+        GameEventsManager.instance.inputEvents.onAButtonPressed += Complete;
+        GameEventsManager.instance.inputEvents.onBButtonPressed += Abandon;
+    }
+    private void OnDisable()
+    {
+        GameEventsManager.instance.inputEvents.onAButtonPressed -= Complete;
+        GameEventsManager.instance.inputEvents.onBButtonPressed -= Abandon;
+    }
+    public void Complete(InputAction.CallbackContext obj)
+    {
+        Complete();
     }
     public void Complete()
     {
@@ -37,6 +43,10 @@ public class Chemical_Change_Task_0 : TaskStep
                 Destroy(child);
             }
         }
+    }
+    public void Abandon(InputAction.CallbackContext obj)
+    {
+        Abandon();
     }
     public void Abandon()
     {
