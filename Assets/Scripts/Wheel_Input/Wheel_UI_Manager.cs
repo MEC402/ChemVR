@@ -333,12 +333,12 @@ public class Wheel_UI_Manager : MonoBehaviour
         {
             StartChem();
             SkipPopUp();
-        } else if (restartTut)
+        } else if (restartGla)
         {
             startGla();
             SkipPopUp();
         }
-        else if (restartChe)
+        else if (restartGlo)
         {
             StartGlo();
             SkipPopUp();

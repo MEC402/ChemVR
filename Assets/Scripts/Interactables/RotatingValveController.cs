@@ -6,16 +6,29 @@ public class RotatingValveController : MonoBehaviour
 {
     // Start is called before the first frame update
     public GameObject valve;
+    public GameObject optionalSecondValve;
     private PourActivator pA;
+    private bool useTwoValves;
     void Start()
     {
+        useTwoValves = false;
         pA = this.gameObject.GetComponent<PourActivator>();
+        if (optionalSecondValve != null)
+        {
+            useTwoValves = true;
+        }
     }
 
     // Update is called once per frame
     void Update()
     {
-        CalculateFlow(valve.transform.localEulerAngles.z);
+        if (useTwoValves)
+        {
+            CalculateFlow(valve.transform.localEulerAngles.x, optionalSecondValve.transform.localEulerAngles.x); //sink valves rotate on x
+        } else
+        {
+            CalculateFlow(valve.transform.localEulerAngles.z); //burette valve rotates on z
+        }
     }
 
     private void CalculateFlow(float rotation)
@@ -32,6 +45,27 @@ public class RotatingValveController : MonoBehaviour
                 normRotation = Mathf.Abs(normRotation - 180);
             }
             float flow = (normRotation - 15) / 75;
+            pA.setFlow(flow);
+        }
+    }
+
+    private void CalculateFlow(float rotation1, float rotation2)
+    {
+        //The default rotation is -90, so let's just operate off of 360
+        float normRotation1 = (rotation1 + 90) % 360;
+        float normRotation2 = (rotation2 + 90) % 360;
+
+        int startLimit = 15;
+        if ((normRotation1 < startLimit) && (normRotation2 < startLimit)) // Both valves are closed
+        {
+            pA.Deactivate();
+        }
+        else
+        {
+            pA.Activate();
+            float normRotation = (normRotation1 + normRotation2);
+            float flow = (normRotation) / 180;
+            Debug.Log("Flow: " + flow);
             pA.setFlow(flow);
         }
     }
