@@ -24,7 +24,7 @@ public class RotatingValveController : MonoBehaviour
     {
         if (useTwoValves)
         {
-            CalculateFlow(valve.transform.localEulerAngles.x, optionalSecondValve.transform.localEulerAngles.x); //sink valves rotate on x
+            CalculateFlow(valve.transform.eulerAngles.x, optionalSecondValve.transform.eulerAngles.x); //sink valves rotate on x
         } else
         {
             CalculateFlow(valve.transform.localEulerAngles.z); //burette valve rotates on z
@@ -51,9 +51,9 @@ public class RotatingValveController : MonoBehaviour
 
     private void CalculateFlow(float rotation1, float rotation2)
     {
-        //The default rotation is -90, so let's just operate off of 360
         float normRotation1 = (rotation1 + 90) % 360;
         float normRotation2 = (rotation2 + 90) % 360;
+        Debug.Log("NormRotation1: " + normRotation1 + ", NormRotation2: " + normRotation2);
 
         int startLimit = 15;
         if ((normRotation1 < startLimit) && (normRotation2 < startLimit)) // Both valves are closed
@@ -63,8 +63,8 @@ public class RotatingValveController : MonoBehaviour
         else
         {
             pA.Activate();
-            float normRotation = (normRotation1 + normRotation2);
-            float flow = (normRotation) / 180;
+            float normRotation = ((normRotation1 - startLimit) + (normRotation2 - startLimit)) / 2;
+            float flow = (normRotation) / (180 - startLimit);
             Debug.Log("Flow: " + flow);
             pA.setFlow(flow);
         }

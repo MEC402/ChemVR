@@ -8,6 +8,8 @@ public class SyncStopcock : MonoBehaviour
     public GameObject valve;
     private XRGrabInteractable grabInteractable;
 
+    //float OGturnerXRotation;
+    //float OGturnerYRotation;
     private void OnEnable()
     {
         grabInteractable = collisionDetector.GetComponent<XRGrabInteractable>();
@@ -18,6 +20,9 @@ public class SyncStopcock : MonoBehaviour
             Debug.LogError("XRGrabInteractable component is missing.");
             return;
         }
+
+        //OGturnerXRotation = turner.transform.localEulerAngles.x;
+        //OGturnerYRotation = turner.transform.localEulerAngles.y;
     }
 
 
@@ -29,5 +34,8 @@ public class SyncStopcock : MonoBehaviour
         // Apply the same rotation to Door 2 and Door 3
         turner.transform.localRotation = Quaternion.Euler(0, 0, colliderRotation);
         valve.transform.localRotation = Quaternion.Euler(0, 0, colliderRotation - 90);
+
+        // fix other rotations of collider
+        //collisionDetector.transform.localRotation = Quaternion.Euler(OGturnerXRotation, OGturnerYRotation, colliderRotation);
     }
 }
