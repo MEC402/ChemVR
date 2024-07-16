@@ -53,7 +53,6 @@ public class RotatingValveController : MonoBehaviour
     {
         float normRotation1 = (rotation1 + 90) % 360;
         float normRotation2 = (rotation2 + 90) % 360;
-        Debug.Log("NormRotation1: " + normRotation1 + ", NormRotation2: " + normRotation2);
 
         int startLimit = 15;
         if ((normRotation1 < startLimit) && (normRotation2 < startLimit)) // Both valves are closed
@@ -76,7 +75,6 @@ public class RotatingValveController : MonoBehaviour
                 normRotation = (normRotation2 - startLimit) / 2;
             }
             float flow = (normRotation) / (180 - startLimit);
-            Debug.Log("Flow: " + flow);
             pA.setFlow(flow);
         }
     }

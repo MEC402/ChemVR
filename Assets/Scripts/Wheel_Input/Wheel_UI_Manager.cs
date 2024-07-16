@@ -21,16 +21,27 @@ public class Wheel_UI_Manager : MonoBehaviour
     Vector2 rightStickInput;
 
     // Control other right hand uses
+    [Header("Right Hand Motion Controllers")]
     public ActionBasedSnapTurnProvider turnProvider;
     public XRRayInteractor teleportationProvider;
     private bool rightHandMovementsActive;
 
     // Controllers for starting tasks
+    [Header("Start Task Controllers")]
     public Toggle_Module_All taskPreper;
     public StartTasks taskStarter;
     private Transform taskManager;
 
+    [Header("Right Hand Ray Interactor")]
+    [SerializeField]
+    XRRayInteractor xrRayInteractor_R;
+    [SerializeField]
+    LineRenderer lineRenderer_R;
+    [SerializeField]
+    XRInteractorLineVisual xrInteractorLineVisual_R;
+
     //Overview popups
+    [Header("Overview Pop Ups")]
     [SerializeField]
     GameObject chemicalOverview;
     [SerializeField]
@@ -49,6 +60,7 @@ public class Wheel_UI_Manager : MonoBehaviour
     private bool rightSelected;
 
     // Text for each option
+    [Header("Text Boxes")]
     public TextMeshPro areYouSureTxt;
     public TextMeshPro topTxt;
     public TextMeshPro bottomTxt;
@@ -81,6 +93,7 @@ public class Wheel_UI_Manager : MonoBehaviour
     private Renderer centerRenderer;
 
     // Materials
+    [Header("Wheel Materials")]
     public Material white;
     public Material highlighted_blue;
 
@@ -143,6 +156,8 @@ public class Wheel_UI_Manager : MonoBehaviour
         GameEventsManager.instance.inputEvents.onRTriggerReleased -= handle_and_hide;
     }
 
+    //This has to be removed for the laser beam to work properly. All good! Then we don't use the mouse :)
+    /*
     private void Update()
     {
         if(shown)
@@ -187,6 +202,7 @@ public class Wheel_UI_Manager : MonoBehaviour
             }
         }
     }
+    */
     private void popup(InputAction.CallbackContext obj)
     {
         //Disable right joystick actions on show
@@ -194,7 +210,7 @@ public class Wheel_UI_Manager : MonoBehaviour
         setRightHandActions(false);
 
         //If you reopen the popup instead of continue / abandon
-        if(taskPreper.current != null)
+        if (taskPreper.current != null)
         {
             GameEventsManager.instance.inputEvents.onAButtonPressed -= Continue;
             GameEventsManager.instance.inputEvents.onBButtonPressed -= Abandon;
@@ -384,8 +400,14 @@ public class Wheel_UI_Manager : MonoBehaviour
         turnProvider.enableTurnLeftRight = active;
         teleportationProvider.enabled = active;
         rightHandMovementsActive = active;
+
+        //Swap right hand enactors for the ray interactor
+        //enable right ray interactor on show
+        xrRayInteractor_R.enabled = !active;
+        lineRenderer_R.enabled = !active;
+        xrInteractorLineVisual_R.enabled = !active;
     }
-    private void unSelectAll()
+    public void unSelectAll()
     {
         anySelected = false;
         
@@ -405,8 +427,7 @@ public class Wheel_UI_Manager : MonoBehaviour
         rightUIButton.transform.localPosition = rightPos;
         rightRenderer.material = white;
     }
-
-    private void HandleRightStickUp()
+    public void HandleRightStickUp()
     {
         if (shown)
         {
@@ -419,7 +440,7 @@ public class Wheel_UI_Manager : MonoBehaviour
         }
     }
 
-    private void HandleRightStickDown()
+    public void HandleRightStickDown()
     {
         if (shown)
         {
@@ -432,7 +453,7 @@ public class Wheel_UI_Manager : MonoBehaviour
         }
     }
 
-    private void HandleRightStickRight()
+    public void HandleRightStickRight()
     {
         if (shown)
         {
@@ -445,7 +466,7 @@ public class Wheel_UI_Manager : MonoBehaviour
         }
     }
 
-    private void HandleRightStickLeft()
+    public void HandleRightStickLeft()
     {
         if (shown)
         {
