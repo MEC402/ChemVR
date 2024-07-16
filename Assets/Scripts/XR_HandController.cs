@@ -35,6 +35,9 @@ public class XR_HandController : MonoBehaviour
     {
         if (handsAvailable) {
             AnimateHand();
+        } else
+        {
+            inputDevice = GetInputDevice();
         }
     }
 

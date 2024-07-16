@@ -1,0 +1,34 @@
+{
+    "name": "Wheel_Inputs",
+    "maps": [
+        {
+            "name": "Right_Hand",
+            "id": "92a4423b-d2e7-4af7-b44d-2c8edf625269",
+            "actions": [
+                {
+                    "name": "Move Toggle",
+                    "type": "Value",
+                    "id": "3326d396-840f-4889-b7ee-c0a99be961a7",
+                    "expectedControlType": "Vector2",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": true
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "05328193-c604-444b-9d21-4c000a1da38c",
+                    "path": "<XRController>{RightHand}/{Primary2DAxis}",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Move Toggle",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
+        }
+    ],
+    "controlSchemes": []
+}

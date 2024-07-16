@@ -1,0 +1,109 @@
+using System.Collections;
+using System.Collections.Generic;
+using TMPro;
+using UnityEngine;
+using UnityEngine.InputSystem;
+
+public class Tutorial_Overview : MonoBehaviour
+{
+    public TextMeshProUGUI tutText;
+    public GameObject controllerDiagrams;
+    Controller_Diagram diagramController;
+    int curStep;
+
+    void OnEnable()
+    {
+        diagramController = controllerDiagrams.GetComponent<Controller_Diagram>();
+        this.gameObject.GetComponent<ToggleTextSimple>().enabled = false;
+        curStep = -1;
+        tutText.text = "Not reading events.";
+        if (GameEventsManager.instance == null)
+        {
+            tutText.text = "There is no game events manager";
+        }
+        GameEventsManager.instance.taskEvents.onAdvanceTask += AdvanceTutTask;
+        GameEventsManager.instance.taskEvents.onAbandonTask += tu_abandonMe;
+    }
+
+    void OnDisable()
+    {
+        //Remove any listeners
+        diagramController.hideAllDiagrams();
+        this.gameObject.GetComponent<ToggleTextSimple>().enabled = false;
+        GameEventsManager.instance.taskEvents.onAdvanceTask -= AdvanceTutTask;
+        GameEventsManager.instance.taskEvents.onAbandonTask -= tu_abandonMe;
+    }
+
+    public void restart()
+    {
+        tu_abandonMe("Tutorial_Overview");
+        this.gameObject.GetComponent<ToggleTextSimple>().enabled = true;
+    }
+    public void tu_abandonMe(string context)
+    {
+        if (context.Contains("Tutorial"))
+        {
+            diagramController.hideAllDiagrams();
+            this.gameObject.GetComponent<ToggleTextSimple>().enabled = false;
+            GameObject tutPop = GameObject.Find("Tutorial PopUp");
+            tutText.text = "Don't look at me I'm inactive.";
+            if (tutPop != null)
+            {
+                tutPop.SetActive(false);
+            }
+            curStep = -1;
+        }
+    }
+    string[] text = {"Welcome to the tutorial!\n\nYou can hide this popup with the left trigger.\n\nTry hiding this popup and re-opening it by pressing the trigger twice!",
+                    "Good Job!\n\nYou can use the analog sticks to look and move around.\n\nYou can walk around smoothly using the Left Toggle and by turning your head. You'll notice there are colored squares on the floor, walk into the blue square.",
+                    "The right toggle is used to move quickly.\nToggle left and right to rotate 45 degrees, toggle down to turn around.\nTo teleport, push the right toggle forward and release at the desired location.\n\nTry teleporting into the red square.",
+                    "The triggers on the back of your controller can be used to grab and interact with items.\n\nFor now, skip with A",
+                    "The primary buttons, (A) and (X) are your main way of interacting with objects!\n\nPress one to show you know where they are.",
+                    "The triggers on the tops of your controllers are your way of interacting with menus!\nPress the right trigger anytime to see the menu.\n\nGive it a try, as the Tutorial is complete!"
+                    };
+    void AdvanceTutTask(string context)
+    {
+        if (context.Contains("Tutorial_Task"))
+        {
+            this.gameObject.GetComponent<ToggleTextSimple>().enabled = true;
+            curStep += 1;
+            tutText.text = text[curStep];
+            handleDiagrams();
+        }
+    }
+
+    void handleDiagrams()
+    {
+        diagramController.hideAllDiagrams();
+        if (curStep == 0)
+        {
+            diagramController.showLeftController();
+            diagramController.showLeftTrigger();
+        } else if (curStep == 1)
+        {
+            diagramController.showLeftController();
+            diagramController.showLeftToggle();
+        } else if (curStep == 2)
+        {
+            diagramController.showRightController();
+            diagramController.showRightToggle();
+        } else if (curStep == 3)
+        {
+            diagramController.showAllDiagrams();
+            diagramController.showLeftGrip();
+            diagramController.showRightGrip();
+        } else if (curStep == 4)
+        {
+            diagramController.showAllDiagrams();
+            diagramController.showAButton();
+            diagramController.showXButton();
+        }
+        else if (curStep == 5)
+        {
+            diagramController.showAllDiagrams();
+            diagramController.showLeftTrigger();
+            diagramController.showRightTrigger();
+        }
+
+    }
+}
