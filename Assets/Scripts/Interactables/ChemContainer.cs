@@ -220,67 +220,58 @@ public class ChemContainer : MonoBehaviour {
                 pourRate = defaults.originalPourRate;
             }
 
-            if(hit.Equals(null))
-            {
-                Debug.LogError("hit is null"); //skipped this on a throw
-            }
-            if (hit.collider == null) //.equals threw an error here
-            {
-                Debug.LogError("hit collider is null");
-            }
-            if (hit.collider.gameObject.Equals(null))
-            {
-                Debug.LogError("hit collider gameobject null");
-            } // last part wouldn't be null because it can safely return null
-            ChemContainer recipient = hit.collider.gameObject.GetComponentInParent<ChemContainer>();            // BUG! Every now and again if you drop a chem container a null error throws here. I'm trying to find it above.
-            float amountPoured = Mathf.Min(pourRate * Time.fixedDeltaTime, currentVolume, (recipient.flags.infiniteCapacity ? float.MaxValue : recipient.maxVolume - recipient.currentVolume));
 
-            //Adjust amount poured to match how much the turner is opened
-            if (flags.pouringUsesActivator)
+            if (hit.collider != null) //Added all of this into this if statement to try to catch the bug that is occassionally thrown.
             {
-                if (pourActivator.isPercentActivated)
+                ChemContainer recipient = hit.collider.gameObject.GetComponentInParent<ChemContainer>();            // BUG! Every now and again if you drop a chem container a null error throws here. I'm trying to find it above.
+                float amountPoured = Mathf.Min(pourRate * Time.fixedDeltaTime, currentVolume, (recipient.flags.infiniteCapacity ? float.MaxValue : recipient.maxVolume - recipient.currentVolume));
+
+                //Adjust amount poured to match how much the turner is opened
+                if (flags.pouringUsesActivator)
                 {
-                    amountPoured *= pourActivator.getFlow();
+                    if (pourActivator.isPercentActivated)
+                    {
+                        amountPoured *= pourActivator.getFlow();
+                    }
                 }
-            }
 
-            if (amountPoured > 0 && flags.useSimpleFluidLevel == recipient.flags.useSimpleFluidLevel) {
+                if (amountPoured > 0 && flags.useSimpleFluidLevel == recipient.flags.useSimpleFluidLevel) {
 
-                if (flags.useSimpleFluidLevel) {
-                    if (!flags.infiniteFluid) {
-                        currentVolume -= amountPoured;
+                    if (flags.useSimpleFluidLevel) {
+                        if (!flags.infiniteFluid) {
+                            currentVolume -= amountPoured;
+                        }
+                        if (!recipient.flags.infiniteCapacity) {
+                            recipient.currentVolume += amountPoured;
+                        }
+                    } else {
+                        ChemFluid portion = chemFluid.PortionFromVolume(amountPoured);
+                        if (!flags.infiniteFluid) {
+                            chemFluid.Remove(portion);
+                            GameEventsManager.instance.chemistryEvents.PourOut(this, portion);
+                        }
+                        if (recipient.flags.infiniteCapacity) {
+                            GameEventsManager.instance.chemistryEvents.FluidDispose(recipient, portion);
+                        } else {
+                            recipient.chemFluid.Add(portion);
+                            GameEventsManager.instance.chemistryEvents.PourIn(recipient, portion);
+                        }
+                        currentVolume = chemFluid.totalVolume;
+                        recipient.currentVolume = recipient.chemFluid.totalVolume;
                     }
-                    if (!recipient.flags.infiniteCapacity) {
-                        recipient.currentVolume += amountPoured;
-                    }
+                    ParticleSystem.MainModule psmain = pourEffect.main;
+                    ParticleSystem.EmissionModule psemit = pourEffect.emission;
+                    psmain.startSize = particleSize;
+                    psemit.rateOverTime = particleEmissionRate;
+                    psmain.startLifetime = hit.distance + 0.1f;
+                    pourEffect.Play();
                 } else {
-                    ChemFluid portion = chemFluid.PortionFromVolume(amountPoured);
-                    if (!flags.infiniteFluid) {
-                        chemFluid.Remove(portion);
-                        GameEventsManager.instance.chemistryEvents.PourOut(this, portion);
+                    if (flags.useSimpleFluidLevel != recipient.flags.useSimpleFluidLevel) {
+                        Debug.LogWarning("Unable to pour between two ChemContainers with different UseSimpleFluidLevel settings.");
                     }
-                    if (recipient.flags.infiniteCapacity) {
-                        GameEventsManager.instance.chemistryEvents.FluidDispose(recipient, portion);
-                    } else { 
-                        recipient.chemFluid.Add(portion);
-                        GameEventsManager.instance.chemistryEvents.PourIn(recipient, portion);
-                    }
-                    currentVolume = chemFluid.totalVolume;
-                    recipient.currentVolume = recipient.chemFluid.totalVolume;
+                    pourEffect.Stop(true, ParticleSystemStopBehavior.StopEmittingAndClear);
                 }
-                ParticleSystem.MainModule psmain = pourEffect.main;
-                ParticleSystem.EmissionModule psemit = pourEffect.emission;
-                psmain.startSize = particleSize;
-                psemit.rateOverTime = particleEmissionRate;
-                psmain.startLifetime = hit.distance + 0.1f;
-                pourEffect.Play();
-            } else {
-                if (flags.useSimpleFluidLevel != recipient.flags.useSimpleFluidLevel) {
-                    Debug.LogWarning("Unable to pour between two ChemContainers with different UseSimpleFluidLevel settings.");
-                }
-                pourEffect.Stop(true, ParticleSystemStopBehavior.StopEmittingAndClear);
             }
-
         } else {
             pourEffect.Stop(true, ParticleSystemStopBehavior.StopEmittingAndClear);
         }
