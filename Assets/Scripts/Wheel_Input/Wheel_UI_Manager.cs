@@ -220,6 +220,7 @@ public class Wheel_UI_Manager : MonoBehaviour
         //Make the ui visible
         setAllVisable(true);
         ui.SetActive(true);
+        unSelectAll();
     }
 
     private void handle_and_hide(InputAction.CallbackContext obj)
