@@ -9,8 +9,8 @@ public class Scale_Manager : MonoBehaviour
     public TextMeshProUGUI unitText;
     public Scale_Plate plate;
 
-    private enum unit { grams, carats, ounces, pounds };
-    private unit currentUnit = unit.grams;
+    private enum unit { milligrams, grams, carats, ounces, pounds };
+    private unit currentUnit = unit.milligrams;
     private float currentMassInGrams = 0;
     private float taredMassInGrams = 0;
 
@@ -32,7 +32,11 @@ public class Scale_Manager : MonoBehaviour
     private void SetMass()
     {
         currentMassInGrams = plate.measuredWeight;
-        if (currentUnit == unit.grams)
+        if (currentUnit == unit.milligrams)
+        {
+            screenText.text = ((currentMassInGrams - taredMassInGrams) / 1000).ToString("F2");
+        }
+        else if (currentUnit == unit.grams)
         {
             screenText.text = (currentMassInGrams - taredMassInGrams).ToString("F2");
         }
@@ -51,7 +55,11 @@ public class Scale_Manager : MonoBehaviour
     }
     private void SetUnit()
     {
-        if (currentUnit == unit.grams)
+        if (currentUnit == unit.milligrams)
+        {
+            unitText.text = "mg";
+        }
+        else if (currentUnit == unit.grams)
         {
             unitText.text = "g";
         }
@@ -84,7 +92,11 @@ public class Scale_Manager : MonoBehaviour
     {
         if(power)
         {
-            if (currentUnit == unit.grams)
+            if (currentUnit == unit.milligrams)
+            {
+                currentUnit = unit.grams;
+            }
+            else if (currentUnit == unit.grams)
             {
                 currentUnit = unit.carats;
             }
@@ -98,7 +110,7 @@ public class Scale_Manager : MonoBehaviour
             }
             else if (currentUnit == unit.pounds)
             {
-                currentUnit = unit.grams;
+                currentUnit = unit.milligrams;
             }
         }
     }
