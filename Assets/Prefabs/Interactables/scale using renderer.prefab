@@ -385,8 +385,8 @@ MonoBehaviour:
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4283716692
-  m_fontColor: {r: 0.3301887, g: 0.3301887, b: 0.3301887, a: 1}
+    rgba: 4278190080
+  m_fontColor: {r: 0, g: 0, b: 0, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
@@ -621,8 +621,8 @@ MonoBehaviour:
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4283716692
-  m_fontColor: {r: 0.3301887, g: 0.3301887, b: 0.3301887, a: 1}
+    rgba: 4278190080
+  m_fontColor: {r: 0, g: 0, b: 0, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
@@ -692,6 +692,7 @@ GameObject:
   - component: {fileID: 6904469220775247885}
   - component: {fileID: 9012323275293844647}
   - component: {fileID: 3021139986757053975}
+  - component: {fileID: 1325391389259521219}
   m_Layer: 0
   m_Name: Leg 3
   m_TagString: Untagged
@@ -764,6 +765,28 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!64 &1325391389259521219
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1598516403471973124}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 5
+  m_Convex: 1
+  m_CookingOptions: 30
+  m_Mesh: {fileID: 5648046590275622514, guid: b093d5718f36e92409fa38aa15001d60, type: 3}
 --- !u!1 &2323752812130465848
 GameObject:
   m_ObjectHideFlags: 0
@@ -774,7 +797,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3131251277643227778}
   - component: {fileID: 6053621979484949320}
-  - component: {fileID: 2950241553821208452}
+  - component: {fileID: 5253738348692072264}
   m_Layer: 0
   m_Name: scale using renderer
   m_TagString: Untagged
@@ -824,7 +847,7 @@ MonoBehaviour:
   screenText: {fileID: 762416698851393820}
   unitText: {fileID: 7346054563970883025}
   plate: {fileID: 3271558211481877593}
---- !u!65 &2950241553821208452
+--- !u!65 &5253738348692072264
 BoxCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -843,8 +866,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 1.81, y: 0.52, z: 1.64}
-  m_Center: {x: 0.08, y: 0.26, z: 0}
+  m_Size: {x: 1, y: 0.1, z: 1}
+  m_Center: {x: 0.27, y: 0.48, z: 0}
 --- !u!1 &2995931820179748562
 GameObject:
   m_ObjectHideFlags: 0
@@ -856,6 +879,7 @@ GameObject:
   - component: {fileID: 6175438177834212724}
   - component: {fileID: 8331802346752282973}
   - component: {fileID: 3611945135783024784}
+  - component: {fileID: 6489337594229580114}
   m_Layer: 0
   m_Name: Leg 4
   m_TagString: Untagged
@@ -928,6 +952,28 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!64 &6489337594229580114
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2995931820179748562}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 5
+  m_Convex: 1
+  m_CookingOptions: 30
+  m_Mesh: {fileID: 658890168704756169, guid: b093d5718f36e92409fa38aa15001d60, type: 3}
 --- !u!1 &3365135322000913564
 GameObject:
   m_ObjectHideFlags: 0
@@ -1002,8 +1048,8 @@ MonoBehaviour:
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4283716692
-  m_fontColor: {r: 0.32941177, g: 0.32941177, b: 0.32941177, a: 1}
+    rgba: 4278190080
+  m_fontColor: {r: 0, g: 0, b: 0, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
@@ -1020,8 +1066,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 0.019
-  m_fontSizeBase: 0.019
+  m_fontSize: 0.014
+  m_fontSizeBase: 0.014
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -1136,8 +1182,8 @@ MonoBehaviour:
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4283716692
-  m_fontColor: {r: 0.3301887, g: 0.3301887, b: 0.3301887, a: 1}
+    rgba: 4278190080
+  m_fontColor: {r: 0, g: 0, b: 0, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
@@ -2509,8 +2555,8 @@ MonoBehaviour:
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4283716692
-  m_fontColor: {r: 0.3301887, g: 0.3301887, b: 0.3301887, a: 1}
+    rgba: 4278190080
+  m_fontColor: {r: 0, g: 0, b: 0, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
@@ -2580,6 +2626,7 @@ GameObject:
   - component: {fileID: 4103376928599661464}
   - component: {fileID: 210931441306470868}
   - component: {fileID: 1905125851573516493}
+  - component: {fileID: 6532213043447552057}
   m_Layer: 0
   m_Name: Leg 2
   m_TagString: Untagged
@@ -2652,6 +2699,28 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!64 &6532213043447552057
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6608303701139635866}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 5
+  m_Convex: 1
+  m_CookingOptions: 30
+  m_Mesh: {fileID: -3854366869057768408, guid: b093d5718f36e92409fa38aa15001d60, type: 3}
 --- !u!1 &7182477537679822058
 GameObject:
   m_ObjectHideFlags: 0
@@ -2746,6 +2815,7 @@ GameObject:
   - component: {fileID: 5598683563986896638}
   - component: {fileID: 7157357919740135482}
   - component: {fileID: 4198799493247880481}
+  - component: {fileID: 9138301459569547049}
   m_Layer: 0
   m_Name: Leg 1
   m_TagString: Untagged
@@ -2818,6 +2888,28 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!64 &9138301459569547049
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7724571935879364458}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 5
+  m_Convex: 1
+  m_CookingOptions: 30
+  m_Mesh: {fileID: 2174800117970368107, guid: b093d5718f36e92409fa38aa15001d60, type: 3}
 --- !u!1 &7937853543129510711
 GameObject:
   m_ObjectHideFlags: 0
@@ -2831,6 +2923,7 @@ GameObject:
   - component: {fileID: 1365725728226622477}
   - component: {fileID: 3271558211481877593}
   - component: {fileID: 4810136040040474622}
+  - component: {fileID: 955008331935205110}
   m_Layer: 0
   m_Name: Scale
   m_TagString: Untagged
@@ -2935,8 +3028,30 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 1.25, y: 1.25, z: 1.35}
+  m_Size: {x: 1.25, y: 1.25, z: 1.4}
   m_Center: {x: 0.00000002980233, y: 0.000000059604645, z: 0.785}
+--- !u!64 &955008331935205110
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7937853543129510711}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 5
+  m_Convex: 1
+  m_CookingOptions: 30
+  m_Mesh: {fileID: -995009524981622559, guid: b093d5718f36e92409fa38aa15001d60, type: 3}
 --- !u!1 &8517631785873523494
 GameObject:
   m_ObjectHideFlags: 0
@@ -3136,6 +3251,7 @@ GameObject:
   - component: {fileID: 7576928862510139180}
   - component: {fileID: 8407286095522058208}
   - component: {fileID: 1193905282212846522}
+  - component: {fileID: 4201886301069868814}
   - component: {fileID: 6933121687871791224}
   - component: {fileID: 7048111278496181876}
   - component: {fileID: 888101528505511442}
@@ -3232,6 +3348,28 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 1.5, y: 1.35, z: 0.1}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!64 &4201886301069868814
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8682194959583316325}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 5
+  m_Convex: 1
+  m_CookingOptions: 30
+  m_Mesh: {fileID: 3909233067320746374, guid: b093d5718f36e92409fa38aa15001d60, type: 3}
 --- !u!54 &6933121687871791224
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -3618,8 +3756,8 @@ MonoBehaviour:
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4283716692
-  m_fontColor: {r: 0.3301887, g: 0.3301887, b: 0.3301887, a: 1}
+    rgba: 4278190080
+  m_fontColor: {r: 0, g: 0, b: 0, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:

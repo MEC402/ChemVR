@@ -9,13 +9,15 @@ public class HideOnY : MonoBehaviour
     // Start is called before the first frame update
     void OnEnable()
     {
-        GameEventsManager.instance.inputEvents.onRTriggerPressed += Hide;
+        GameEventsManager.instance.inputEvents.onBButtonPressed += Hide;
+        //GameEventsManager.instance.inputEvents.onRTriggerPressed += Hide;
     }
 
     // Update is called once per frame
     void OnDisable()
     {
-        GameEventsManager.instance.inputEvents.onRTriggerPressed -= Hide;
+        GameEventsManager.instance.inputEvents.onBButtonPressed -= Hide;
+        //GameEventsManager.instance.inputEvents.onRTriggerPressed -= Hide;
     }
     public void Update()
     {

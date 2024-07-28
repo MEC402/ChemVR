@@ -116,7 +116,7 @@ public class SnapFunnel2Burette : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.name.Contains("urette"))
+        if (other.name.Contains("urette") && !snap)
         {
             buret = other.gameObject;
             touching = true;

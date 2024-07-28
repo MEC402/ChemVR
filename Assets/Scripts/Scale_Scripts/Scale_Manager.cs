@@ -34,7 +34,7 @@ public class Scale_Manager : MonoBehaviour
         currentMassInGrams = plate.measuredWeight;
         if (currentUnit == unit.milligrams)
         {
-            screenText.text = ((currentMassInGrams - taredMassInGrams) / 1000).ToString("F2");
+            screenText.text = ((currentMassInGrams - taredMassInGrams) * 1000).ToString("F2");
         }
         else if (currentUnit == unit.grams)
         {

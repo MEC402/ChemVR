@@ -50,7 +50,7 @@ public class Glove_Hygiene_Overview : MonoBehaviour
                     "Return to the red zone and titrate until you see a change of color in the beaker, or until you run out of blue chemical.\n\nWhen you're done, bring the beaker the the table with the notepad.",
                     "Record your findings using the pencil and data sheet on the tables near the office. Touch the pencil to the paper to do so.",
                     "The titration experiment is now complete. Please go to the trash to remove your gloves.\n\nHold your hands over or in the trash and press A/X",
-                    "This completes the glove hygiene module. We will now display all of the chemical spills created throughout the experience.\n\n(L Trigger) Hides Popup\n(R Trigger) Opens Menu"
+                    "This completes the glove hygiene module. We will now display all of the chemical spills created throughout the experience.\n\n(Y Button) Hides Popup\n(B Button) Opens Menu"
                     };
     void AdvanceGloTask(string context)
     {

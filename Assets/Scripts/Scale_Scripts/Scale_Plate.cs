@@ -17,7 +17,9 @@ public class Scale_Plate : MonoBehaviour
             Rigidbody weightRB = item.GetComponent<Rigidbody>();
             if (weightRB != null)
             {
+                Debug.Log("Before: " + measuredWeight);
                 measuredWeight += (weightRB.mass + getFluidMass(item));
+                Debug.Log("After: " + measuredWeight);
             }
         }
     }

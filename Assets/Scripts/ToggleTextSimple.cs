@@ -26,7 +26,7 @@ public class ToggleTextSimple : MonoBehaviour
     }
     void OnEnable()
     {
-        GameEventsManager.instance.inputEvents.onLTriggerPressed += TextToggle;
+        GameEventsManager.instance.inputEvents.onYButtonPressed += TextToggle;
         GameEventsManager.instance.taskEvents.onAdvanceTask += popUp;
     }
 
@@ -39,7 +39,7 @@ public class ToggleTextSimple : MonoBehaviour
 
     void OnDisable()
     {
-        GameEventsManager.instance.inputEvents.onLTriggerPressed -= TextToggle;
+        GameEventsManager.instance.inputEvents.onYButtonPressed -= TextToggle;
         GameEventsManager.instance.taskEvents.onAdvanceTask -= popUp;
     }
 

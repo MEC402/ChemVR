@@ -5,21 +5,23 @@ using UnityEngine;
 using UnityEngine.XR.Interaction.Toolkit;
 
 
-public class SnapFunnelToFlask : MonoBehaviour
+public class SnapBulbToPipet : MonoBehaviour
 {
     private XRGrabInteractable grabInteractable; //XRGrabInteractable of attached gameObject
     private Rigidbody myRb; //Rigidbody of attached gameObject
-    private bool touching; //is this collider touching a flask collieder?
-    private bool snap; //is this funnel gameObject attached to a flask?
-    private bool isGrabbed; //is the funnel grabbed? (so funnel doesn't detach unless intentional)
-    private GameObject flask; //the flask gameobject
-    Vector3 OGfunnelTranslation = new Vector3(0, 0, 0.2f);
+    private bool touching; //is this collider touching a pipet collieder?
+    private bool snap; //is this bulb gameObject attached to a pipet?
+    private bool isGrabbed; //is the bulb grabbed? (so pipet doesn't detach unless intentional)
+    private GameObject pipet; //the pipet gameobject
+
+    // ADDED FOR TESTING
+    Vector3 OGbulbTranslation = new Vector3(0, 0, -0.22f);
 
     private void Update()
     {
         if (snap)
         {
-            SetPositionToFlask();
+            SetPositionToPipet();
         }
     }
 
@@ -45,26 +47,21 @@ public class SnapFunnelToFlask : MonoBehaviour
         grabInteractable.selectEntered.AddListener(OnGrab);
         grabInteractable.selectExited.AddListener(OnRelease);
     }
-    private void SetPositionToFlask()
+    private void SetPositionToPipet()
     {
-        //Move the funnel to the burret
+        // ADDED FOR TESTING
+        Quaternion additionalRotation = Quaternion.Euler(0, 0, 0);
 
-        Quaternion additionalRotation = Quaternion.Euler(-90, 0, 0);
-        Quaternion newRotation = flask.transform.rotation * additionalRotation;
-        this.transform.SetPositionAndRotation(flask.transform.position, newRotation);
-        this.transform.Translate(OGfunnelTranslation);
+        //Move the bulb to the burret
+        Quaternion newRotation = pipet.transform.rotation * additionalRotation;
+        this.transform.SetPositionAndRotation(pipet.transform.position, newRotation);
+        this.transform.Translate(OGbulbTranslation);
     }
     private void LetGo()
     {
-        if (snap)
-        {
-            //GameEventsManager.instance.miscEvents.FunnelUnSnaptoBuret(this.gameObject, buret);
-        }
         snap = false;
-        flask = null;
+        pipet = null;
         myRb.useGravity = true;
-        this.gameObject.GetComponent<SphereCollider>().enabled = false;
-        this.gameObject.GetComponent<MeshCollider>().enabled = true;
     }
     private void OnDisable()
     {
@@ -74,16 +71,16 @@ public class SnapFunnelToFlask : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.name.Contains("lask"))
+        if (other.name.Contains("ipette") && !snap)
         {
-            flask = other.gameObject;
+            pipet = other.gameObject;
             touching = true;
         }
     }
 
     private void OnTriggerExit(Collider other)
     {
-        if (other.name.Contains("lask"))
+        if (other.name.Contains("ipette"))
         {
             touching = false;
             if (isGrabbed)
@@ -92,7 +89,7 @@ public class SnapFunnelToFlask : MonoBehaviour
             }
             else if (snap)
             {
-                SetPositionToFlask();
+                SetPositionToPipet();
             }
         }
     }
@@ -108,9 +105,6 @@ public class SnapFunnelToFlask : MonoBehaviour
         {
             snap = true;
             myRb.useGravity = false;
-            this.gameObject.GetComponent<MeshCollider>().enabled = false;
-            this.gameObject.GetComponent<SphereCollider>().enabled = true;
-            //GameEventsManager.instance.miscEvents.FunnelSnaptoBuret(this.gameObject, buret);
         }
         else
         {
