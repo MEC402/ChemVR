@@ -6,6 +6,7 @@ using UnityEngine.InputSystem;
 
 public class Glove_Hygiene_Overview : MonoBehaviour
 {
+    public HygieneManager touchTracker;
     public TextMeshProUGUI ghText;
     int curStep;
 
@@ -58,6 +59,14 @@ public class Glove_Hygiene_Overview : MonoBehaviour
         {
             this.gameObject.GetComponent<ToggleTextSimple>().enabled = true;
             curStep += 1;
+            if (curStep == 0)
+            {
+                touchTracker.Restart();
+            } else if (curStep == text.Length - 1)
+            {
+                touchTracker.ShowPoints(true);
+            }
+
             ghText.text = text[curStep];
         }
     }
@@ -73,7 +82,7 @@ public class Glove_Hygiene_Overview : MonoBehaviour
             {
                 ghPop.SetActive(false);
             }
-
+            curStep = -1;
         }
     }
 }

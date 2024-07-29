@@ -15,6 +15,8 @@ public class HygieneManager : MonoBehaviour
     [SerializeField]
     bool forceUpdatePoints = true;
 
+    public bool trackPoints = false;
+
     ParticleSystem.Particle[] particles;
 
     private void OnValidate() {
@@ -24,6 +26,8 @@ public class HygieneManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        showPoints = false;
+        trackPoints = false;
         points = new List<Vector3>();
         localPoints = new List<Vector3>();
         gameObjects = new List<GameObject>();
@@ -66,7 +70,24 @@ public class HygieneManager : MonoBehaviour
     }
 
     public void AddPoint(Vector3 point, GameObject gameObject) {
-        localPoints.Add(point);
-        gameObjects.Add(gameObject);
+        if (trackPoints)
+        {
+            localPoints.Add(point);
+            gameObjects.Add(gameObject);
+        }
+    }
+
+    public void Restart()
+    {
+        showPoints = false;
+        trackPoints = true;
+        points = new List<Vector3>();
+        localPoints = new List<Vector3>();
+        gameObjects = new List<GameObject>();
+    }
+
+    public void ShowPoints(bool toggle)
+    {
+        showPoints = toggle;
     }
 }
