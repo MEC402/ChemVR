@@ -37,7 +37,7 @@ public class Glove_Hygiene_Overview : MonoBehaviour
     }
 
     string[] text = {"Welcome!\nBefore we begin the lab, you need to put on your lab gear.\n\nYou should be wearing closed toed shoes and have your hair tied back.\n\nFind gloves, goggles, and a lab coat and put them on with (A/X).",
-                    "For this lab, bring the following to a table in the red zone:\n\nBeaker\nErlenmeyer flask with pink chemical\nErlenmeyer flask with blue chemical",
+                    "For this lab, bring the following to a table in the red zone / C zone:\n\nBeaker\nErlenmeyer flask with pink chemical\nErlenmeyer flask with blue chemical",
                     "You will need these items as well:\n\nBurret\nFunnel",
                     "You're getting a call! It might be urgent.\n\nYour phone is in the office, pick it up and press (A/X) to answer it.",
                     "Phew, that was close.\n\nNow return to the experiment in the red zone.",

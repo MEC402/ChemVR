@@ -18,6 +18,8 @@ public class Tutorial_Task_4 : TaskStep
     }
     void OnEnable()
     {
+        GameEventsManager.instance.miscEvents.SetHint(null);
+
         GameEventsManager.instance.inputEvents.onAButtonPressed += SkipTask;
     }
     void OnDisable()

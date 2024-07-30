@@ -11,6 +11,8 @@ public class Glove_Hygiene_Task_8 : TaskStep
     }
     void OnEnable()
     {
+        GameEventsManager.instance.miscEvents.SetHint(null);
+
         GameEventsManager.instance.chemistryEvents.onPourIn += addChem;
     }
 

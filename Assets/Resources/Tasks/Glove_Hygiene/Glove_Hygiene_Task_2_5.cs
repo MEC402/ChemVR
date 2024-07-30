@@ -25,6 +25,9 @@ public class Glove_Hygiene_Task_2_5 : TaskStep
     }
     void OnEnable()
     {
+        //point at the burette
+        GameEventsManager.instance.miscEvents.SetHint(GameObject.Find("Burette"));
+
         redTables.Add(redTable1);
         redTables.Add(redTable2);
         redTables.Add(redTable3);
@@ -108,6 +111,17 @@ public class Glove_Hygiene_Task_2_5 : TaskStep
         if(table.Contains("burette") && table.Contains("funnel"))
         {
             FinishTaskStep();
+        }
+
+        //If any table has these contents point to the next item needed
+        if (!table.Contains("burette") && !table.Contains("funnel"))
+        {
+            GameEventsManager.instance.miscEvents.SetHint(GameObject.Find("Burette"));
+        }
+
+        if (table.Contains("burette"))
+        {
+            GameEventsManager.instance.miscEvents.SetHint(GameObject.Find("Funnel"));
         }
     }
     void OnDisable()

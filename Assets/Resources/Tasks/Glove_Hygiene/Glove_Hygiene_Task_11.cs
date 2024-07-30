@@ -14,6 +14,8 @@ public class Glove_Hygiene_Task_11 : TaskStep
     }
     void OnEnable()
     {
+        GameEventsManager.instance.miscEvents.SetHint(GameObject.Find("printer"));
+
         slapCount = 0;
         GameEventsManager.instance.miscEvents.onPrinterSlap += Slap; 
     }

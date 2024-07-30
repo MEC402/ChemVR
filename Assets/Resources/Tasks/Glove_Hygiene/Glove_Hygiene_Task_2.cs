@@ -25,6 +25,9 @@ public class Glove_Hygiene_Task_2 : TaskStep
     }
     void OnEnable()
     {
+        //point at the beaker
+        GameEventsManager.instance.miscEvents.SetHint(GameObject.Find("Beaker"));
+
         redTables.Add(redTable1);
         redTables.Add(redTable2);
         redTables.Add(redTable3);
@@ -130,6 +133,18 @@ public class Glove_Hygiene_Task_2 : TaskStep
         if(table.Contains("beaker") && table.Contains("WATER") && table.Contains("HYDROCHLORIC_ACID"))
         {
             FinishTaskStep();
+        }
+
+        //If any table has these contents point to the next item needed
+        if(table.Contains("beaker"))
+        {
+            if (table.Contains("WATER"))
+            {
+                GameEventsManager.instance.miscEvents.SetHint(GameObject.Find("Flask (1)"));
+            } else
+            {
+                GameEventsManager.instance.miscEvents.SetHint(GameObject.Find("Flask"));
+            }
         }
     }
     void OnDisable()

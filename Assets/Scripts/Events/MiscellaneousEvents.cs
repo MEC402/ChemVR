@@ -123,4 +123,14 @@ public class MiscellaneousEvents
             onTextPopUp();
         }
     }
+
+    // Set target for hint
+    public event Action<GameObject> onSetHint;
+    public void SetHint(GameObject target)
+    {
+        if (onSetHint != null)
+        {
+            onSetHint(target);
+        }
+    }
 }

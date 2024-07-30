@@ -19,6 +19,11 @@ public class Glove_Hygiene_Task_4 : TaskStep
         }
     }
 
+    private void OnEnable()
+    {
+        //point at the beaker
+        GameEventsManager.instance.miscEvents.SetHint(GameObject.Find("Glove Hygiene Goals/4"));
+    }
 
     void Update()
     {

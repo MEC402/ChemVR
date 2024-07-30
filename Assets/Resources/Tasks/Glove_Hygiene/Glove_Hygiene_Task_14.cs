@@ -23,6 +23,8 @@ public class Glove_Hygiene_Task_14 : TaskStep
     }
     void OnEnable()
     {
+        GameEventsManager.instance.miscEvents.SetHint(GameObject.Find("trash"));
+
         GameEventsManager.instance.miscEvents.onTakeOffLeftGlove += removeLeft;
         GameEventsManager.instance.miscEvents.onTakeOffRightGlove += removeRight;
         GameEventsManager.instance.miscEvents.onPutOnLeftGlove += addLeft;
