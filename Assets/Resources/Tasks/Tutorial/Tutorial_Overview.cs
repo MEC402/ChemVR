@@ -60,7 +60,16 @@ public class Tutorial_Overview : MonoBehaviour
                     "The right toggle is used to move quickly.\nToggle left and right to rotate 45 degrees, toggle down to turn around.\nTo teleport, push the right toggle forward and release at the desired location.\n\nTry teleporting into the red square, with the tables labelled 'C'.",
                     "The grips on the back of your controller can be used to grab and interact with items.\n\nFor now, skip with A",
                     "The primary buttons, (A) and (X) are your main way of interacting with objects!\n\nPress one to show you know where they are.",
-                    "The primary buttons, (B) and (Y) are your way of interacting with menus!\nPress the (B) anytime to see the menu.\n\nGive it a try, as the Tutorial is complete!"
+                    "The secondary buttons, (B) and (Y) are your way of interacting with menus!\nPress the (B) anytime to see the menu.\n\nGive it a try, as the Tutorial is complete!"
+                    };
+    string[] NEWtext = {"Welcome to the tutorial!\n\nYou can hide this popup with the button Y.\n\nIt is the top button on the left controller.\n\nTry hiding this popup and re-opening it by pressing the button twice!",
+                    "Good Job!\n\nYou can use the joysticks to look and move around.\n\n Move a joystick left or right to rotate 45 degrees in that direction.",
+                    "Great.\n\nNow try moving a joystick down to turn around.",
+
+                    "The right toggle is used to move quickly.\nToggle left and right to rotate 45 degrees, toggle down to turn around.\nTo teleport, push the right toggle forward and release at the desired location.\n\nTry teleporting into the red square, with the tables labelled 'C'.",
+                    "The grips on the back of your controller can be used to grab and interact with items.\n\nFor now, skip with A",
+                    "The primary buttons, (A) and (X) are your main way of interacting with objects!\n\nPress one to show you know where they are.",
+                    "The secondary buttons, (B) and (Y) are your way of interacting with menus!\nPress the (B) anytime to see the menu.\n\nGive it a try, as the Tutorial is complete!"
                     };
     void AdvanceTutTask(string context)
     {
