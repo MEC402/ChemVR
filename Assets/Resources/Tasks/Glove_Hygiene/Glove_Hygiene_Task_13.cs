@@ -11,6 +11,8 @@ public class Glove_Hygiene_Task_13 : TaskStep
     }
     void OnEnable()
     {
+        GameEventsManager.instance.miscEvents.SetHint(GameObject.Find("clip_board"));
+
         GameEventsManager.instance.miscEvents.onPencilOnPaper += FinishTaskStep;
     }
     void OnDisable()

@@ -11,6 +11,11 @@ public class Tutorial_Task_2 : TaskStep
     }
 
 
+    private void OnEnable()
+    {
+        GameEventsManager.instance.miscEvents.SetHint(GameObject.Find("Tutorial Goals/2"));
+    }
+
     void Update()
     {
         float upperX = 3.96f;

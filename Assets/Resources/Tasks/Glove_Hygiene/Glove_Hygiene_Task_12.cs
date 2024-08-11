@@ -10,6 +10,8 @@ public class Glove_Hygiene_Task_12 : TaskStep
     }
     void OnEnable()
     {
+        GameEventsManager.instance.miscEvents.SetHint(GameObject.Find("kitchen_table_1"));
+
         GameEventsManager.instance.miscEvents.onItemOnTable += itemOnTable;
     }
 

@@ -10,7 +10,10 @@ public class Tutorial_Task_3 : TaskStep
         mainCamera = GameObject.Find("Main Camera");
     }
 
-
+    private void OnEnable()
+    {
+        GameEventsManager.instance.miscEvents.SetHint(GameObject.Find("Tutorial Goals/3"));
+    }
     void Update()
     {
         float upperX = 4.02f;

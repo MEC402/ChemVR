@@ -14,6 +14,8 @@ public class Glove_Hygiene_Task_5 : TaskStep
     }
     void OnEnable()
     {
+        GameEventsManager.instance.miscEvents.SetHint(null);
+
         GameEventsManager.instance.miscEvents.onBuretSnaptoHolder += Buret2Hold;
         GameEventsManager.instance.miscEvents.onFunnelSnaptoBuret += Funnel2Buret;
         GameEventsManager.instance.miscEvents.onBuretUnSnaptoHolder += BuretOFFHold;

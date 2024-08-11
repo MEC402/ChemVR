@@ -143,8 +143,11 @@ public class Wheel_UI_Manager : MonoBehaviour
         restartGla = false;
         restartGlo = false;
 
-        GameEventsManager.instance.inputEvents.onRTriggerPressed += popup;
-        GameEventsManager.instance.inputEvents.onRTriggerReleased += handle_and_hide;
+        //Swap right trigger to right secondary button (B)
+        GameEventsManager.instance.inputEvents.onBButtonPressed += popup;
+        GameEventsManager.instance.inputEvents.onBButtonReleased += handle_and_hide;
+        //GameEventsManager.instance.inputEvents.onRTriggerPressed += popup;
+        //GameEventsManager.instance.inputEvents.onRTriggerReleased += handle_and_hide;
     }
 
     private void OnDisable()
@@ -220,6 +223,7 @@ public class Wheel_UI_Manager : MonoBehaviour
         //Make the ui visible
         setAllVisable(true);
         ui.SetActive(true);
+        unSelectAll();
     }
 
     private void handle_and_hide(InputAction.CallbackContext obj)

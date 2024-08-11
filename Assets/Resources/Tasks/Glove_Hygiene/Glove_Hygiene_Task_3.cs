@@ -17,6 +17,10 @@ public class Glove_Hygiene_Task_3 : TaskStep
     void OnEnable()
     {
         phone = GameObject.Find("phone2k");
+
+        //point at the phone
+        GameEventsManager.instance.miscEvents.SetHint(phone);
+
         grabInteractable = phone.GetComponent<XRGrabInteractable>();
         if (grabInteractable == null)
         {
@@ -34,6 +38,11 @@ public class Glove_Hygiene_Task_3 : TaskStep
         grabInteractable.selectExited.RemoveListener(OnRelease);
         GameEventsManager.instance.inputEvents.onAButtonPressed -= answer;
         GameEventsManager.instance.inputEvents.onXButtonPressed -= answer;
+    }
+    private void Update()
+    {
+        //point at the phone
+        GameEventsManager.instance.miscEvents.SetHint(phone);
     }
     private void OnGrab(SelectEnterEventArgs arg0)
     {

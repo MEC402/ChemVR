@@ -16,6 +16,9 @@ public class Glove_Hygiene_Task_7 : TaskStep
     void OnEnable()
     {
         coffee = GameObject.Find("coffee");
+
+        GameEventsManager.instance.miscEvents.SetHint(coffee);
+
         grabInteractable = coffee.GetComponent<XRGrabInteractable>();
         if (grabInteractable == null)
         {

@@ -11,7 +11,6 @@ public class SnapFunnel2Burette : MonoBehaviour
     private bool touching; //is this collider touching a buret collieder?
     private bool snap; //is this funnel gameObject attached to a buret?
     private bool buretsnap; //is the attached buret attached to a holder?
-    //private bool freeze; //TODO: delete, this referrs to buretsnap
     private bool isGrabbed; //is the funnel grabbed? (so funnel doesn't detach unless intentional)
     private GameObject buret; //the buret gameobject
     private GameObject stand; // the stand gameObject
@@ -117,7 +116,7 @@ public class SnapFunnel2Burette : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.name.Contains("urette"))
+        if (other.name.Contains("urette") && !snap)
         {
             buret = other.gameObject;
             touching = true;

@@ -7,7 +7,7 @@ using UnityEngine.UI;
 
 public class Tutorial_Task_0 : TaskStep
 {
-    public void Start()
+    public void OnEnable()
     {
         GameEventsManager.instance.inputEvents.onAButtonPressed += Complete;
         GameEventsManager.instance.inputEvents.onBButtonPressed += Abandon;

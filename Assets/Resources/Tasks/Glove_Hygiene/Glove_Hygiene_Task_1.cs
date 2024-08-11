@@ -13,6 +13,8 @@ public class Glove_Hygiene_Task_1 : TaskStep
     bool wearingLeftGlove;
     private void OnEnable()
     {
+        GameEventsManager.instance.miscEvents.SetHint(GameObject.Find("glovebox"));
+
         wearingLeftGlove = GameObject.Find("left hand model").GetComponent<SkinnedMeshRenderer>().material.name.ToLower().Contains("blue");
         wearingRightGlove = GameObject.Find("right hand model").GetComponent<SkinnedMeshRenderer>().material.name.ToLower().Contains("blue");
         GameEventsManager.instance.miscEvents.onPutOnRightGlove += RightGloveOn;
@@ -54,7 +56,18 @@ public class Glove_Hygiene_Task_1 : TaskStep
         if ((wearingLeftGlove && wearingRightGlove) && (WearCoat.IsWearing()) && (WearGoggles.IsWearing()))
         {
             FinishTaskStep();
+        } else if (!(wearingLeftGlove && wearingRightGlove))
+        {
+            GameEventsManager.instance.miscEvents.SetHint(GameObject.Find("glovebox"));
+        } else if (!WearCoat.IsWearing())
+        {
+            GameEventsManager.instance.miscEvents.SetHint(GameObject.Find("labcoat"));
+        } else if (!WearGoggles.IsWearing())
+        {
+            GameEventsManager.instance.miscEvents.SetHint(GameObject.Find("goggles"));
         }
+
+
     }
 
 }
