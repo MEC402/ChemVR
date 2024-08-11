@@ -7,7 +7,9 @@ public class Scale_Plate : MonoBehaviour
 {
     //NOTE TO SELF: Consider changing collider to a very tall collider from the plate and up! so that anything stacked would count towards the weight as well.
     public float measuredWeight = 0;
+    private float fluctuation = 0;
     private HashSet<GameObject> ObjectsOnScale = new HashSet<GameObject>();
+    private float flucDuration = 0.25f;
 
     private void Update()
     {
@@ -17,10 +19,12 @@ public class Scale_Plate : MonoBehaviour
             Rigidbody weightRB = item.GetComponent<Rigidbody>();
             if (weightRB != null)
             {
-                Debug.Log("Before: " + measuredWeight);
+                //Debug.Log("Before: " + measuredWeight);
                 measuredWeight += (weightRB.mass + getFluidMass(item));
-                Debug.Log("After: " + measuredWeight);
+                //Debug.Log("After: " + measuredWeight);
             }
+            //Apply the fluctuation
+            measuredWeight += fluctuation;
         }
     }
     private void OnTriggerEnter(Collider other)
@@ -29,6 +33,7 @@ public class Scale_Plate : MonoBehaviour
         {
             ObjectsOnScale.Add(other.gameObject);
         }
+        FluctuateUp();
     }
     private void OnTriggerExit(Collider other)
     {
@@ -36,6 +41,7 @@ public class Scale_Plate : MonoBehaviour
         {
             ObjectsOnScale.Remove(other.gameObject);
         }
+        FluctuateDown();
     }
 
     private float getFluidMass(GameObject weight)
@@ -71,5 +77,51 @@ public class Scale_Plate : MonoBehaviour
 
         }
         return totalFluidInGrams;
+    }
+
+    private void FluctuateUp()
+    {
+        StartCoroutine(ApplyUpwardsFluctuation());
+    }
+
+    private IEnumerator ApplyUpwardsFluctuation()
+    {
+        // Make the object visible
+        fluctuation = 3;
+        yield return new WaitForSeconds(flucDuration);
+
+        // Make the object invisible
+        fluctuation = -3;
+        yield return new WaitForSeconds(flucDuration);
+
+        // Make the object visible again
+        fluctuation = -1;
+        yield return new WaitForSeconds(flucDuration);
+
+        // Make the object invisible again
+        fluctuation = 0;
+    }
+
+    private void FluctuateDown()
+    {
+        StartCoroutine(ApplyDownwardsFluctuation());
+    }
+
+    private IEnumerator ApplyDownwardsFluctuation()
+    {
+        // Make the object visible
+        fluctuation = -3;
+        yield return new WaitForSeconds(flucDuration);
+
+        // Make the object invisible
+        fluctuation = 3;
+        yield return new WaitForSeconds(flucDuration);
+
+        // Make the object visible again
+        fluctuation = 1;
+        yield return new WaitForSeconds(flucDuration);
+
+        // Make the object invisible again
+        fluctuation = 0;
     }
 }

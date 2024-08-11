@@ -11,9 +11,11 @@ GameObject:
   - component: {fileID: 6342716773594601736}
   - component: {fileID: 1570762635693430184}
   - component: {fileID: 4563548876617412306}
-  - component: {fileID: 1191246331549785341}
-  - component: {fileID: 4872605669369939526}
-  - component: {fileID: 542578144841070961}
+  - component: {fileID: 1847225989823983559}
+  - component: {fileID: 13249139078725640}
+  - component: {fileID: 1775060819621421421}
+  - component: {fileID: 5798421172219684114}
+  - component: {fileID: 4479343249471318162}
   m_Layer: 0
   m_Name: Button 3
   m_TagString: Untagged
@@ -30,9 +32,9 @@ Transform:
   m_GameObject: {fileID: 148303543132895379}
   serializedVersion: 2
   m_LocalRotation: {x: -0.7071068, y: 0, z: -0, w: 0.7071067}
-  m_LocalPosition: {x: -0.71935403, y: 0.1701629, z: -0.15}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
+  m_LocalPosition: {x: -0.719, y: 0.17, z: 0.45}
+  m_LocalScale: {x: 1.5, y: 1.5, z: 1.5}
+  m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 3434823268841603151}
   m_Father: {fileID: 3131251277643227778}
@@ -87,7 +89,29 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!54 &1191246331549785341
+--- !u!64 &1847225989823983559
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 148303543132895379}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 0
+  serializedVersion: 5
+  m_Convex: 1
+  m_CookingOptions: 30
+  m_Mesh: {fileID: -4635757346178722435, guid: b093d5718f36e92409fa38aa15001d60, type: 3}
+--- !u!54 &13249139078725640
 Rigidbody:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -114,7 +138,20 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 126
   m_CollisionDetection: 0
---- !u!114 &4872605669369939526
+--- !u!114 &1775060819621421421
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 148303543132895379}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 529ad8377a0dae641b18933c389b5d94, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  whichButton: 2
+--- !u!114 &5798421172219684114
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -153,9 +190,21 @@ MonoBehaviour:
   m_HoverEntered:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 888101528505511442}
-        m_TargetAssemblyTypeName: BUTTON_RENDERER_TESTING_SCRIPT, Assembly-CSharp
-        m_MethodName: ModeHoverEnter
+      - m_Target: {fileID: 1775060819621421421}
+        m_TargetAssemblyTypeName: BUTTON_COLLIDER_TESTING_SCRIPT, Assembly-CSharp
+        m_MethodName: ButtonPress
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 6053621979484949320}
+        m_TargetAssemblyTypeName: Scale_Manager, Assembly-CSharp
+        m_MethodName: pressMode
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -167,19 +216,7 @@ MonoBehaviour:
         m_CallState: 2
   m_HoverExited:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 888101528505511442}
-        m_TargetAssemblyTypeName: BUTTON_RENDERER_TESTING_SCRIPT, Assembly-CSharp
-        m_MethodName: ModeHoverExit
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
   m_FirstSelectEntered:
     m_PersistentCalls:
       m_Calls: []
@@ -290,7 +327,7 @@ MonoBehaviour:
   m_StartingSingleGrabTransformers: []
   m_StartingMultipleGrabTransformers: []
   m_AddDefaultGrabTransformers: 1
---- !u!65 &542578144841070961
+--- !u!65 &4479343249471318162
 BoxCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -309,7 +346,7 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 0.005, y: 0.005, z: 0.005}
+  m_Size: {x: 0.001, y: 0.001, z: 0.001}
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &525203154430584606
 GameObject:
@@ -692,7 +729,7 @@ GameObject:
   - component: {fileID: 6904469220775247885}
   - component: {fileID: 9012323275293844647}
   - component: {fileID: 3021139986757053975}
-  - component: {fileID: 1325391389259521219}
+  - component: {fileID: 4253794738148692834}
   m_Layer: 0
   m_Name: Leg 3
   m_TagString: Untagged
@@ -765,7 +802,7 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!64 &1325391389259521219
+--- !u!64 &4253794738148692834
 MeshCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -797,9 +834,9 @@ GameObject:
   m_Component:
   - component: {fileID: 3131251277643227778}
   - component: {fileID: 6053621979484949320}
-  - component: {fileID: 5253738348692072264}
+  - component: {fileID: 3910657566660383329}
   m_Layer: 0
-  m_Name: scale using renderer
+  m_Name: SPACED scale using hover 1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -814,7 +851,7 @@ Transform:
   m_GameObject: {fileID: 2323752812130465848}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0.7071068, z: -0, w: -0.7071068}
-  m_LocalPosition: {x: -0.125, y: 1.0023197, z: 4.202}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 0.15, y: 0.15, z: 0.15}
   m_ConstrainProportionsScale: 1
   m_Children:
@@ -846,8 +883,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   screenText: {fileID: 762416698851393820}
   unitText: {fileID: 7346054563970883025}
-  plate: {fileID: 3271558211481877593}
---- !u!65 &5253738348692072264
+  plate: {fileID: 2033496497138585258}
+--- !u!65 &3910657566660383329
 BoxCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -879,7 +916,7 @@ GameObject:
   - component: {fileID: 6175438177834212724}
   - component: {fileID: 8331802346752282973}
   - component: {fileID: 3611945135783024784}
-  - component: {fileID: 6489337594229580114}
+  - component: {fileID: 8465632895413694561}
   m_Layer: 0
   m_Name: Leg 4
   m_TagString: Untagged
@@ -952,7 +989,7 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!64 &6489337594229580114
+--- !u!64 &8465632895413694561
 MeshCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -1253,9 +1290,11 @@ GameObject:
   - component: {fileID: 5831869227345409652}
   - component: {fileID: 7426622571301525820}
   - component: {fileID: 150733029993415613}
-  - component: {fileID: 7011250864987836012}
-  - component: {fileID: 529960492823543120}
-  - component: {fileID: 6802448720316062598}
+  - component: {fileID: 8946259599490916107}
+  - component: {fileID: 8022978171776705905}
+  - component: {fileID: 498694721299972645}
+  - component: {fileID: 2860148640127135394}
+  - component: {fileID: 606023310407159423}
   m_Layer: 0
   m_Name: Button 4
   m_TagString: Untagged
@@ -1272,9 +1311,9 @@ Transform:
   m_GameObject: {fileID: 3802594789200379232}
   serializedVersion: 2
   m_LocalRotation: {x: -0.7071068, y: 0, z: -0, w: 0.7071067}
-  m_LocalPosition: {x: -0.7193541, y: 0.1701629, z: -0.45}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
+  m_LocalPosition: {x: -0.719, y: 0.17, z: -0.45}
+  m_LocalScale: {x: 1.5, y: 1.5, z: 1.5}
+  m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 1243355649221747201}
   m_Father: {fileID: 3131251277643227778}
@@ -1329,7 +1368,29 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!54 &7011250864987836012
+--- !u!64 &8946259599490916107
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3802594789200379232}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 0
+  serializedVersion: 5
+  m_Convex: 1
+  m_CookingOptions: 30
+  m_Mesh: {fileID: -8834768111221369919, guid: b093d5718f36e92409fa38aa15001d60, type: 3}
+--- !u!54 &8022978171776705905
 Rigidbody:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -1356,7 +1417,20 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 126
   m_CollisionDetection: 0
---- !u!114 &529960492823543120
+--- !u!114 &498694721299972645
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3802594789200379232}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 529ad8377a0dae641b18933c389b5d94, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  whichButton: 3
+--- !u!114 &2860148640127135394
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -1395,9 +1469,21 @@ MonoBehaviour:
   m_HoverEntered:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 888101528505511442}
-        m_TargetAssemblyTypeName: BUTTON_RENDERER_TESTING_SCRIPT, Assembly-CSharp
-        m_MethodName: TareHoverEnter
+      - m_Target: {fileID: 498694721299972645}
+        m_TargetAssemblyTypeName: BUTTON_COLLIDER_TESTING_SCRIPT, Assembly-CSharp
+        m_MethodName: ButtonPress
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 6053621979484949320}
+        m_TargetAssemblyTypeName: Scale_Manager, Assembly-CSharp
+        m_MethodName: pressTare
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -1409,19 +1495,7 @@ MonoBehaviour:
         m_CallState: 2
   m_HoverExited:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 888101528505511442}
-        m_TargetAssemblyTypeName: BUTTON_RENDERER_TESTING_SCRIPT, Assembly-CSharp
-        m_MethodName: TareHoverExit
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
   m_FirstSelectEntered:
     m_PersistentCalls:
       m_Calls: []
@@ -1532,7 +1606,7 @@ MonoBehaviour:
   m_StartingSingleGrabTransformers: []
   m_StartingMultipleGrabTransformers: []
   m_AddDefaultGrabTransformers: 1
---- !u!65 &6802448720316062598
+--- !u!65 &606023310407159423
 BoxCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -1551,7 +1625,7 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 0.005, y: 0.005, z: 0.005}
+  m_Size: {x: 0.001, y: 0.001, z: 0.001}
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &4406761494323477394
 GameObject:
@@ -1564,9 +1638,11 @@ GameObject:
   - component: {fileID: 6831285474339345566}
   - component: {fileID: 8832086374014809477}
   - component: {fileID: 2037952245505610838}
-  - component: {fileID: 3452818254763225796}
-  - component: {fileID: 195200628702812505}
-  - component: {fileID: 8801800169008624952}
+  - component: {fileID: 5170126018006987435}
+  - component: {fileID: 5316438879292678725}
+  - component: {fileID: 1046718085071540508}
+  - component: {fileID: 1107083757102215083}
+  - component: {fileID: 366869832166617572}
   m_Layer: 0
   m_Name: Button 1
   m_TagString: Untagged
@@ -1582,14 +1658,14 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4406761494323477394}
   serializedVersion: 2
-  m_LocalRotation: {x: -0.7071068, y: 0, z: -0, w: 0.7071067}
-  m_LocalPosition: {x: -0.7193541, y: 0.1701629, z: 0.45}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
+  m_LocalRotation: {x: -0.409045, y: 0.409045, z: 0.5767861, w: 0.5767861}
+  m_LocalPosition: {x: 0.632, y: 0.22, z: 0.821}
+  m_LocalScale: {x: 1.5, y: 1.5, z: 1.5}
+  m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 4193977669899161803}
   m_Father: {fileID: 3131251277643227778}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: -70.687, y: 0, z: 90}
 --- !u!33 &8832086374014809477
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -1640,7 +1716,29 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!54 &3452818254763225796
+--- !u!64 &5170126018006987435
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4406761494323477394}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 0
+  serializedVersion: 5
+  m_Convex: 1
+  m_CookingOptions: 30
+  m_Mesh: {fileID: -1321067806742135879, guid: b093d5718f36e92409fa38aa15001d60, type: 3}
+--- !u!54 &5316438879292678725
 Rigidbody:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -1667,7 +1765,20 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 126
   m_CollisionDetection: 0
---- !u!114 &195200628702812505
+--- !u!114 &1046718085071540508
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4406761494323477394}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 529ad8377a0dae641b18933c389b5d94, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  whichButton: 0
+--- !u!114 &1107083757102215083
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -1706,9 +1817,21 @@ MonoBehaviour:
   m_HoverEntered:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 888101528505511442}
-        m_TargetAssemblyTypeName: BUTTON_RENDERER_TESTING_SCRIPT, Assembly-CSharp
-        m_MethodName: OnHoverEnter
+      - m_Target: {fileID: 1046718085071540508}
+        m_TargetAssemblyTypeName: BUTTON_COLLIDER_TESTING_SCRIPT, Assembly-CSharp
+        m_MethodName: ButtonPress
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 6053621979484949320}
+        m_TargetAssemblyTypeName: Scale_Manager, Assembly-CSharp
+        m_MethodName: pressOn
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -1720,19 +1843,7 @@ MonoBehaviour:
         m_CallState: 2
   m_HoverExited:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 888101528505511442}
-        m_TargetAssemblyTypeName: BUTTON_RENDERER_TESTING_SCRIPT, Assembly-CSharp
-        m_MethodName: OnHoverExit
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
   m_FirstSelectEntered:
     m_PersistentCalls:
       m_Calls: []
@@ -1843,7 +1954,7 @@ MonoBehaviour:
   m_StartingSingleGrabTransformers: []
   m_StartingMultipleGrabTransformers: []
   m_AddDefaultGrabTransformers: 1
---- !u!65 &8801800169008624952
+--- !u!65 &366869832166617572
 BoxCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -1862,7 +1973,7 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 0.005, y: 0.005, z: 0.005}
+  m_Size: {x: 0.001, y: 0.001, z: 0.001}
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &4872939534559474520
 GameObject:
@@ -2079,9 +2190,11 @@ GameObject:
   - component: {fileID: 4255043911354770130}
   - component: {fileID: 3665093948779915330}
   - component: {fileID: 5131239775119113342}
-  - component: {fileID: 8628799694910725516}
-  - component: {fileID: 6859024217458852179}
-  - component: {fileID: 4807364644001596972}
+  - component: {fileID: 874407067342835948}
+  - component: {fileID: 3220961185404866892}
+  - component: {fileID: 7205351469162494111}
+  - component: {fileID: 7240477278435283147}
+  - component: {fileID: 1036644262899644197}
   m_Layer: 0
   m_Name: Button 2
   m_TagString: Untagged
@@ -2097,14 +2210,14 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5142354699098062105}
   serializedVersion: 2
-  m_LocalRotation: {x: -0.7071068, y: 0, z: -0, w: 0.7071067}
-  m_LocalPosition: {x: -0.7193541, y: 0.1701629, z: 0.15}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
+  m_LocalRotation: {x: 0.5767861, y: 0.5767861, z: 0.409045, w: -0.409045}
+  m_LocalPosition: {x: 0.632, y: 0.22, z: -0.821}
+  m_LocalScale: {x: 1.5, y: 1.5, z: 1.5}
+  m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 2753840673319939388}
   m_Father: {fileID: 3131251277643227778}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: -70.687, y: 180, z: 90}
 --- !u!33 &3665093948779915330
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -2155,7 +2268,29 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!54 &8628799694910725516
+--- !u!64 &874407067342835948
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5142354699098062105}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 0
+  serializedVersion: 5
+  m_Convex: 1
+  m_CookingOptions: 30
+  m_Mesh: {fileID: -6770101919864955723, guid: b093d5718f36e92409fa38aa15001d60, type: 3}
+--- !u!54 &3220961185404866892
 Rigidbody:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -2182,7 +2317,20 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 126
   m_CollisionDetection: 0
---- !u!114 &6859024217458852179
+--- !u!114 &7205351469162494111
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5142354699098062105}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 529ad8377a0dae641b18933c389b5d94, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  whichButton: 1
+--- !u!114 &7240477278435283147
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -2221,9 +2369,21 @@ MonoBehaviour:
   m_HoverEntered:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 888101528505511442}
-        m_TargetAssemblyTypeName: BUTTON_RENDERER_TESTING_SCRIPT, Assembly-CSharp
-        m_MethodName: OffHoverEnter
+      - m_Target: {fileID: 7205351469162494111}
+        m_TargetAssemblyTypeName: BUTTON_COLLIDER_TESTING_SCRIPT, Assembly-CSharp
+        m_MethodName: ButtonPress
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 6053621979484949320}
+        m_TargetAssemblyTypeName: Scale_Manager, Assembly-CSharp
+        m_MethodName: pressOff
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -2235,19 +2395,7 @@ MonoBehaviour:
         m_CallState: 2
   m_HoverExited:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 888101528505511442}
-        m_TargetAssemblyTypeName: BUTTON_RENDERER_TESTING_SCRIPT, Assembly-CSharp
-        m_MethodName: OffHoverExit
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
   m_FirstSelectEntered:
     m_PersistentCalls:
       m_Calls: []
@@ -2358,7 +2506,7 @@ MonoBehaviour:
   m_StartingSingleGrabTransformers: []
   m_StartingMultipleGrabTransformers: []
   m_AddDefaultGrabTransformers: 1
---- !u!65 &4807364644001596972
+--- !u!65 &1036644262899644197
 BoxCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -2377,7 +2525,7 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 0.005, y: 0.005, z: 0.005}
+  m_Size: {x: 0.001, y: 0.001, z: 0.001}
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &5734209694504598776
 GameObject:
@@ -2626,7 +2774,7 @@ GameObject:
   - component: {fileID: 4103376928599661464}
   - component: {fileID: 210931441306470868}
   - component: {fileID: 1905125851573516493}
-  - component: {fileID: 6532213043447552057}
+  - component: {fileID: 4112781085050042582}
   m_Layer: 0
   m_Name: Leg 2
   m_TagString: Untagged
@@ -2699,7 +2847,7 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!64 &6532213043447552057
+--- !u!64 &4112781085050042582
 MeshCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -2815,7 +2963,7 @@ GameObject:
   - component: {fileID: 5598683563986896638}
   - component: {fileID: 7157357919740135482}
   - component: {fileID: 4198799493247880481}
-  - component: {fileID: 9138301459569547049}
+  - component: {fileID: 2258867528878195171}
   m_Layer: 0
   m_Name: Leg 1
   m_TagString: Untagged
@@ -2888,7 +3036,7 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!64 &9138301459569547049
+--- !u!64 &2258867528878195171
 MeshCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -2921,9 +3069,10 @@ GameObject:
   - component: {fileID: 322689006075589472}
   - component: {fileID: 889785476167568997}
   - component: {fileID: 1365725728226622477}
-  - component: {fileID: 3271558211481877593}
-  - component: {fileID: 4810136040040474622}
-  - component: {fileID: 955008331935205110}
+  - component: {fileID: 7402398900449919543}
+  - component: {fileID: 5907240269958001702}
+  - component: {fileID: 2033496497138585258}
+  - component: {fileID: 6719653554497918431}
   m_Layer: 0
   m_Name: Scale
   m_TagString: Untagged
@@ -2996,41 +3145,7 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!114 &3271558211481877593
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7937853543129510711}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e448fc40f5b0e45409e897a0d325ba84, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  measuredWeight: 0
---- !u!65 &4810136040040474622
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7937853543129510711}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 1
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Size: {x: 1.35, y: 1.35, z: 1.5}
-  m_Center: {x: 0.00000002980233, y: 0.000000059604645, z: 0.785}
---- !u!64 &955008331935205110
+--- !u!64 &7402398900449919543
 MeshCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -3052,6 +3167,67 @@ MeshCollider:
   m_Convex: 1
   m_CookingOptions: 30
   m_Mesh: {fileID: -995009524981622559, guid: b093d5718f36e92409fa38aa15001d60, type: 3}
+--- !u!54 &5907240269958001702
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7937853543129510711}
+  serializedVersion: 4
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_CenterOfMass: {x: 0, y: 0, z: 0}
+  m_InertiaTensor: {x: 1, y: 1, z: 1}
+  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ImplicitCom: 1
+  m_ImplicitTensor: 1
+  m_UseGravity: 0
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 126
+  m_CollisionDetection: 0
+--- !u!114 &2033496497138585258
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7937853543129510711}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e448fc40f5b0e45409e897a0d325ba84, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  measuredWeight: 0
+--- !u!65 &6719653554497918431
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7937853543129510711}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 1.35, y: 1.35, z: 1.5}
+  m_Center: {x: 0.00000002980233, y: 0.000000059604645, z: 0.785}
 --- !u!1 &8517631785873523494
 GameObject:
   m_ObjectHideFlags: 0
@@ -3181,7 +3357,7 @@ Transform:
   m_GameObject: {fileID: 8564462453968080514}
   serializedVersion: 2
   m_LocalRotation: {x: -0.7071068, y: 0, z: -0, w: 0.7071067}
-  m_LocalPosition: {x: -0.55904984, y: 0.28423834, z: -0.000000009002785}
+  m_LocalPosition: {x: -0.54, y: 0.294, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -3250,11 +3426,7 @@ GameObject:
   - component: {fileID: 3141402894232012652}
   - component: {fileID: 7576928862510139180}
   - component: {fileID: 8407286095522058208}
-  - component: {fileID: 1193905282212846522}
-  - component: {fileID: 4201886301069868814}
-  - component: {fileID: 6933121687871791224}
-  - component: {fileID: 7048111278496181876}
-  - component: {fileID: 888101528505511442}
+  - component: {fileID: 1497434429041446361}
   m_Layer: 0
   m_Name: Base
   m_TagString: Untagged
@@ -3327,28 +3499,7 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!65 &1193905282212846522
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8682194959583316325}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Size: {x: 1.5, y: 1.35, z: 0.1}
-  m_Center: {x: 0, y: 0, z: 0}
---- !u!64 &4201886301069868814
+--- !u!64 &1497434429041446361
 MeshCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -3370,216 +3521,6 @@ MeshCollider:
   m_Convex: 1
   m_CookingOptions: 30
   m_Mesh: {fileID: 3909233067320746374, guid: b093d5718f36e92409fa38aa15001d60, type: 3}
---- !u!54 &6933121687871791224
-Rigidbody:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8682194959583316325}
-  serializedVersion: 4
-  m_Mass: 1
-  m_Drag: 0
-  m_AngularDrag: 0.05
-  m_CenterOfMass: {x: 0, y: 0, z: 0}
-  m_InertiaTensor: {x: 1, y: 1, z: 1}
-  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ImplicitCom: 1
-  m_ImplicitTensor: 1
-  m_UseGravity: 0
-  m_IsKinematic: 0
-  m_Interpolate: 0
-  m_Constraints: 126
-  m_CollisionDetection: 0
---- !u!114 &7048111278496181876
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8682194959583316325}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0ad34abafad169848a38072baa96cdb2, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_InteractionManager: {fileID: 0}
-  m_Colliders: []
-  m_InteractionLayerMask:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_InteractionLayers:
-    m_Bits: 1
-  m_DistanceCalculationMode: 1
-  m_SelectMode: 0
-  m_FocusMode: 1
-  m_CustomReticle: {fileID: 0}
-  m_AllowGazeInteraction: 0
-  m_AllowGazeSelect: 0
-  m_OverrideGazeTimeToSelect: 0
-  m_GazeTimeToSelect: 0.5
-  m_OverrideTimeToAutoDeselectGaze: 0
-  m_TimeToAutoDeselectGaze: 3
-  m_AllowGazeAssistance: 0
-  m_FirstHoverEntered:
-    m_PersistentCalls:
-      m_Calls: []
-  m_LastHoverExited:
-    m_PersistentCalls:
-      m_Calls: []
-  m_HoverEntered:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 888101528505511442}
-        m_TargetAssemblyTypeName: BUTTON_RENDERER_TESTING_SCRIPT, Assembly-CSharp
-        m_MethodName: ButtonPress
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-  m_HoverExited:
-    m_PersistentCalls:
-      m_Calls: []
-  m_FirstSelectEntered:
-    m_PersistentCalls:
-      m_Calls: []
-  m_LastSelectExited:
-    m_PersistentCalls:
-      m_Calls: []
-  m_SelectEntered:
-    m_PersistentCalls:
-      m_Calls: []
-  m_SelectExited:
-    m_PersistentCalls:
-      m_Calls: []
-  m_FirstFocusEntered:
-    m_PersistentCalls:
-      m_Calls: []
-  m_LastFocusExited:
-    m_PersistentCalls:
-      m_Calls: []
-  m_FocusEntered:
-    m_PersistentCalls:
-      m_Calls: []
-  m_FocusExited:
-    m_PersistentCalls:
-      m_Calls: []
-  m_Activated:
-    m_PersistentCalls:
-      m_Calls: []
-  m_Deactivated:
-    m_PersistentCalls:
-      m_Calls: []
-  m_StartingHoverFilters: []
-  m_StartingSelectFilters: []
-  m_StartingInteractionStrengthFilters: []
-  m_OnFirstHoverEntered:
-    m_PersistentCalls:
-      m_Calls: []
-  m_OnLastHoverExited:
-    m_PersistentCalls:
-      m_Calls: []
-  m_OnHoverEntered:
-    m_PersistentCalls:
-      m_Calls: []
-  m_OnHoverExited:
-    m_PersistentCalls:
-      m_Calls: []
-  m_OnSelectEntered:
-    m_PersistentCalls:
-      m_Calls: []
-  m_OnSelectExited:
-    m_PersistentCalls:
-      m_Calls: []
-  m_OnSelectCanceled:
-    m_PersistentCalls:
-      m_Calls: []
-  m_OnActivate:
-    m_PersistentCalls:
-      m_Calls: []
-  m_OnDeactivate:
-    m_PersistentCalls:
-      m_Calls: []
-  m_AttachTransform: {fileID: 0}
-  m_SecondaryAttachTransform: {fileID: 0}
-  m_UseDynamicAttach: 0
-  m_MatchAttachPosition: 1
-  m_MatchAttachRotation: 1
-  m_SnapToColliderVolume: 1
-  m_ReinitializeDynamicAttachEverySingleGrab: 1
-  m_AttachEaseInTime: 0.15
-  m_MovementType: 2
-  m_VelocityDamping: 1
-  m_VelocityScale: 1
-  m_AngularVelocityDamping: 1
-  m_AngularVelocityScale: 1
-  m_TrackPosition: 0
-  m_SmoothPosition: 0
-  m_SmoothPositionAmount: 8
-  m_TightenPosition: 0.1
-  m_TrackRotation: 0
-  m_SmoothRotation: 0
-  m_SmoothRotationAmount: 8
-  m_TightenRotation: 0.1
-  m_TrackScale: 0
-  m_SmoothScale: 0
-  m_SmoothScaleAmount: 8
-  m_TightenScale: 0.1
-  m_ThrowOnDetach: 0
-  m_ThrowSmoothingDuration: 0.25
-  m_ThrowSmoothingCurve:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 3
-      time: 1
-      value: 1
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0
-      outWeight: 0
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
-  m_ThrowVelocityScale: 1.5
-  m_ThrowAngularVelocityScale: 1
-  m_ForceGravityOnDetach: 0
-  m_RetainTransformParent: 0
-  m_AttachPointCompatibilityMode: 0
-  m_StartingSingleGrabTransformers: []
-  m_StartingMultipleGrabTransformers: []
-  m_AddDefaultGrabTransformers: 1
---- !u!114 &888101528505511442
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8682194959583316325}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d904670100eb8b84da83c8960411ed5f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  onButton: {fileID: 4406761494323477394}
-  offButton: {fileID: 5142354699098062105}
-  modeButton: {fileID: 148303543132895379}
-  tareButton: {fileID: 3802594789200379232}
-  leftHand: {fileID: 0}
-  rightHand: {fileID: 0}
-  manager: {fileID: 6053621979484949320}
 --- !u!1 &8839385430863646405
 GameObject:
   m_ObjectHideFlags: 0

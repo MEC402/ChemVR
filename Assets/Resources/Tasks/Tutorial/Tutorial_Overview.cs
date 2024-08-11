@@ -55,18 +55,19 @@ public class Tutorial_Overview : MonoBehaviour
             curStep = -1;
         }
     }
-    string[] text = {"Welcome to the tutorial!\n\nYou can hide this popup with the button Y.\n\nIt is the top button on the left controller.\n\nTry hiding this popup and re-opening it by pressing the button twice!",
+    /*string[] text = {"Welcome to the tutorial!\n\nYou can hide this popup with the button Y.\n\nIt is the top button on the left controller.\n\nTry hiding this popup and re-opening it by pressing the button twice!",
                     "Good Job!\n\nYou can use the analog sticks to look and move around.\n\nYou can walk around smoothly using the Left Toggle and by turning your head. You'll notice there are colored squares on the floor, walk into the blue square, with the tables labelled 'B'.",
                     "The right toggle is used to move quickly.\nToggle left and right to rotate 45 degrees, toggle down to turn around.\nTo teleport, push the right toggle forward and release at the desired location.\n\nTry teleporting into the red square, with the tables labelled 'C'.",
                     "The grips on the back of your controller can be used to grab and interact with items.\n\nFor now, skip with A",
                     "The primary buttons, (A) and (X) are your main way of interacting with objects!\n\nPress one to show you know where they are.",
                     "The secondary buttons, (B) and (Y) are your way of interacting with menus!\nPress the (B) anytime to see the menu.\n\nGive it a try, as the Tutorial is complete!"
                     };
-    string[] NEWtext = {"Welcome to the tutorial!\n\nYou can hide this popup with the button Y.\n\nIt is the top button on the left controller.\n\nTry hiding this popup and re-opening it by pressing the button twice!",
-                    "Good Job!\n\nYou can use the joysticks to look and move around.\n\n Move a joystick left or right to rotate 45 degrees in that direction.",
-                    "Great.\n\nNow try moving a joystick down to turn around.",
-
-                    "The right toggle is used to move quickly.\nToggle left and right to rotate 45 degrees, toggle down to turn around.\nTo teleport, push the right toggle forward and release at the desired location.\n\nTry teleporting into the red square, with the tables labelled 'C'.",
+    */
+    string[] text = {"Welcome to the tutorial!\n\nYou can hide this popup with the button Y.\n\nIt is the top button on the left controller.\n\nTry hiding this popup and re-opening it by pressing the button twice!",
+                    "Good Job!\n\nYou can walk around smoothly using the Left Joystick and by turning your head. Walk into the section of the room notated by the blue square on the floor, with the tables labelled 'B' by looking towards it and pushing the Left Toggle forward.",
+                    "The right toggle is used to move quickly.\n\nMove the right joystick left or right to rotate 45 degrees in that direction.",
+                    "Great.\n\nNow try moving the right joystick down to turn around.",
+                    "To teleport, push the right joystick forward and release at your desired location.\n\nTry teleporting into the red square, with the tables labelled 'C'.\nYou might need to turn around again to see it.",
                     "The grips on the back of your controller can be used to grab and interact with items.\n\nFor now, skip with A",
                     "The primary buttons, (A) and (X) are your main way of interacting with objects!\n\nPress one to show you know where they are.",
                     "The secondary buttons, (B) and (Y) are your way of interacting with menus!\nPress the (B) anytime to see the menu.\n\nGive it a try, as the Tutorial is complete!"
@@ -99,21 +100,30 @@ public class Tutorial_Overview : MonoBehaviour
             diagramController.showRightToggle();
         } else if (curStep == 3)
         {
+            diagramController.showRightController();
+            diagramController.showRightToggle();
+        } else if (curStep == 4)
+        {
+            diagramController.showRightController();
+            diagramController.showRightToggle();
+        }
+        else if (curStep == 5)
+        {
             diagramController.showAllDiagrams();
             diagramController.showLeftGrip();
             diagramController.showRightGrip();
-        } else if (curStep == 4)
+        }
+        else if (curStep == 6) // old 4
         {
             diagramController.showAllDiagrams();
             diagramController.showAButton();
             diagramController.showXButton();
         }
-        else if (curStep == 5)
+        else if (curStep == 7) // old 5
         {
             diagramController.showAllDiagrams();
             diagramController.showBButton();
             diagramController.showYButton();
         }
-
     }
 }
