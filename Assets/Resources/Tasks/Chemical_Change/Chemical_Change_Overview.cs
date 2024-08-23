@@ -36,7 +36,7 @@ public class Chemical_Change_Overview : MonoBehaviour
     }
 
     string[] text = {"Welcome!\nBefore we begin the lab, you need to put on your lab gear.\n\nYou should be wearing closed toed shoes and have your hair tied back.\n\nFind gloves, goggles, and a lab coat and put them on with (B).",
-                    "For this lab, bring the following to a table in the yellow zone:\n250mL beaker\n100mL graduated cylinder\nGlass stir rod\nStock Container of sugar (C6H12O6)\nWeigh paper\n\n\nSkip with A",
+                    "For this lab, bring the following to a table in the yellow zone:\n250mL beaker\n100mL graduated cylinder\nGlass stir rod\nStock Container of sugar (C6H12O6)\nWeigh boat and paper\n\n\nSkip with A",
                     "Locate these tools that you will need in the lab:\nAnalytical Balance\nDI water\nWhen you are ready to continue, press (A).\n\n\nSkip with A",
                     "Collect 50mL of DI water into graduated cylinder.\n\n\nSkip with A",
                     "Configure the balance.\n\n\nSkip with A",
