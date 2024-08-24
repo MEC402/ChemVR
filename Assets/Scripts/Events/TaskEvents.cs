@@ -58,4 +58,13 @@ public class TaskEvents
             onTaskStepStateChange(id, stepIndex, taskStepState);
         }
     }
+
+    public event Action<string> onTaskStartApproved;
+    public void TaskStartApproved(string id)
+    {
+        if (onTaskStartApproved != null)
+        {
+            onTaskStartApproved(id);
+        }
+    }
 }

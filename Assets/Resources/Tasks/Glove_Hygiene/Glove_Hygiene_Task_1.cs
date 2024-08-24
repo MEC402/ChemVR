@@ -13,6 +13,8 @@ public class Glove_Hygiene_Task_1 : TaskStep
     bool wearingLeftGlove;
     private void OnEnable()
     {
+
+        GameEventsManager.instance.taskEvents.TaskStartApproved("Glove_Hygiene");
         GameEventsManager.instance.miscEvents.SetHint(GameObject.Find("glovebox"));
 
         wearingLeftGlove = GameObject.Find("left hand model").GetComponent<SkinnedMeshRenderer>().material.name.ToLower().Contains("blue");

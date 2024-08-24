@@ -12,6 +12,8 @@ public class Tutorial_Task_1 : TaskStep
 
     void OnEnable()
     {
+        GameEventsManager.instance.taskEvents.TaskStartApproved("Tutorial");
+
         GameEventsManager.instance.miscEvents.SetHint(null);
 
         GameEventsManager.instance.inputEvents.onYButtonPressed += TextToggleTutorial;

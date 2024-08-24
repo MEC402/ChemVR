@@ -26,7 +26,7 @@ public class SpawnAtStation : MonoBehaviour
         glasswarePos = GameObject.Find("Chemical Change Spawn");
         tutorialPos = null; // TO DO
 
-        GameEventsManager.instance.taskEvents.onStartTask += startedNewModule;
+        GameEventsManager.instance.taskEvents.onTaskStartApproved += startedNewModule;
     }
 
     private void startedNewModule(string obj)

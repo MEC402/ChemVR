@@ -14,6 +14,8 @@ public class Chemical_Change_Task_1 : TaskStep
     bool wearingLeftGlove;
     private void OnEnable()
     {
+        GameEventsManager.instance.taskEvents.TaskStartApproved("Chemical_Change");
+
         wearingLeftGlove = GameObject.Find("left hand model").GetComponent<SkinnedMeshRenderer>().material.name.ToLower().Contains("blue");
         wearingRightGlove = GameObject.Find("right hand model").GetComponent<SkinnedMeshRenderer>().material.name.ToLower().Contains("blue");
         GameEventsManager.instance.miscEvents.onPutOnRightGlove += RightGloveOn;
