@@ -23,9 +23,15 @@ public class WearCoat : MonoBehaviour
         GameEventsManager.instance.inputEvents.onXButtonPressed += OnXPress;
     }
 
+    private void OnDisable()
+    {
+        GameEventsManager.instance.inputEvents.onAButtonPressed -= OnAPress;
+        GameEventsManager.instance.inputEvents.onXButtonPressed -= OnXPress;
+    }
+
     private void OnXPress(InputAction.CallbackContext obj)
     {
-        if (IsTouching(lHandRen))
+        if (!wearing && IsTouching(lHandRen))
         {
             PutOn();
         }
@@ -33,7 +39,7 @@ public class WearCoat : MonoBehaviour
 
     private void OnAPress(InputAction.CallbackContext obj)
     {
-        if (IsTouching(rHandRen))
+        if (!wearing && IsTouching(rHandRen))
         {
             PutOn();
         }

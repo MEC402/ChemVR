@@ -15,18 +15,14 @@ public class HygieneTouchReporter : MonoBehaviour
     Material gloveMaterial;
 
     SkinnedMeshRenderer smr;
+    enum hand { left, right };
+    [SerializeField]
+    hand whichhand = hand.left;
+    bool wearingRightGlove = false;
+    bool wearingLeftGlove = false;
 
-    //Pasted in
-   /*  bool wearingRightGlove;
-    bool wearingLeftGlove;
     private void OnEnable()
     {
-
-        GameEventsManager.instance.taskEvents.TaskStartApproved("Glove_Hygiene");
-        GameEventsManager.instance.miscEvents.SetHint(GameObject.Find("glovebox"));
-
-        wearingLeftGlove = GameObject.Find("left hand model").GetComponent<SkinnedMeshRenderer>().material.name.ToLower().Contains("blue");
-        wearingRightGlove = GameObject.Find("right hand model").GetComponent<SkinnedMeshRenderer>().material.name.ToLower().Contains("blue");
         GameEventsManager.instance.miscEvents.onPutOnRightGlove += RightGloveOn;
         GameEventsManager.instance.miscEvents.onPutOnLeftGlove += LeftGloveOn;
         GameEventsManager.instance.miscEvents.onTakeOffRightGlove += RightGloveOff;
@@ -38,8 +34,26 @@ public class HygieneTouchReporter : MonoBehaviour
         GameEventsManager.instance.miscEvents.onPutOnLeftGlove -= LeftGloveOn;
         GameEventsManager.instance.miscEvents.onTakeOffRightGlove -= RightGloveOff;
         GameEventsManager.instance.miscEvents.onTakeOffLeftGlove -= LeftGloveOff;
-    }*/
-    //Pasted in
+    }
+    private void RightGloveOn()
+    {
+        wearingRightGlove = true;
+    }
+
+    private void LeftGloveOn()
+    {
+        wearingLeftGlove = true;
+    }
+
+    private void RightGloveOff()
+    {
+        wearingRightGlove = false;
+    }
+
+    private void LeftGloveOff()
+    {
+        wearingLeftGlove = false;
+    }
 
     private void OnValidate()
     {
@@ -92,7 +106,7 @@ public class HygieneTouchReporter : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (!smr.material.name.ToLower().Contains("blue"))
+        if (!((wearingLeftGlove && (whichhand == hand.left)) || (wearingRightGlove && (whichhand == hand.right))))
         {
             // Only track objects that are touched when gloves are on. Otherwise, just ignore the collision.
             return;

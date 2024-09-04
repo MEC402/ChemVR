@@ -9,7 +9,11 @@ public class HygieneParticleManager : MonoBehaviour
 
     void Start()
     {
-        myRenderer = this.GetComponent<Renderer>();
+        myRenderer = this.GetComponent<MeshRenderer>();
+        if(myRenderer == null)
+        {
+            Debug.LogError("No Renderer attached");
+        }
 
         GameEventsManager.instance.partEvents.onShowParticles += showMe;
         GameEventsManager.instance.partEvents.onHideParticles += hideMe;
