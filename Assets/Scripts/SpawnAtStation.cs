@@ -22,8 +22,8 @@ public class SpawnAtStation : MonoBehaviour
 
         //Set the gameobject for each teleport location
         glovePos = GameObject.Find("Glove Hygiene Spawn");
-        chemicalPos = GameObject.Find("Glassware Use Spawn");
-        glasswarePos = GameObject.Find("Chemical Change Spawn");
+        chemicalPos = GameObject.Find("Chemical Change Spawn");
+        glasswarePos = GameObject.Find("Glassware Use Spawn");
         tutorialPos = null; // TO DO
 
         GameEventsManager.instance.taskEvents.onTaskStartApproved += startedNewModule;
