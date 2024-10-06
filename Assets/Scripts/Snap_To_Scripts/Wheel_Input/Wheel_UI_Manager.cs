@@ -154,9 +154,11 @@ public class Wheel_UI_Manager : MonoBehaviour
     {
         inputActions.Right_Hand.Disable();
         inputActions.Disable();
-
-        GameEventsManager.instance.inputEvents.onRTriggerPressed -= popup;
-        GameEventsManager.instance.inputEvents.onRTriggerReleased -= handle_and_hide;
+        //Swap right trigger to right secondary button (B)
+        GameEventsManager.instance.inputEvents.onBButtonPressed -= popup;
+        GameEventsManager.instance.inputEvents.onBButtonReleased -= handle_and_hide;
+        //GameEventsManager.instance.inputEvents.onRTriggerPressed -= popup;
+        //GameEventsManager.instance.inputEvents.onRTriggerReleased -= handle_and_hide;
     }
 
     //This has to be removed for the laser beam to work properly. All good! Then we don't use the mouse :)
