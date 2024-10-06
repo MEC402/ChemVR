@@ -45,7 +45,7 @@ public class ToggleTextSimple : MonoBehaviour
 
     void TextToggle(InputAction.CallbackContext context)
     {
-            text.SetActive(!text.activeInHierarchy);
+        text.SetActive(!text.activeInHierarchy);
     }
     void TextToggle()
     {

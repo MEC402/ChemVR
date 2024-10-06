@@ -6,7 +6,7 @@ using UnityEngine;
 public class PopupHighlighter : MonoBehaviour
 {
     public GameObject highlightPopup;
-    public float flashDuration = 0.125f; // Duration each flash state lasts
+    public float flashDuration = 0.175f; // Duration each flash state lasts
     private Renderer highlightRenderer;
 
     private void OnEnable()
