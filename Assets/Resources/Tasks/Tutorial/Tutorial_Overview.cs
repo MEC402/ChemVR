@@ -12,11 +12,15 @@ public class Tutorial_Overview : MonoBehaviour
     Controller_Diagram diagramController;
     int curStep;
 
+    // Controllers for starting tasks
+    [Header("Start Task Controller")]
+    public Start_Module taskPreper;
+
     void OnEnable()
     {
         diagramController = controllerDiagrams.GetComponent<Controller_Diagram>();
         this.gameObject.GetComponent<ToggleTextSimple>().enabled = false;
-        curStep = -1;
+        curStep = 0;
         tutText.text = "Not reading events.";
         if (GameEventsManager.instance == null)
         {
@@ -24,6 +28,13 @@ public class Tutorial_Overview : MonoBehaviour
         }
         GameEventsManager.instance.taskEvents.onAdvanceTask += AdvanceTutTask;
         GameEventsManager.instance.taskEvents.onAbandonTask += tu_abandonMe;
+
+        //Start the Tutorial on opening this scene
+        taskPreper.Show();
+        this.gameObject.GetComponent<ToggleTextSimple>().enabled = true;
+        GameEventsManager.instance.taskEvents.StartTask("Tutorial_Task");
+        tutText.text = text[curStep];
+        handleDiagrams();
     }
 
     void OnDisable()
@@ -52,7 +63,7 @@ public class Tutorial_Overview : MonoBehaviour
             {
                 tutPop.SetActive(false);
             }
-            curStep = -1;
+            curStep = 0;
         }
     }
     /*string[] text = {"Welcome to the tutorial!\n\nYou can hide this popup with the button Y.\n\nIt is the top button on the left controller.\n\nTry hiding this popup and re-opening it by pressing the button twice!",

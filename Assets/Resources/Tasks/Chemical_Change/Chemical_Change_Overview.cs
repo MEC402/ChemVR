@@ -9,10 +9,14 @@ public class Chemical_Change_Overview : MonoBehaviour
     public TextMeshProUGUI ccText;
     int curStep;
 
+    // Controllers for starting tasks
+    [Header("Start Task Controllers")]
+    public Start_Module taskPreper;
+
     void OnEnable()
     {
         this.gameObject.GetComponent<ToggleTextSimple>().enabled = false;
-        curStep = -1;
+        curStep = 0;
         ccText.text = "Not reading events.";
         if (GameEventsManager.instance == null)
         {
@@ -20,6 +24,12 @@ public class Chemical_Change_Overview : MonoBehaviour
         }
         GameEventsManager.instance.taskEvents.onAbandonTask += cc_abandonMe;
         GameEventsManager.instance.taskEvents.onAdvanceTask += AdvanceCheTask;
+
+        //Start the Module on opening this scene
+        taskPreper.Show();
+        this.gameObject.GetComponent<ToggleTextSimple>().enabled = true;
+        GameEventsManager.instance.taskEvents.StartTask("Chemical_Change_Task");
+        ccText.text = text[curStep];
     }
 
     void OnDisable()
@@ -80,7 +90,7 @@ public class Chemical_Change_Overview : MonoBehaviour
             {
                 ccPop.SetActive(false);
             }
-            curStep = -1;
+            curStep = 0;
         }
     }
 }
