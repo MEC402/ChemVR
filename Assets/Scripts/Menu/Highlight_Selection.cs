@@ -6,6 +6,7 @@ using UnityEngine.XR.Interaction.Toolkit;
 public class Highlight_Selection : MonoBehaviour
 {
     private XRSimpleInteractable interactable;
+    public MeshRenderer highlight;
 
     void Awake()
     {
@@ -24,13 +25,14 @@ public class Highlight_Selection : MonoBehaviour
         interactable.hoverExited.AddListener(OnHoverExit);
     }
 
-    private void OnHoverEnter(HoverEnterEventArgs args)
+    public void OnHoverEnter(HoverEnterEventArgs args)
     {
-        //Highlight the selection
+        Debug.Log("hovering over " + args.ToString());
+        highlight.enabled = true;
     }
 
-    private void OnHoverExit(HoverExitEventArgs arg0)
+    public void OnHoverExit(HoverExitEventArgs arg0)
     {
-        //Un highlight the selection
+        highlight.enabled = false;
     }
 }

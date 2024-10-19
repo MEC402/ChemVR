@@ -6,10 +6,11 @@ using UnityEngine.InputSystem;
 using UnityEngine.SceneManagement;
 using UnityEngine.XR.Interaction.Toolkit;
 
-public class PauseMenuController : MonoBehaviour
+public class MainMenuController : MonoBehaviour
 {
     [Header("Menus")]
-    public GameObject pauseMenu;
+    public GameObject mainMenu;
+    public GameObject expirementMenu;
     public GameObject controlsMenu;
 
     [Header("Hands")]
@@ -42,63 +43,61 @@ public class PauseMenuController : MonoBehaviour
 
     private int UILayer = 5;
     private int defaultLayer = 0;
-    private bool menuOpen = false;
 
-
-    //public MeshRenderer background;
-    //public MeshRenderer resume;
-    private void OnEnable()
-    {
-        GameEventsManager.instance.inputEvents.onPauseButtonPressed += Pause;
-    }
-
-    private void OnDisable()
-    {
-        GameEventsManager.instance.inputEvents.onPauseButtonPressed -= Pause;
-    }
-
-    // Start is called before the first frame update
     void Start()
     {
-        pauseMenu.SetActive(false);
+        //Start with main menu
+        mainMenu.SetActive(true);
+        setHandActions(false);
     }
 
-
-    /** Pause menu pops up,
-     *  actions are disabled, 
-     *  hands are added to the UI layer so they are visible over the menu */
-    private void Pause(InputAction.CallbackContext obj)
+    public void Begin()
     {
-        if (!menuOpen)
-        {
-            pauseMenu.SetActive(true);
-            setHandActions(false);
-        }
-        else
-        {
-            pauseMenu.SetActive(false);
-            controlsMenu.SetActive(false);
-            setHandActions(true);
-        }
-        menuOpen = !menuOpen;
+        SceneManager.LoadScene("LabSceneTutorial");
     }
 
-    /** Easy! Just load main menu scene*/
-    public void MainMenu()
+    /** Swap current pause menu with control menu*/
+    public void Expirements()
     {
-        SceneManager.LoadScene("MainMenu_PlaceHolder");
+        mainMenu.SetActive(false);
+        expirementMenu.SetActive(true);
     }
 
-    /** Easy! Just reload current scene. */
-    public void ResetCurrent()
+    /** Start Tutorial */
+    public void StartTutorial()
     {
-        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+        SceneManager.LoadScene("LabSceneTutorial");
+    }
+
+    /** Start Tutorial */
+    public void StartExp1()
+    {
+        SceneManager.LoadScene("LabSceneGloveHygiene");
+    }
+
+    /** Start Tutorial */
+    public void StartExp2()
+    {
+        SceneManager.LoadScene("LabSceneGlasswareUse");
+    }
+
+    /** Start Tutorial */
+    public void StartExp3()
+    {
+        SceneManager.LoadScene("LabSceneChemicalChange");
+    }
+
+    /** Swap current control menu with pause menu*/
+    public void BackFromExpirements()
+    {
+        expirementMenu.SetActive(false);
+        mainMenu.SetActive(true);
     }
 
     /** Swap current pause menu with control menu*/
     public void Controls()
     {
-        pauseMenu.SetActive(false);
+        mainMenu.SetActive(false);
         controlsMenu.SetActive(true);
     }
 
@@ -106,7 +105,12 @@ public class PauseMenuController : MonoBehaviour
     public void BackFromControls()
     {
         controlsMenu.SetActive(false);
-        pauseMenu.SetActive(true);
+        mainMenu.SetActive(true);
+    }
+
+    public void Exit()
+    {
+        Application.Quit();
     }
 
     /**
@@ -118,11 +122,12 @@ public class PauseMenuController : MonoBehaviour
         setRightHandActions(active);
         setLeftHandActions(active);
 
-        if(!active)
+        if (!active)
         {
             leftHand.layer = UILayer;
             rightHand.layer = UILayer;
-        } else
+        }
+        else
         {
             leftHand.layer = defaultLayer;
             rightHand.layer = defaultLayer;
