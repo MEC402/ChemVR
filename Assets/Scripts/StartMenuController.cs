@@ -24,4 +24,13 @@ public class StartMenuController : MonoBehaviour
         SceneManager.LoadScene("ChemicalChangeScene");
     }
 
+    public void MainMenuBtn()
+    {
+        SceneManager.LoadScene("Start Menu");
+    }
+
+    public void ExitBtn()
+    {
+        Application.Quit();
+    }
 }
