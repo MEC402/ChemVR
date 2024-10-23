@@ -16,7 +16,8 @@ public class ChemXRInput : MonoBehaviour
         LTrigger,
         RTrigger,
         LThumbstickClick,
-        RThumbstickClick
+        RThumbstickClick,
+        Pause
     }
 
     private static ChemXRInput instance;
@@ -84,11 +85,15 @@ public class ChemXRInput : MonoBehaviour
             InputActionType.Button,
             binding: "<XRController>{LeftHand}/triggerPressed"
         );
-        
         ChemXRActionMap.AddAction(
             ButtonToActionName(ChemXRInput.Button.LThumbstickClick),
             InputActionType.Button,
             binding: "<XRController>{LeftHand}/thumbstickClicked"
+        );
+        ChemXRActionMap.AddAction(
+            ButtonToActionName(ChemXRInput.Button.Pause),
+            InputActionType.Button,
+            binding: "<XRController>{LeftHand}/menuButton"
         );
     }
 
@@ -152,6 +157,9 @@ public class ChemXRInput : MonoBehaviour
             case "R Thumbstick Click":
                 GameEventsManager.instance.inputEvents.RThumbstickClicked(context);
                 break;
+            case "Pause":
+                GameEventsManager.instance.inputEvents.PauseButtonPressed(context);
+                break;
         }
     }
 
@@ -189,6 +197,9 @@ public class ChemXRInput : MonoBehaviour
             case "R Thumbstick Click":
                 GameEventsManager.instance.inputEvents.RThumbstickReleased(context);
                 break;
+            case "Pause":
+                GameEventsManager.instance.inputEvents.PauseButtonReleased(context);
+                break;
         }
     }
 
@@ -219,6 +230,8 @@ public class ChemXRInput : MonoBehaviour
                 return "L Thumbstick Click";
             case Button.RThumbstickClick:
                 return "R Thumbstick Click";
+            case Button.Pause:
+                return "Pause";
             default:
                 return null;
         }

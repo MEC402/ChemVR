@@ -4,33 +4,32 @@ using UnityEngine;
 
 public class Controller_Diagram : MonoBehaviour
 {
+    [SerializeField]
     private GameObject leftController;
+    [SerializeField]
     private GameObject rightController;
+    [SerializeField]
     private GameObject aButton;
+    [SerializeField]
     private GameObject bButton;
+    [SerializeField]
     private GameObject xButton;
+    [SerializeField]
     private GameObject yButton;
+    [SerializeField]
     private GameObject leftToggle;
+    [SerializeField]
     private GameObject rightToggle;
+    [SerializeField]
     private GameObject leftTrigger;
+    [SerializeField]
     private GameObject rightTrigger;
+    [SerializeField]
     private GameObject leftGrip;
+    [SerializeField]
     private GameObject rightGrip;
     void Start()
     {
-        leftController = GameObject.Find("ControllerLeftDiagram");
-        rightController = GameObject.Find("ControllerRightDiagram");
-        aButton = GameObject.Find("A Button");
-        bButton = GameObject.Find("B Button");
-        xButton = GameObject.Find("X Button");
-        yButton = GameObject.Find("Y Button");
-        leftToggle = GameObject.Find("Left Toggle");
-        rightToggle = GameObject.Find("Right Toggle");
-        leftTrigger = GameObject.Find("Left Trigger");
-        rightTrigger = GameObject.Find("Right Trigger");
-        leftGrip = GameObject.Find("Left Grip");
-        rightGrip = GameObject.Find("Right Grip");
-
         hideAllDiagrams();
     }
     public void hideAllDiagrams()

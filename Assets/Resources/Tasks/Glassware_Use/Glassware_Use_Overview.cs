@@ -9,10 +9,14 @@ public class Glassware_Use_Overview : MonoBehaviour
     public TextMeshProUGUI guText;
     int curStep;
 
+    // Controllers for starting tasks
+    [Header("Start Task Controllers")]
+    public Start_Module taskPreper;
+
     void OnEnable()
     {
         this.gameObject.GetComponent<ToggleTextSimple>().enabled = false;
-        curStep = -1;
+        curStep = 0;
         guText.text = "Not reading events.";
         if (GameEventsManager.instance == null)
         {
@@ -20,6 +24,12 @@ public class Glassware_Use_Overview : MonoBehaviour
         }
         GameEventsManager.instance.taskEvents.onAbandonTask += gu_abandonMe;
         GameEventsManager.instance.taskEvents.onAdvanceTask += AdvanceGlaTask;
+
+        //Start the Module on opening this scene
+        taskPreper.Show();
+        this.gameObject.GetComponent<ToggleTextSimple>().enabled = true;
+        GameEventsManager.instance.taskEvents.StartTask("Glassware_Use_Task");
+        guText.text = text[curStep];
     }
 
     void OnDisable()
@@ -85,7 +95,7 @@ public class Glassware_Use_Overview : MonoBehaviour
             {
                 guPop.SetActive(false);
             }
-            curStep = -1;
+            curStep = 0;
         }
     }
    
