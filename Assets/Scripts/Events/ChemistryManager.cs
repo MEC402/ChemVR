@@ -7,6 +7,9 @@ public class ChemistryManager : MonoBehaviour
 {
     public static ChemistryManager instance;
 
+    [SerializeField]
+    public float transparency = .5f;
+
     public void Awake() {
         if (instance != null) {
             Debug.LogError("More than one ChemistryManager was found in the scene.");
@@ -29,9 +32,13 @@ public class ChemistryManager : MonoBehaviour
             case ChemType.WATER:
                 return Color.cyan;
             case ChemType.HYDROCHLORIC_ACID:
-                return Color.magenta;
+                return Color.grey;
             case ChemType.SODIUM_HYDROXIDE:
                 return Color.yellow;
+            case ChemType.COPPER_SULFATE:
+                return Color.blue;
+            case ChemType.GLUCOSE:
+                return Color.white;
             default:
                 return Color.black;
         }
@@ -51,6 +58,7 @@ public class ChemistryManager : MonoBehaviour
         foreach (Chem chem in chemFluid.GetChems()) {
             chemColor = chemColor + (GetColor(chem.type) * (chem.volume / chemFluid.totalVolume));
         }
+        chemColor.a = chemColor.a * transparency;
         return chemColor;
     }
 

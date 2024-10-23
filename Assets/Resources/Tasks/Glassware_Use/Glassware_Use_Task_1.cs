@@ -14,8 +14,8 @@ public class Glassware_Use_Task_1 : TaskStep
     {
         GameEventsManager.instance.taskEvents.TaskStartApproved("Glassware_Use");
 
-        wearingLeftGlove = GameObject.Find("left hand model").GetComponent<SkinnedMeshRenderer>().material.name.ToLower().Contains("blue");
-        wearingRightGlove = GameObject.Find("right hand model").GetComponent<SkinnedMeshRenderer>().material.name.ToLower().Contains("blue");
+        wearingLeftGlove = false;
+        wearingRightGlove = false;
         GameEventsManager.instance.miscEvents.onPutOnRightGlove += RightGloveOn;
         GameEventsManager.instance.miscEvents.onPutOnLeftGlove += LeftGloveOn;
         GameEventsManager.instance.miscEvents.onTakeOffRightGlove += RightGloveOff;

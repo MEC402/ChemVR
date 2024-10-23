@@ -10,7 +10,7 @@ using UnityEngine.InputSystem.Controls;
 public class ChemFluid 
 {
     [SerializeField]
-    public float totalVolume;    
+    public float totalVolume;
     [SerializeField]
     private Chem[] chems;
     

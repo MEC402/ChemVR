@@ -149,7 +149,8 @@ public class ChemContainer : MonoBehaviour {
             Debug.LogWarning($"This ChemContainer {{{gameObject.name}}} does not have an internalFluid set.");
         } else {
             internalFluid.fill = (flags.infiniteFluid) ? 1 : currentVolume / maxVolume;
-            internalFluid.color = ChemistryManager.instance.GetColor(chemFluid);
+            Color chemColor = ChemistryManager.instance.GetColor(chemFluid);
+            internalFluid.color = chemColor;
         }
         
         // Check that a pourPoint has been set

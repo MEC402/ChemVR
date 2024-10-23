@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class SpawnAtStation : MonoBehaviour
 {
@@ -31,26 +32,31 @@ public class SpawnAtStation : MonoBehaviour
 
     private void startedNewModule(string obj)
     {
+        //SceneManager.LoadScene(SceneManager.GetActiveScene().name); // loads current scene
         //Set appropriate Listeners
         if (obj.ToLower().Contains("glo"))
         {
             //Teleport to where you start glove hygiene module
-            mainCamera.transform.SetPositionAndRotation(glovePos.transform.position, glovePos.transform.rotation);
+            SceneManager.LoadScene("LabSceneGloveHygiene");
+            //mainCamera.transform.SetPositionAndRotation(glovePos.transform.position, glovePos.transform.rotation);
         }
         else if (obj.ToLower().Contains("che"))
         {
             //Teleport to where you start chemical change module
-            mainCamera.transform.SetPositionAndRotation(chemicalPos.transform.position, chemicalPos.transform.rotation);
+            SceneManager.LoadScene("LabSceneChemicalChange");
+            //mainCamera.transform.SetPositionAndRotation(chemicalPos.transform.position, chemicalPos.transform.rotation);
         }
         else if (obj.ToLower().Contains("gla"))
         {
             //Teleport to where you start glassware use module
-            mainCamera.transform.SetPositionAndRotation(glasswarePos.transform.position, glasswarePos.transform.rotation);
+            SceneManager.LoadScene("LabSceneGlasswareUse"); 
+            //mainCamera.transform.SetPositionAndRotation(glasswarePos.transform.position, glasswarePos.transform.rotation);
         }
         else if (obj.ToLower().Contains("tut"))
         {
+            SceneManager.LoadScene("LabSceneTutorial");
             //Teleport to where you start tutorial
-        
+
         }
     }
 }

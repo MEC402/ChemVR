@@ -10,10 +10,14 @@ public class Glove_Hygiene_Overview : MonoBehaviour
     public TextMeshProUGUI ghText;
     int curStep;
 
+    // Controllers for starting tasks
+    [Header("Start Task Controllers")]
+    public Start_Module taskPreper;
+
     void OnEnable()
     {
         this.gameObject.GetComponent<ToggleTextSimple>().enabled = false;
-        curStep = -1;
+        curStep = 0;
         ghText.text = "Not reading events.";
         if (GameEventsManager.instance == null)
         {
@@ -21,6 +25,12 @@ public class Glove_Hygiene_Overview : MonoBehaviour
         }
         GameEventsManager.instance.taskEvents.onAbandonTask += gh_abandonMe;
         GameEventsManager.instance.taskEvents.onAdvanceTask += AdvanceGloTask;
+
+        //Start the Module on opening this scene
+        taskPreper.Show();
+        this.gameObject.GetComponent<ToggleTextSimple>().enabled = true;
+        GameEventsManager.instance.taskEvents.StartTask("Glove_Hygiene_Task");
+        ghText.text = text[curStep];
     }
 
     void OnDisable()
@@ -82,7 +92,7 @@ public class Glove_Hygiene_Overview : MonoBehaviour
             {
                 ghPop.SetActive(false);
             }
-            curStep = -1;
+            curStep = 0;
         }
     }
 }
