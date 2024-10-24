@@ -6,11 +6,10 @@ using UnityEngine.InputSystem;
 using UnityEngine.SceneManagement;
 using UnityEngine.XR.Interaction.Toolkit;
 
-public class PauseMenuController : MonoBehaviour
+public class HelpMenuController : MonoBehaviour
 {
     [Header("Menus")]
     public GameObject pauseMenu;
-    public GameObject controlsMenu;
 
     [Header("Hands")]
     public GameObject leftHand;
@@ -73,40 +72,46 @@ public class PauseMenuController : MonoBehaviour
         {
             pauseMenu.SetActive(true);
             setHandActions(false);
-        }
-        else
+        } else
         {
             pauseMenu.SetActive(false);
-            controlsMenu.SetActive(false);
             setHandActions(true);
         }
         menuOpen = !menuOpen;
     }
 
-    /** Easy! Just load main menu scene*/
-    public void MainMenu()
+    public void StartTutorialBtn()
     {
-        SceneManager.LoadScene("MainMenu_PlaceHolder");
+        SceneManager.LoadScene("LabSceneTutorial");
     }
 
-    /** Easy! Just reload current scene. */
-    public void ResetCurrent()
+    public void StartGloveHygieneBtn()
     {
-        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+        SceneManager.LoadScene("LabSceneGloveHygiene");
     }
 
-    /** Swap current pause menu with control menu*/
-    public void Controls()
+    public void StartGlasswareBtn()
     {
-        pauseMenu.SetActive(false);
-        controlsMenu.SetActive(true);
+        SceneManager.LoadScene("LabSceneGlasswareUse");
     }
 
-    /** Swap current control menu with pause menu*/
-    public void BackFromControls()
+    public void StartChemicalChangeBtn()
     {
-        controlsMenu.SetActive(false);
-        pauseMenu.SetActive(true);
+        SceneManager.LoadScene("LabSceneChemicalChange");
+    }
+
+    public void MainMenuBtn()
+    {
+        SceneManager.LoadScene("Start Menu");
+    }
+
+    public void ExitBtn()
+    {
+        #if UNITY_EDITOR
+                UnityEditor.EditorApplication.isPlaying = false;
+        #else
+            Application.Quit();
+        #endif
     }
 
     /**

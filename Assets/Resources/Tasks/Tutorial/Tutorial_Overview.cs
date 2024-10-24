@@ -81,7 +81,7 @@ public class Tutorial_Overview : MonoBehaviour
                     //"To teleport, push the right joystick forward and release at your desired location.\n\nTry teleporting into the red square, with the tables labelled 'C'.\nYou might need to turn around again to see it.",
                     "The grips on the back of your controller can be used to grab and interact with items.\n\nFor now, skip with A",
                     "The primary buttons, (A) and (X) are your main way of interacting with objects!\n\nPress one to show you know where they are.",
-                    "The secondary buttons, (B) and (Y) are your way of interacting with menus!\nPress the (B) anytime to see the menu.\n\nGive it a try, as the Tutorial is complete!"
+                    "The hamburger button opens the help menu!\nPress it anytime to see the help menu, or for access to the main menu.\n\nGive it a try, as the Tutorial is complete!"
                     };
     void AdvanceTutTask(string context)
     {

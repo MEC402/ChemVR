@@ -90,10 +90,12 @@ public class ChemXRInput : MonoBehaviour
             InputActionType.Button,
             binding: "<XRController>{LeftHand}/thumbstickClicked"
         );
+        // For this action to work in the headset, it is "<XRController>{LeftHand}/start"
+        // For this action to work with in the Unity Editor, it is "<XRController>{LeftHand}/menuButton"
         ChemXRActionMap.AddAction(
             ButtonToActionName(ChemXRInput.Button.Pause),
             InputActionType.Button,
-            binding: "<XRController>{LeftHand}/menuButton"
+            binding: "<XRController>{LeftHand}/start"
         );
     }
 

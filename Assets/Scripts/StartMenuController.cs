@@ -5,23 +5,24 @@ using UnityEngine.SceneManagement;
 
 public class StartMenuController : MonoBehaviour
 {
-    public void StartTutorialBtn() {
-        SceneManager.LoadScene("Tutorial");
+    public void StartTutorialBtn()
+    {
+        SceneManager.LoadScene("LabSceneTutorial");
     }
 
     public void StartGloveHygieneBtn()
     {
-        SceneManager.LoadScene("LabSceneBase");
+        SceneManager.LoadScene("LabSceneGloveHygiene");
     }
 
     public void StartGlasswareBtn()
     {
-        SceneManager.LoadScene("GlasswareScene");
+        SceneManager.LoadScene("LabSceneGlasswareUse");
     }
 
     public void StartChemicalChangeBtn()
     {
-        SceneManager.LoadScene("ChemicalChangeScene");
+        SceneManager.LoadScene("LabSceneChemicalChange");
     }
 
     public void MainMenuBtn()
@@ -31,6 +32,10 @@ public class StartMenuController : MonoBehaviour
 
     public void ExitBtn()
     {
-        Application.Quit();
+        #if UNITY_EDITOR
+                UnityEditor.EditorApplication.isPlaying = false;
+        #else
+                    Application.Quit();
+        #endif
     }
 }
