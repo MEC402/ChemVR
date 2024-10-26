@@ -29,7 +29,7 @@ public class Glove_Hygiene_Task_10 : TaskStep
             string[] sepContents = contents.Split('\n');
             foreach (string s in sepContents)
             {
-                if (!s.EndsWith(": 0") && s.Contains("WATER"))
+                if (!s.EndsWith(": 0") && (s.Contains("WATER")||s.Contains("H2O")))
                 {
                     blueDrops++;
                 }

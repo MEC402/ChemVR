@@ -26,11 +26,11 @@ public class Glove_Hygiene_Task_8 : TaskStep
         float quarterFull = container.maxVolume / 4;
         if (container.name.ToLower().Contains("beaker"))
         {
-            string wholeContents = container.getContents();
+            string wholeContents = chemMix.ContentsToString();
             string[] sepWholeContents = wholeContents.Split('\n');
             foreach (string s in sepWholeContents)
             {
-                if (s.Contains("HYDROCHLORIC_ACID"))
+                if (s.Contains("HYDROCHLORIC_ACID") || s.Contains("HCl"))
                 {
                     string strAmnt = s.Split(' ')[1];
                     float amt;

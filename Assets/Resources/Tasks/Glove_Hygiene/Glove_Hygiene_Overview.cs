@@ -31,6 +31,7 @@ public class Glove_Hygiene_Overview : MonoBehaviour
         this.gameObject.GetComponent<ToggleTextSimple>().enabled = true;
         GameEventsManager.instance.taskEvents.StartTask("Glove_Hygiene_Task");
         ghText.text = text[curStep];
+
     }
 
     void OnDisable()
@@ -69,10 +70,11 @@ public class Glove_Hygiene_Overview : MonoBehaviour
         {
             this.gameObject.GetComponent<ToggleTextSimple>().enabled = true;
             curStep += 1;
-            if (curStep == 0)
+            if (curStep == 1)
             {
                 touchTracker.Restart();
-            } else if (curStep == text.Length - 1)
+                //touchTracker.ShowPoints(true);
+            } else if (curStep >= text.Length - 1)
             {
                 touchTracker.ShowPoints(true);
             }

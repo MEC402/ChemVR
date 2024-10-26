@@ -30,7 +30,7 @@ public class Glove_Hygiene_Task_6 : TaskStep
             string[] sepContents = contents.Split('\n');
             foreach (string s in sepContents)
             {
-                if (!s.EndsWith(": 0") && s.Contains("HYDROCHLORIC_ACID"))
+                if (!s.EndsWith(": 0") && (s.Contains("HYDROCHLORIC_ACID") || s.Contains("HCl")))
                 {
                     pinkDrops++;
                 }

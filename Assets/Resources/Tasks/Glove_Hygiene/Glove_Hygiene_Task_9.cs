@@ -26,16 +26,17 @@ public class Glove_Hygiene_Task_9 : TaskStep
         float halfFull = container.maxVolume / 2;
         if (container.name.ToLower().Contains("burette"))
         {
-            string wholeContents = container.getContents();
+            string wholeContents = chemMix.ContentsToString();
             string[] sepWholeContents = wholeContents.Split('\n');
             foreach (string s in sepWholeContents)
             {
-                if (s.Contains("WATER"))
+                if (s.Contains("WATER") || s.Contains("H2O"))
                 {
                     string strAmnt = s.Split(' ')[1];
                     float amt;
                     if (float.TryParse(strAmnt, out amt))
                     {
+                        //amt = amt * 1000f;
                         if (amt >= halfFull)
                         {
                             FinishTaskStep();

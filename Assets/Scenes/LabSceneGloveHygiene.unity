@@ -385,7 +385,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7085834056909369180, guid: bbf891c78ab1eb44aa4d8c84a27427dc, type: 3}
       propertyPath: m_Layer
-      value: 5
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7085834056909369180, guid: bbf891c78ab1eb44aa4d8c84a27427dc, type: 3}
       propertyPath: m_IsActive
@@ -1695,9 +1695,9 @@ Transform:
   m_GameObject: {fileID: 182953569}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: 0.7071068, z: -0, w: 0.7071068}
-  m_LocalPosition: {x: 4.661591, y: -0.85738885, z: 1.14}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
+  m_LocalPosition: {x: 4.662, y: -0.85738885, z: 0.878}
+  m_LocalScale: {x: 0.5, y: 0.5, z: 0.5}
+  m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 283650967}
   - {fileID: 641270033}
@@ -10170,8 +10170,12 @@ PrefabInstance:
       value: Blue Flask
       objectReference: {fileID: 0}
     - target: {fileID: 8119981328555241606, guid: a7bc9e785c16ed84493ff9ca254a1fa2, type: 3}
+      propertyPath: maxVolume
+      value: 500
+      objectReference: {fileID: 0}
+    - target: {fileID: 8119981328555241606, guid: a7bc9e785c16ed84493ff9ca254a1fa2, type: 3}
       propertyPath: currentVolume
-      value: 100
+      value: 500
       objectReference: {fileID: 0}
     - target: {fileID: 8119981328555241606, guid: a7bc9e785c16ed84493ff9ca254a1fa2, type: 3}
       propertyPath: initialContents.Array.size
@@ -10183,7 +10187,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8119981328555241606, guid: a7bc9e785c16ed84493ff9ca254a1fa2, type: 3}
       propertyPath: initialContents.Array.data[0].volume
-      value: 100
+      value: 500
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -11102,7 +11106,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7085834056909369180, guid: 6fcff2798a2f15244bcc434456157db9, type: 3}
       propertyPath: m_Layer
-      value: 5
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7085834056909369180, guid: 6fcff2798a2f15244bcc434456157db9, type: 3}
       propertyPath: m_IsActive
@@ -14190,8 +14194,12 @@ PrefabInstance:
       value: Untagged
       objectReference: {fileID: 0}
     - target: {fileID: 8119981328555241606, guid: a7bc9e785c16ed84493ff9ca254a1fa2, type: 3}
+      propertyPath: maxVolume
+      value: 500
+      objectReference: {fileID: 0}
+    - target: {fileID: 8119981328555241606, guid: a7bc9e785c16ed84493ff9ca254a1fa2, type: 3}
       propertyPath: currentVolume
-      value: 100
+      value: 500
       objectReference: {fileID: 0}
     - target: {fileID: 8119981328555241606, guid: a7bc9e785c16ed84493ff9ca254a1fa2, type: 3}
       propertyPath: initialContents.Array.size
@@ -14203,7 +14211,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8119981328555241606, guid: a7bc9e785c16ed84493ff9ca254a1fa2, type: 3}
       propertyPath: initialContents.Array.data[0].volume
-      value: 100
+      value: 500
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -14568,9 +14576,9 @@ Transform:
   m_GameObject: {fileID: 1562236685}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 2.938, y: -0.85738885, z: 0.195}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
+  m_LocalPosition: {x: 3.122, y: -0.85738885, z: 0.195}
+  m_LocalScale: {x: 0.5, y: 0.5, z: 0.5}
+  m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 637852376}
   - {fileID: 1489019848}
