@@ -26,7 +26,8 @@ public class Glove_Hygiene_Task_8 : TaskStep
         float quarterFull = container.maxVolume / 4;
         if (container.name.ToLower().Contains("beaker"))
         {
-            string wholeContents = chemMix.ContentsToString();
+            //NOTE: CHEM_MIX IS THE MIXTURE OF CHEMICALS ADDED TO THE BEAKER, NOT THE TOTAL CHEMICAL MIXTURE. USE CONTAINER.GETCONTENTS()
+            string wholeContents = container.getContents();
             string[] sepWholeContents = wholeContents.Split('\n');
             foreach (string s in sepWholeContents)
             {

@@ -22,7 +22,7 @@ public abstract class TaskStep : MonoBehaviour
 
     protected void DevSkipTask(InputAction.CallbackContext obj)
     {
-        if (DevOpsManager.instance.IsDevOpsEnabled())
+        if (DevOpsState.IsDevOpsEnabled())
         {
             FinishTaskStep();
         }

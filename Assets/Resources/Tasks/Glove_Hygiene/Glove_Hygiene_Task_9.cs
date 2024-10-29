@@ -26,7 +26,8 @@ public class Glove_Hygiene_Task_9 : TaskStep
         float halfFull = container.maxVolume / 2;
         if (container.name.ToLower().Contains("burette"))
         {
-            string wholeContents = chemMix.ContentsToString();
+            //NOTE: CHEM_MIX IS THE MIXTURE OF CHEMICALS ADDED TO THE BEAKER, NOT THE TOTAL CHEMICAL MIXTURE. USE CONTAINER.GETCONTENTS()
+            string wholeContents = container.getContents();
             string[] sepWholeContents = wholeContents.Split('\n');
             foreach (string s in sepWholeContents)
             {
@@ -36,7 +37,6 @@ public class Glove_Hygiene_Task_9 : TaskStep
                     float amt;
                     if (float.TryParse(strAmnt, out amt))
                     {
-                        //amt = amt * 1000f;
                         if (amt >= halfFull)
                         {
                             FinishTaskStep();

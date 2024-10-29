@@ -242,11 +242,11 @@ GameObject:
   - component: {fileID: 2689622446034578921}
   - component: {fileID: 3057103369612024010}
   - component: {fileID: 9050181780996734878}
-  - component: {fileID: 8119981328555241606}
   - component: {fileID: 6428701863988181189}
   - component: {fileID: 6948596678890238474}
   - component: {fileID: -982276446511868726}
   - component: {fileID: 3138920481915823469}
+  - component: {fileID: 1508233350499869302}
   m_Layer: 0
   m_Name: Flask
   m_TagString: Untagged
@@ -346,61 +346,6 @@ MeshCollider:
   m_Convex: 1
   m_CookingOptions: 30
   m_Mesh: {fileID: 4300000, guid: d8fafffe727d6c241a606d309b77af7d, type: 3}
---- !u!114 &8119981328555241606
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4689552171498010593}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 175f44913ea6a854e956852389d010d6, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  internalFluid: {fileID: 4289653803913936434}
-  pourPoint: {fileID: 1341670225050788671}
-  opening: {fileID: 6125839711210306977}
-  pourEffect: {fileID: 4971232203218841906}
-  pourActivator: {fileID: 0}
-  maxVolume: 125
-  currentVolume: 0
-  pourRate: 25
-  pourAngle: 90
-  flags:
-    pouringUsesActivator: 0
-    infiniteFluid: 0
-    infiniteCapacity: 0
-    pourAngleUsesPhysics: 0
-    pourRateUsesPhysics: 0
-    useSimpleFluidLevel: 0
-  pourPhysics:
-    minPourRate: 5
-    maxPourRate: 50
-    minPourAngle: 25
-    maxPourAngle: 115
-    minParticleSize: 0.05
-    maxParticleSize: 0.2
-    minParticleEmissionRate: 50
-    maxParticleEmissionRate: 100
-  defaults:
-    originalVolume: 0
-    originalPourRate: 5
-    originalPourAngle: 90
-  reInitialize: 0
-  initialContents: []
-  chemFluid:
-    totalVolume: 0
-    chems:
-    - name: WATER
-      type: 0
-      volume: 0
-    - name: HYDROCHLORIC_ACID
-      type: 1
-      volume: 0
-    - name: SODIUM_HYDROXIDE
-      type: 2
-      volume: 0
 --- !u!54 &6428701863988181189
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -626,6 +571,67 @@ MeshCollider:
   m_Convex: 1
   m_CookingOptions: 30
   m_Mesh: {fileID: 4300000, guid: d8fafffe727d6c241a606d309b77af7d, type: 3}
+--- !u!114 &1508233350499869302
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4689552171498010593}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 175f44913ea6a854e956852389d010d6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  internalFluid: {fileID: 4289653803913936434}
+  pourPoint: {fileID: 1341670225050788671}
+  opening: {fileID: 6125839711210306977}
+  pourEffect: {fileID: 4971232203218841906}
+  pourActivator: {fileID: 0}
+  maxVolume: 300
+  currentVolume: 0
+  pourRate: 25
+  pourAngle: 90
+  flags:
+    pouringUsesActivator: 0
+    infiniteFluid: 0
+    infiniteCapacity: 0
+    pourAngleUsesPhysics: 0
+    pourRateUsesPhysics: 0
+    useSimpleFluidLevel: 0
+  pourPhysics:
+    minPourRate: 5
+    maxPourRate: 50
+    minPourAngle: 25
+    maxPourAngle: 115
+    minParticleSize: 0.05
+    maxParticleSize: 0.2
+    minParticleEmissionRate: 50
+    maxParticleEmissionRate: 100
+  defaults:
+    originalVolume: 0
+    originalPourRate: 5
+    originalPourAngle: 90
+  reInitialize: 0
+  initialContents: []
+  chemFluid:
+    totalVolume: 0
+    chems:
+    - name: WATER
+      type: 0
+      volume: 0
+    - name: HYDROCHLORIC_ACID
+      type: 1
+      volume: 0
+    - name: SODIUM_HYDROXIDE
+      type: 2
+      volume: 0
+    - name: CuSO4
+      type: 3
+      volume: 0
+    - name: GLUCOSE
+      type: 4
+      volume: 0
 --- !u!1 &6125839711210306977
 GameObject:
   m_ObjectHideFlags: 0

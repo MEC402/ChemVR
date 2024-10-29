@@ -48,14 +48,14 @@ public class Glove_Hygiene_Overview : MonoBehaviour
     }
 
     string[] text = {"Before beginning the lab, find gloves, goggles, and a lab coat and put them on with (A/X).\n\nRemove gloves anytime by holding your hands over the trashcan near the office door and pressing (A/X).\n\nRemember to take them off when you aren't working on the expirement!",
-                    //"For this lab, bring the following to a table in the red zone / C zone:\n\nBeaker\nErlenmeyer flask with pink chemical\nErlenmeyer flask with blue chemical", //disabled task step 2 (add to TaskInfoSO block and uncomment to undo)
+                    //"For this lab, bring the following to a table in the red zone / C zone:\n\nBeaker\nErlenmeyer flask with clear chemical\nErlenmeyer flask with blue chemical", //disabled task step 2 (add to TaskInfoSO block and uncomment to undo)
                     //"You will need these items as well:\n\nBurret\nFunnel", //disabled task step 2_5 (add to TaskInfoSO block and uncomment to undo)
                     "You're getting a call! It might be urgent.\n\nYour phone is in the office on your right, pick it up and press (A/X) to answer it.",
                     "Phew, that was close.\n\nNow return to the experiment in the red zone.",
                     "You need to set up a burette.\n\nAttach a funnel and a burette to the holder at your table.",
-                    "Next, fill the beaker one quarter way with the Erlenmeyer flask with the pink chemical.", //After 2 drops, interrupt with next one!
+                    "Next, fill the beaker one quarter way with the Erlenmeyer flask with the clear chemical.", //After 2 drops, interrupt with next one!
                     "It's time for a break.\n\nI think I saw some coffee in your office.\n\nPick it up and press (A/X) to take a drink.",
-                    "Breaks over!\n\nFinish filling the beaker the beaker one quarter way with the Erlenmeyer flask with the pink chemical.",
+                    "Breaks over!\n\nFinish filling the beaker the beaker one quarter way with the Erlenmeyer flask with the clear chemical.",
                     "Now fill the burette halfway from the Erlenmeyer flask with the blue chemical.\n\nTip: make sure the burette turner is closed first!",
                     "Titrate from the burette into the beaker until you see a change of color in the beaker, or until you run out of blue chemical.\n\nWhen you're done, bring the beaker the the table with the notepad.",
                     "Uh Oh!\n\nThe printer is acting up again, and it's printing important data.\n\nSmack it once or twice with your hand to get it running right.", //Interrupt once you touch the turner

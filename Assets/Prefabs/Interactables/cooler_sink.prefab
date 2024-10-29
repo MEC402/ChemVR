@@ -696,10 +696,10 @@ PrefabInstance:
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: a1888033cb5764742a1066b81f050f83, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 321475841409459951}
+      addedObject: {fileID: 6021258667258162089}
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: a1888033cb5764742a1066b81f050f83, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 6021258667258162089}
+      addedObject: {fileID: 8935313703934033307}
   m_SourcePrefab: {fileID: 100100000, guid: a1888033cb5764742a1066b81f050f83, type: 3}
 --- !u!4 &4618187668478548940 stripped
 Transform:
@@ -711,7 +711,34 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: a1888033cb5764742a1066b81f050f83, type: 3}
   m_PrefabInstance: {fileID: 5160456988319923239}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &321475841409459951
+--- !u!54 &6021258667258162089
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5430436921605128566}
+  serializedVersion: 4
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_CenterOfMass: {x: 0, y: 0, z: 0}
+  m_InertiaTensor: {x: 1, y: 1, z: 1}
+  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ImplicitCom: 1
+  m_ImplicitTensor: 1
+  m_UseGravity: 0
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 126
+  m_CollisionDetection: 0
+--- !u!114 &8935313703934033307
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -769,33 +796,12 @@ MonoBehaviour:
     - name: SODIUM_HYDROXIDE
       type: 2
       volume: 0
---- !u!54 &6021258667258162089
-Rigidbody:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5430436921605128566}
-  serializedVersion: 4
-  m_Mass: 1
-  m_Drag: 0
-  m_AngularDrag: 0.05
-  m_CenterOfMass: {x: 0, y: 0, z: 0}
-  m_InertiaTensor: {x: 1, y: 1, z: 1}
-  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ImplicitCom: 1
-  m_ImplicitTensor: 1
-  m_UseGravity: 0
-  m_IsKinematic: 0
-  m_Interpolate: 0
-  m_Constraints: 126
-  m_CollisionDetection: 0
+    - name: CuSO4
+      type: 3
+      volume: 0
+    - name: GLUCOSE
+      type: 4
+      volume: 0
 --- !u!1001 &5948552339930400513
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1117,10 +1123,10 @@ PrefabInstance:
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: 4255186633505938192, guid: 7ec23d70af6b955449fef28241f09f37, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 5669540039770202586}
+      addedObject: {fileID: 2590468662961128246}
     - targetCorrespondingSourceObject: {fileID: 1830580295138043263, guid: 7ec23d70af6b955449fef28241f09f37, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 3458291219022766477}
+      addedObject: {fileID: 7232502863496415789}
     - targetCorrespondingSourceObject: {fileID: -2248879075381363432, guid: 7ec23d70af6b955449fef28241f09f37, type: 3}
       insertIndex: -1
       addedObject: {fileID: 6327230982827811959}
@@ -1480,7 +1486,7 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 1830580295138043263, guid: 7ec23d70af6b955449fef28241f09f37, type: 3}
   m_PrefabInstance: {fileID: 5948552339930400513}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &3458291219022766477
+--- !u!114 &7232502863496415789
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -1537,6 +1543,12 @@ MonoBehaviour:
       volume: 0
     - name: SODIUM_HYDROXIDE
       type: 2
+      volume: 0
+    - name: CuSO4
+      type: 3
+      volume: 0
+    - name: GLUCOSE
+      type: 4
       volume: 0
 --- !u!1 &6031627892781193008 stripped
 GameObject:
@@ -1796,7 +1808,7 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 4255186633505938192, guid: 7ec23d70af6b955449fef28241f09f37, type: 3}
   m_PrefabInstance: {fileID: 5948552339930400513}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &5669540039770202586
+--- !u!114 &2590468662961128246
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -1850,6 +1862,12 @@ MonoBehaviour:
       volume: 0
     - name: SODIUM_HYDROXIDE
       type: 2
+      volume: 0
+    - name: CuSO4
+      type: 3
+      volume: 0
+    - name: GLUCOSE
+      type: 4
       volume: 0
 --- !u!1001 &7472785230746841182
 PrefabInstance:
