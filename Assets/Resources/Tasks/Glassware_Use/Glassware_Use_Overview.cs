@@ -50,8 +50,7 @@ public class Glassware_Use_Overview : MonoBehaviour
                     //"Next bring:\n1 100mL Graduated Cylinder\n1 Glass Stir Rod\n1 10mL Volumetric Pipette\n to the table.\n\n\nSkip with A", //disabled task step 3 (add to TaskInfoSO block and uncomment to undo)
                     //"Finally you will need:\nSmall Weigh Boat With Paper\nCopper Sulfate\nPaper Towels\n\n\nSkip with A", //disabled task step 4 (add to TaskInfoSO block and uncomment to undo)
                     //"Locate these tools that you will need in the lab:\nAnalytical Balance\nBalance Brush\nDI water\nWhen you are ready to continue, press (A).\n\n\nSkip with A", //disabled task step 5 (add to TaskInfoSO block and uncomment to undo)
-                    "Inspect all glassware for cracks or chips.\n\n\nSkip with A", //This, since is skipped with A, is now taking the place of Step 5 (so step 5 isn't actually disabled)
-                    // ^^^ This one is added instead of the rest.
+                    "Inspect all glassware for cracks or chips.\n\n\nSkip with A", 
                     "Turn on the analytical balance, and allow for it to stabilize.\n\n\nSkip with A",
                     "Place a weigh boat on the scale, then put the weigh paper inside the boat.\n\n\nSkip with A",
                     "Set the scale units to grams.\n\n\nSkip with A",
