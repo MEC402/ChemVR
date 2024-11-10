@@ -28,13 +28,6 @@ public class Tutorial_Overview : MonoBehaviour
         }
         GameEventsManager.instance.taskEvents.onAdvanceTask += AdvanceTutTask;
         GameEventsManager.instance.taskEvents.onAbandonTask += tu_abandonMe;
-
-        //Start the Tutorial on opening this scene
-        taskPreper.Show();
-        this.gameObject.GetComponent<ToggleTextSimple>().enabled = true;
-        GameEventsManager.instance.taskEvents.StartTask("Tutorial_Task");
-        tutText.text = text[curStep];
-        handleDiagrams();
     }
 
     void OnDisable()
@@ -46,6 +39,15 @@ public class Tutorial_Overview : MonoBehaviour
         GameEventsManager.instance.taskEvents.onAbandonTask -= tu_abandonMe;
     }
 
+    private void Start()
+    {
+        //Start the Tutorial on opening this scene
+        taskPreper.Show();
+        this.gameObject.GetComponent<ToggleTextSimple>().enabled = true;
+        GameEventsManager.instance.taskEvents.StartTask("Tutorial_Task");
+        tutText.text = text[curStep];
+        handleDiagrams();
+    }
     public void restart()
     {
         tu_abandonMe("Tutorial_Overview");
@@ -109,9 +111,8 @@ public class Tutorial_Overview : MonoBehaviour
         }
         else if (curStep == 4) 
         {
-            diagramController.showAllDiagrams();
-            diagramController.showBButton();
-            diagramController.showYButton();
+            diagramController.showLeftController();
+            diagramController.showHamburgerButton();
         }
     }
 }

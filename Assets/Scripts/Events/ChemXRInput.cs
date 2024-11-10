@@ -92,11 +92,19 @@ public class ChemXRInput : MonoBehaviour
         );
         // For this action to work in the headset, it is "<XRController>{LeftHand}/start"
         // For this action to work with in the Unity Editor, it is "<XRController>{LeftHand}/menuButton"
+#if UNITY_EDITOR
+        ChemXRActionMap.AddAction(
+            ButtonToActionName(ChemXRInput.Button.Pause),
+            InputActionType.Button,
+            binding: "<XRController>{LeftHand}/menuButton"
+        );
+#else
         ChemXRActionMap.AddAction(
             ButtonToActionName(ChemXRInput.Button.Pause),
             InputActionType.Button,
             binding: "<XRController>{LeftHand}/start"
         );
+#endif
     }
 
     // Enables the InputActionMap defined in the Awake function.
