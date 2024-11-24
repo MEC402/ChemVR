@@ -247,6 +247,7 @@ GameObject:
   - component: {fileID: -982276446511868726}
   - component: {fileID: 3138920481915823469}
   - component: {fileID: 1508233350499869302}
+  - component: {fileID: 6858261890734792225}
   m_Layer: 0
   m_Name: Flask
   m_TagString: Untagged
@@ -424,10 +425,34 @@ MonoBehaviour:
       m_Calls: []
   m_SelectEntered:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 6858261890734792225}
+        m_TargetAssemblyTypeName: Report_Grab, Assembly-CSharp
+        m_MethodName: Report_on_Grab
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   m_SelectExited:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 6858261890734792225}
+        m_TargetAssemblyTypeName: Report_Grab, Assembly-CSharp
+        m_MethodName: Report_on_Drop
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   m_FirstFocusEntered:
     m_PersistentCalls:
       m_Calls: []
@@ -632,6 +657,18 @@ MonoBehaviour:
     - name: GLUCOSE
       type: 4
       volume: 0
+--- !u!114 &6858261890734792225
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4689552171498010593}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f08b6f0eb7fbcdb44acc7614fb29884c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &6125839711210306977
 GameObject:
   m_ObjectHideFlags: 0

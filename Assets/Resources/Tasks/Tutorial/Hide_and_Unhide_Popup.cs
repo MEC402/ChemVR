@@ -5,7 +5,7 @@ using UnityEngine.InputSystem;
 using UnityEngine.XR;
 using UnityEngine.XR.Interaction.Toolkit;
 
-public class Hide_and_Unhide : TaskStep
+public class Hide_and_Unhide_Popup : TaskStep
 {
     
     int buttonPress = 0;
