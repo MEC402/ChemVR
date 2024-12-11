@@ -4,24 +4,16 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.XR.Interaction.Toolkit;
 
-
-public class SnapFunnelToFlask : MonoBehaviour
+public class SnapFunnel2Flask : MonoBehaviour
 {
     private XRGrabInteractable grabInteractable; //XRGrabInteractable of attached gameObject
     private Rigidbody myRb; //Rigidbody of attached gameObject
-    private bool touching; //is this collider touching a flask collieder?
-    private bool snap; //is this funnel gameObject attached to a flask?
+    private bool touching; //is this collider touching a buret collieder?
+    private bool snap; //is this funnel gameObject attached to a buret?
     private bool isGrabbed; //is the funnel grabbed? (so funnel doesn't detach unless intentional)
-    private GameObject flask; //the flask gameobject
-    Vector3 OGfunnelTranslation = new Vector3(0, 0, 0.2f);
-
-    private void Update()
-    {
-        if (snap)
-        {
-            SetPositionToFlask();
-        }
-    }
+    private GameObject buret; //the buret gameobject
+    private Transform parent;
+    Vector3 OGfunnelTranslation = new Vector3(0, 0, 0.2f);//new Vector3(0, 0, 0.17f);
 
     void OnEnable()
     {
@@ -29,6 +21,7 @@ public class SnapFunnelToFlask : MonoBehaviour
         touching = false;
         snap = false;
         isGrabbed = false;
+        parent = transform.parent;
 
         //get components
         myRb = GetComponent<Rigidbody>();
@@ -45,20 +38,29 @@ public class SnapFunnelToFlask : MonoBehaviour
         grabInteractable.selectEntered.AddListener(OnGrab);
         grabInteractable.selectExited.AddListener(OnRelease);
     }
-    private void SetPositionToFlask()
+    private void SetPositionToBuret()
     {
         //Move the funnel to the burret
-
+        transform.SetParent(buret.transform);
         Quaternion additionalRotation = Quaternion.Euler(-90, 0, 0);
-        Quaternion newRotation = flask.transform.rotation * additionalRotation;
-        this.transform.SetPositionAndRotation(flask.transform.position, newRotation);
+        Quaternion newRotation = buret.transform.rotation * additionalRotation;
+        this.transform.SetPositionAndRotation(buret.transform.position, newRotation);
         this.transform.Translate(OGfunnelTranslation);
+        myRb.isKinematic = true; // Disable physics
     }
+
     private void LetGo()
     {
+        if (snap)
+        {
+            GameEventsManager.instance.miscEvents.FunnelUnSnaptoBuret(this.gameObject, buret);
+        }
         snap = false;
-        flask = null;
+        transform.SetParent(parent);
+        EnableCollisionWithBuret();
+        buret = null;
         myRb.useGravity = true;
+        myRb.isKinematic = false; // Ensable physics
         this.gameObject.GetComponent<SphereCollider>().enabled = false;
         this.gameObject.GetComponent<MeshCollider>().enabled = true;
     }
@@ -72,7 +74,7 @@ public class SnapFunnelToFlask : MonoBehaviour
     {
         if (other.name.Contains("lask") && !snap)
         {
-            flask = other.gameObject;
+            buret = other.gameObject;
             touching = true;
         }
     }
@@ -88,7 +90,7 @@ public class SnapFunnelToFlask : MonoBehaviour
             }
             else if (snap)
             {
-                SetPositionToFlask();
+                SetPositionToBuret();
             }
         }
     }
@@ -104,12 +106,35 @@ public class SnapFunnelToFlask : MonoBehaviour
         {
             snap = true;
             myRb.useGravity = false;
+            DisableCollisionWithBuret();
             this.gameObject.GetComponent<MeshCollider>().enabled = false;
             this.gameObject.GetComponent<SphereCollider>().enabled = true;
+            SetPositionToBuret();
+            GameEventsManager.instance.miscEvents.FunnelSnaptoBuret(this.gameObject, buret);
         }
         else
         {
             LetGo();
+        }
+    }
+
+    private void DisableCollisionWithBuret()
+    {
+        if (buret != null)
+        {
+            Collider funnelCollider = GetComponent<Collider>();
+            Collider buretCollider = buret.GetComponent<Collider>();
+            Physics.IgnoreCollision(funnelCollider, buretCollider, true);
+        }
+    }
+
+    private void EnableCollisionWithBuret()
+    {
+        if (buret != null)
+        {
+            Collider funnelCollider = GetComponent<Collider>();
+            Collider buretCollider = buret.GetComponent<Collider>();
+            Physics.IgnoreCollision(funnelCollider, buretCollider, false);
         }
     }
 }

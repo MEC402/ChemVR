@@ -10,28 +10,15 @@ public class SnapBurette2Holder : MonoBehaviour
     private bool touching;
     private bool snap;
     private GameObject holder;
+    private Transform parent;
     private Rigidbody stopcockRb;
 
-    private void Update()
-    {
-        if (snap)
-        {
-            SetPosition();
-        }
-    }
-
-    private void SetPosition()
-    {
-        Quaternion additionalRotation = Quaternion.Euler(0, 180, 0);
-        Quaternion newRotation = holder.transform.rotation * additionalRotation;
-        this.transform.SetPositionAndRotation(holder.transform.position, newRotation);
-        this.transform.Translate(new Vector3(0.0504f, 0.531f, 0));
-    }
     void OnEnable()
     {
         //Initialize
         touching = false;
         snap = false;
+        parent = transform.parent;
 
         //get components
         myRb = GetComponent<Rigidbody>();
@@ -62,6 +49,15 @@ public class SnapBurette2Holder : MonoBehaviour
         grabInteractable.selectEntered.RemoveListener(OnGrab);
         grabInteractable.selectExited.RemoveListener(OnRelease);
     }
+    private void SetPosition()
+    {
+        transform.SetParent(holder.transform);
+        myRb.isKinematic = true;
+        Quaternion additionalRotation = Quaternion.Euler(0, 180, 0);
+        Quaternion newRotation = holder.transform.rotation * additionalRotation;
+        this.transform.SetPositionAndRotation(holder.transform.position, newRotation);
+        this.transform.Translate(new Vector3(0.0504f, 0.531f, 0));
+    }
 
     private void OnTriggerEnter(Collider other)
     {
@@ -85,7 +81,9 @@ public class SnapBurette2Holder : MonoBehaviour
         if(snap)
         {
             snap = false;
-            stopcockRb.isKinematic = false;
+            //stopcockRb.isKinematic = false;
+            transform.SetParent(parent);
+            myRb.isKinematic = false;
             GameEventsManager.instance.miscEvents.BuretUnSnaptoHolder(this.gameObject, holder);
         }
         holder = null;
@@ -95,7 +93,7 @@ public class SnapBurette2Holder : MonoBehaviour
     {
         if (touching)
         {
-            stopcockRb.isKinematic = true;
+            //stopcockRb.isKinematic = true;
             snap = true;
             myRb.useGravity = false;
             SetPosition();
