@@ -16,7 +16,7 @@ public class WebGLInput : MonoBehaviour
     public Vector2 movementInput;
     public Vector2 lookInput;
     public bool isInteracting = false;
-    public bool isEquiping = false;
+    public bool isEquipping = false;
 
     private void Awake()
     {
@@ -38,17 +38,17 @@ public class WebGLInput : MonoBehaviour
     #region Input Handlers
     private void MoveHandler(InputAction.CallbackContext ctx)
     {
-            movementInput = ctx.ReadValue<Vector2>();
+        movementInput = ctx.ReadValue<Vector2>();
     }
 
     private void MoveCanceledHandler(InputAction.CallbackContext ctx)
     {
-            movementInput = Vector2.zero;
+        movementInput = Vector2.zero;
     }
 
     private void LookHandler(InputAction.CallbackContext ctx)
     {
-            lookInput = ctx.ReadValue<Vector2>();
+        lookInput = ctx.ReadValue<Vector2>();
     }
 
     private void LookCanceledHandler(InputAction.CallbackContext ctx)
@@ -73,12 +73,12 @@ public class WebGLInput : MonoBehaviour
 
     private void EquipHandler(InputAction.CallbackContext ctx)
     {
-        isEquiping = true;
+        isEquipping = true;
     }
 
     private void EquipCanceledHandler(InputAction.CallbackContext ctx)
     {
-        isEquiping = false;
+        isEquipping = false;
     }
 
     #endregion
