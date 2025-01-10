@@ -12,11 +12,15 @@ public class WebGLInput : MonoBehaviour
     [SerializeField] private InputActionReference move;
     [SerializeField] private InputActionReference look;
     [SerializeField] private InputActionReference equip;
+    [SerializeField] private InputActionReference rotate;
+    [SerializeField] private InputActionReference rotation;
 
     public Vector2 movementInput;
     public Vector2 lookInput;
+    public Vector2 rotationInput;
     public bool isInteracting = false;
     public bool isEquiping = false;
+    public bool isRotating = false;
 
     private void Awake()
     {
@@ -32,23 +36,29 @@ public class WebGLInput : MonoBehaviour
         equip.action.performed += ctx => EquipHandler(ctx);
         equip.action.canceled += ctx => EquipCanceledHandler(ctx);
 
+        rotate.action.performed += ctx => RotateHandler(ctx);
+        rotate.action.canceled += ctx => RotateCanceledHandler(ctx);
+
+        rotation.action.performed += ctx => RotationHandler(ctx);
+        rotation.action.canceled += ctx => RotationCanceledHandler(ctx);
+
         MasterControlsEnable(); // Enable the player controls by default
     }
 
     #region Input Handlers
     private void MoveHandler(InputAction.CallbackContext ctx)
     {
-            movementInput = ctx.ReadValue<Vector2>();
+        movementInput = ctx.ReadValue<Vector2>();
     }
 
     private void MoveCanceledHandler(InputAction.CallbackContext ctx)
     {
-            movementInput = Vector2.zero;
+        movementInput = Vector2.zero;
     }
 
     private void LookHandler(InputAction.CallbackContext ctx)
     {
-            lookInput = ctx.ReadValue<Vector2>();
+        lookInput = ctx.ReadValue<Vector2>();
     }
 
     private void LookCanceledHandler(InputAction.CallbackContext ctx)
@@ -79,6 +89,26 @@ public class WebGLInput : MonoBehaviour
     private void EquipCanceledHandler(InputAction.CallbackContext ctx)
     {
         isEquiping = false;
+    }
+
+    private void RotateHandler(InputAction.CallbackContext ctx)
+    {
+        isRotating = true;
+    }
+
+    private void RotateCanceledHandler(InputAction.CallbackContext ctx)
+    {
+        isRotating = false;
+    }
+
+    private void RotationHandler(InputAction.CallbackContext ctx)
+    {
+        rotationInput = ctx.ReadValue<Vector2>();
+    }
+
+    private void RotationCanceledHandler(InputAction.CallbackContext ctx)
+    {
+        rotationInput = Vector2.zero;
     }
 
     #endregion
@@ -131,6 +161,25 @@ public class WebGLInput : MonoBehaviour
     public void EquipDisable()
     {
         equip.action.Disable();
+    }
+    public void RotateEnable()
+    {
+        rotate.action.Enable();
+    }
+
+    public void RotateDisable()
+    {
+        rotate.action.Disable();
+    }
+
+    public void RotationEnable()
+    {
+        rotation.action.Enable();
+    }
+
+    public void RotationDisable()
+    {
+        rotation.action.Disable();
     }
     #endregion
 
