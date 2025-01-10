@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class ObjectRotationController : MonoBehaviour
 {
+    #region Variables
     [Header("References")]
     [SerializeField] WebGLInput inputScript; // Reference to the input script managing player inputs.
 
@@ -12,6 +13,8 @@ public class ObjectRotationController : MonoBehaviour
     [Header("Rotation Settings")]
     [SerializeField] float rotationSpeed = 100f; // Speed at which the object rotates.
 
+    #endregion
+    #region Unity Methods
     /// <summary>
     /// Monitors player input and applies rotation to the object when appropriate.
     /// </summary>
@@ -20,6 +23,8 @@ public class ObjectRotationController : MonoBehaviour
         HandleObjectRotation();
     }
 
+    #endregion
+    #region Custom Methods
     /// <summary>
     /// Rotates the specified object based on the player's mouse movement.
     /// Only rotates the object when the player is actively rotating and providing input.
@@ -29,19 +34,26 @@ public class ObjectRotationController : MonoBehaviour
         // Exit if there are missing references.
         if (inputScript == null || objectToRotate == null) return;
 
-        // Rotate the object when the player is actively rotating and providing look input.
-        if (inputScript.isRotating && inputScript.rotationInput != Vector2.zero)
+        if (inputScript.isRotating && objectToRotate != null)
         {
             inputScript.LookDisable();
-            // Rotate around the world's up axis for horizontal input (yaw).
-            objectToRotate.Rotate(Vector3.up, -inputScript.rotationInput.x * rotationSpeed * Time.deltaTime, Space.World);
+            inputScript.MoveDisable();
 
-            // Rotate around the object's local right axis for vertical input (pitch).
-            objectToRotate.Rotate(Vector3.right, inputScript.rotationInput.y * rotationSpeed * Time.deltaTime, Space.World);
+            if (inputScript.rotationInput != Vector2.zero)
+            {
+                // Rotate around the world's up axis for horizontal input (yaw).
+                objectToRotate.Rotate(Vector3.up, -inputScript.rotationInput.x * rotationSpeed * Time.deltaTime, Space.World);
+
+                // Rotate around the object's local right axis for vertical input (pitch).
+                objectToRotate.Rotate(Vector3.right, inputScript.rotationInput.y * rotationSpeed * Time.deltaTime, Space.World);
+
+            }
         }
         else
         {
             inputScript.LookEnable();
+            inputScript.MoveEnable();
         }
     }
+    #endregion
 }
