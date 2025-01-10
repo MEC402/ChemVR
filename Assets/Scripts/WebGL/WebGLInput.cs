@@ -12,11 +12,15 @@ public class WebGLInput : MonoBehaviour
     [SerializeField] private InputActionReference move;
     [SerializeField] private InputActionReference look;
     [SerializeField] private InputActionReference equip;
+    [SerializeField] private InputActionReference rotate;
+    [SerializeField] private InputActionReference rotation;
 
     public Vector2 movementInput;
     public Vector2 lookInput;
+    public Vector2 rotationInput;
     public bool isInteracting = false;
-    public bool isEquipping = false;
+    public bool isEquiping = false;
+    public bool isRotating = false;
 
     private void Awake()
     {
@@ -31,6 +35,12 @@ public class WebGLInput : MonoBehaviour
 
         equip.action.performed += ctx => EquipHandler(ctx);
         equip.action.canceled += ctx => EquipCanceledHandler(ctx);
+
+        rotate.action.performed += ctx => RotateHandler(ctx);
+        rotate.action.canceled += ctx => RotateCanceledHandler(ctx);
+
+        rotation.action.performed += ctx => RotationHandler(ctx);
+        rotation.action.canceled += ctx => RotationCanceledHandler(ctx);
 
         MasterControlsEnable(); // Enable the player controls by default
     }
@@ -73,12 +83,32 @@ public class WebGLInput : MonoBehaviour
 
     private void EquipHandler(InputAction.CallbackContext ctx)
     {
-        isEquipping = true;
+        isEquiping = true;
     }
 
     private void EquipCanceledHandler(InputAction.CallbackContext ctx)
     {
-        isEquipping = false;
+        isEquiping = false;
+    }
+
+    private void RotateHandler(InputAction.CallbackContext ctx)
+    {
+        isRotating = true;
+    }
+
+    private void RotateCanceledHandler(InputAction.CallbackContext ctx)
+    {
+        isRotating = false;
+    }
+
+    private void RotationHandler(InputAction.CallbackContext ctx)
+    {
+        rotationInput = ctx.ReadValue<Vector2>();
+    }
+
+    private void RotationCanceledHandler(InputAction.CallbackContext ctx)
+    {
+        rotationInput = Vector2.zero;
     }
 
     #endregion
@@ -131,6 +161,25 @@ public class WebGLInput : MonoBehaviour
     public void EquipDisable()
     {
         equip.action.Disable();
+    }
+    public void RotateEnable()
+    {
+        rotate.action.Enable();
+    }
+
+    public void RotateDisable()
+    {
+        rotate.action.Disable();
+    }
+
+    public void RotationEnable()
+    {
+        rotation.action.Enable();
+    }
+
+    public void RotationDisable()
+    {
+        rotation.action.Disable();
     }
     #endregion
 
