@@ -23,6 +23,7 @@ public class FirstPersonMovement : MonoBehaviour
     {
         rb = GetComponent<Rigidbody>();
         Cursor.lockState = CursorLockMode.Locked; // Lock cursor at start
+        Cursor.visible = false; // Hide cursor at start
     }
 
     private void FixedUpdate()
