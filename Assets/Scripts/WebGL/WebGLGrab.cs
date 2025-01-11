@@ -91,8 +91,7 @@ public class WebGLGrab : MonoBehaviour
         if (!mainCamera) return;
 
         // Create a ray from the center of the screen
-        centerRay = mainCamera.ScreenPointToRay(
-            new Vector2(Screen.width / 2f, Screen.height / 2f));
+        centerRay = mainCamera.ScreenPointToRay(new Vector2(Screen.width / 2f, Screen.height / 2f));
 
         if (Physics.Raycast(centerRay, out RaycastHit hit, grabRange))
         {
@@ -114,8 +113,7 @@ public class WebGLGrab : MonoBehaviour
         if (!mainCamera) return;
 
         // Fire a ray from the center of the screen
-        centerRay = mainCamera.ScreenPointToRay(
-            new Vector2(Screen.width / 2f, Screen.height / 2f));
+        centerRay = mainCamera.ScreenPointToRay(new Vector2(Screen.width / 2f, Screen.height / 2f));
 
         // Check if we hit a holdable object
         if (Physics.Raycast(centerRay, out RaycastHit hit, grabRange, holdableLayer))
@@ -173,9 +171,6 @@ public class WebGLGrab : MonoBehaviour
         if (!heldObject) return;
 
         heldObject.position = holdPoint.position;
-
-        if (!webGLInput.isRotating)
-            heldObject.rotation = holdPoint.rotation;
     }
     #endregion
 }

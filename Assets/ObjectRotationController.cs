@@ -39,11 +39,11 @@ public class ObjectRotationController : MonoBehaviour
 
             if (inputScript.rotationInput != Vector2.zero)
             {
-                // Rotate around the world's up axis for horizontal input (yaw).
+                // Yaw around the world's Up axis
                 objectToRotate.Rotate(Vector3.up, -inputScript.rotationInput.x * rotationSpeed * Time.deltaTime, Space.World);
 
-                // Rotate around the object's local right axis for vertical input (pitch).
-                objectToRotate.Rotate(Vector3.right, inputScript.rotationInput.y * rotationSpeed * Time.deltaTime, Space.World);
+                // Pitch around the object's local X axis
+                objectToRotate.Rotate(Vector3.right, inputScript.rotationInput.y * rotationSpeed * Time.deltaTime, Space.Self);
             }
         }
         else
