@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEditor.ShaderGraph;
@@ -21,6 +22,9 @@ public class WebGLInput : MonoBehaviour
     public bool isInteracting = false;
     public bool isEquiping = false;
     public bool isRotating = false;
+
+    public event Action OnInteractPressed;
+    public event Action OnInteractReleased;
 
     private void Awake()
     {
@@ -69,11 +73,13 @@ public class WebGLInput : MonoBehaviour
     private void InteractHandler(InputAction.CallbackContext ctx)
     {
         isInteracting = true;
+        OnInteractPressed?.Invoke();
     }
 
     private void InteractCanceledHandler(InputAction.CallbackContext ctx)
     {
         isInteracting = false;
+        OnInteractReleased?.Invoke();
     }
 
     public void Interacting()

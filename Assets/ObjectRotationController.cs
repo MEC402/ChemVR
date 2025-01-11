@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class ObjectRotationController : MonoBehaviour
@@ -8,7 +6,7 @@ public class ObjectRotationController : MonoBehaviour
     [Header("References")]
     [SerializeField] WebGLInput inputScript; // Reference to the input script managing player inputs.
 
-    public Transform objectToRotate; // The object that will be rotated.
+    [HideInInspector] public Transform objectToRotate; // The object that will be rotated.
 
     [Header("Rotation Settings")]
     [SerializeField] float rotationSpeed = 100f; // Speed at which the object rotates.
@@ -46,7 +44,6 @@ public class ObjectRotationController : MonoBehaviour
 
                 // Rotate around the object's local right axis for vertical input (pitch).
                 objectToRotate.Rotate(Vector3.right, inputScript.rotationInput.y * rotationSpeed * Time.deltaTime, Space.World);
-
             }
         }
         else
