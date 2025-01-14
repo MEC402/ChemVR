@@ -19,7 +19,8 @@ public class AddGloves : MonoBehaviour
         // Get and store the original material
         leftIsTouching = false;
         rightIsTouching = false;
-        original = rightHand.GetComponent<SkinnedMeshRenderer>().material;
+        if (rightHand != null)
+            original = rightHand.GetComponent<SkinnedMeshRenderer>().material;
     }
     private void OnEnable()
     {

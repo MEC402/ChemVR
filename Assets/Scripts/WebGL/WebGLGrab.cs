@@ -7,6 +7,7 @@ public class WebGLGrab : MonoBehaviour
     #region Variables
     [Header("References")]
     [SerializeField] WebGLInput webGLInput;
+    [SerializeField] HygieneManager hygieneManager;
     [SerializeField] ObjectRotationController objectRotationController;
     [SerializeField] Transform holdPoint;
     [SerializeField] Image playerIcon;
@@ -77,7 +78,7 @@ public class WebGLGrab : MonoBehaviour
     /// </summary>
     private void HandleInteractReleased()
     {
-        throw new System.NotImplementedException();
+        //TODO: Implement if needed
     }
 
     /// <summary>
@@ -115,6 +116,8 @@ public class WebGLGrab : MonoBehaviour
         // Fire a ray from the center of the screen
         centerRay = mainCamera.ScreenPointToRay(new Vector2(Screen.width / 2f, Screen.height / 2f));
 
+
+
         // Check if we hit a holdable object
         if (Physics.Raycast(centerRay, out RaycastHit hit, grabRange, holdableLayer))
         {
@@ -142,7 +145,6 @@ public class WebGLGrab : MonoBehaviour
         }
         else if (Physics.Raycast(centerRay, out hit, grabRange, interactableLayer))
         {
-            // check if has WearGoogles script
             if (hit.collider.gameObject.GetComponent<WearGoggles>())
                 hit.collider.gameObject.GetComponent<WearGoggles>().WebPutOn();
             else if (hit.collider.gameObject.GetComponent<WearCoat>())
@@ -150,7 +152,20 @@ public class WebGLGrab : MonoBehaviour
             else if (hit.collider.gameObject.GetComponent<AddGloves>())
                 hit.collider.gameObject.GetComponent<AddGloves>().WebPutOnLeftGloves();
             else if (hit.collider.gameObject.GetComponent<PrinterSlap>())
-              GameEventsManager.instance.miscEvents.PrinterSlap();
+                GameEventsManager.instance.miscEvents.PrinterSlap();
+            else if (hit.collider.gameObject.GetComponent<RemoveGloves>())
+                hit.collider.gameObject.GetComponent<RemoveGloves>().WebTakeOffGloves();
+            else if (hit.collider.gameObject.GetComponent<DoorOpen>())
+                hit.collider.gameObject.GetComponent<DoorOpen>().ToggleOpen();
+        }
+
+        if (!ActiveItemsCanvas.Instance.isWearingGloves)
+            return;
+
+        if (Physics.Raycast(centerRay, out hit, grabRange))
+        {
+            Vector3 touchPoint = hit.point;
+            hygieneManager.AddPoint(touchPoint, hit.collider.gameObject);
         }
     }
 
