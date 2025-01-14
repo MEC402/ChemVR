@@ -148,6 +148,8 @@ public class WebGLGrab : MonoBehaviour
                 hit.collider.gameObject.GetComponent<WearCoat>().WebPutOn();
             else if (hit.collider.gameObject.GetComponent<AddGloves>())
                 hit.collider.gameObject.GetComponent<AddGloves>().WebPutOnLeftGloves();
+            else if (hit.collider.gameObject.GetComponent<PrinterSlap>())
+              GameEventsManager.instance.miscEvents.PrinterSlap();
         }
     }
 
