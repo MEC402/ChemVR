@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -8,6 +9,7 @@ public class Glove_Hygiene_Overview : MonoBehaviour
 {
     public HygieneManager touchTracker;
     public TextMeshProUGUI ghText;
+    public bool isWebGLText;
     int curStep;
 
     // Controllers for starting tasks
@@ -63,6 +65,25 @@ public class Glove_Hygiene_Overview : MonoBehaviour
                     "Record your findings using the pencil and data sheet on the table near the office. Touch the pencil to the paper to do so.",
                     "The titration experiment is now complete. Please go to the trash to remove your gloves.\n\nHold your hands over the trash and press A/X",
                     "This completes the glove hygiene module. We will now display in red everything you touched while wearing possibly contaminated gloves.\n\n(Y Button) Hides Popup\n(Hamburger Button) Opens Menu"
+                    };
+
+
+    string[] webGLText = {"Before beginning the lab, find gloves, goggles, and a lab coat and put them on by grabbing them with (LeftClick/E).\n\nRemove gloves anytime by grabbing (LeftClick/E) the trashcan near the office door.\n\nRemember to take them off when you step away from the experiment!",
+                    //"For this lab, bring the following to a table in the red zone / C zone:\n\nBeaker\nErlenmeyer flask with colorless solution\nErlenmeyer flask with blue solution", //disabled task step 2 (add to TaskInfoSO block and uncomment to undo)
+                    //"You will need these items as well:\n\nBurret\nFunnel", //disabled task step 2_5 (add to TaskInfoSO block and uncomment to undo)
+                    "You're getting a call! It might be urgent.\n\nYour phone is in the office on your right, pick it up by pressing (LeftClick/E) and (F) to answer it.",
+                    "Phew, that was close.\n\nNow return to the experiment in the red zone.",
+                    "You need to set up a burette.\n\nAttach a funnel and a burette to the holder at your table.",
+                    "Next, fill the beaker one quarter way with the Erlenmeyer flask with the colorless solution.", //After 2 drops, interrupt with next one!
+                    "It's time for a break.\n\nI think I saw some coffee in your office.\n\nPick it up by pressing (LeftClick/E) and use (F) to take a drink.",
+                    "Breaks over!\n\nFinish filling the beaker one quarter way from the Erlenmeyer flask with the colorless solution.",
+                    "Now fill the burette halfway from the Erlenmeyer flask with the blue solution.\n\nTip: make sure the stopcock valve (at bottom of buret) is closed first!",
+                    "Titrate from the burette into the beaker until you see a change of color in the beaker, or until you run out of blue solution.\n\nWhen you're done, bring the beaker to the table with the notepad.",
+                    "Uh Oh!\n\nThe printer is acting up again, and it's printing important data.\n\nSmack it once or twice with your hand to get it running right.", //Interrupt once you touch the blue solution
+                    "Return to the red zone and titrate until you see a change of color in the beaker, or until you run out of blue solution.\n\nWhen you're done, bring the beaker to the table with the notepad.",
+                    "Record your findings using the pencil and data sheet on the table near the office. Touch the pencil to the paper to do so.",
+                    "The titration experiment is now complete. Please go to the trash to remove your gloves.\n\nDo this by pressing (LeftClick/E) on the trashcan near the office door",
+                    "This completes the glove hygiene module. We will now display in red everything you touched while wearing possibly contaminated gloves.\n\n(Tab) Hides Popup\n(Escape) Opens Menu"
                     };
     void AdvanceGloTask(string context)
     {
