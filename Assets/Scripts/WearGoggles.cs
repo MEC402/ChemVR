@@ -45,6 +45,9 @@ public class WearGoggles : MonoBehaviour
 
     private bool IsTouching(Renderer handRen)
     {
+        if (handRen == null)
+            return false;
+
         // Check if the bounds of the renderers intersect
         return handRen.bounds.Intersects(itemRen.bounds);
     }

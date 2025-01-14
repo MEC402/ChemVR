@@ -15,7 +15,7 @@ public class Return_to_Table : TaskStep
         mainCamera = GameObject.Find("Main Camera");
         if (mainCamera == null)
         {
-            Debug.LogError("No camera registered");
+            mainCamera = Camera.main.gameObject;
         }
     }
 
