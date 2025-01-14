@@ -82,4 +82,10 @@ public class RemoveGloves : MonoBehaviour
         GameEventsManager.instance.miscEvents.TakeOffRightGlove();
         //Debug.Log("Right glove taken off!");
     }
+
+    public void WebTakeOffGloves()
+    {
+        GameEventsManager.instance.miscEvents.TakeOffLeftGlove();
+        GameEventsManager.instance.miscEvents.TakeOffRightGlove();
+    }
 }

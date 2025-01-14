@@ -6,7 +6,7 @@ public class ActiveItemsCanvas : MonoBehaviour
 
     [SerializeField] GameObject gloveText, coatText, gogglesText;
 
-    bool isWearingGloves;
+    [HideInInspector] public bool isWearingGloves;
 
     private void Awake()
     {
