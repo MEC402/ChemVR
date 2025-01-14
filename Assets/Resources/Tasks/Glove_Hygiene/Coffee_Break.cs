@@ -40,20 +40,20 @@ public class Coffee_Break : TaskStep
     private void OnGrab(SelectEnterEventArgs arg0)
     {
         //Debug.LogWarning(arg0.interactableObject);
-        if (arg0.interactableObject.Equals(coffee.GetComponent<IXRSelectInteractable>()))
-        {
-            //Debug.LogWarning("Picked up coffee");
-            holdingCoffee = true;
-        }
+        // if (arg0.interactableObject.Equals(coffee.GetComponent<IXRSelectInteractable>()))
+        // {
+        //Debug.LogWarning("Picked up coffee");
+        holdingCoffee = true;
+        // }
     }
     private void OnRelease(SelectExitEventArgs arg0)
     {
         //Debug.LogWarning(arg0.interactableObject);
-        if (arg0.interactableObject.Equals(coffee.GetComponent<IXRSelectInteractable>()))
-        {
-            //Debug.LogWarning("Put down coffee");
-            holdingCoffee = false;
-        }
+        // if (arg0.interactableObject.Equals(coffee.GetComponent<IXRSelectInteractable>()))
+        // {
+        //Debug.LogWarning("Put down coffee");
+        holdingCoffee = false;
+        // }
     }
     private void drink(InputAction.CallbackContext obj)
     {

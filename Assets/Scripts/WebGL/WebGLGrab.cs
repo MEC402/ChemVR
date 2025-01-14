@@ -116,8 +116,6 @@ public class WebGLGrab : MonoBehaviour
         // Fire a ray from the center of the screen
         centerRay = mainCamera.ScreenPointToRay(new Vector2(Screen.width / 2f, Screen.height / 2f));
 
-
-
         // Check if we hit a holdable object
         if (Physics.Raycast(centerRay, out RaycastHit hit, grabRange, holdableLayer))
         {
@@ -157,6 +155,8 @@ public class WebGLGrab : MonoBehaviour
                 hit.collider.gameObject.GetComponent<RemoveGloves>().WebTakeOffGloves();
             else if (hit.collider.gameObject.GetComponent<DoorOpen>())
                 hit.collider.gameObject.GetComponent<DoorOpen>().ToggleOpen();
+            else if (hit.collider.gameObject.GetComponent<StopCockController>())
+                StopCockAdjuster(hit.collider.gameObject);
         }
 
         if (!ActiveItemsCanvas.Instance.isWearingGloves)
@@ -167,6 +167,13 @@ public class WebGLGrab : MonoBehaviour
             Vector3 touchPoint = hit.point;
             hygieneManager.AddPoint(touchPoint, hit.collider.gameObject);
         }
+    }
+
+    private void StopCockAdjuster(GameObject stopCock)
+    {
+        stopCock.GetComponent<StopCockController>().WebToggleHinge();
+
+        stopCock.GetComponentInParent<RotatingValveController>().CalculateFlow(stopCock.transform.localEulerAngles.z);
     }
 
     /// <summary>
