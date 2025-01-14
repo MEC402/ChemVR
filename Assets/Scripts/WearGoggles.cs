@@ -45,6 +45,15 @@ public class WearGoggles : MonoBehaviour
         return handRen.bounds.Intersects(itemRen.bounds);
     }
 
+    /// <summary>
+    /// This method is called from the WebGL build since the input system is different
+    /// </summary>
+    public void WebPutOn()
+    {
+        PutOn();
+        ActiveItemsCanvas.Instance.UpdateItemUI();
+    }
+
     private void PutOn()
     {
         wearing = true;

@@ -64,7 +64,7 @@ public class Answer_Phone : TaskStep
     }
     private void answer(InputAction.CallbackContext obj)
     {
-        if(holdingPhone)
+        if (holdingPhone)
         {
             FinishTaskStep();
         }

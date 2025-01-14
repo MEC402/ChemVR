@@ -1,5 +1,6 @@
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.XR.Interaction.Toolkit;
 
 public class WebGLGrab : MonoBehaviour
 {
@@ -9,9 +10,8 @@ public class WebGLGrab : MonoBehaviour
     [SerializeField] ObjectRotationController objectRotationController;
     [SerializeField] Transform holdPoint;
     [SerializeField] Image playerIcon;
-    [SerializeField] Sprite defaultIcon;
-    [SerializeField] Sprite openIcon;
-    [SerializeField] Sprite closedIcon;
+    [SerializeField] Sprite defaultIcon, openIcon, closedIcon, interactIcon;
+    XRBaseInteractable xrInteractable;
 
     [Header("Settings")]
     [Tooltip("How far away can the player grab objects using a raycast")]
@@ -96,7 +96,7 @@ public class WebGLGrab : MonoBehaviour
         if (Physics.Raycast(centerRay, out RaycastHit hit, grabRange))
         {
             if (((1 << hit.collider.gameObject.layer) & interactableLayer) != 0)
-                playerIcon.sprite = openIcon;
+                playerIcon.sprite = interactIcon;
             else if (((1 << hit.collider.gameObject.layer) & holdableLayer) != 0)
                 playerIcon.sprite = openIcon;
             else
@@ -129,6 +129,9 @@ public class WebGLGrab : MonoBehaviour
             // Parent the object to the hold point
             heldObject.SetParent(holdPoint);
 
+            xrInteractable = heldObject.GetComponent<XRBaseInteractable>();
+            xrInteractable.selectEntered.Invoke(new SelectEnterEventArgs());
+
             // Snap to hold point
             heldObject.position = holdPoint.position;
             heldObject.rotation = holdPoint.rotation;
@@ -136,6 +139,16 @@ public class WebGLGrab : MonoBehaviour
             objectRotationController.objectToRotate = heldObject;
 
             playerIcon.sprite = closedIcon;
+        }
+        else if (Physics.Raycast(centerRay, out hit, grabRange, interactableLayer))
+        {
+            // check if has WearGoogles script
+            if (hit.collider.gameObject.GetComponent<WearGoggles>())
+                hit.collider.gameObject.GetComponent<WearGoggles>().WebPutOn();
+            else if (hit.collider.gameObject.GetComponent<WearCoat>())
+                hit.collider.gameObject.GetComponent<WearCoat>().WebPutOn();
+            else if (hit.collider.gameObject.GetComponent<AddGloves>())
+                hit.collider.gameObject.GetComponent<AddGloves>().WebPutOnLeftGloves();
         }
     }
 
@@ -154,6 +167,10 @@ public class WebGLGrab : MonoBehaviour
 
         // Detach the object
         heldObject.SetParent(null);
+
+        xrInteractable = heldObject.GetComponent<XRBaseInteractable>();
+        xrInteractable.selectExited.Invoke(new SelectExitEventArgs());
+
         heldObject = null;
         isHoldingObject = false;
 

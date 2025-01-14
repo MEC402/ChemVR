@@ -80,4 +80,13 @@ public class AddGloves : MonoBehaviour
         GameEventsManager.instance.miscEvents.PutOnRightGlove();
         //Debug.Log("Right glove put on!");
     }
+
+    /// <summary>
+    /// This method is called from the WebGL build since the input system is different
+    /// </summary>
+    public void WebPutOnLeftGloves()
+    {
+        GameEventsManager.instance.miscEvents.PutOnLeftGlove();
+        GameEventsManager.instance.miscEvents.PutOnRightGlove();
+    }
 }
