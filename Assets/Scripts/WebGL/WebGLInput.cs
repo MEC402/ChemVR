@@ -15,6 +15,8 @@ public class WebGLInput : MonoBehaviour
     [SerializeField] private InputActionReference equip;
     [SerializeField] private InputActionReference rotate;
     [SerializeField] private InputActionReference rotation;
+    [SerializeField] private InputActionReference pause;
+    [SerializeField] private InputActionReference hideUI;
 
     public Vector2 movementInput;
     public Vector2 lookInput;
@@ -22,6 +24,8 @@ public class WebGLInput : MonoBehaviour
     public bool isInteracting = false;
     public bool isEquiping = false;
     public bool isRotating = false;
+    public bool isPaused = false;
+    public bool isHidingUI = false;
 
     public event Action OnInteractPressed;
     public event Action OnInteractReleased;
@@ -45,6 +49,12 @@ public class WebGLInput : MonoBehaviour
 
         rotation.action.performed += ctx => RotationHandler(ctx);
         rotation.action.canceled += ctx => RotationCanceledHandler(ctx);
+
+        pause.action.performed += ctx => PauseHandler(ctx);
+        pause.action.canceled += ctx => PauseCanceledHandler(ctx);
+
+        hideUI.action.performed += ctx => HideUIHandler(ctx);
+        hideUI.action.canceled += ctx => HideUICanceledHandler(ctx);
 
         MasterControlsEnable(); // Enable the player controls by default
     }
@@ -117,6 +127,26 @@ public class WebGLInput : MonoBehaviour
         rotationInput = Vector2.zero;
     }
 
+    private void PauseHandler(InputAction.CallbackContext ctx)
+    {
+        isPaused = true;
+    }
+
+    private void PauseCanceledHandler(InputAction.CallbackContext ctx)
+    {
+        isPaused = false;
+    }
+
+    private void HideUIHandler(InputAction.CallbackContext ctx)
+    {
+        isHidingUI = true;
+    }
+
+    private void HideUICanceledHandler(InputAction.CallbackContext ctx)
+    {
+        isHidingUI = false;
+    }
+
     #endregion
 
     #region Enable & Disable Actions
@@ -186,6 +216,25 @@ public class WebGLInput : MonoBehaviour
     public void RotationDisable()
     {
         rotation.action.Disable();
+    }
+    public void PauseEnable()
+    {
+        pause.action.Enable();
+    }
+
+    public void PauseDisable()
+    {
+        pause.action.Disable();
+    }
+
+    public void HideUIEnable()
+    {
+        hideUI.action.Enable();
+    }
+
+    public void HideUIDisable()
+    {
+        hideUI.action.Disable();
     }
     #endregion
 

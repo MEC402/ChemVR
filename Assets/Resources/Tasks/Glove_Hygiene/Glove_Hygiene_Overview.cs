@@ -32,8 +32,9 @@ public class Glove_Hygiene_Overview : MonoBehaviour
         taskPreper.Show();
         this.gameObject.GetComponent<ToggleTextSimple>().enabled = true;
         GameEventsManager.instance.taskEvents.StartTask("Glove_Hygiene_Task");
-        ghText.text = text[curStep];
 
+        // Updated to use WebGLText if isWebGLText is true
+        ghText.text = isWebGLText ? webGLText[curStep] : text[curStep];
     }
 
     void OnDisable()
@@ -66,7 +67,6 @@ public class Glove_Hygiene_Overview : MonoBehaviour
                     "The titration experiment is now complete. Please go to the trash to remove your gloves.\n\nHold your hands over the trash and press A/X",
                     "This completes the glove hygiene module. We will now display in red everything you touched while wearing possibly contaminated gloves.\n\n(Y Button) Hides Popup\n(Hamburger Button) Opens Menu"
                     };
-
 
     string[] webGLText = {"Before beginning the lab, find gloves, goggles, and a lab coat and put them on by grabbing them with (LeftClick/E).\n\nRemove gloves anytime by grabbing (LeftClick/E) the trashcan near the office door.\n\nRemember to take them off when you step away from the experiment!",
                     //"For this lab, bring the following to a table in the red zone / C zone:\n\nBeaker\nErlenmeyer flask with colorless solution\nErlenmeyer flask with blue solution", //disabled task step 2 (add to TaskInfoSO block and uncomment to undo)
@@ -101,7 +101,8 @@ public class Glove_Hygiene_Overview : MonoBehaviour
                 touchTracker.ShowPoints(true);
             }
 
-            ghText.text = text[curStep];
+            // Updated to use WebGLText if isWebGLText is true
+            ghText.text = isWebGLText ? webGLText[curStep] : text[curStep];
         }
     }
 
