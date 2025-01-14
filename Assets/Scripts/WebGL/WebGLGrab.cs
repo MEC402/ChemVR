@@ -142,7 +142,6 @@ public class WebGLGrab : MonoBehaviour
         }
         else if (Physics.Raycast(centerRay, out hit, grabRange, interactableLayer))
         {
-            // check if has WearGoogles script
             if (hit.collider.gameObject.GetComponent<WearGoggles>())
                 hit.collider.gameObject.GetComponent<WearGoggles>().WebPutOn();
             else if (hit.collider.gameObject.GetComponent<WearCoat>())

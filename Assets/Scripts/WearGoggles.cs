@@ -16,8 +16,12 @@ public class WearGoggles : MonoBehaviour
     void Start()
     {
         itemRen = itemToWear.GetComponent<Renderer>();
-        lHandRen = leftHand.GetComponent<Renderer>();
-        rHandRen = rightHand.GetComponent<Renderer>();
+
+        if (leftHand != null)
+            lHandRen = leftHand.GetComponent<Renderer>();
+        if (rightHand != null)
+            rHandRen = rightHand.GetComponent<Renderer>();
+
         wearing = false;
         GameEventsManager.instance.inputEvents.onAButtonPressed += OnAPress;
         GameEventsManager.instance.inputEvents.onXButtonPressed += OnXPress;
