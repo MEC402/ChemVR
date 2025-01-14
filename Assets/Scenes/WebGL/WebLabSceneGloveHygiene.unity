@@ -696,7 +696,7 @@ CapsuleCollider:
     m_Bits: 0
   m_ExcludeLayers:
     serializedVersion: 2
-    m_Bits: 384
+    m_Bits: 128
   m_LayerOverridePriority: 0
   m_IsTrigger: 0
   m_ProvidesContacts: 0
@@ -815,7 +815,7 @@ MonoBehaviour:
   maxSpeed: 8
   stoppingTime: 0.2
   mouseSensitivity: 0.5
-  cameraSmoothing: 0
+  cameraSmoothing: 2
 --- !u!54 &70497492
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -835,7 +835,7 @@ Rigidbody:
     m_Bits: 0
   m_ExcludeLayers:
     serializedVersion: 2
-    m_Bits: 384
+    m_Bits: 128
   m_ImplicitCom: 1
   m_ImplicitTensor: 1
   m_UseGravity: 1
@@ -856,6 +856,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   webGLInput: {fileID: 70497490}
+  hygieneManager: {fileID: 0}
   objectRotationController: {fileID: 70497494}
   holdPoint: {fileID: 523003886}
   playerIcon: {fileID: 1297210990}
@@ -20438,6 +20439,7 @@ MonoBehaviour:
   gloveText: {fileID: 1364479867}
   coatText: {fileID: 391851580}
   gogglesText: {fileID: 1959728569}
+  isWearingGloves: 0
 --- !u!4 &2019187313 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 7411255650055742142, guid: ccf93f817ba131147bee6fbb1cf24837, type: 3}
