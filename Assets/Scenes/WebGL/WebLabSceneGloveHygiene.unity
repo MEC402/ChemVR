@@ -788,15 +788,21 @@ MonoBehaviour:
   interact: {fileID: 6820056130358827072, guid: da562491873a375448041a9ca7646798, type: 3}
   move: {fileID: -342675598322913608, guid: da562491873a375448041a9ca7646798, type: 3}
   look: {fileID: 4860527609914223462, guid: da562491873a375448041a9ca7646798, type: 3}
-  equip: {fileID: 7353589523771268255, guid: da562491873a375448041a9ca7646798, type: 3}
+  use: {fileID: 7353589523771268255, guid: da562491873a375448041a9ca7646798, type: 3}
   rotate: {fileID: -4400591527193081719, guid: da562491873a375448041a9ca7646798, type: 3}
   rotation: {fileID: -6819946340727516480, guid: da562491873a375448041a9ca7646798, type: 3}
+  pause: {fileID: 5498102261439611447, guid: da562491873a375448041a9ca7646798, type: 3}
+  hideUI: {fileID: -7419458215580961819, guid: da562491873a375448041a9ca7646798, type: 3}
   movementInput: {x: 0, y: 0}
   lookInput: {x: 0, y: 0}
   rotationInput: {x: 0, y: 0}
   isInteracting: 0
-  isEquiping: 0
+  isUsing: 0
   isRotating: 0
+  isPaused: 0
+  isHidingUI: 0
+  helpMenu: {fileID: 428004540}
+  instructionsText: {fileID: 452079798}
 --- !u!114 &70497491
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1750,6 +1756,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   touchTracker: {fileID: 1314776725}
   ghText: {fileID: 254676455}
+  isWebGLText: 1
   taskPreper: {fileID: 159345239}
 --- !u!1 &180473767 stripped
 GameObject:
@@ -13633,6 +13640,10 @@ PrefabInstance:
       propertyPath: m_Layer
       value: 5
       objectReference: {fileID: 0}
+    - target: {fileID: 5007047026364763518, guid: fe6ec8034fc6e444591c1981b53c672c, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 5696696363137640412, guid: fe6ec8034fc6e444591c1981b53c672c, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
@@ -13723,7 +13734,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8892352905634341165, guid: fe6ec8034fc6e444591c1981b53c672c, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0.00000012644
+      value: 0.534
       objectReference: {fileID: 0}
     - target: {fileID: 8892352905634341165, guid: fe6ec8034fc6e444591c1981b53c672c, type: 3}
       propertyPath: m_LocalRotation.w
@@ -13743,11 +13754,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8892352905634341165, guid: fe6ec8034fc6e444591c1981b53c672c, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: -0.00000012644
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 8892352905634341165, guid: fe6ec8034fc6e444591c1981b53c672c, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 8892352905634341165, guid: fe6ec8034fc6e444591c1981b53c672c, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x

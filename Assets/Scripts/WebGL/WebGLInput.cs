@@ -12,7 +12,7 @@ public class WebGLInput : MonoBehaviour
     [SerializeField] private InputActionReference interact;
     [SerializeField] private InputActionReference move;
     [SerializeField] private InputActionReference look;
-    [SerializeField] private InputActionReference equip;
+    [SerializeField] private InputActionReference use;
     [SerializeField] private InputActionReference rotate;
     [SerializeField] private InputActionReference rotation;
     [SerializeField] private InputActionReference pause;
@@ -22,13 +22,16 @@ public class WebGLInput : MonoBehaviour
     public Vector2 lookInput;
     public Vector2 rotationInput;
     public bool isInteracting = false;
-    public bool isEquiping = false;
+    public bool isUsing = false;
     public bool isRotating = false;
     public bool isPaused = false;
     public bool isHidingUI = false;
 
     public event Action OnInteractPressed;
     public event Action OnInteractReleased;
+
+    [SerializeField] GameObject helpMenu;
+    [SerializeField] GameObject instructionsText;
 
     private void Awake()
     {
@@ -41,8 +44,8 @@ public class WebGLInput : MonoBehaviour
         interact.action.performed += ctx => InteractHandler(ctx);
         interact.action.canceled += ctx => InteractCanceledHandler(ctx);
 
-        equip.action.performed += ctx => EquipHandler(ctx);
-        equip.action.canceled += ctx => EquipCanceledHandler(ctx);
+        use.action.performed += ctx => UseHandler(ctx);
+        use.action.canceled += ctx => UseCanceledHandler(ctx);
 
         rotate.action.performed += ctx => RotateHandler(ctx);
         rotate.action.canceled += ctx => RotateCanceledHandler(ctx);
@@ -51,10 +54,8 @@ public class WebGLInput : MonoBehaviour
         rotation.action.canceled += ctx => RotationCanceledHandler(ctx);
 
         pause.action.performed += ctx => PauseHandler(ctx);
-        pause.action.canceled += ctx => PauseCanceledHandler(ctx);
 
         hideUI.action.performed += ctx => HideUIHandler(ctx);
-        hideUI.action.canceled += ctx => HideUICanceledHandler(ctx);
 
         MasterControlsEnable(); // Enable the player controls by default
     }
@@ -97,14 +98,14 @@ public class WebGLInput : MonoBehaviour
         isInteracting = true;   // Can pass this variable to another script that handels interaction that needs to know if the interact key is currently being passed
     }
 
-    private void EquipHandler(InputAction.CallbackContext ctx)
+    private void UseHandler(InputAction.CallbackContext ctx)
     {
-        isEquiping = true;
+        isUsing = true;
     }
 
-    private void EquipCanceledHandler(InputAction.CallbackContext ctx)
+    private void UseCanceledHandler(InputAction.CallbackContext ctx)
     {
-        isEquiping = false;
+        isUsing = false;
     }
 
     private void RotateHandler(InputAction.CallbackContext ctx)
@@ -129,26 +130,34 @@ public class WebGLInput : MonoBehaviour
 
     private void PauseHandler(InputAction.CallbackContext ctx)
     {
-        isPaused = true;
-    }
-
-    private void PauseCanceledHandler(InputAction.CallbackContext ctx)
-    {
-        isPaused = false;
+        isPaused = !isPaused; // Toggle the pause state
+        HandlePauseState();
     }
 
     private void HideUIHandler(InputAction.CallbackContext ctx)
     {
-        isHidingUI = true;
+        isHidingUI = !isHidingUI; // Toggle the UI visibility state
+        instructionsText.SetActive(!isHidingUI); // Set the UI active based on the state
     }
 
-    private void HideUICanceledHandler(InputAction.CallbackContext ctx)
+    #region Custom Methods
+    private void HandlePauseState()
     {
-        isHidingUI = false;
-    }
+        if (helpMenu != null)
+        {
+            helpMenu.SetActive(isPaused);
 
+            // Pause or resume the game
+            Time.timeScale = isPaused ? 0f : 1f;
+
+            // Unlock or lock the mouse cursor
+            Cursor.lockState = isPaused ? CursorLockMode.None : CursorLockMode.Locked;
+            Cursor.visible = isPaused;
+        }
+    }
     #endregion
 
+    #endregion
     #region Enable & Disable Actions
     public void MasterControlsEnable()
     {
@@ -189,14 +198,14 @@ public class WebGLInput : MonoBehaviour
         interact.action.Disable();
     }
 
-    public void EquipEnable()
+    public void UseEnable()
     {
-        equip.action.Enable();
+        use.action.Enable();
     }
 
-    public void EquipDisable()
+    public void UseDisable()
     {
-        equip.action.Disable();
+        use.action.Disable();
     }
     public void RotateEnable()
     {
