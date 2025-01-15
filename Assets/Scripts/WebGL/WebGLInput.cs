@@ -110,12 +110,13 @@ public class WebGLInput : MonoBehaviour
 
     private void RotateHandler(InputAction.CallbackContext ctx)
     {
-        isRotating = true;
+        // isRotating = true;
+        isRotating = !isRotating;
     }
 
     private void RotateCanceledHandler(InputAction.CallbackContext ctx)
     {
-        isRotating = false;
+        // isRotating = false;
     }
 
     private void RotationHandler(InputAction.CallbackContext ctx)

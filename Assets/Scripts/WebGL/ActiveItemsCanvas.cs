@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.UI;
 
 public class ActiveItemsCanvas : MonoBehaviour
 {
@@ -6,6 +7,8 @@ public class ActiveItemsCanvas : MonoBehaviour
     public static ActiveItemsCanvas Instance { get; private set; }
 
     [SerializeField] GameObject gloveText, coatText, gogglesText;
+    [SerializeField] Image interactIcon;
+    [SerializeField] Color noGloveColor, gloveColor;
 
     [HideInInspector] public bool isWearingGloves;
     #endregion
@@ -86,6 +89,11 @@ public class ActiveItemsCanvas : MonoBehaviour
         gogglesText.SetActive(WearGoggles.IsWearing());
         coatText.SetActive(WearCoat.IsWearing());
         gloveText.SetActive(isWearingGloves);
+
+        if (isWearingGloves)
+            interactIcon.color = gloveColor;
+        else
+            interactIcon.color = noGloveColor;
     }
     #endregion
 }
