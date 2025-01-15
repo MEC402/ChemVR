@@ -23,6 +23,24 @@ public class SettingsManager : MonoBehaviour
     public GameObject debugText;
 
 
+    void Awake()
+    {
+        //on awake the toggles should update to match current SO settings
+        if (locoOptions.snapTurn == true)
+        {
+            snapToggle.isOn = true;
+        }
+        if (locoOptions.smoothMove == true)
+        {
+            movementToggle.isOn = true;
+        }
+
+        if (locoOptions.turnSpeed > 0)
+        {
+            smoothTurnToggle.isOn = true;
+        }
+    }
+
     //script should translate toggles in scene to change settings on the player.
     //references the scriptable obj LocoOptions
     //LocoOptions changes the settings on the player w/ references to LocoManager script
@@ -30,12 +48,12 @@ public class SettingsManager : MonoBehaviour
     //TOGGLES THE MOVEMENT TYPE
     public void SetMovementType()
     {
-        if(movementToggle.isOn)
+        if (movementToggle.isOn)
         {
             locoOptions.SetSmoothMove(isSmoothMove);
             isSmoothMove = true;
         }
-        else if(!movementToggle.isOn)
+        else if (!movementToggle.isOn)
         {
             locoOptions.SetSmoothMove(!isSmoothMove);
             isSmoothMove = false;
@@ -48,7 +66,7 @@ public class SettingsManager : MonoBehaviour
     //toggles SnapTurn on and off
     public void SetSnapTurn()
     {
-        if(snapToggle.isOn)
+        if (snapToggle.isOn)
         {
             locoOptions.SetSnapTurn(isSnapTurn);
             isSnapTurn = true;
@@ -68,7 +86,7 @@ public class SettingsManager : MonoBehaviour
     //off should be set to value of 0
     public void SetTurnSpeed()
     {
-        if(smoothTurnToggle.isOn)
+        if (smoothTurnToggle.isOn)
         {
             locoOptions.SetTurnSpeed(30);
             isSmoothTurn = true;
