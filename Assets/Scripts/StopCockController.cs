@@ -5,6 +5,9 @@ public class StopCockController : MonoBehaviour
 {
     private Rigidbody rb;
     private XRGrabInteractable grabInteractable;
+
+    bool isLocked;
+
     private void Awake()
     {
         rb = GetComponent<Rigidbody>();
@@ -52,9 +55,15 @@ public class StopCockController : MonoBehaviour
 
     public void WebToggleHinge()
     {
-        if (rb.constraints == RigidbodyConstraints.FreezeRotation)
-            ReleaseHinge();
+        if (isLocked)
+        {
+            gameObject.transform.localEulerAngles = new Vector3(0, 0, 90);
+            isLocked = false;
+        }
         else
-            LockHinge();
+        {
+            gameObject.transform.localEulerAngles = new Vector3(0, 0, 0);
+            isLocked = true;
+        }
     }
 }
