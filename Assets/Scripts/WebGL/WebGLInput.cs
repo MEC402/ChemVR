@@ -28,6 +28,7 @@ public class WebGLInput : MonoBehaviour
 
     public event Action OnInteractPressed;
     public event Action OnInteractReleased;
+    public event Action OnPausePressed;
 
     [SerializeField] GameObject helpMenu;
     [SerializeField] GameObject instructionsText;
@@ -147,6 +148,8 @@ public class WebGLInput : MonoBehaviour
         if (helpMenu != null)
         {
             helpMenu.SetActive(isPaused);
+
+            OnPausePressed?.Invoke();
 
             // Pause or resume the game
             Time.timeScale = isPaused ? 0f : 1f;

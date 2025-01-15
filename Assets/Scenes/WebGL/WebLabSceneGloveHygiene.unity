@@ -10508,6 +10508,7 @@ GameObject:
   - component: {fileID: 996038098}
   - component: {fileID: 996038097}
   - component: {fileID: 996038096}
+  - component: {fileID: 996038099}
   m_Layer: 5
   m_Name: Interact Canvas
   m_TagString: Untagged
@@ -10598,6 +10599,23 @@ Canvas:
   m_SortingLayerID: 0
   m_SortingOrder: 0
   m_TargetDisplay: 0
+--- !u!114 &996038099
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 996038094}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 68b79de3c5a17854b9d8d3449f84e6d8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  input: {fileID: 70497490}
+  icons:
+  - {fileID: 1297210988}
+  - {fileID: 159345236}
+  - {fileID: 145493861}
 --- !u!4 &996482940 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 5978020935301256926, guid: 7df0184b585e00c48862a55c02d1c19c, type: 3}
