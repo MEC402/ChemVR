@@ -141,7 +141,7 @@ public class WebGLGrab : MonoBehaviour
 
             playerIcon.sprite = closedIcon;
         }
-        else if (Physics.Raycast(centerRay, out hit, grabRange, interactableLayer))
+        else if (Physics.Raycast(centerRay, out hit, grabRange, interactableLayer)) // Awful way to check for interactable objects, but it works for now
         {
             if (hit.collider.gameObject.GetComponent<WearGoggles>())
                 hit.collider.gameObject.GetComponent<WearGoggles>().WebPutOn();
@@ -169,6 +169,10 @@ public class WebGLGrab : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Adjusts the stop cock by toggling the hinge and flow.
+    /// </summary>
+    /// <param name="stopCock"></param>
     private void StopCockAdjuster(GameObject stopCock)
     {
         stopCock.GetComponent<StopCockController>().WebToggleHinge();
