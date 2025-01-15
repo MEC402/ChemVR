@@ -68,24 +68,29 @@ public class LocoManager : MonoBehaviour
         if (turnProvider != null)
         {
             turnProvider.turnSpeed = locoOptions.turnSpeed;
+            //sets smooth turn speed
         }
 
         var snapTurnProvider = turn.GetComponent<SnapTurnProviderBase>();
         if (snapTurnProvider != null)
         {
             snapTurnProvider.turnAmount = locoOptions.snapTurnAmount;
+            //sets snap turn amount
         }
 
         var rightInputManager = rightController.GetComponent<ActionBasedControllerManager>();
         if (rightInputManager != null)
         {
             rightInputManager.smoothTurnEnabled = !locoOptions.snapTurn;
+            //enables smoothTurn on the right controller
+            //do we need a case to disable smooth turn on the left controller?
         }
 
         var moveProvider = move.GetComponent<DynamicMoveProvider>();
         if (moveProvider != null)
         {
             moveProvider.moveSpeed = locoOptions.moveSpeed;
+            //sets the move/walk speed value
         }
 
         var leftInputManager = leftController.GetComponent<ContinuousMoveProviderBase>();

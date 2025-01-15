@@ -23,13 +23,14 @@ public class LocoOptions : ScriptableObject
     {
         snapTurn = !snapTurn;
         NotifyValuesChanged();
+        //left controller should have smooth turn enabled by default, right have snap by default
     }
 
-    public void SetVignette(bool value)
+   /* public void SetVignette(bool value)
     {
         vignette = !vignette;
         NotifyValuesChanged();
-    }
+    }*/
 
     public void SetSmoothMove(bool value)
     {
@@ -44,14 +45,19 @@ public class LocoOptions : ScriptableObject
     {
         turnSpeed = value;
         NotifyValuesChanged();
+        //this sets the value for smooth turn
+        //20 is standard, 0 should be used for when snap turn is enabled
     }
 
+    //this is the value that should be changed to enable/disable snap turn
+    //45 is standard value
     public void SetSnapTurnAmount(float value)
     {
         snapTurnAmount = value;
         NotifyValuesChanged();
     }
 
+    
     public void SetMoveSpeed(float value)
     {
         moveSpeed = value;
