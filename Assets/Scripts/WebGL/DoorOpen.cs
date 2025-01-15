@@ -3,21 +3,33 @@ using UnityEngine;
 
 public class DoorOpen : MonoBehaviour
 {
+    #region Variables
+    [Header("References")]
     [SerializeField] bool movePos;
+
+    [Header("Settings")]
     [SerializeField] Vector3 openPos;
     [SerializeField] float rotationAngle;
     [SerializeField] float openSpeed = 1.5f;
+
     Vector3 startingPos;
     float startingRot;
 
     bool isOpen;
+    #endregion
 
+    #region Unity Methods
     private void Start()
     {
         startingPos = transform.position;
         startingRot = transform.rotation.eulerAngles.y;
     }
+    #endregion
 
+    #region Custom Methods
+    /// <summary>
+    /// Toggles the door open and closed.
+    /// </summary>
     public void ToggleOpen()
     {
         StopAllCoroutines();
@@ -30,6 +42,11 @@ public class DoorOpen : MonoBehaviour
         isOpen = !isOpen;
     }
 
+    /// <summary>
+    /// Moves the door to the target position. If movePos is true, the door will move to the target position. If movePos is false, the door will rotate to the target position.
+    /// </summary>
+    /// <param name="targetPos">The position to move the door to.</param>
+    /// <returns></returns>
     IEnumerator MoveDoor(Vector3 targetPos)
     {
         if (movePos)
@@ -51,4 +68,5 @@ public class DoorOpen : MonoBehaviour
             }
         }
     }
+    #endregion
 }
