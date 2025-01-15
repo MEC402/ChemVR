@@ -565,6 +565,7 @@ GameObject:
   - component: {fileID: 398339011}
   - component: {fileID: 398339010}
   - component: {fileID: 398339009}
+  - component: {fileID: 398339016}
   m_Layer: 5
   m_Name: Settings
   m_TagString: Untagged
@@ -725,6 +726,23 @@ Canvas:
   m_SortingLayerID: 0
   m_SortingOrder: 0
   m_TargetDisplay: 0
+--- !u!114 &398339016
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 398339007}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 79a5da43c71630f4398165a116a07c62, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  movementToggle: {fileID: 1860442207}
+  snapToggle: {fileID: 1310271084}
+  smoothTurnToggle: {fileID: 1663056789}
+  locoOptions: {fileID: 11400000, guid: e79b10489deaafd4f9fa205adbf7c33a, type: 2}
+  debugText: {fileID: 1688157108}
 --- !u!1 &559925678
 GameObject:
   m_ObjectHideFlags: 0
@@ -1756,9 +1774,9 @@ MonoBehaviour:
   onValueChanged:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: DevOpsManager, Assembly-CSharp
-        m_MethodName: 
+      - m_Target: {fileID: 398339016}
+        m_TargetAssemblyTypeName: SettingsManager, Assembly-CSharp
+        m_MethodName: SetSnapTurn
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -2375,9 +2393,9 @@ MonoBehaviour:
   onValueChanged:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: DevOpsManager, Assembly-CSharp
-        m_MethodName: 
+      - m_Target: {fileID: 398339016}
+        m_TargetAssemblyTypeName: SettingsManager, Assembly-CSharp
+        m_MethodName: SetTurnSpeed
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -2792,7 +2810,6 @@ GameObject:
   m_Component:
   - component: {fileID: 1860442206}
   - component: {fileID: 1860442207}
-  - component: {fileID: 1860442208}
   m_Layer: 5
   m_Name: SmoothMove_Toggle
   m_TagString: Untagged
@@ -2868,7 +2885,7 @@ MonoBehaviour:
   onValueChanged:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1860442208}
+      - m_Target: {fileID: 398339016}
         m_TargetAssemblyTypeName: SettingsManager, Assembly-CSharp
         m_MethodName: SetMovementType
         m_Mode: 1
@@ -2881,21 +2898,6 @@ MonoBehaviour:
           m_BoolArgument: 0
         m_CallState: 2
   m_IsOn: 0
---- !u!114 &1860442208
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1860442205}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 79a5da43c71630f4398165a116a07c62, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  movementToggle: {fileID: 1860442207}
-  locoOptions: {fileID: 11400000, guid: e79b10489deaafd4f9fa205adbf7c33a, type: 2}
-  debugText: {fileID: 1688157108}
 --- !u!1 &1877485129
 GameObject:
   m_ObjectHideFlags: 0
