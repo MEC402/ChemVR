@@ -47,24 +47,24 @@ public class Answer_Phone : TaskStep
     private void OnGrab(SelectEnterEventArgs arg0)
     {
         //Debug.LogWarning(arg0.interactableObject);
-        if (arg0.interactableObject.Equals(phone.GetComponent<IXRSelectInteractable>()))
-        {
-            //Debug.LogWarning("Picked up phone");
-            holdingPhone = true;
-        }
+        // if (arg0.interactableObject.Equals(phone.GetComponent<IXRSelectInteractable>()))
+        // {
+        //Debug.LogWarning("Picked up phone");
+        holdingPhone = true;
+        // }
     }
     private void OnRelease(SelectExitEventArgs arg0)
     {
         //Debug.LogWarning(arg0.interactableObject);
-        if (arg0.interactableObject.Equals(phone.GetComponent<IXRSelectInteractable>()))
-        {
-            //Debug.LogWarning("Put down phone");
-            holdingPhone = false;
-        }
+        // if (arg0.interactableObject.Equals(phone.GetComponent<IXRSelectInteractable>()))
+        // {
+        //Debug.LogWarning("Put down phone");
+        holdingPhone = false;
+        // }
     }
     private void answer(InputAction.CallbackContext obj)
     {
-        if(holdingPhone)
+        if (holdingPhone)
         {
             FinishTaskStep();
         }

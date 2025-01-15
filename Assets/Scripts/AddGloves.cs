@@ -19,7 +19,8 @@ public class AddGloves : MonoBehaviour
         // Get and store the original material
         leftIsTouching = false;
         rightIsTouching = false;
-        original = rightHand.GetComponent<SkinnedMeshRenderer>().material;
+        if (rightHand != null)
+            original = rightHand.GetComponent<SkinnedMeshRenderer>().material;
     }
     private void OnEnable()
     {
@@ -79,5 +80,14 @@ public class AddGloves : MonoBehaviour
         rightHand.GetComponent<SkinnedMeshRenderer>().material = gloves;
         GameEventsManager.instance.miscEvents.PutOnRightGlove();
         //Debug.Log("Right glove put on!");
+    }
+
+    /// <summary>
+    /// This method is called from the WebGL build since the input system is different
+    /// </summary>
+    public void WebPutOnLeftGloves()
+    {
+        GameEventsManager.instance.miscEvents.PutOnLeftGlove();
+        GameEventsManager.instance.miscEvents.PutOnRightGlove();
     }
 }

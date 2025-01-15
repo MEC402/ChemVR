@@ -10,7 +10,7 @@ public abstract class WearItem : MonoBehaviour
     public GameObject itemToWear;
     private GameObject leftHand;
     private GameObject rightHand;
-    static private bool wearing; 
+    static private bool wearing;
     // Start is called before the first frame update
     private void OnXPress(InputAction.CallbackContext obj)
     {
@@ -29,6 +29,11 @@ public abstract class WearItem : MonoBehaviour
             PutOn();
         }
     }
+
+    /// <summary>
+    /// This method is called from the WebGL build since the input system is different
+    /// </summary>
+    public void WebPutOn() => PutOn();
 
     private void PutOn()
     {

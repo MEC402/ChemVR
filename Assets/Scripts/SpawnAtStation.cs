@@ -18,7 +18,7 @@ public class SpawnAtStation : MonoBehaviour
         mainCamera = GameObject.Find("XR Origin (XR Rig)");
         if (mainCamera == null)
         {
-            Debug.LogError("Main Camera not set.");
+            mainCamera = Camera.main.gameObject;
         }
 
         //Set the gameobject for each teleport location
@@ -49,7 +49,7 @@ public class SpawnAtStation : MonoBehaviour
         else if (obj.ToLower().Contains("gla"))
         {
             //Teleport to where you start glassware use module
-            SceneManager.LoadScene("LabSceneGlasswareUse"); 
+            SceneManager.LoadScene("LabSceneGlasswareUse");
             //mainCamera.transform.SetPositionAndRotation(glasswarePos.transform.position, glasswarePos.transform.rotation);
         }
         else if (obj.ToLower().Contains("tut"))

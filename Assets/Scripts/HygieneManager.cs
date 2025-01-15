@@ -24,13 +24,13 @@ public class HygieneManager : MonoBehaviour
     private void Update()
     {
         ShowPoints(showPoints);
-    } 
+    }
 
     public void AddPoint(Vector3 point, GameObject gameObject)
     {
         if (trackPoints)
-        { 
-            if(gameObject.name.Contains("XR Origin (XR Rig)"))
+        {
+            if (gameObject.name.Contains("XR Origin (XR Rig)") || gameObject.CompareTag("Player"))
             {
                 // Ensure that you do not attach chemical sphere's to your XR Origin collider
                 return;
@@ -60,10 +60,11 @@ public class HygieneManager : MonoBehaviour
     public void ShowPoints(bool toggle)
     {
         showPoints = toggle;
-        if(toggle)
+        if (toggle)
         {
             GameEventsManager.instance.partEvents.ShowParticles();
-        } else
+        }
+        else
         {
             GameEventsManager.instance.partEvents.HideParticles();
         }
