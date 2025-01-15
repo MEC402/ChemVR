@@ -29,15 +29,18 @@ public class SettingsManager : MonoBehaviour
         if (locoOptions.snapTurn == true)
         {
             snapToggle.isOn = true;
+            SetSnapTurn();
         }
         if (locoOptions.smoothMove == true)
         {
             movementToggle.isOn = true;
+            SetMovementType();
         }
 
         if (locoOptions.turnSpeed > 0)
         {
             smoothTurnToggle.isOn = true;
+            SetTurnSpeed();
         }
     }
 
