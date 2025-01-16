@@ -60,7 +60,7 @@ public class WebGLGrab : MonoBehaviour
     }
     #endregion
 
-    #region Custom Methods
+    #region Input Handling
     /// <summary>
     /// Called once when the Interact button is pressed.
     /// </summary>
@@ -79,7 +79,9 @@ public class WebGLGrab : MonoBehaviour
     {
         //TODO: Implement if needed
     }
+    #endregion
 
+    #region Interaction Logic
     /// <summary>
     /// Checks if there's an interactable or holdable object in front of the player and updates the UI icon accordingly.
     /// </summary>
@@ -146,6 +148,43 @@ public class WebGLGrab : MonoBehaviour
     }
 
     /// <summary>
+    /// Called once when the interact button is pressed and if we are already holding an object.
+    /// </summary>
+    private void AttemptRelease()
+    {
+        // if (!isHoldingObject || heldObject == null || webGLInput.isRotating) return;
+        if (!isHoldingObject || heldObject == null) return;
+
+        if (webGLInput.isRotating)
+        {
+            webGLInput.isRotating = false;
+
+            webGLInput.LookEnable();
+            webGLInput.MoveEnable();
+        }
+
+        // Enable physics back on the held object
+        if (heldObject.TryGetComponent<Rigidbody>(out var rb))
+            rb.isKinematic = false;
+
+        // Detach the object
+        heldObject.SetParent(null);
+
+        if (heldObject.TryGetComponent(out XRBaseInteractable xrInteractable))
+            xrInteractable.selectExited.Invoke(new SelectExitEventArgs());
+
+        heldObject = null;
+        isHoldingObject = false;
+
+        objectRotationController.objectToRotate = null;
+
+        // Update the icon
+        playerIcon.sprite = defaultIcon;
+    }
+    #endregion
+
+    #region Object Handling
+    /// <summary>
     /// Processes a holdable object once confirmed it's valid.
     /// </summary>
     /// <param name="hit">The RaycastHit from the raycast.</param>
@@ -183,7 +222,6 @@ public class WebGLGrab : MonoBehaviour
     private void ProcessInteractableObject(RaycastHit hit)
     {
         var hitObject = hit.collider.gameObject;
-
         if (hitObject.TryGetComponent(out WearGoggles wearGoggles))
             wearGoggles.WebPutOn();
         else if (hitObject.TryGetComponent(out WearCoat wearCoat))
@@ -196,7 +234,7 @@ public class WebGLGrab : MonoBehaviour
             removeGloves.WebTakeOffGloves();
         else if (hitObject.TryGetComponent(out DoorOpen doorOpen))
             doorOpen.ToggleOpen();
-        else if (hitObject.TryGetComponent(out StopCockController stopCockController))
+        else if (hitObject.TryGetComponent(out StopCockController _))
             StopCockAdjuster(hitObject);
     }
 
@@ -210,41 +248,6 @@ public class WebGLGrab : MonoBehaviour
         stopCock.GetComponent<StopCockController>().WebToggleHinge();
 
         stopCock.GetComponentInParent<RotatingValveController>().CalculateFlow(stopCock.transform.localEulerAngles.z);
-    }
-
-    /// <summary>
-    /// Called once when the interact button is pressed and if we are already holding an object.
-    /// </summary>
-    private void AttemptRelease()
-    {
-        // if (!isHoldingObject || heldObject == null || webGLInput.isRotating) return;
-        if (!isHoldingObject || heldObject == null) return;
-
-        if (webGLInput.isRotating)
-        {
-            webGLInput.isRotating = false;
-
-            webGLInput.LookEnable();
-            webGLInput.MoveEnable();
-        }
-
-        // Enable physics back on the held object
-        if (heldObject.TryGetComponent<Rigidbody>(out var rb))
-            rb.isKinematic = false;
-
-        // Detach the object
-        heldObject.SetParent(null);
-
-        if (heldObject.TryGetComponent(out XRBaseInteractable xrInteractable))
-            xrInteractable.selectExited.Invoke(new SelectExitEventArgs());
-
-        heldObject = null;
-        isHoldingObject = false;
-
-        objectRotationController.objectToRotate = null;
-
-        // Update the icon
-        playerIcon.sprite = defaultIcon;
     }
 
     /// <summary>
