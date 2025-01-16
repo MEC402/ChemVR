@@ -113,7 +113,7 @@ public class WebGLGrab : MonoBehaviour
     /// </summary>
     private void AttemptGrab()
     {
-        if (!mainCamera) return;
+        if (!mainCamera || webGLInput.isPaused) return;
 
         // Fire a ray from the center of the screen
         centerRay = mainCamera.ScreenPointToRay(new Vector2(Screen.width / 2f, Screen.height / 2f));
