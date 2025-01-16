@@ -96,6 +96,8 @@ public class WebGLGrab : MonoBehaviour
 
         if (Physics.Raycast(centerRay, out RaycastHit hit, grabRange))
         {
+            Debug.Log($"Hit object: {hit.collider.gameObject.name}, Layer: {hit.collider.gameObject.layer}");
+
             if (((1 << hit.collider.gameObject.layer) & interactableLayer) != 0)
                 playerIcon.sprite = interactIcon;
             else if (((1 << hit.collider.gameObject.layer) & holdableLayer) != 0)
@@ -172,7 +174,7 @@ public class WebGLGrab : MonoBehaviour
     /// <summary>
     /// Adjusts the stop cock by toggling the hinge and flow.
     /// </summary>
-    /// <param name="stopCock"></param>
+    /// <param name="stopCock">The stop cock to adjust</param>
     private void StopCockAdjuster(GameObject stopCock)
     {
         stopCock.GetComponent<StopCockController>().WebToggleHinge();
