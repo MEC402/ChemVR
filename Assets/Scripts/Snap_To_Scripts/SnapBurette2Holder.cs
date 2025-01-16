@@ -5,6 +5,7 @@ using UnityEngine.XR.Interaction.Toolkit;
 
 public class SnapBurette2Holder : MonoBehaviour
 {
+    DisableHoldable disableHoldable;
     private XRGrabInteractable grabInteractable;
     private Rigidbody myRb;
     private bool touching;
@@ -26,6 +27,7 @@ public class SnapBurette2Holder : MonoBehaviour
         Quaternion newRotation = holder.transform.rotation * additionalRotation;
         this.transform.SetPositionAndRotation(holder.transform.position, newRotation);
         this.transform.Translate(new Vector3(0.0504f, 0.531f, 0));
+        disableHoldable.Disable();
     }
     void OnEnable()
     {
@@ -37,6 +39,9 @@ public class SnapBurette2Holder : MonoBehaviour
         myRb = GetComponent<Rigidbody>();
         grabInteractable = this.GetComponent<XRGrabInteractable>();
         Rigidbody[] rbList = this.gameObject.GetComponentsInChildren<Rigidbody>();
+
+        disableHoldable = GetComponent<DisableHoldable>();
+
         //Find the rigidbody of the stopcock
         foreach (Rigidbody rb in rbList)
         {
@@ -82,7 +87,7 @@ public class SnapBurette2Holder : MonoBehaviour
     }
     private void OnGrab(SelectEnterEventArgs arg0)
     {
-        if(snap)
+        if (snap)
         {
             snap = false;
             stopcockRb.isKinematic = false;

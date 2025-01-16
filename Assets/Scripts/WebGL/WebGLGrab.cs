@@ -12,7 +12,6 @@ public class WebGLGrab : MonoBehaviour
     [SerializeField] Transform holdPoint;
     [SerializeField] Image playerIcon;
     [SerializeField] Sprite defaultIcon, openIcon, closedIcon, interactIcon;
-    XRBaseInteractable xrInteractable;
 
     [Header("Settings")]
     [Tooltip("How far away can the player grab objects using a raycast")]
@@ -61,7 +60,7 @@ public class WebGLGrab : MonoBehaviour
     }
     #endregion
 
-    #region Custom Methods
+    #region Input Handling
     /// <summary>
     /// Called once when the Interact button is pressed.
     /// </summary>
@@ -80,7 +79,9 @@ public class WebGLGrab : MonoBehaviour
     {
         //TODO: Implement if needed
     }
+    #endregion
 
+    #region Interaction Logic
     /// <summary>
     /// Checks if there's an interactable or holdable object in front of the player and updates the UI icon accordingly.
     /// </summary>
@@ -94,7 +95,7 @@ public class WebGLGrab : MonoBehaviour
         // Create a ray from the center of the screen
         centerRay = mainCamera.ScreenPointToRay(new Vector2(Screen.width / 2f, Screen.height / 2f));
 
-        if (Physics.Raycast(centerRay, out RaycastHit hit, grabRange))
+        if (Physics.Raycast(centerRay, out RaycastHit hit, grabRange, ~0, QueryTriggerInteraction.Ignore))
         {
             if (((1 << hit.collider.gameObject.layer) & interactableLayer) != 0)
                 playerIcon.sprite = interactIcon;
@@ -111,73 +112,39 @@ public class WebGLGrab : MonoBehaviour
     /// </summary>
     private void AttemptGrab()
     {
-        if (!mainCamera) return;
+        if (!mainCamera || webGLInput.isPaused) return;
 
         // Fire a ray from the center of the screen
         centerRay = mainCamera.ScreenPointToRay(new Vector2(Screen.width / 2f, Screen.height / 2f));
 
-        // Check if we hit a holdable object
-        if (Physics.Raycast(centerRay, out RaycastHit hit, grabRange, holdableLayer))
+        RaycastHit hit; // Store the hit object
+
+        // Hygiene check if gloves are worn
+        if (ActiveItemsCanvas.Instance.isWearingGloves)
         {
-            heldObject = hit.collider.transform;
-            isHoldingObject = true;
-
-            Rigidbody rb = heldObject.GetComponent<Rigidbody>();
-
-            if (rb != null)
-                rb.isKinematic = true;  // Disable physics while holding
-
-            // Parent the object to the hold point
-            heldObject.SetParent(holdPoint);
-
-            xrInteractable = heldObject.GetComponent<XRBaseInteractable>();
-            xrInteractable.selectEntered.Invoke(new SelectEnterEventArgs());
-
-            // Snap to hold point
-            heldObject.position = holdPoint.position;
-            heldObject.rotation = holdPoint.rotation;
-
-            objectRotationController.objectToRotate = heldObject;
-
-            playerIcon.sprite = closedIcon;
-        }
-        else if (Physics.Raycast(centerRay, out hit, grabRange, interactableLayer)) // Awful way to check for interactable objects, but it works for now
-        {
-            if (hit.collider.gameObject.GetComponent<WearGoggles>())
-                hit.collider.gameObject.GetComponent<WearGoggles>().WebPutOn();
-            else if (hit.collider.gameObject.GetComponent<WearCoat>())
-                hit.collider.gameObject.GetComponent<WearCoat>().WebPutOn();
-            else if (hit.collider.gameObject.GetComponent<AddGloves>())
-                hit.collider.gameObject.GetComponent<AddGloves>().WebPutOnLeftGloves();
-            else if (hit.collider.gameObject.GetComponent<PrinterSlap>())
-                GameEventsManager.instance.miscEvents.PrinterSlap();
-            else if (hit.collider.gameObject.GetComponent<RemoveGloves>())
-                hit.collider.gameObject.GetComponent<RemoveGloves>().WebTakeOffGloves();
-            else if (hit.collider.gameObject.GetComponent<DoorOpen>())
-                hit.collider.gameObject.GetComponent<DoorOpen>().ToggleOpen();
-            else if (hit.collider.gameObject.GetComponent<StopCockController>())
-                StopCockAdjuster(hit.collider.gameObject);
+            if (Physics.Raycast(centerRay, out hit, grabRange, ~0, QueryTriggerInteraction.Ignore))
+            {
+                Vector3 touchPoint = hit.point;
+                hygieneManager.AddPoint(touchPoint, hit.collider.gameObject);
+            }
         }
 
-        if (!ActiveItemsCanvas.Instance.isWearingGloves)
-            return;
-
-        if (Physics.Raycast(centerRay, out hit, grabRange))
+        if (Physics.Raycast(centerRay, out hit, grabRange, ~0, QueryTriggerInteraction.Ignore))
         {
-            Vector3 touchPoint = hit.point;
-            hygieneManager.AddPoint(touchPoint, hit.collider.gameObject);
+            // Check if the hit object is in the holdable layer
+            if (((1 << hit.collider.gameObject.layer) & holdableLayer) != 0)
+            {
+                ProcessHoldableObject(hit);
+                return;
+            }
+
+            // Check if the hit object is in the interactable layer
+            if (((1 << hit.collider.gameObject.layer) & interactableLayer) != 0)
+            {
+                ProcessInteractableObject(hit);
+                return;
+            }
         }
-    }
-
-    /// <summary>
-    /// Adjusts the stop cock by toggling the hinge and flow.
-    /// </summary>
-    /// <param name="stopCock"></param>
-    private void StopCockAdjuster(GameObject stopCock)
-    {
-        stopCock.GetComponent<StopCockController>().WebToggleHinge();
-
-        stopCock.GetComponentInParent<RotatingValveController>().CalculateFlow(stopCock.transform.localEulerAngles.z);
     }
 
     /// <summary>
@@ -185,19 +152,26 @@ public class WebGLGrab : MonoBehaviour
     /// </summary>
     private void AttemptRelease()
     {
-        if (!isHoldingObject || heldObject == null || webGLInput.isRotating) return;
+        // if (!isHoldingObject || heldObject == null || webGLInput.isRotating) return;
+        if (!isHoldingObject || heldObject == null) return;
+
+        if (webGLInput.isRotating)
+        {
+            webGLInput.isRotating = false;
+
+            webGLInput.LookEnable();
+            webGLInput.MoveEnable();
+        }
 
         // Enable physics back on the held object
-        Rigidbody rb = heldObject.GetComponent<Rigidbody>();
-
-        if (rb != null)
+        if (heldObject.TryGetComponent<Rigidbody>(out var rb))
             rb.isKinematic = false;
 
         // Detach the object
         heldObject.SetParent(null);
 
-        xrInteractable = heldObject.GetComponent<XRBaseInteractable>();
-        xrInteractable.selectExited.Invoke(new SelectExitEventArgs());
+        if (heldObject.TryGetComponent(out XRBaseInteractable xrInteractable))
+            xrInteractable.selectExited.Invoke(new SelectExitEventArgs());
 
         heldObject = null;
         isHoldingObject = false;
@@ -206,6 +180,73 @@ public class WebGLGrab : MonoBehaviour
 
         // Update the icon
         playerIcon.sprite = defaultIcon;
+    }
+    #endregion
+
+    #region Object Handling
+    /// <summary>
+    /// Processes a holdable object once confirmed it's valid.
+    /// </summary>
+    /// <param name="hit">The RaycastHit from the raycast.</param>
+    private void ProcessHoldableObject(RaycastHit hit)
+    {
+        heldObject = hit.collider.transform;
+        isHoldingObject = true;
+
+        if (heldObject.TryGetComponent<Rigidbody>(out var rb))
+        {
+            // Disable any object rotation/force
+            rb.angularVelocity = Vector3.zero;
+            rb.velocity = Vector3.zero;
+
+            rb.isKinematic = true; // Disable physics while holding
+        }
+
+        // Parent the object to the hold point
+        heldObject.SetParent(holdPoint);
+
+        if (heldObject.TryGetComponent(out XRBaseInteractable xrInteractable))
+            xrInteractable.selectEntered.Invoke(new SelectEnterEventArgs());
+
+        // Snap to hold point
+        heldObject.SetPositionAndRotation(holdPoint.position, holdPoint.rotation);
+        objectRotationController.objectToRotate = heldObject;
+
+        playerIcon.sprite = closedIcon;
+    }
+
+    /// <summary>
+    /// Processes an interactable object once confirmed it's valid.
+    /// </summary>
+    /// <param name="hit">The RaycastHit from the raycast.</param>
+    private void ProcessInteractableObject(RaycastHit hit)
+    {
+        var hitObject = hit.collider.gameObject;
+        if (hitObject.TryGetComponent(out WearGoggles wearGoggles))
+            wearGoggles.WebPutOn();
+        else if (hitObject.TryGetComponent(out WearCoat wearCoat))
+            wearCoat.WebPutOn();
+        else if (hitObject.TryGetComponent(out AddGloves addGloves))
+            addGloves.WebPutOnLeftGloves();
+        else if (hitObject.TryGetComponent(out PrinterSlap _))
+            GameEventsManager.instance.miscEvents.PrinterSlap();
+        else if (hitObject.TryGetComponent(out RemoveGloves removeGloves))
+            removeGloves.WebTakeOffGloves();
+        else if (hitObject.TryGetComponent(out DoorOpen doorOpen))
+            doorOpen.ToggleOpen();
+        else if (hitObject.TryGetComponent(out StopCockController stopCockController))
+            StopCockAdjuster(stopCockController);
+    }
+
+    /// <summary>
+    /// Adjusts the stop cock by toggling the hinge and flow.
+    /// </summary>
+    /// <param name="stopCock">The stop cock to adjust</param>
+    private void StopCockAdjuster(StopCockController stopCock)
+    {
+        stopCock.GetComponent<StopCockController>().WebToggleHinge();
+
+        stopCock.GetComponentInParent<RotatingValveController>().CalculateFlow(stopCock.transform.localEulerAngles.z);
     }
 
     /// <summary>

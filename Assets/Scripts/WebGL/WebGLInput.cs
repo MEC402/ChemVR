@@ -132,8 +132,7 @@ public class WebGLInput : MonoBehaviour
 
     private void PauseHandler(InputAction.CallbackContext ctx)
     {
-        isPaused = !isPaused; // Toggle the pause state
-        HandlePauseState();
+        TogglePause();
     }
 
     private void HideUIHandler(InputAction.CallbackContext ctx)
@@ -143,6 +142,12 @@ public class WebGLInput : MonoBehaviour
     }
 
     #region Custom Methods
+    public void TogglePause()
+    {
+        isPaused = !isPaused;
+        HandlePauseState();
+    }
+
     private void HandlePauseState()
     {
         if (helpMenu != null)

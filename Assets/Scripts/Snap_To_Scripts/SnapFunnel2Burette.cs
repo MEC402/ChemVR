@@ -6,6 +6,7 @@ using UnityEngine.XR.Interaction.Toolkit;
 
 public class SnapFunnel2Burette : MonoBehaviour
 {
+    DisableHoldable disableHoldable; //DisableHoldable script attached to gameObject
     private XRGrabInteractable grabInteractable; //XRGrabInteractable of attached gameObject
     private Rigidbody myRb; //Rigidbody of attached gameObject
     private bool touching; //is this collider touching a buret collieder?
@@ -25,13 +26,13 @@ public class SnapFunnel2Burette : MonoBehaviour
         else if (snap)
         {
             SetPositionToBuret();
-        } 
+        }
     }
 
     void OnEnable()
     {
         //Initialize
-        touching = false; 
+        touching = false;
         snap = false;
         buretsnap = false;
         isGrabbed = false;
@@ -39,6 +40,7 @@ public class SnapFunnel2Burette : MonoBehaviour
         //get components
         myRb = GetComponent<Rigidbody>();
         grabInteractable = this.GetComponent<XRGrabInteractable>();
+        disableHoldable = GetComponent<DisableHoldable>();
 
         //Initialize grab interactable for listening
         if (grabInteractable == null)
@@ -61,6 +63,8 @@ public class SnapFunnel2Burette : MonoBehaviour
         Quaternion newRotation = buret.transform.rotation * additionalRotation;
         this.transform.SetPositionAndRotation(buret.transform.position, newRotation);
         this.transform.Translate(OGfunnelTranslation);
+
+        disableHoldable.Disable();
     }
     private void SetPositionToStand()
     {
@@ -76,7 +80,7 @@ public class SnapFunnel2Burette : MonoBehaviour
     }
     private void OnHolder(GameObject buret, GameObject holder)
     {
-        if(snap && (buret == this.buret))
+        if (snap && (buret == this.buret))
         {
             buretsnap = true;
             stand = holder;
@@ -85,7 +89,7 @@ public class SnapFunnel2Burette : MonoBehaviour
     }
     private void OffHolder(GameObject buret, GameObject holder)
     {
-        if(snap && (buret == this.buret))
+        if (snap && (buret == this.buret))
         {
             buretsnap = false;
             stand = null;
@@ -128,10 +132,11 @@ public class SnapFunnel2Burette : MonoBehaviour
         if (other.name.Contains("urette"))
         {
             touching = false;
-            if(isGrabbed)
+            if (isGrabbed)
             {
                 LetGo();
-            } else if (snap)
+            }
+            else if (snap)
             {
                 SetPositionToBuret();
             }
@@ -158,7 +163,8 @@ public class SnapFunnel2Burette : MonoBehaviour
                 SetPositionToStand();
             }
             GameEventsManager.instance.miscEvents.FunnelSnaptoBuret(this.gameObject, buret);
-        } else
+        }
+        else
         {
             LetGo();
         }
