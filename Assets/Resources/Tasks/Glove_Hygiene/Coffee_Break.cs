@@ -59,6 +59,8 @@ public class Coffee_Break : TaskStep
     {
         if (holdingCoffee)
         {
+            AudioEventManager.DrinkSound();
+
             FinishTaskStep();
         }
     }

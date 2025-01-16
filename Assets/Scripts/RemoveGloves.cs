@@ -1,9 +1,6 @@
 using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
-using UnityEngine.XR.Interaction.Toolkit;
 
 public class RemoveGloves : MonoBehaviour
 {
@@ -13,6 +10,8 @@ public class RemoveGloves : MonoBehaviour
     private Material original;
     private bool leftIsTouching;
     private bool rightIsTouching;
+
+    [SerializeField] AudioSource trashSound;
 
     void Start()
     {
@@ -87,5 +86,16 @@ public class RemoveGloves : MonoBehaviour
     {
         GameEventsManager.instance.miscEvents.TakeOffLeftGlove();
         GameEventsManager.instance.miscEvents.TakeOffRightGlove();
+
+        PlayTrashAudio();
+    }
+
+    private void PlayTrashAudio()
+    {
+        if (trashSound == null) return;
+
+        trashSound.pitch = UnityEngine.Random.Range(0.9f, 1.1f);
+
+        trashSound.Play();
     }
 }

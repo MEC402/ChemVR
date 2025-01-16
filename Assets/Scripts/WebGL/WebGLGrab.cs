@@ -228,22 +228,21 @@ public class WebGLGrab : MonoBehaviour
             wearCoat.WebPutOn();
         else if (hitObject.TryGetComponent(out AddGloves addGloves))
             addGloves.WebPutOnLeftGloves();
-        else if (hitObject.TryGetComponent(out PrinterSlap printerSlap))
+        else if (hitObject.TryGetComponent(out PrinterSlap _))
             GameEventsManager.instance.miscEvents.PrinterSlap();
         else if (hitObject.TryGetComponent(out RemoveGloves removeGloves))
             removeGloves.WebTakeOffGloves();
         else if (hitObject.TryGetComponent(out DoorOpen doorOpen))
             doorOpen.ToggleOpen();
-        else if (hitObject.TryGetComponent(out StopCockController _))
-            StopCockAdjuster(hitObject);
+        else if (hitObject.TryGetComponent(out StopCockController stopCockController))
+            StopCockAdjuster(stopCockController);
     }
-
 
     /// <summary>
     /// Adjusts the stop cock by toggling the hinge and flow.
     /// </summary>
     /// <param name="stopCock">The stop cock to adjust</param>
-    private void StopCockAdjuster(GameObject stopCock)
+    private void StopCockAdjuster(StopCockController stopCock)
     {
         stopCock.GetComponent<StopCockController>().WebToggleHinge();
 

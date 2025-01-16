@@ -18,6 +18,9 @@ public class Answer_Phone : TaskStep
     {
         phone = GameObject.Find("phone2k");
 
+        if (phone.TryGetComponent(out AudioSource audioSource))
+            audioSource.Play();
+
         //point at the phone
         GameEventsManager.instance.miscEvents.SetHint(phone);
 
@@ -66,6 +69,9 @@ public class Answer_Phone : TaskStep
     {
         if (holdingPhone)
         {
+            if (phone.TryGetComponent(out AudioSource audioSource))
+                audioSource.Stop();
+
             FinishTaskStep();
         }
     }
