@@ -3382,7 +3382,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 9014508643877360279}
   serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0.947, z: 1.994}
   m_LocalScale: {x: 1, y: 0.95, z: 1}
   m_ConstrainProportionsScale: 0
@@ -3648,12 +3648,16 @@ PrefabInstance:
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3070790191725611471, guid: fe6ec8034fc6e444591c1981b53c672c, type: 3}
+      propertyPath: m_Name
+      value: Resume Button
+      objectReference: {fileID: 0}
+    - target: {fileID: 3070790191725611471, guid: fe6ec8034fc6e444591c1981b53c672c, type: 3}
       propertyPath: m_Layer
       value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 3617025784975869781, guid: fe6ec8034fc6e444591c1981b53c672c, type: 3}
       propertyPath: m_text
-      value: Quit
+      value: Resume
       objectReference: {fileID: 0}
     - target: {fileID: 4156945874661782627, guid: fe6ec8034fc6e444591c1981b53c672c, type: 3}
       propertyPath: m_Layer
@@ -3682,14 +3686,14 @@ PrefabInstance:
     - target: {fileID: 5696696363137640412, guid: fe6ec8034fc6e444591c1981b53c672c, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
-      objectReference: {fileID: 1635385146329717216}
+      objectReference: {fileID: 6851488257639148008}
     - target: {fileID: 5696696363137640412, guid: fe6ec8034fc6e444591c1981b53c672c, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: ExitBtn
+      value: TogglePause
       objectReference: {fileID: 0}
     - target: {fileID: 5696696363137640412, guid: fe6ec8034fc6e444591c1981b53c672c, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
-      value: HelpMenuController, Assembly-CSharp
+      value: WebGLInput, Assembly-CSharp
       objectReference: {fileID: 0}
     - target: {fileID: 5700622608298862391, guid: fe6ec8034fc6e444591c1981b53c672c, type: 3}
       propertyPath: m_Layer
@@ -3706,6 +3710,18 @@ PrefabInstance:
     - target: {fileID: 6249386067772813384, guid: fe6ec8034fc6e444591c1981b53c672c, type: 3}
       propertyPath: m_SelectEntered.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
       value: HelpMenuController, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 6359557852724145014, guid: fe6ec8034fc6e444591c1981b53c672c, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6359557852724145014, guid: fe6ec8034fc6e444591c1981b53c672c, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 400
+      objectReference: {fileID: 0}
+    - target: {fileID: 6359557852724145014, guid: fe6ec8034fc6e444591c1981b53c672c, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -190
       objectReference: {fileID: 0}
     - target: {fileID: 7083940095813789356, guid: fe6ec8034fc6e444591c1981b53c672c, type: 3}
       propertyPath: m_SelectEntered.m_PersistentCalls.m_Calls.Array.data[0].m_Target

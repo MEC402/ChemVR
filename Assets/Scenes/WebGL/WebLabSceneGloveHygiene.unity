@@ -5718,7 +5718,7 @@ BoxCollider:
     serializedVersion: 2
     m_Bits: 0
   m_LayerOverridePriority: 0
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
@@ -24567,30 +24567,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 686612514}
     m_Modifications:
-    - target: {fileID: 1101254475801163472, guid: 2840c82334889af40a9a17eda5a4e086, type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
-      value: 
-      objectReference: {fileID: 70497490}
-    - target: {fileID: 1101254475801163472, guid: 2840c82334889af40a9a17eda5a4e086, type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: TogglePause
-      objectReference: {fileID: 0}
-    - target: {fileID: 1101254475801163472, guid: 2840c82334889af40a9a17eda5a4e086, type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
-      value: WebGLInput, Assembly-CSharp
-      objectReference: {fileID: 0}
-    - target: {fileID: 1731486828320586362, guid: 2840c82334889af40a9a17eda5a4e086, type: 3}
-      propertyPath: m_LocalScale.y
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 1731486828320586362, guid: 2840c82334889af40a9a17eda5a4e086, type: 3}
-      propertyPath: m_AnchoredPosition.x
-      value: 400
-      objectReference: {fileID: 0}
-    - target: {fileID: 1731486828320586362, guid: 2840c82334889af40a9a17eda5a4e086, type: 3}
-      propertyPath: m_AnchoredPosition.y
-      value: -190
-      objectReference: {fileID: 0}
     - target: {fileID: 2970452536724098622, guid: 2840c82334889af40a9a17eda5a4e086, type: 3}
       propertyPath: playerIcon
       value: 
@@ -24639,14 +24615,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 7699863833371007171, guid: 2840c82334889af40a9a17eda5a4e086, type: 3}
-      propertyPath: m_Name
-      value: Resume Button
-      objectReference: {fileID: 0}
-    - target: {fileID: 8247370736961951321, guid: 2840c82334889af40a9a17eda5a4e086, type: 3}
-      propertyPath: m_text
-      value: Resume
-      objectReference: {fileID: 0}
     - target: {fileID: 9014508643877360279, guid: 2840c82334889af40a9a17eda5a4e086, type: 3}
       propertyPath: m_Name
       value: FP Player
@@ -24671,6 +24639,10 @@ PrefabInstance:
     - target: {fileID: 2133004548966014868, guid: 6b5cf6e4b45600848b0abd0e1c8701d5, type: 3}
       propertyPath: m_Name
       value: titration_holder
+      objectReference: {fileID: 0}
+    - target: {fileID: 2133004548966014868, guid: 6b5cf6e4b45600848b0abd0e1c8701d5, type: 3}
+      propertyPath: m_Layer
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3153273518318136711, guid: 6b5cf6e4b45600848b0abd0e1c8701d5, type: 3}
       propertyPath: m_LocalPosition.x
