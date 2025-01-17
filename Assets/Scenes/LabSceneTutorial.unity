@@ -5239,6 +5239,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1010738217276881514, guid: c348712bda248c246b8c49b3db54643f, type: 3}
     - target: {fileID: 970771838725575524, guid: 65eb6b98091a5734ba9d9ca871cef69a, type: 3}
+      propertyPath: m_LeftHandTurnAction.m_UseReference
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 970771838725575524, guid: 65eb6b98091a5734ba9d9ca871cef69a, type: 3}
       propertyPath: m_RightHandTurnAction.m_UseReference
       value: 1
       objectReference: {fileID: 0}
@@ -5840,7 +5844,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 9159519855357366133, guid: 65eb6b98091a5734ba9d9ca871cef69a, type: 3}
       propertyPath: m_LeftHandSnapTurnAction.m_UseReference
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects:
@@ -5868,7 +5872,10 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 2871854915827847855, guid: 65eb6b98091a5734ba9d9ca871cef69a, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1194732296}
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 4592956391713993908, guid: 65eb6b98091a5734ba9d9ca871cef69a, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 865377738}
   m_SourcePrefab: {fileID: 100100000, guid: 65eb6b98091a5734ba9d9ca871cef69a, type: 3}
 --- !u!4 &638727382 stripped
 Transform:
@@ -8322,6 +8329,30 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a7bc9e785c16ed84493ff9ca254a1fa2, type: 3}
+--- !u!1 &865377737 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4592956391713993908, guid: 65eb6b98091a5734ba9d9ca871cef69a, type: 3}
+  m_PrefabInstance: {fileID: 638727381}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &865377738
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 865377737}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 746cba3f416f4804c9e404afb8b87916, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  locoOptions: {fileID: 11400000, guid: dd7ab63e3323acc4f9b87975e6578d8d, type: 2}
+  xrOrigin: {fileID: 0}
+  rightController: {fileID: 0}
+  leftController: {fileID: 0}
+  turn: {fileID: 0}
+  move: {fileID: 0}
+  vignette: {fileID: 0}
 --- !u!1001 &886652905
 PrefabInstance:
   m_ObjectHideFlags: 0
