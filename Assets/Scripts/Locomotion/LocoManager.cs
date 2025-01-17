@@ -92,11 +92,11 @@ public class LocoManager : MonoBehaviour
             moveProvider.moveSpeed = locoOptions.moveSpeed;
             //sets the move/walk speed value
         }
-
-        var leftInputManager = leftController.GetComponent<ContinuousMoveProviderBase>();
-        if (leftInputManager != null)
+        //m_SmoothMotionEnabled
+        var leftMoveProvider = leftController.GetComponent<ContinuousMoveProviderBase>(); //DynamicMoveProvider //ContinuousMoveProviderBase
+        if (leftMoveProvider != null)
         {
-            moveProvider.enabled = locoOptions.smoothMove; 
+            leftMoveProvider.enabled = locoOptions.smoothMove; 
             //leftInputManager.smoothMoveEnabled = locoOptions.smoothMove;
         }
     }
@@ -111,7 +111,7 @@ public class LocoManager : MonoBehaviour
         leftController.GetComponent<ActionBasedControllerManager>().enabled = !freeze;
         turn.GetComponent<ContinuousTurnProviderBase>().enabled = !freeze;
         turn.GetComponent<SnapTurnProviderBase>().enabled = !freeze;
-        move.GetComponent<DynamicMoveProvider>().enabled = !freeze;
+        move.GetComponent<ContinuousMoveProviderBase>().enabled = !freeze;
     }
     #endregion
 }

@@ -34,11 +34,14 @@ public class LocoOptions : ScriptableObject
 
     public void SetSmoothMove(bool value)
     {
-        if(smoothMove != value)
-        {
-            smoothMove = value;
-            NotifyValuesChanged();
-        }
+        /* if(smoothMove != value)
+         {
+             smoothMove = value;
+             NotifyValuesChanged();
+         }*/
+
+        smoothMove = !smoothMove;
+        NotifyValuesChanged();
     }
 
     public void SetTurnSpeed(float value)
