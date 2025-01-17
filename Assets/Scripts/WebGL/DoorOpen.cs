@@ -6,6 +6,7 @@ public class DoorOpen : MonoBehaviour
     #region Variables
     [Header("References")]
     [SerializeField] bool movePos;
+    [SerializeField] AudioSource doorAudio;
 
     [Header("Settings")]
     [SerializeField] Vector3 openPos;
@@ -49,6 +50,9 @@ public class DoorOpen : MonoBehaviour
     /// <returns></returns>
     IEnumerator MoveDoor(Vector3 targetPos)
     {
+        doorAudio.pitch = Random.Range(0.9f, 1.1f);
+        doorAudio.Play();
+
         if (movePos)
         {
             while (Vector3.Distance(transform.position, targetPos) > 0.01f)

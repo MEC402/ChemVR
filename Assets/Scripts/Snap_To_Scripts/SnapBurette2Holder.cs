@@ -5,6 +5,7 @@ using UnityEngine.XR.Interaction.Toolkit;
 
 public class SnapBurette2Holder : MonoBehaviour
 {
+    [SerializeField] BoxCollider stopcockCollider;
     DisableHoldable disableHoldable;
     private XRGrabInteractable grabInteractable;
     private Rigidbody myRb;
@@ -28,6 +29,9 @@ public class SnapBurette2Holder : MonoBehaviour
         this.transform.SetPositionAndRotation(holder.transform.position, newRotation);
         this.transform.Translate(new Vector3(0.0504f, 0.531f, 0));
         disableHoldable.Disable();
+
+        if (!stopcockCollider.enabled)
+            stopcockCollider.enabled = true;
     }
     void OnEnable()
     {

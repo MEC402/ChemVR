@@ -11,6 +11,7 @@ public class MiscellaneousEvents
     {
         if (onPutOnLeftGlove != null)
         {
+            AudioEventManager.GloveSound();
             onPutOnLeftGlove();
         }
     }
@@ -20,6 +21,7 @@ public class MiscellaneousEvents
     {
         if (onPutOnRightGlove != null)
         {
+            AudioEventManager.GloveSound();
             onPutOnRightGlove();
         }
     }

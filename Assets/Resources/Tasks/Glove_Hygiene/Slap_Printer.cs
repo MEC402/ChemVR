@@ -20,7 +20,7 @@ public class Slap_Printer : TaskStep
 
         slapCount = 0;
 
-        // Randomize slapsToFinish
+        // Randomize slapsToFinish between 2 and 5 times
         slapsToFinish = Random.Range(2, 6);
 
         GameEventsManager.instance.miscEvents.onPrinterSlap += Slap;

@@ -48,6 +48,23 @@ public abstract class TaskStep : MonoBehaviour
         }
     }
 
+    protected void FinishTaskStepWithDelay(float minDelay, float maxDelay)
+    {
+        if (!isFinished)
+        {
+            isFinished = true;
+            StartCoroutine(DelayedFinish(minDelay, maxDelay));
+        }
+    }
+
+    IEnumerator DelayedFinish(float minDelay, float maxDelay)
+    {
+        float delay = UnityEngine.Random.Range(minDelay, maxDelay);
+        yield return new WaitForSeconds(delay);
+        GameEventsManager.instance.taskEvents.AdvanceTask(taskId);
+        Destroy(this.gameObject);
+    }
+
     protected void ChangeState(string newState, string newStatus)
     {
         GameEventsManager.instance.taskEvents.TaskStepStateChange(

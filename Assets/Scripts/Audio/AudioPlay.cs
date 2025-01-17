@@ -5,6 +5,7 @@ public class AudioPlay : MonoBehaviour
     #region Variables
     [SerializeField] AudioSource slapAudio;
     [SerializeField] AudioSource drinkAudio;
+    [SerializeField] AudioSource goggleAudio, gloveAudio, labCoatAudio;
     #endregion
 
     #region Unity Methods
@@ -12,12 +13,20 @@ public class AudioPlay : MonoBehaviour
     {
         GameEventsManager.instance.miscEvents.onPrinterSlap += PlaySlapSound;
         AudioEventManager.OnDrinkSound += PlayDrinkSound;
+
+        AudioEventManager.OnGoggleSound += () => goggleAudio.Play();
+        AudioEventManager.OnGloveSound += () => gloveAudio.Play();
+        AudioEventManager.OnLabCoatSound += () => labCoatAudio.Play();
     }
 
     private void OnDisable()
     {
         GameEventsManager.instance.miscEvents.onPrinterSlap -= PlaySlapSound;
         AudioEventManager.OnDrinkSound -= PlayDrinkSound;
+
+        AudioEventManager.OnGoggleSound -= () => goggleAudio.Play();
+        AudioEventManager.OnGloveSound -= () => gloveAudio.Play();
+        AudioEventManager.OnLabCoatSound -= () => labCoatAudio.Play();
     }
     #endregion
 

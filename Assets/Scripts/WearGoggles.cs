@@ -63,6 +63,7 @@ public class WearGoggles : MonoBehaviour
 
     private void PutOn()
     {
+        AudioEventManager.GoggleSound();
         wearing = true;
         itemToWear.SetActive(false);
     }

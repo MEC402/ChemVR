@@ -88,18 +88,18 @@ public class WebGLGrab : MonoBehaviour
     private void CheckRaycast()
     {
         // Default icon if nothing is detected
-        playerIcon.sprite = defaultIcon;
+        // playerIcon.sprite = defaultIcon;
 
         if (!mainCamera) return;
 
         // Create a ray from the center of the screen
         centerRay = mainCamera.ScreenPointToRay(new Vector2(Screen.width / 2f, Screen.height / 2f));
 
-        if (Physics.Raycast(centerRay, out RaycastHit hit, grabRange, ~0, QueryTriggerInteraction.Ignore))
+        if (Physics.SphereCast(centerRay, 0.01f, out RaycastHit hit, grabRange, ~0, QueryTriggerInteraction.Ignore))
         {
-            if (((1 << hit.collider.gameObject.layer) & interactableLayer) != 0)
+            if (interactableLayer == (interactableLayer | (1 << hit.collider.gameObject.layer)))
                 playerIcon.sprite = interactIcon;
-            else if (((1 << hit.collider.gameObject.layer) & holdableLayer) != 0)
+            else if (holdableLayer == (holdableLayer | (1 << hit.collider.gameObject.layer)))
                 playerIcon.sprite = openIcon;
             else
                 playerIcon.sprite = defaultIcon;
@@ -227,7 +227,7 @@ public class WebGLGrab : MonoBehaviour
         else if (hitObject.TryGetComponent(out WearCoat wearCoat))
             wearCoat.WebPutOn();
         else if (hitObject.TryGetComponent(out AddGloves addGloves))
-            addGloves.WebPutOnLeftGloves();
+            addGloves.WebPutOnGloves();
         else if (hitObject.TryGetComponent(out PrinterSlap _))
             GameEventsManager.instance.miscEvents.PrinterSlap();
         else if (hitObject.TryGetComponent(out RemoveGloves removeGloves))

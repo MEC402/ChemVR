@@ -85,7 +85,7 @@ public class AddGloves : MonoBehaviour
     /// <summary>
     /// This method is called from the WebGL build since the input system is different
     /// </summary>
-    public void WebPutOnLeftGloves()
+    public void WebPutOnGloves()
     {
         GameEventsManager.instance.miscEvents.PutOnLeftGlove();
         GameEventsManager.instance.miscEvents.PutOnRightGlove();

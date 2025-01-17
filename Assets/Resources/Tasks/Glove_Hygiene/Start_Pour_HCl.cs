@@ -24,7 +24,7 @@ public class Start_Pour_HCl : TaskStep
 
     private void addChem(ChemContainer container, ChemFluid chemMix)
     {
-        if(container.name.ToLower().Contains("beaker"))
+        if (container.name.ToLower().Contains("beaker"))
         {
             string contents = chemMix.ContentsToString();
             string[] sepContents = contents.Split('\n');
@@ -37,9 +37,9 @@ public class Start_Pour_HCl : TaskStep
             }
         }
 
-        if(pinkDrops >= 25)
+        if (pinkDrops >= 25)
         {
-            FinishTaskStep();
+            FinishTaskStepWithDelay(1, 2);
         }
         //Debug.Log(container.name + ": " + chemMix.ContentsToString());
     }

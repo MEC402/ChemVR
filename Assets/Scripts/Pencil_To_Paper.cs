@@ -11,6 +11,7 @@ public class Pencil_To_Paper : MonoBehaviour
         {
             Debug.Log("Pencil to paper");
             GameEventsManager.instance.miscEvents.PencilOnPaper();
+            AudioEventManager.ScribbleSound();
         }
     }
 }
