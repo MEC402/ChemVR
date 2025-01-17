@@ -91,7 +91,7 @@ public class SettingsManager : MonoBehaviour
     {
         if (smoothTurnToggle.isOn)
         {
-            locoOptions.SetTurnSpeed(30);
+            locoOptions.SetTurnSpeed(50);
             isSmoothTurn = true;
         }
         else if (!smoothTurnToggle.isOn)
