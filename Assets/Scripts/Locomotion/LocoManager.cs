@@ -83,8 +83,11 @@ public class LocoManager : MonoBehaviour
         {
             rightInputManager.smoothTurnEnabled = !locoOptions.snapTurn;
             //enables smoothTurn on the right controller
-            //do we need a case to disable smooth turn on the left controller?
         }
+
+        //if needed, write method to enable snapTurn on LeftController for edge case of using smoothTurn on right controller
+        //also will need to set the turn radius of the snap controller to 0 when smooth turn is enabled
+        //will then need to reset the turn radius of snap controller to 45 when snap turn is enabled
 
         var moveProvider = move.GetComponent<DynamicMoveProvider>();
         if (moveProvider != null)
@@ -92,11 +95,17 @@ public class LocoManager : MonoBehaviour
             moveProvider.moveSpeed = locoOptions.moveSpeed;
             //sets the move/walk speed value
         }
-        //m_SmoothMotionEnabled
-        var leftMoveProvider = leftController.GetComponent<ContinuousMoveProviderBase>(); //DynamicMoveProvider //ContinuousMoveProviderBase
+        /* //m_SmoothMotionEnabled
+         var leftMoveProvider = leftController.GetComponent<ContinuousMoveProviderBase>(); //DynamicMoveProvider //ContinuousMoveProviderBase
+         if (leftMoveProvider != null)
+         {
+             leftMoveProvider.enabled = locoOptions.smoothMove; 
+             //leftInputManager.smoothMoveEnabled = locoOptions.smoothMove;
+         }*/
+        var leftMoveProvider = leftController.GetComponent<ActionBasedControllerManager>(); //DynamicMoveProvider //ContinuousMoveProviderBase
         if (leftMoveProvider != null)
         {
-            leftMoveProvider.enabled = locoOptions.smoothMove; 
+            leftMoveProvider.smoothMotionEnabled = locoOptions.smoothMove;
             //leftInputManager.smoothMoveEnabled = locoOptions.smoothMove;
         }
     }
@@ -111,7 +120,7 @@ public class LocoManager : MonoBehaviour
         leftController.GetComponent<ActionBasedControllerManager>().enabled = !freeze;
         turn.GetComponent<ContinuousTurnProviderBase>().enabled = !freeze;
         turn.GetComponent<SnapTurnProviderBase>().enabled = !freeze;
-        move.GetComponent<ContinuousMoveProviderBase>().enabled = !freeze;
+        move.GetComponent<ActionBasedControllerManager>().enabled = !freeze;
     }
     #endregion
 }
