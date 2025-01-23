@@ -30,6 +30,7 @@ public class Controller_Diagram : MonoBehaviour
     private GameObject leftGrip;
     [SerializeField]
     private GameObject rightGrip;
+
     void Start()
     {
         hideAllDiagrams();

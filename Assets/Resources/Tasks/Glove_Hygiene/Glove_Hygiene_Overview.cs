@@ -58,7 +58,7 @@ public class Glove_Hygiene_Overview : MonoBehaviour
                     "You need to set up a burette.\n\nAttach a funnel and a burette to the holder at your table.",
                     "Next, fill the beaker one quarter way with the Erlenmeyer flask with the colorless solution.", //After 2 drops, interrupt with next one!
                     "It's time for a break.\n\nI think I saw some coffee in your office.\n\nPick it up and press (A/X) to take a drink.",
-                    "Breaks over!\n\nFinish filling the beaker one quarter way from the Erlenmeyer flask with the colorless solution.",
+                    "Breaks over!\n\nFinish filling the beaker with 125mL of the colorless solution.",
                     "Now fill the burette halfway from the Erlenmeyer flask with the blue solution.\n\nTip: make sure the stopcock valve (at bottom of buret) is closed first!",
                     "Titrate from the burette into the beaker until you see a change of color in the beaker, or until you run out of blue solution.\n\nWhen you're done, bring the beaker to the table with the notepad.",
                     "Uh Oh!\n\nThe printer is acting up again, and it's printing important data.\n\nSmack it once or twice with your hand to get it running right.", //Interrupt once you touch the blue solution
