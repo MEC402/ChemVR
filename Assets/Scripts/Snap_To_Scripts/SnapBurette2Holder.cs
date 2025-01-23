@@ -30,6 +30,9 @@ public class SnapBurette2Holder : MonoBehaviour
         this.transform.Translate(new Vector3(0.0504f, 0.531f, 0));
         disableHoldable.Disable();
 
+        if (stopcockCollider == null)
+            return;
+
         if (!stopcockCollider.enabled)
             stopcockCollider.enabled = true;
     }

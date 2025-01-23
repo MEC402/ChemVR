@@ -98,8 +98,7 @@ GameObject:
   - component: {fileID: 6584092455903551784}
   - component: {fileID: 2019807467751706559}
   - component: {fileID: 7462384864325832416}
-  - component: {fileID: 7694648492935798874}
-  m_Layer: 8
+  m_Layer: 0
   m_Name: Collider
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -138,7 +137,7 @@ MeshCollider:
   m_LayerOverridePriority: 0
   m_IsTrigger: 0
   m_ProvidesContacts: 0
-  m_Enabled: 0
+  m_Enabled: 1
   serializedVersion: 5
   m_Convex: 1
   m_CookingOptions: 30
@@ -397,27 +396,6 @@ MonoBehaviour:
   m_MinimumScaleRatio: 0.25
   m_MaximumScaleRatio: 2
   m_ScaleMultiplier: 0.25
---- !u!65 &7694648492935798874
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1725725291207727615}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 0
-  serializedVersion: 3
-  m_Size: {x: 4.9999995, y: 5, z: 3.623739}
-  m_Center: {x: 0, y: 1.4147966e-15, z: 0.68813074}
 --- !u!1 &2175292180476886098
 GameObject:
   m_ObjectHideFlags: 0
@@ -584,6 +562,7 @@ MonoBehaviour:
   collisionDetector: {fileID: 1725725291207727615}
   turner: {fileID: 7330600751944726706}
   valve: {fileID: 6842250314106755308}
+  offset: 90
 --- !u!114 &3072122185435481443
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -850,10 +829,9 @@ GameObject:
   - component: {fileID: 6371729396869305864}
   - component: {fileID: 2511715061224654366}
   - component: {fileID: 7778986169860630277}
-  - component: {fileID: 2172682664134714675}
   - component: {fileID: 8719200780575626714}
   - component: {fileID: 2544269001111558069}
-  m_Layer: 7
+  m_Layer: 0
   m_Name: Burette
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -970,7 +948,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 20e6b26e9d89ece468add544ba719201, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  stopcockCollider: {fileID: 7694648492935798874}
+  stopcockCollider: {fileID: 0}
 --- !u!64 &2323178899932371178
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -988,7 +966,7 @@ MeshCollider:
   m_LayerOverridePriority: 0
   m_IsTrigger: 0
   m_ProvidesContacts: 0
-  m_Enabled: 0
+  m_Enabled: 1
   serializedVersion: 5
   m_Convex: 1
   m_CookingOptions: 30
@@ -1164,7 +1142,7 @@ CapsuleCollider:
   m_LayerOverridePriority: 0
   m_IsTrigger: 0
   m_ProvidesContacts: 0
-  m_Enabled: 0
+  m_Enabled: 1
   serializedVersion: 2
   m_Radius: 1.5321407
   m_Height: 21.1601
@@ -1278,27 +1256,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f414cbc2af8775446bb278de51dd2b63, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!65 &2172682664134714675
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7477979797900578064}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 1
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Size: {x: 12.257124, y: 21.1601, z: 12.257124}
-  m_Center: {x: -0.000009298325, y: -0.8859006, z: -0.000004053116}
 --- !u!114 &8719200780575626714
 MonoBehaviour:
   m_ObjectHideFlags: 0
