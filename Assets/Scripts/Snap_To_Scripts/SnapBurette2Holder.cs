@@ -14,11 +14,26 @@ public class SnapBurette2Holder : MonoBehaviour
     private GameObject holder;
     private Rigidbody stopcockRb;
 
+    bool hasSnapped = false;
+    GlassClink glassClink;
+
+    private void Start()
+    {
+        glassClink = GetComponent<GlassClink>();
+    }
+
     private void Update()
     {
         if (snap)
         {
             SetPosition();
+            return;
+        }
+
+        if (hasSnapped)
+        {
+            hasSnapped = false;
+            glassClink.enabled = true;
         }
     }
 
@@ -35,7 +50,13 @@ public class SnapBurette2Holder : MonoBehaviour
 
         if (!stopcockCollider.enabled)
             stopcockCollider.enabled = true;
+
+        if (!hasSnapped)
+            glassClink.enabled = false;
+
+        hasSnapped = true;
     }
+
     void OnEnable()
     {
         //Initialize

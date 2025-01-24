@@ -17,7 +17,7 @@ public class GlassClink : MonoBehaviour
 
     private void OnCollisionEnter(Collision other)
     {
-        if (!canStart) return;
+        if (!canStart || other.gameObject.name.Contains("Funnel")) return;
 
         glassAudio.pitch = Random.Range(0.9f, 1.1f);
         glassAudio.Play();
