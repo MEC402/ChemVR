@@ -14,11 +14,29 @@ public class SnapBurette2Holder : MonoBehaviour
     private GameObject holder;
     private Rigidbody stopcockRb;
 
+    bool hasSnapped = false;
+    GlassClink glassClink;
+    Rigidbody rb;
+
+    private void Start()
+    {
+        glassClink = GetComponent<GlassClink>();
+        rb = GetComponent<Rigidbody>();
+    }
+
     private void Update()
     {
         if (snap)
         {
             SetPosition();
+            return;
+        }
+
+        if (hasSnapped)
+        {
+            hasSnapped = false;
+            glassClink.enabled = true;
+            rb.isKinematic = false;
         }
     }
 
@@ -30,8 +48,14 @@ public class SnapBurette2Holder : MonoBehaviour
         this.transform.Translate(new Vector3(0.0504f, 0.531f, 0));
         disableHoldable.Disable();
 
+        rb.isKinematic = true;
+
         if (!stopcockCollider.enabled)
             stopcockCollider.enabled = true;
+
+        if (!hasSnapped)
+            glassClink.enabled = false;
+        hasSnapped = true;
     }
     void OnEnable()
     {
