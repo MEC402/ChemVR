@@ -149,7 +149,8 @@ public class ChemContainer : MonoBehaviour {
             Debug.LogWarning($"This ChemContainer {{{gameObject.name}}} does not have an internalFluid set.");
         } else {
             internalFluid.fill = (flags.infiniteFluid) ? 1 : currentVolume / maxVolume;
-            internalFluid.color = ChemistryManager.instance.GetColor(chemFluid);
+            Color chemColor = ChemistryManager.instance.GetColor(chemFluid);
+            internalFluid.color = chemColor;
         }
         
         // Check that a pourPoint has been set
@@ -261,9 +262,11 @@ public class ChemContainer : MonoBehaviour {
                     }
                     ParticleSystem.MainModule psmain = pourEffect.main;
                     ParticleSystem.EmissionModule psemit = pourEffect.emission;
+
                     psmain.startSize = particleSize;
                     psemit.rateOverTime = particleEmissionRate;
                     psmain.startLifetime = hit.distance + 0.1f;
+
                     pourEffect.Play();
                 } else {
                     if (flags.useSimpleFluidLevel != recipient.flags.useSimpleFluidLevel) {
@@ -275,8 +278,6 @@ public class ChemContainer : MonoBehaviour {
         } else {
             pourEffect.Stop(true, ParticleSystemStopBehavior.StopEmittingAndClear);
         }
-
-        //TODO: Add support for pouring via activators such as turning the burette's stopcock.
     }
 
     // Editor-only function that Unity calls when the script is loaded or a value changes in the Inspector.

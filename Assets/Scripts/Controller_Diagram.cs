@@ -4,33 +4,35 @@ using UnityEngine;
 
 public class Controller_Diagram : MonoBehaviour
 {
+    [SerializeField]
     private GameObject leftController;
+    [SerializeField]
     private GameObject rightController;
+    [SerializeField]
     private GameObject aButton;
+    [SerializeField]
     private GameObject bButton;
+    [SerializeField]
     private GameObject xButton;
+    [SerializeField]
     private GameObject yButton;
+    [SerializeField]
+    private GameObject hamburgerButton;
+    [SerializeField]
     private GameObject leftToggle;
+    [SerializeField]
     private GameObject rightToggle;
+    [SerializeField]
     private GameObject leftTrigger;
+    [SerializeField]
     private GameObject rightTrigger;
+    [SerializeField]
     private GameObject leftGrip;
+    [SerializeField]
     private GameObject rightGrip;
+
     void Start()
     {
-        leftController = GameObject.Find("ControllerLeftDiagram");
-        rightController = GameObject.Find("ControllerRightDiagram");
-        aButton = GameObject.Find("A Button");
-        bButton = GameObject.Find("B Button");
-        xButton = GameObject.Find("X Button");
-        yButton = GameObject.Find("Y Button");
-        leftToggle = GameObject.Find("Left Toggle");
-        rightToggle = GameObject.Find("Right Toggle");
-        leftTrigger = GameObject.Find("Left Trigger");
-        rightTrigger = GameObject.Find("Right Trigger");
-        leftGrip = GameObject.Find("Left Grip");
-        rightGrip = GameObject.Find("Right Grip");
-
         hideAllDiagrams();
     }
     public void hideAllDiagrams()
@@ -46,6 +48,7 @@ public class Controller_Diagram : MonoBehaviour
         hideLeftGrip();
         hideXButton();
         hideYButton();
+        hideHambugerButton();
     }
     public void hideRightController()
     {
@@ -65,6 +68,11 @@ public class Controller_Diagram : MonoBehaviour
     {
         yButton.GetComponent<MeshRenderer>().enabled = false;
         yButton.GetComponentInChildren<Canvas>().enabled = false;
+    }
+    public void hideHambugerButton()
+    {
+        hamburgerButton.GetComponent<MeshRenderer>().enabled = false;
+        hamburgerButton.GetComponentInChildren<Canvas>().enabled = false;
     }
     public void hideAButton()
     {
@@ -123,6 +131,11 @@ public class Controller_Diagram : MonoBehaviour
     {
         yButton.GetComponent<MeshRenderer>().enabled = true;
         yButton.GetComponentInChildren<Canvas>().enabled = true;
+    }
+    public void showHamburgerButton()
+    {
+        hamburgerButton.GetComponent<MeshRenderer>().enabled = true;
+        hamburgerButton.GetComponentInChildren<Canvas>().enabled = true;
     }
     public void showAButton()
     {

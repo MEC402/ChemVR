@@ -1,12 +1,32 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public abstract class TaskStep : MonoBehaviour
 {
     private bool isFinished = false;
     private string taskId;
     private int stepIndex;
+
+    protected void Start()
+    {
+        GameEventsManager.instance.inputEvents.onBButtonPressed += DevSkipTask;
+    }
+
+    protected void OnDestroy()
+    {
+        GameEventsManager.instance.inputEvents.onBButtonPressed -= DevSkipTask;
+    }
+
+    protected void DevSkipTask(InputAction.CallbackContext obj)
+    {
+        if (DevOpsState.IsDevOpsEnabled())
+        {
+            FinishTaskStep();
+        }
+    }
 
     public void InitializeTaskStep(string taskId, int stepIndex, string taskStepState)
     {

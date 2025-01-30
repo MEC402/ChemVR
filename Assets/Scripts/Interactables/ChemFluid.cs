@@ -10,7 +10,7 @@ using UnityEngine.InputSystem.Controls;
 public class ChemFluid 
 {
     [SerializeField]
-    public float totalVolume;    
+    public float totalVolume;
     [SerializeField]
     private Chem[] chems;
     
@@ -51,7 +51,7 @@ public class ChemFluid
         this.totalVolume = 0;
         for (int i = 0; i < chems.Length; ++i)
         {
-            totalVolume += chems[i].volume;
+            this.totalVolume += chems[i].volume;
         }
         //this.totalVolume = chems.Sum();
     }
@@ -176,7 +176,7 @@ public class ChemFluid
             message += $"{((ChemType)i).ToString()}: {chems[i].volume}\n";
         }
         message += $"TOTAL: {totalVolume}";
-        return message;
+        return message; 
     }
 
 }

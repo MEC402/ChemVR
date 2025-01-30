@@ -12,6 +12,7 @@ public class GameEventsManager : MonoBehaviour
     public PlayerEvents playerEvents;
     public InputEvents inputEvents;
     public MiscellaneousEvents miscEvents;
+    public ParticleEvents partEvents;
 
     private void Awake()
     {
@@ -28,5 +29,6 @@ public class GameEventsManager : MonoBehaviour
         playerEvents = new PlayerEvents();
         inputEvents = new InputEvents();
         miscEvents = new MiscellaneousEvents();
+        partEvents = new ParticleEvents();
     }
 }

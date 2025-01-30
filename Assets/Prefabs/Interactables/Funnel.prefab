@@ -180,13 +180,13 @@ GameObject:
   - component: {fileID: 5097141102212049625}
   - component: {fileID: 7094426778197486932}
   - component: {fileID: 2704174135099157379}
-  - component: {fileID: 1344540758183836171}
   - component: {fileID: 6231102372893117485}
   - component: {fileID: 5540199242245140423}
   - component: {fileID: 2323178899932371178}
   - component: {fileID: 2955364244731474163}
   - component: {fileID: 951757296749933630}
   - component: {fileID: 6818302693700509036}
+  - component: {fileID: 7670275588280512538}
   m_Layer: 0
   m_Name: Funnel
   m_TagString: Untagged
@@ -288,64 +288,9 @@ Rigidbody:
   m_ImplicitTensor: 1
   m_UseGravity: 1
   m_IsKinematic: 0
-  m_Interpolate: 1
+  m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
---- !u!114 &1344540758183836171
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7477979797900578064}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 175f44913ea6a854e956852389d010d6, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  internalFluid: {fileID: 3892170407889264079}
-  pourPoint: {fileID: 4252842799344432394}
-  opening: {fileID: 5240846808147729399}
-  pourEffect: {fileID: 5222752418215526562}
-  pourActivator: {fileID: 0}
-  maxVolume: 100
-  currentVolume: 0
-  pourRate: 3
-  pourAngle: 90
-  flags:
-    pouringUsesActivator: 0
-    infiniteFluid: 0
-    infiniteCapacity: 0
-    pourAngleUsesPhysics: 0
-    pourRateUsesPhysics: 0
-    useSimpleFluidLevel: 0
-  pourPhysics:
-    minPourRate: 5
-    maxPourRate: 50
-    minPourAngle: 25
-    maxPourAngle: 115
-    minParticleSize: 0.05
-    maxParticleSize: 0.2
-    minParticleEmissionRate: 50
-    maxParticleEmissionRate: 100
-  defaults:
-    originalVolume: 0
-    originalPourRate: 5
-    originalPourAngle: 90
-  reInitialize: 0
-  initialContents: []
-  chemFluid:
-    totalVolume: 0
-    chems:
-    - name: WATER
-      type: 0
-      volume: 0
-    - name: HYDROCHLORIC_ACID
-      type: 1
-      volume: 0
-    - name: SODIUM_HYDROXIDE
-      type: 2
-      volume: 0
 --- !u!114 &6231102372893117485
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -510,7 +455,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d0a1302d0d134fa8a2a5b3bf4aec3c20, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_PermittedDisplacementAxes: 7
+  m_PermittedDisplacementAxes: -1
   m_ConstrainedAxisDisplacementMode: 1
   m_TwoHandedRotationMode: 1
   m_AllowOneHandedScaling: 1
@@ -588,6 +533,67 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 97505dac9a6680a48ba7763758542cd4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &7670275588280512538
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7477979797900578064}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 175f44913ea6a854e956852389d010d6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  internalFluid: {fileID: 3892170407889264079}
+  pourPoint: {fileID: 4252842799344432394}
+  opening: {fileID: 5240846808147729399}
+  pourEffect: {fileID: 5222752418215526562}
+  pourActivator: {fileID: 0}
+  maxVolume: 100
+  currentVolume: 0
+  pourRate: 3
+  pourAngle: 90
+  flags:
+    pouringUsesActivator: 0
+    infiniteFluid: 0
+    infiniteCapacity: 0
+    pourAngleUsesPhysics: 0
+    pourRateUsesPhysics: 0
+    useSimpleFluidLevel: 0
+  pourPhysics:
+    minPourRate: 5
+    maxPourRate: 50
+    minPourAngle: 25
+    maxPourAngle: 115
+    minParticleSize: 0.05
+    maxParticleSize: 0.2
+    minParticleEmissionRate: 50
+    maxParticleEmissionRate: 100
+  defaults:
+    originalVolume: 0
+    originalPourRate: 5
+    originalPourAngle: 90
+  reInitialize: 0
+  initialContents: []
+  chemFluid:
+    totalVolume: 0
+    chems:
+    - name: WATER
+      type: 0
+      volume: 0
+    - name: HYDROCHLORIC_ACID
+      type: 1
+      volume: 0
+    - name: SODIUM_HYDROXIDE
+      type: 2
+      volume: 0
+    - name: CuSO4
+      type: 3
+      volume: 0
+    - name: GLUCOSE
+      type: 4
+      volume: 0
 --- !u!1001 &7332085216286542721
 PrefabInstance:
   m_ObjectHideFlags: 0

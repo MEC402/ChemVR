@@ -5,75 +5,48 @@ using UnityEngine;
 public class HygieneManager : MonoBehaviour
 {
     [SerializeField]
-    ParticleSystem ps;
-    [SerializeField]
-    List<Vector3> points;
-    List<Vector3> localPoints;
-    List<GameObject> gameObjects;
-    [SerializeField]
     bool showPoints = false;
     [SerializeField]
-    bool forceUpdatePoints = true;
-
-    public bool trackPoints = false;
-
-    ParticleSystem.Particle[] particles;
-
-    private void OnValidate() {
-        ps = GetComponent<ParticleSystem>();
-    }
+    bool trackPoints = false;
+    [SerializeField]
+    GameObject particlePrefab;
+    [SerializeField]
+    float particleSize = 0.05f;
 
     // Start is called before the first frame update
     void Start()
     {
         showPoints = false;
         trackPoints = false;
-        points = new List<Vector3>();
-        localPoints = new List<Vector3>();
-        gameObjects = new List<GameObject>();
     }
 
-    // Update is called once per frame
-    void Update()
+    //In the long run I'd like to remove this
+    private void Update()
     {
-        if (!showPoints) {
-            return;
-        }
+        ShowPoints(showPoints);
+    } 
 
-        InitIfNeeded();
-        int numParticles = ps.GetParticles(particles);
-        if (points.Count < numParticles) { 
-            numParticles = points.Count; 
-        }
-
-        for (int i = 0; i < numParticles; i++) {
-            particles[i].velocity = Vector3.zero;
-            particles[i].position = points[i];
-        }
-
-        ps.SetParticles(particles, numParticles);
-    }
-
-    void InitIfNeeded() {
-        if (ps == null) {
-            ps = GetComponent<ParticleSystem>();
-        }
-        if (particles == null || particles.Length < ps.main.maxParticles) { 
-            particles = new ParticleSystem.Particle[ps.main.maxParticles];
-        }
-        if (points.Count < localPoints.Count || forceUpdatePoints) {
-            points = new List<Vector3>();
-            for (int i = 0; i < localPoints.Count; i++) {
-                points.Add(gameObjects[i].transform.TransformPoint(localPoints[i]));
-            }
-        }
-    }
-
-    public void AddPoint(Vector3 point, GameObject gameObject) {
+    public void AddPoint(Vector3 point, GameObject gameObject)
+    {
         if (trackPoints)
-        {
-            localPoints.Add(point);
-            gameObjects.Add(gameObject);
+        { 
+            if(gameObject.name.Contains("XR Origin (XR Rig)"))
+            {
+                // Ensure that you do not attach chemical sphere's to your XR Origin collider
+                return;
+            }
+            // Instantiate the prefab on the object
+            GameObject newObject = Instantiate(particlePrefab, gameObject.transform);
+
+            Vector3 inverseScale = new Vector3(
+                1 / gameObject.transform.localScale.x,
+                1 / gameObject.transform.localScale.y,
+                1 / gameObject.transform.localScale.z
+            );
+            Vector3 finalScale = inverseScale * particleSize;
+            newObject.transform.localScale = finalScale;
+
+            newObject.transform.position = point;
         }
     }
 
@@ -81,13 +54,23 @@ public class HygieneManager : MonoBehaviour
     {
         showPoints = false;
         trackPoints = true;
-        points = new List<Vector3>();
-        localPoints = new List<Vector3>();
-        gameObjects = new List<GameObject>();
+        GameEventsManager.instance.partEvents.DeleteParticles();
     }
 
     public void ShowPoints(bool toggle)
     {
         showPoints = toggle;
+        if(toggle)
+        {
+            GameEventsManager.instance.partEvents.ShowParticles();
+        } else
+        {
+            GameEventsManager.instance.partEvents.HideParticles();
+        }
+    }
+
+    public void TrackPoints(bool toggle)
+    {
+        trackPoints = toggle;
     }
 }

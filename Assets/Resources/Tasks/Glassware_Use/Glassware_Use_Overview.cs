@@ -9,10 +9,14 @@ public class Glassware_Use_Overview : MonoBehaviour
     public TextMeshProUGUI guText;
     int curStep;
 
+    // Controllers for starting tasks
+    [Header("Start Task Controllers")]
+    public Start_Module taskPreper;
+
     void OnEnable()
     {
         this.gameObject.GetComponent<ToggleTextSimple>().enabled = false;
-        curStep = -1;
+        curStep = 0;
         guText.text = "Not reading events.";
         if (GameEventsManager.instance == null)
         {
@@ -20,6 +24,12 @@ public class Glassware_Use_Overview : MonoBehaviour
         }
         GameEventsManager.instance.taskEvents.onAbandonTask += gu_abandonMe;
         GameEventsManager.instance.taskEvents.onAdvanceTask += AdvanceGlaTask;
+
+        //Start the Module on opening this scene
+        taskPreper.Show();
+        this.gameObject.GetComponent<ToggleTextSimple>().enabled = true;
+        GameEventsManager.instance.taskEvents.StartTask("Glassware_Use_Task");
+        guText.text = text[curStep];
     }
 
     void OnDisable()
@@ -36,10 +46,11 @@ public class Glassware_Use_Overview : MonoBehaviour
     }
 
     string[] text = {"Welcome!\nBefore we begin the lab, you need to put on your lab gear.\n\nYou should be wearing closed toed shoes and have your hair tied back.\n\nFind gloves, goggles, and a lab coat and put them on with (B).",
-                    "For this lab, you will need to bring the required materials to a table in the blue zone:\nNote: Inspect all glassware for cracks or chips.\n\nStart with:\n3 250mL Volumetric Flasks.\n\n\nSkip with A",
-                    "Next bring:\n1 100mL Graduated Cylinder\n1 Glass Stir Rod\n1 10mL Volumetric Pipette\n to the table.\n\n\nSkip with A",
-                    "Finally you will need:\nSmall Weigh Boat With Paper\nCopper Sulfate\nPaper Towels\n\n\nSkip with A",
-                    "Locate these tools that you will need in the lab:\nAnalytical Balance\nBalance Brush\nDI water\nWhen you are ready to continue, press (A).\n\n\nSkip with A",
+                    //"For this lab, you will need to bring the required materials to a table in the blue zone, with tables labelled B:\nNote: Inspect all glassware for cracks or chips.\n\nStart with:\n3 250mL Volumetric Flasks.\n\n\nSkip with A", //disabled task step 2 (add to TaskInfoSO block and uncomment to undo)
+                    //"Next bring:\n1 100mL Graduated Cylinder\n1 Glass Stir Rod\n1 10mL Volumetric Pipette\n to the table.\n\n\nSkip with A", //disabled task step 3 (add to TaskInfoSO block and uncomment to undo)
+                    //"Finally you will need:\nSmall Weigh Boat With Paper\nCopper Sulfate\nPaper Towels\n\n\nSkip with A", //disabled task step 4 (add to TaskInfoSO block and uncomment to undo)
+                    //"Locate these tools that you will need in the lab:\nAnalytical Balance\nBalance Brush\nDI water\nWhen you are ready to continue, press (A).\n\n\nSkip with A", //disabled task step 5 (add to TaskInfoSO block and uncomment to undo)
+                    "Inspect all glassware for cracks or chips.\n\n\nSkip with A", 
                     "Turn on the analytical balance, and allow for it to stabilize.\n\n\nSkip with A",
                     "Place a weigh boat on the scale, then put the weigh paper inside the boat.\n\n\nSkip with A",
                     "Set the scale units to grams.\n\n\nSkip with A",
@@ -83,7 +94,7 @@ public class Glassware_Use_Overview : MonoBehaviour
             {
                 guPop.SetActive(false);
             }
-            curStep = -1;
+            curStep = 0;
         }
     }
    

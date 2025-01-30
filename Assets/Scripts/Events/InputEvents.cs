@@ -185,4 +185,23 @@ public class InputEvents
             onRThumbstickReleased(context);
         }
     }
+
+    //Pause featyres
+    public event Action<InputAction.CallbackContext> onPauseButtonPressed;
+    public void PauseButtonPressed(InputAction.CallbackContext context)
+    {
+        if (onPauseButtonPressed != null)
+        {
+            onPauseButtonPressed(context);
+        }
+    }
+
+    public event Action<InputAction.CallbackContext> onPauseButtonReleased;
+    public void PauseButtonReleased(InputAction.CallbackContext context)
+    {
+        if (onPauseButtonReleased != null)
+        {
+            onPauseButtonReleased(context);
+        }
+    }
 }

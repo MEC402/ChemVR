@@ -12,18 +12,22 @@ public class Tutorial_Overview : MonoBehaviour
     Controller_Diagram diagramController;
     int curStep;
 
+    // Controllers for starting tasks
+    [Header("Start Task Controller")]
+    public Start_Module taskPreper;
+
     void OnEnable()
     {
         diagramController = controllerDiagrams.GetComponent<Controller_Diagram>();
         this.gameObject.GetComponent<ToggleTextSimple>().enabled = false;
-        curStep = -1;
+        curStep = 0;
         tutText.text = "Not reading events.";
         if (GameEventsManager.instance == null)
         {
             tutText.text = "There is no game events manager";
         }
         GameEventsManager.instance.taskEvents.onAdvanceTask += AdvanceTutTask;
-        GameEventsManager.instance.taskEvents.onAbandonTask += tu_abandonMe;
+        GameEventsManager.instance.taskEvents.onAbandonTask += tu_abandonMe;        
     }
 
     void OnDisable()
@@ -35,6 +39,15 @@ public class Tutorial_Overview : MonoBehaviour
         GameEventsManager.instance.taskEvents.onAbandonTask -= tu_abandonMe;
     }
 
+    private void Start()
+    {
+        //Start the Tutorial on opening this scene
+        taskPreper.Show();
+        this.gameObject.GetComponent<ToggleTextSimple>().enabled = true;
+        GameEventsManager.instance.taskEvents.StartTask("Tutorial_Task");
+        tutText.text = text[curStep];
+        handleDiagrams();
+    }
     public void restart()
     {
         tu_abandonMe("Tutorial_Overview");
@@ -52,25 +65,19 @@ public class Tutorial_Overview : MonoBehaviour
             {
                 tutPop.SetActive(false);
             }
-            curStep = -1;
+            curStep = 0;
         }
     }
-    /*string[] text = {"Welcome to the tutorial!\n\nYou can hide this popup with the button Y.\n\nIt is the top button on the left controller.\n\nTry hiding this popup and re-opening it by pressing the button twice!",
-                    "Good Job!\n\nYou can use the analog sticks to look and move around.\n\nYou can walk around smoothly using the Left Toggle and by turning your head. You'll notice there are colored squares on the floor, walk into the blue square, with the tables labelled 'B'.",
-                    "The right toggle is used to move quickly.\nToggle left and right to rotate 45 degrees, toggle down to turn around.\nTo teleport, push the right toggle forward and release at the desired location.\n\nTry teleporting into the red square, with the tables labelled 'C'.",
-                    "The grips on the back of your controller can be used to grab and interact with items.\n\nFor now, skip with A",
-                    "The primary buttons, (A) and (X) are your main way of interacting with objects!\n\nPress one to show you know where they are.",
-                    "The secondary buttons, (B) and (Y) are your way of interacting with menus!\nPress the (B) anytime to see the menu.\n\nGive it a try, as the Tutorial is complete!"
-                    };
-    */
-    string[] text = {"Welcome to the tutorial!\n\nYou can hide this popup with the button Y.\n\nIt is the top button on the left controller.\n\nTry hiding this popup and re-opening it by pressing the button twice!",
-                    "Good Job!\n\nYou can walk around smoothly using the Left Joystick and by turning your head. Walk into the section of the room notated by the blue square on the floor, with the tables labelled 'B' by looking towards it and pushing the Left Toggle forward.",
-                    "The right toggle is used to move quickly.\n\nMove the right joystick left or right to rotate 45 degrees in that direction.",
-                    "Great.\n\nNow try moving the right joystick down to turn around.",
-                    "To teleport, push the right joystick forward and release at your desired location.\n\nTry teleporting into the red square, with the tables labelled 'C'.\nYou might need to turn around again to see it.",
-                    "The grips on the back of your controller can be used to grab and interact with items.\n\nFor now, skip with A",
-                    "The primary buttons, (A) and (X) are your main way of interacting with objects!\n\nPress one to show you know where they are.",
-                    "The secondary buttons, (B) and (Y) are your way of interacting with menus!\nPress the (B) anytime to see the menu.\n\nGive it a try, as the Tutorial is complete!"
+
+    string[] text = {"Welcome to the Tutorial.\n\nYou will be guided through experiments with these pop ups.\n\nPop ups can be hidden and opened with the button (Y).\n\nPractice hiding this pop up by pressing (Y) twice.",
+                    "Look around the room by turning your head.\n\nTeleport by pushing either joystick forward and releasing it when the circle is where you want to go.\n\nLook around until you see a highlighted area, and teleport into it.",
+                    "The lower buttons on either controller, (A) and (X), are used to interact with items.\n\nYou should see a glove box on a table near you. Reach inside with each hand and use (A) and (X) to put on gloves.",
+                    "Great!\n\nNear the gloves, you should see a folded lab coat and a box of goggles.\n\nUsing the same method, put these on.",
+                    "You can use grips on the back of your controllers can be used to grab items.\n\nYou should see a few flasks on one of the tables near you.\n\nTeleport to the table and pick up one of the flasks.",
+                    "Well done!\n\nYou can also pour solutions between containers.\n\nTilt a flask over the beaker and pour into it.",
+                    "Nice!\n\nThe hamburger button opens and closes the help menu.\nPress it at any time to see the button configurations, or for access to the main menu.\n\nTry opening and closing it by pressing the button twice.",
+                    "This completes the tutorial.\n\nFeel free to explore the room and get familiar with the lab.\nWhen you are done, you can either:\n\nPress and hold (A) or (X) to move on to the first module\n\nUse the hamburger button to navigate to the main menu.",
+                    "Good luck!"
                     };
     void AdvanceTutTask(string context)
     {
@@ -96,34 +103,21 @@ public class Tutorial_Overview : MonoBehaviour
             diagramController.showLeftToggle();
         } else if (curStep == 2)
         {
-            diagramController.showRightController();
-            diagramController.showRightToggle();
-        } else if (curStep == 3)
-        {
-            diagramController.showRightController();
-            diagramController.showRightToggle();
-        } else if (curStep == 4)
-        {
-            diagramController.showRightController();
-            diagramController.showRightToggle();
-        }
-        else if (curStep == 5)
-        {
-            diagramController.showAllDiagrams();
-            diagramController.showLeftGrip();
-            diagramController.showRightGrip();
-        }
-        else if (curStep == 6) // old 4
-        {
             diagramController.showAllDiagrams();
             diagramController.showAButton();
             diagramController.showXButton();
-        }
-        else if (curStep == 7) // old 5
+            
+        } else if (curStep == 4)
         {
-            diagramController.showAllDiagrams();
-            diagramController.showBButton();
-            diagramController.showYButton();
+            diagramController.showLeftController();
+            diagramController.showRightController();
+            diagramController.showLeftGrip();
+            diagramController.showRightGrip();
+        }
+        else if (curStep == 6) 
+        {
+            diagramController.showLeftController();
+            diagramController.showHamburgerButton();
         }
     }
 }
