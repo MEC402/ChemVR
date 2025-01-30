@@ -50,7 +50,7 @@ public class SnapBurette2Holder : MonoBehaviour
 
         rb.isKinematic = true;
 
-        if (!stopcockCollider.enabled)
+        if (stopcockCollider != null && !stopcockCollider.enabled)
             stopcockCollider.enabled = true;
 
         if (!hasSnapped)
