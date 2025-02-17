@@ -125,7 +125,9 @@ public class WebGLGrab : MonoBehaviour
             if (Physics.Raycast(centerRay, out hit, grabRange, ~0, QueryTriggerInteraction.Ignore))
             {
                 Vector3 touchPoint = hit.point;
-                hygieneManager.AddPoint(touchPoint, hit.collider.gameObject);
+
+                if (hygieneManager != null)
+                    hygieneManager.AddPoint(touchPoint, hit.collider.gameObject);
             }
         }
 
