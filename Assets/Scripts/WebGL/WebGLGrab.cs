@@ -234,19 +234,19 @@ public class WebGLGrab : MonoBehaviour
             removeGloves.WebTakeOffGloves();
         else if (hitObject.TryGetComponent(out DoorOpen doorOpen))
             doorOpen.ToggleOpen();
-        else if (hitObject.TryGetComponent(out StopCockController stopCockController))
-            StopCockAdjuster(stopCockController);
+        else if (hitObject.TryGetComponent(out StopcockController stopcockController))
+            StopCockAdjuster(stopcockController);
     }
 
     /// <summary>
     /// Adjusts the stop cock by toggling the hinge and flow.
     /// </summary>
     /// <param name="stopCock">The stop cock to adjust</param>
-    private void StopCockAdjuster(StopCockController stopCock)
+    private void StopCockAdjuster(StopcockController stopcock)
     {
-        stopCock.GetComponent<StopCockController>().WebToggleHinge();
+        stopcock.GetComponent<StopcockController>().WebToggleHinge();
 
-        stopCock.GetComponentInParent<RotatingValveController>().CalculateFlow(stopCock.transform.localEulerAngles.z);
+        stopcock.GetComponentInParent<RotatingValveController>().CalculateFlow(stopcock.transform.localEulerAngles.z);
     }
 
     /// <summary>

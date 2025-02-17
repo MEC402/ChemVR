@@ -72,12 +72,14 @@ public class RemoveGloves : MonoBehaviour
     void TakeOffLeftGlove()
     {
         leftHand.GetComponent<SkinnedMeshRenderer>().material = original;
+        PlayTrashAudio();
         GameEventsManager.instance.miscEvents.TakeOffLeftGlove();
         //Debug.Log("Left glove taken off!");
     }
     void TakeOffRightGlove()
     {
         rightHand.GetComponent<SkinnedMeshRenderer>().material = original;
+        PlayTrashAudio();
         GameEventsManager.instance.miscEvents.TakeOffRightGlove();
         //Debug.Log("Right glove taken off!");
     }

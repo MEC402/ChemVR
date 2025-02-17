@@ -1,7 +1,7 @@
 using UnityEngine;
 using UnityEngine.XR.Interaction.Toolkit;
 
-public class StopCockController : MonoBehaviour
+public class StopcockController : MonoBehaviour
 {
     private Rigidbody rb;
     private XRGrabInteractable grabInteractable;
