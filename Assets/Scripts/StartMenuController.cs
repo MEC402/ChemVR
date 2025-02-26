@@ -8,6 +8,7 @@ public class StartMenuController : MonoBehaviour
 
     public GameObject settingsCanvas;
     private bool settingsActive = false;
+    bool isLoading = false;
 
     private void Awake()
     {
@@ -36,35 +37,72 @@ public class StartMenuController : MonoBehaviour
     }
     public void StartTutorialBtn()
     {
-        SceneManager.LoadScene("LabSceneTutorial");
+        // if (!isLoading)
+        //     SceneManager.LoadScene("LabSceneTutorial");
+
+        if (!isLoading)
+            StartCoroutine(LoadSceneAsync("LabSceneTutorial"));
     }
 
     public void StartGloveHygieneBtn()
     {
-        SceneManager.LoadScene("LabSceneGloveHygiene");
+        // if (!isLoading)
+        //     SceneManager.LoadScene("LabSceneGloveHygiene");
+
+        if (!isLoading)
+            StartCoroutine(LoadSceneAsync("LabSceneGloveHygiene"));
     }
 
     public void StartGlasswareBtn()
     {
-        SceneManager.LoadScene("LabSceneGlasswareUse");
+        // if (!isLoading)
+        // SceneManager.LoadScene("LabSceneGlasswareUse");
+
+        if (!isLoading)
+            StartCoroutine(LoadSceneAsync("LabSceneGlasswareUse"));
     }
 
     public void StartChemicalChangeBtn()
     {
-        SceneManager.LoadScene("LabSceneChemicalChange");
+        // if (!isLoading)
+        // SceneManager.LoadScene("LabSceneChemicalChange");
+
+        if (!isLoading)
+            StartCoroutine(LoadSceneAsync("LabSceneChemicalChange"));
     }
 
     public void MainMenuBtn()
     {
-        SceneManager.LoadScene("Start Menu");
+        // if (!isLoading)
+        // SceneManager.LoadScene("Start Menu");
+
+        if (!isLoading)
+            StartCoroutine(LoadSceneAsync("Start Menu"));
     }
 
     public void ExitBtn()
     {
-        #if UNITY_EDITOR
-                UnityEditor.EditorApplication.isPlaying = false;
-        #else
+#if UNITY_EDITOR
+        UnityEditor.EditorApplication.isPlaying = false;
+#else
                     Application.Quit();
-        #endif
+#endif
+    }
+
+    /// <summary>
+    /// Loads the specified scene asynchronously. This allows the VR headset to remain responsive while the scene is loading. When the scene is loaded,
+    /// the headset will automatically switch to the new scene.
+    /// </summary>
+    /// <param name="sceneName">The name of the scene to load.</param>
+    /// <returns></returns>
+    IEnumerator LoadSceneAsync(string sceneName)
+    {
+        isLoading = true;
+
+        AsyncOperation asyncLoad = SceneManager.LoadSceneAsync(sceneName);
+
+        // Wait until the asynchronous scene fully loads
+        while (!asyncLoad.isDone)
+            yield return null;
     }
 }

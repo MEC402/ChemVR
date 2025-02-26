@@ -8,22 +8,22 @@ public class Highlight_Selection : MonoBehaviour
     private XRSimpleInteractable interactable;
     public MeshRenderer highlight;
 
-    void Awake()
-    {
-        interactable = GetComponent<XRSimpleInteractable>();
-    }
+    // void Awake()
+    // {
+    //     interactable = GetComponent<XRSimpleInteractable>();
+    // }
 
-    void OnEnable()
-    {
-        interactable.hoverEntered.AddListener(OnHoverEnter);
-        interactable.hoverExited.AddListener(OnHoverExit);
-    }
+    // void OnEnable()
+    // {
+    //     interactable.hoverEntered.AddListener(OnHoverEnter);
+    //     interactable.hoverExited.AddListener(OnHoverExit);
+    // }
 
-    void OnDisable()
-    {
-        interactable.hoverEntered.RemoveListener(OnHoverEnter);
-        interactable.hoverExited.AddListener(OnHoverExit);
-    }
+    // void OnDisable()
+    // {
+    //     interactable.hoverEntered.RemoveListener(OnHoverEnter);
+    //     interactable.hoverExited.AddListener(OnHoverExit);
+    // }
 
     public void OnHoverEnter(HoverEnterEventArgs args)
     {
