@@ -210,6 +210,10 @@ public class WebGLGrab : MonoBehaviour
         if (heldObject.TryGetComponent(out XRBaseInteractable xrInteractable))
             xrInteractable.selectEntered.Invoke(new SelectEnterEventArgs());
 
+        // Check if the held object is a glassware item and trigger the inspection task
+        if (FindObjectOfType<Inspect_Glassware>() is Inspect_Glassware glasswareTask)
+            glasswareTask.WebGLInspectObject(heldObject.gameObject);
+
         // Snap to hold point
         heldObject.SetPositionAndRotation(holdPoint.position, holdPoint.rotation);
         objectRotationController.objectToRotate = heldObject;

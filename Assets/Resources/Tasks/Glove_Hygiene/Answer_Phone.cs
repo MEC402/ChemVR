@@ -49,7 +49,7 @@ public class Answer_Phone : TaskStep
     }
     private void OnGrab(SelectEnterEventArgs arg0)
     {
-        //Debug.LogWarning(arg0.interactableObject);
+        // Debug.LogWarning(arg0.interactableObject);
         // if (arg0.interactableObject.Equals(phone.GetComponent<IXRSelectInteractable>()))
         // {
         //Debug.LogWarning("Picked up phone");
