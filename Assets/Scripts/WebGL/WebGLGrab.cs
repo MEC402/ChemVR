@@ -232,7 +232,7 @@ public class WebGLGrab : MonoBehaviour
         var hitObject = hit.collider.gameObject;
 
         // Trigger the interactable object event
-        GameEventsManager.instance.webGLEvents.InteractPressed();
+        GameEventsManager.instance.webGLEvents.InteractPressed(hitObject);
 
         // Keep these checks for not breaking older module
         if (hitObject.TryGetComponent(out WearGoggles wearGoggles))

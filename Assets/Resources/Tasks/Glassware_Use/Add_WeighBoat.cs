@@ -9,6 +9,7 @@ public class Add_WeighBoat : TaskStep
     {
         throw new System.NotImplementedException();
     }
+
     private void Update()
     {
         if (Keyboard.current.cKey.wasPressedThisFrame)
@@ -16,14 +17,17 @@ public class Add_WeighBoat : TaskStep
             FinishTaskStep();
         }
     }
+
     void OnEnable()
     {
         GameEventsManager.instance.inputEvents.onAButtonPressed += SkipTask;
     }
+
     void OnDisable()
     {
         GameEventsManager.instance.inputEvents.onAButtonPressed -= SkipTask;
     }
+
     private void SkipTask(InputAction.CallbackContext obj)
     {
         FinishTaskStep();

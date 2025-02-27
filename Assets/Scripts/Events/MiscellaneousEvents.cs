@@ -135,4 +135,18 @@ public class MiscellaneousEvents
             onSetHint(target);
         }
     }
+
+    #region Scale Events
+    public event Action OnScalePowerOn;
+    public void ScalePowerOn() => OnScalePowerOn?.Invoke();
+
+    public event Action OnScalePowerOff;
+    public void ScalePowerOff() => OnScalePowerOff?.Invoke();
+
+    public event Action OnScaleTare;
+    public void ScaleTare() => OnScaleTare?.Invoke();
+
+    public event Action OnScaleMode;
+    public void ScaleMode() => OnScaleMode?.Invoke();
+    #endregion
 }

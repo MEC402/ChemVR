@@ -3,12 +3,12 @@ using UnityEngine;
 
 public class WebGLEvents
 {
-    public event Action<GameObject> onObjectGrabbed;
-    public void ObjectGrabbed(GameObject obj) => onObjectGrabbed?.Invoke(obj);
+    public event Action<GameObject> OnObjectGrabbed;
+    public void ObjectGrabbed(GameObject obj) => OnObjectGrabbed?.Invoke(obj);
 
-    public event Action<GameObject> onObjectReleased;
-    public void ObjectReleased(GameObject obj) => onObjectReleased?.Invoke(obj);
+    public event Action<GameObject> OnObjectReleased;
+    public void ObjectReleased(GameObject obj) => OnObjectReleased?.Invoke(obj);
 
-    public event Action onInteractPressed;
-    public void InteractPressed() => onInteractPressed?.Invoke();
+    public event Action<GameObject> OnInteractPressed;
+    public void InteractPressed(GameObject obj) => OnInteractPressed?.Invoke(obj);
 }
