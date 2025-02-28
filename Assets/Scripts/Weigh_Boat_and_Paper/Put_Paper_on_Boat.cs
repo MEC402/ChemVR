@@ -96,6 +96,8 @@ public class Put_Paper_on_Boat : MonoBehaviour
 
     private void SetPositionToBoat()
     {
+        Debug.Log("Paper is snapping to boat");
+
         //Move the paper to the boat's position and rotation, but add a little bit of translation to the paper so it is not inside the boat
         Quaternion additionalRotation = Quaternion.Euler(90, 0, 0);
         Quaternion newRotation = boat.transform.rotation * additionalRotation;
@@ -119,6 +121,8 @@ public class Put_Paper_on_Boat : MonoBehaviour
             boat = other.gameObject;
             touching = true;
 
+            GameEventsManager.instance.miscEvents.PaperInBoat(true);
+
             if (other.name.Contains("mall"))
                 OGfunnelTranslation = new Vector3(0, riseAmount, 0);
             else if (other.name.Contains("edium"))
@@ -133,6 +137,8 @@ public class Put_Paper_on_Boat : MonoBehaviour
         if (other.name.Contains("boat"))
         {
             touching = false;
+
+            GameEventsManager.instance.miscEvents.PaperInBoat(false);
 
             if (isGrabbed)
                 LetGo();
@@ -186,8 +192,6 @@ public class Put_Paper_on_Boat : MonoBehaviour
     {
         if (grabbedObject != gameObject) return; // Ensure the grabbed object is this paper
 
-        Debug.Log("Paper grabbed in WebGL");
-
         isGrabbed = true;
         LetGo();
     }
@@ -200,13 +204,20 @@ public class Put_Paper_on_Boat : MonoBehaviour
     {
         if (releasedObject != gameObject) return; // Ensure the released object is this paper
 
+        StartCoroutine(HandleWebGLRelease());
+    }
+
+    IEnumerator HandleWebGLRelease()
+    {
+        yield return new WaitForSeconds(0.25f); // Delay to allow for object to fall on boat
+
         // Reset the state of the paper
         isGrabbed = false;
 
-        Debug.Log("Paper released in WebGL");
-
         if (touching)
         {
+            GetComponent<BoxCollider>().enabled = false; // Disable the collider to prevent further interactions
+
             snap = true;
             myRb.useGravity = false;
 

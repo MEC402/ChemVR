@@ -148,5 +148,14 @@ public class MiscellaneousEvents
 
     public event Action OnScaleMode;
     public void ScaleMode() => OnScaleMode?.Invoke();
+
+    public event Action<string> OnScaleModeChanged;
+    public void ScaleModeChanged(string mode) => OnScaleModeChanged?.Invoke(mode);
+
+    public event Action<bool> OnPaperInBoat;
+    public void PaperInBoat(bool inBoat) => OnPaperInBoat?.Invoke(inBoat);
+
+    public event Action OnObjectOnScale;
+    public void ObjectOnScale() => OnObjectOnScale?.Invoke();
     #endregion
 }

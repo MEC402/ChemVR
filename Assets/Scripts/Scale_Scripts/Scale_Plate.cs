@@ -29,6 +29,8 @@ public class Scale_Plate : MonoBehaviour
     }
     private void OnTriggerEnter(Collider other)
     {
+        GameEventsManager.instance.miscEvents.ObjectOnScale();
+
         if (!ObjectsOnScale.Contains(other.gameObject))
         {
             ObjectsOnScale.Add(other.gameObject);
@@ -72,7 +74,7 @@ public class Scale_Plate : MonoBehaviour
                         totalFluidInGrams += (1.36f * unConvertedContents);
                     }
                 }
-                
+
             }
 
         }

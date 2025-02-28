@@ -7,25 +7,22 @@ public class Change_Unit : TaskStep
 {
     protected override void SetTaskStepState(string state)
     {
-        throw new System.NotImplementedException();
+        // Not necessary for this task step
     }
-    private void Update()
-    {
-        if (Keyboard.current.cKey.wasPressedThisFrame)
-        {
-            FinishTaskStep();
-        }
-    }
+
     void OnEnable()
     {
-        GameEventsManager.instance.inputEvents.onAButtonPressed += SkipTask;
+        GameEventsManager.instance.miscEvents.OnScaleModeChanged += CheckScaleMode;
     }
+
     void OnDisable()
     {
-        GameEventsManager.instance.inputEvents.onAButtonPressed -= SkipTask;
+        GameEventsManager.instance.miscEvents.OnScaleModeChanged -= CheckScaleMode;
     }
-    private void SkipTask(InputAction.CallbackContext obj)
+
+    private void CheckScaleMode(string mode)
     {
-        FinishTaskStep();
+        if (mode == "grams")
+            FinishTaskStep();
     }
 }
