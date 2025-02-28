@@ -136,6 +136,12 @@ public class MiscellaneousEvents
         }
     }
 
+    public event Action<GameObject, bool> OnJarClosed;
+    public void JarClosed(GameObject jar, bool isClosed) => OnJarClosed?.Invoke(jar, isClosed);
+
+    public event Action OnScoopInJar;
+    public void ScoopInJar() => OnScoopInJar?.Invoke();
+
     #region Scale Events
     public event Action OnScalePowerOn;
     public void ScalePowerOn() => OnScalePowerOn?.Invoke();
