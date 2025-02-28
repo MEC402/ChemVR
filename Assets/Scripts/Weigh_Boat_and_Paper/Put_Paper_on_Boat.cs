@@ -96,8 +96,6 @@ public class Put_Paper_on_Boat : MonoBehaviour
 
     private void SetPositionToBoat()
     {
-        Debug.Log("Paper is snapping to boat");
-
         //Move the paper to the boat's position and rotation, but add a little bit of translation to the paper so it is not inside the boat
         Quaternion additionalRotation = Quaternion.Euler(90, 0, 0);
         Quaternion newRotation = boat.transform.rotation * additionalRotation;
