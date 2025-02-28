@@ -133,7 +133,12 @@ public class JarLid : MonoBehaviour
             rb.angularVelocity = Vector3.zero;
 
             transform.SetLocalPositionAndRotation(initialPos, initialRotation);
+
+            // Freeze pos and rotation
+            rb.constraints = RigidbodyConstraints.FreezeAll;
         }
+        else
+            rb.constraints = RigidbodyConstraints.None;
 
         // Trigger the jar closed event
         GameEventsManager.instance.miscEvents.JarClosed(parentJar, !useGravity);

@@ -18,9 +18,8 @@ public class JarManager : MonoBehaviour
     {
         if (!canUse) return;
 
-        //TODO: Add scoop interaction later
-        // if (other.name == "Scoop")
-        //     GameEventsManager.instance.miscEvents.ScoopInJar(other.gameObject, gameObject);
+        if (other.name.Contains("coopula"))
+            GameEventsManager.instance.miscEvents.ScoopInJar();
     }
 
     private void CloseJar(GameObject jar, bool closedJar)

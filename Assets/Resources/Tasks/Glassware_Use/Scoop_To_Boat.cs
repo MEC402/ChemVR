@@ -1,35 +1,25 @@
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-using UnityEngine.InputSystem;
-
 public class Scoop_To_Boat : TaskStep
 {
+    readonly float neededAmountOfSulfur = 1.500f;
+
     protected override void SetTaskStepState(string state)
     {
-        throw new System.NotImplementedException();
-    }
-
-    private void Update()
-    {
-        if (Keyboard.current.cKey.wasPressedThisFrame)
-        {
-            FinishTaskStep();
-        }
+        // Not needed for this task step
     }
 
     void OnEnable()
     {
-        GameEventsManager.instance.inputEvents.onAButtonPressed += SkipTask;
+        GameEventsManager.instance.miscEvents.OnUpdateMaterialHeld += MaterialCheck;
     }
 
     void OnDisable()
     {
-        GameEventsManager.instance.inputEvents.onAButtonPressed -= SkipTask;
+        GameEventsManager.instance.miscEvents.OnUpdateMaterialHeld -= MaterialCheck;
     }
 
-    private void SkipTask(InputAction.CallbackContext obj)
+    private void MaterialCheck(float amount)
     {
-        FinishTaskStep();
+        if (amount >= neededAmountOfSulfur - 0.05f && amount <= neededAmountOfSulfur + 0.05f)
+            FinishTaskStep();
     }
 }

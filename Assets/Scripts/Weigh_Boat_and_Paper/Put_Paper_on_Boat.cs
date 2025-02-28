@@ -25,6 +25,8 @@ public class Put_Paper_on_Boat : MonoBehaviour
     private MeshCollider halfFoldedPaperCollider;
     private MeshRenderer halfFoldedPaperRenderer;
 
+    [HideInInspector] public bool isInBoat = false; //is the paper in the boat?
+
     private void Update()
     {
         if (snap)
@@ -234,6 +236,8 @@ public class Put_Paper_on_Boat : MonoBehaviour
 
                 foldedPaperCollider.enabled = true;
                 foldedPaperRenderer.enabled = true;
+
+                isInBoat = true; // Set the paper as being in the boat
             }
         }
         else

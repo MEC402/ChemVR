@@ -142,6 +142,9 @@ public class MiscellaneousEvents
     public event Action OnScoopInJar;
     public void ScoopInJar() => OnScoopInJar?.Invoke();
 
+    public event Action<float> OnUpdateMaterialHeld;
+    public void UpdateMaterialHeld(float amount) => OnUpdateMaterialHeld?.Invoke(amount);
+
     #region Scale Events
     public event Action OnScalePowerOn;
     public void ScalePowerOn() => OnScalePowerOn?.Invoke();
