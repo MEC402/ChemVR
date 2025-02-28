@@ -21,7 +21,7 @@ public class Scale_Plate : MonoBehaviour
             if (weightRB != null)
             {
                 //Debug.Log("Before: " + measuredWeight);
-                measuredWeight += weightRB.mass + getFluidMass(item) + additionalWeight;
+                measuredWeight = weightRB.mass + getFluidMass(item) + additionalWeight;
                 //Debug.Log("After: " + measuredWeight);
             }
             //Apply the fluctuation

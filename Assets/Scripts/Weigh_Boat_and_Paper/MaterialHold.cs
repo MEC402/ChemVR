@@ -30,7 +30,7 @@ public class MaterialHold : MonoBehaviour
     {
         if (putPaperOnBoat == null) return;
 
-        if (putPaperOnBoat.isInBoat)
-            materialVisuals.SetActive(true);
+        // if (putPaperOnBoat.isInBoat)
+        materialVisuals.SetActive(true);
     }
 }

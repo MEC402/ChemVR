@@ -4466,10 +4466,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: scoopula
       objectReference: {fileID: 0}
-    - target: {fileID: 7510951216863848769, guid: 14f3a74122e486849a04e64e86bb529d, type: 3}
-      propertyPath: amountToScoop
-      value: 0
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -16080,6 +16076,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1427779196}
     m_Modifications:
+    - target: {fileID: 1566256496141212683, guid: 8abc00b5baec9c84d8a1fd9f8b152949, type: 3}
+      propertyPath: m_CollisionDetection
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 8145767165433601634, guid: 8abc00b5baec9c84d8a1fd9f8b152949, type: 3}
       propertyPath: m_Name
       value: weigh_boat_small
