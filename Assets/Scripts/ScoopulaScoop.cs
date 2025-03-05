@@ -2,8 +2,9 @@ using UnityEngine;
 
 public class ScoopulaScoop : MonoBehaviour
 {
-    [SerializeField] float amountToScoop = 0.5f;
+    [SerializeField] float minScoop, maxScoop;
     [SerializeField] GameObject materialToHold;
+    float amountToScoop;
     bool canTransfer;
 
     void OnEnable()
@@ -19,6 +20,8 @@ public class ScoopulaScoop : MonoBehaviour
     private void ScoopInJar()
     {
         if (materialToHold == null) return;
+
+        amountToScoop = Random.Range(minScoop, maxScoop);
 
         materialToHold.SetActive(true);
         canTransfer = true;

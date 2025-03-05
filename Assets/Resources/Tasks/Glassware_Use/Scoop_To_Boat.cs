@@ -1,5 +1,3 @@
-using UnityEngine;
-
 public class Scoop_To_Boat : TaskStep
 {
     readonly float neededAmountOfSulfur = 1.500f;
@@ -22,11 +20,17 @@ public class Scoop_To_Boat : TaskStep
 
     private void MaterialCheck(float amount)
     {
+        if (amount < 0)
+        {
+            currentAmountOfSulfur = 0.0f;
+            return;
+        }
+
         currentAmountOfSulfur += amount;
 
         // Debug.Log("Current amount of sulfur: " + currentAmountOfSulfur);
 
-        if (currentAmountOfSulfur >= neededAmountOfSulfur - 0.05f && currentAmountOfSulfur <= neededAmountOfSulfur + 0.05f)
+        if (currentAmountOfSulfur >= neededAmountOfSulfur - 0.15f && currentAmountOfSulfur <= neededAmountOfSulfur + 0.15f)
             FinishTaskStep();
     }
 }

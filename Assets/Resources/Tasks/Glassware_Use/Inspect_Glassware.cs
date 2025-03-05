@@ -36,6 +36,12 @@ public class Inspect_Glassware : TaskStep
         {
             GameObject glasswareObject = GameObject.Find(glasswareName);
 
+            if (glasswareObject.activeSelf == false)
+            {
+                Debug.LogWarning($"Glassware item '{glasswareName}' is not active in the scene.");
+                continue;
+            }
+
             if (glasswareObject != null && glasswareObject.TryGetComponent(out XRGrabInteractable grabInteractable))
             {
                 var item = new GlasswareItem(glasswareObject, false, grabInteractable);

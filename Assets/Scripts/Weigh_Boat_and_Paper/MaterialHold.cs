@@ -4,18 +4,22 @@ public class MaterialHold : MonoBehaviour
 {
     [SerializeField] Collider triggerCollider;
     [SerializeField] Put_Paper_on_Boat putPaperOnBoat;
-    [SerializeField] GameObject materialVisuals;
+    public GameObject materialVisuals;
 
     void OnEnable()
     {
         GameEventsManager.instance.miscEvents.OnScoopInJar += EnableTriggerCollider;
         GameEventsManager.instance.miscEvents.OnUpdateMaterialHeld += AddMaterialToBoat;
+
+        GameEventsManager.instance.miscEvents.OnAllowBoatTransfer += () => triggerCollider.enabled = false;
     }
 
     void OnDisable()
     {
         GameEventsManager.instance.miscEvents.OnScoopInJar -= EnableTriggerCollider;
         GameEventsManager.instance.miscEvents.OnUpdateMaterialHeld -= AddMaterialToBoat;
+
+        GameEventsManager.instance.miscEvents.OnAllowBoatTransfer -= () => triggerCollider.enabled = false;
     }
 
     private void EnableTriggerCollider()
@@ -30,7 +34,7 @@ public class MaterialHold : MonoBehaviour
     {
         if (putPaperOnBoat == null) return;
 
-        // if (putPaperOnBoat.isInBoat)
-        materialVisuals.SetActive(true);
+        if (putPaperOnBoat.isInBoat)
+            materialVisuals.SetActive(true);
     }
 }

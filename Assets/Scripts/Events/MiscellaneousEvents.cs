@@ -136,6 +136,7 @@ public class MiscellaneousEvents
         }
     }
 
+    // Glassware related events
     public event Action<GameObject, bool> OnJarClosed;
     public void JarClosed(GameObject jar, bool isClosed) => OnJarClosed?.Invoke(jar, isClosed);
 
@@ -144,6 +145,19 @@ public class MiscellaneousEvents
 
     public event Action<float> OnUpdateMaterialHeld;
     public void UpdateMaterialHeld(float amount) => OnUpdateMaterialHeld?.Invoke(amount);
+
+    public event Action OnAllowBoatTransfer;
+    public void AllowBoatTransfer() => OnAllowBoatTransfer?.Invoke();
+
+    public event Action OnCleanScale;
+    public void CleanScale() => OnCleanScale?.Invoke();
+
+    // Flask related events
+    public event Action<bool> OnEnableFlaskTrigger;
+    public void EnableFlaskTrigger(bool enable) => OnEnableFlaskTrigger?.Invoke(enable);
+
+    public event Action OnTransferMaterialToGlass;
+    public void TransferMaterialToGlass() => OnTransferMaterialToGlass?.Invoke();
 
     #region Scale Events
     public event Action OnScalePowerOn;

@@ -1,31 +1,22 @@
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-using UnityEngine.InputSystem;
-
 public class Pour_Into_Flask : TaskStep
 {
     protected override void SetTaskStepState(string state)
     {
-        throw new System.NotImplementedException();
+        // Not needed for this task step
     }
-    private void Update()
-    {
-        if (Keyboard.current.cKey.wasPressedThisFrame)
-        {
-            FinishTaskStep();
-        }
-    }
+
     void OnEnable()
     {
-        GameEventsManager.instance.inputEvents.onAButtonPressed += SkipTask;
+        GameEventsManager.instance.miscEvents.AllowBoatTransfer();
+        GameEventsManager.instance.miscEvents.EnableFlaskTrigger(true);
+
+        GameEventsManager.instance.miscEvents.OnTransferMaterialToGlass += FinishTaskStep;
     }
+
     void OnDisable()
     {
-        GameEventsManager.instance.inputEvents.onAButtonPressed -= SkipTask;
-    }
-    private void SkipTask(InputAction.CallbackContext obj)
-    {
-        FinishTaskStep();
+        GameEventsManager.instance.miscEvents.EnableFlaskTrigger(false);
+
+        GameEventsManager.instance.miscEvents.OnTransferMaterialToGlass -= FinishTaskStep;
     }
 }

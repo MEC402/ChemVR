@@ -104,6 +104,8 @@ public class WebGLGrab : MonoBehaviour
             else
                 playerIcon.sprite = defaultIcon;
         }
+        else
+            playerIcon.sprite = defaultIcon;
     }
 
     /// <summary>

@@ -7,10 +7,12 @@ using UnityEngine.XR.Interaction.Toolkit;
 
 public class Put_Paper_on_Boat : MonoBehaviour
 {
+    [SerializeField] Collider initialCollider;
     private XRGrabInteractable grabInteractable; //XRGrabInteractable of attached gameObject
     private Rigidbody myRb; //Rigidbody of attached gameObject
     private bool touching; //is this collider touching a flask collieder?
     private bool snap; //is this paper gameObject attached to a boat?
+    bool hasSnapped;
     private bool isGrabbed; //is the paper grabbed? (so paper doesn't detach unless intentional)
     private GameObject boat; //the boat gameobject
     private float riseAmount = -0.004f;
@@ -98,6 +100,8 @@ public class Put_Paper_on_Boat : MonoBehaviour
 
     private void SetPositionToBoat()
     {
+        if (hasSnapped) return;
+
         //Move the paper to the boat's position and rotation, but add a little bit of translation to the paper so it is not inside the boat
         Quaternion additionalRotation = Quaternion.Euler(90, 0, 0);
         Quaternion newRotation = boat.transform.rotation * additionalRotation;
@@ -105,6 +109,18 @@ public class Put_Paper_on_Boat : MonoBehaviour
         transform.SetPositionAndRotation(boat.transform.position, newRotation);
         transform.Translate(OGfunnelTranslation);
         transform.localRotation *= Quaternion.Euler(0, r, 0);
+
+        //Set the paper to be a child of the boat
+        transform.parent = boat.transform;
+
+        // Completely disable rb and initial collider to prevent further interactions after snapping
+        myRb.useGravity = false;
+        myRb.isKinematic = true;
+        myRb.detectCollisions = false;
+
+        initialCollider.enabled = false;
+
+        hasSnapped = true;
     }
 
     private void LetGo()
