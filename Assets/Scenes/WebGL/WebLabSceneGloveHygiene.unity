@@ -524,6 +524,17 @@ Transform:
   - {fileID: 641270033}
   m_Father: {fileID: 306565935}
   m_LocalEulerAnglesHint: {x: 0, y: 90, z: 0}
+--- !u!114 &227836922 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 6036986959334857914, guid: 2840c82334889af40a9a17eda5a4e086, type: 3}
+  m_PrefabInstance: {fileID: 3752753858109386220}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &258740503
 GameObject:
   m_ObjectHideFlags: 0
@@ -5016,6 +5027,38 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c4a645c929982ea41a52b5037ee7d94d, type: 3}
+--- !u!1 &2134981876 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2808185265761532808, guid: 2840c82334889af40a9a17eda5a4e086, type: 3}
+  m_PrefabInstance: {fileID: 3752753858109386220}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &2134981879 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 4195615394857810562, guid: 2840c82334889af40a9a17eda5a4e086, type: 3}
+  m_PrefabInstance: {fileID: 3752753858109386220}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2134981876}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 97e6517e08504a94ebaac5f7a9b9a9b0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &2134981880
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2134981876}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ed802b1a483428944a100d8b9bc747c1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  touchTracker: {fileID: 1314776725}
+  ghText: {fileID: 227836922}
+  isWebGLText: 1
+  taskPreper: {fileID: 2134981879}
 --- !u!1001 &320024597993203791
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -5401,10 +5444,14 @@ PrefabInstance:
       propertyPath: touchTracker
       value: 
       objectReference: {fileID: 1314776725}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 8811674004054418444, guid: 2840c82334889af40a9a17eda5a4e086, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 2808185265761532808, guid: 2840c82334889af40a9a17eda5a4e086, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 2134981880}
   m_SourcePrefab: {fileID: 100100000, guid: 2840c82334889af40a9a17eda5a4e086, type: 3}
 --- !u!4 &4032386957885067692 stripped
 Transform:
