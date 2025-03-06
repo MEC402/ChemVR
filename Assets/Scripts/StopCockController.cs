@@ -43,7 +43,7 @@ public class StopcockController : MonoBehaviour
 
     private void LockHinge()
     {
-        Debug.Log("Locking hinge");
+        // Debug.Log("Locking hinge");
         rb.constraints = RigidbodyConstraints.FreezeRotation;
     }
 

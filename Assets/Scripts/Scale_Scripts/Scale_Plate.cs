@@ -10,6 +10,7 @@ public class Scale_Plate : MonoBehaviour
     private float fluctuation = 0;
     private HashSet<GameObject> ObjectsOnScale = new HashSet<GameObject>();
     private float flucDuration = 0.25f;
+    public float additionalWeight = 0f;
 
     private void Update()
     {
@@ -20,15 +21,28 @@ public class Scale_Plate : MonoBehaviour
             if (weightRB != null)
             {
                 //Debug.Log("Before: " + measuredWeight);
-                measuredWeight += (weightRB.mass + getFluidMass(item));
+                measuredWeight = weightRB.mass + getFluidMass(item) + additionalWeight;
                 //Debug.Log("After: " + measuredWeight);
             }
             //Apply the fluctuation
             measuredWeight += fluctuation;
         }
     }
+
+    void OnEnable()
+    {
+        GameEventsManager.instance.miscEvents.OnUpdateMaterialHeld += UpdateAdditionalWeight;
+    }
+
+    void OnDisable()
+    {
+        GameEventsManager.instance.miscEvents.OnUpdateMaterialHeld -= UpdateAdditionalWeight;
+    }
+
     private void OnTriggerEnter(Collider other)
     {
+        GameEventsManager.instance.miscEvents.ObjectOnScale();
+
         if (!ObjectsOnScale.Contains(other.gameObject))
         {
             ObjectsOnScale.Add(other.gameObject);
@@ -72,12 +86,18 @@ public class Scale_Plate : MonoBehaviour
                         totalFluidInGrams += (1.36f * unConvertedContents);
                     }
                 }
-                
+
             }
 
         }
         return totalFluidInGrams;
     }
+
+    /// <summary>
+    /// Updates the additional weight of the scale plate. This is used to add the weight of the paper and the scoopula to the scale.
+    /// </summary>
+    /// <param name="weight">The weight to add to the scale.</param>
+    private void UpdateAdditionalWeight(float weight) => additionalWeight += weight;
 
     private void FluctuateUp()
     {

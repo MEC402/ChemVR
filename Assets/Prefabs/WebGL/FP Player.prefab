@@ -1167,7 +1167,7 @@ GameObject:
   - component: {fileID: 2945864884822108115}
   - component: {fileID: 8158705358862834776}
   m_Layer: 3
-  m_Name: Glove Hygiene PopUp
+  m_Name: Glassware Use PopUp
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1451,11 +1451,11 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8271074691435331410}
-  - component: {fileID: 9137299133694033548}
+  - component: {fileID: 8811674004054418444}
   - component: {fileID: 4195615394857810562}
   - component: {fileID: 7440093594182120078}
   m_Layer: 3
-  m_Name: Glove Hygiene
+  m_Name: Glassware Use
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1477,7 +1477,7 @@ Transform:
   - {fileID: 6376272954761178619}
   m_Father: {fileID: 3991614453026647338}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &9137299133694033548
+--- !u!114 &8811674004054418444
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -1486,12 +1486,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 2808185265761532808}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ed802b1a483428944a100d8b9bc747c1, type: 3}
+  m_Script: {fileID: 11500000, guid: 567986ab65fc08743b843ac8ee366070, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  touchTracker: {fileID: 0}
-  ghText: {fileID: 6036986959334857914}
-  isWebGLText: 1
+  guText: {fileID: 6036986959334857914}
+  isWebGL: 1
   taskPreper: {fileID: 4195615394857810562}
 --- !u!114 &4195615394857810562
 MonoBehaviour:
@@ -2491,7 +2490,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 0d6b457603b77d74ba81eaf735b66182, type: 2}
+  - {fileID: 2100000, guid: 3da323aa5c0cc734780959da4fdb1e86, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -2671,8 +2670,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3954243689698642867}
   serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.6629101, z: 0}
+  m_LocalRotation: {x: -0, y: 1, z: -0, w: 0.000001952052}
+  m_LocalPosition: {x: 0, y: 0.6, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -4207,7 +4206,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0.947, z: 1.994}
-  m_LocalScale: {x: 1, y: 0.95, z: 1}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 8090575790558865484}
@@ -4712,7 +4711,10 @@ PrefabInstance:
       propertyPath: m_ConstrainProportionsScale
       value: 1
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 2371523737013156065, guid: fe6ec8034fc6e444591c1981b53c672c, type: 3}
+    - {fileID: 6338535781378140445, guid: fe6ec8034fc6e444591c1981b53c672c, type: 3}
+    - {fileID: 2874690294677918714, guid: fe6ec8034fc6e444591c1981b53c672c, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []

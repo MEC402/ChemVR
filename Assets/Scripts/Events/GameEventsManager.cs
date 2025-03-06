@@ -13,6 +13,7 @@ public class GameEventsManager : MonoBehaviour
     public InputEvents inputEvents;
     public MiscellaneousEvents miscEvents;
     public ParticleEvents partEvents;
+    public WebGLEvents webGLEvents;
 
     private void Awake()
     {
@@ -30,5 +31,6 @@ public class GameEventsManager : MonoBehaviour
         inputEvents = new InputEvents();
         miscEvents = new MiscellaneousEvents();
         partEvents = new ParticleEvents();
+        webGLEvents = new WebGLEvents();
     }
 }

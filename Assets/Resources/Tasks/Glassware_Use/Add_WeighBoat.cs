@@ -5,27 +5,37 @@ using UnityEngine.InputSystem;
 
 public class Add_WeighBoat : TaskStep
 {
+    bool boatPrepared = false;
+
     protected override void SetTaskStepState(string state)
     {
-        throw new System.NotImplementedException();
+        // Not necessary for this task step
     }
-    private void Update()
-    {
-        if (Keyboard.current.cKey.wasPressedThisFrame)
-        {
-            FinishTaskStep();
-        }
-    }
+
     void OnEnable()
     {
-        GameEventsManager.instance.inputEvents.onAButtonPressed += SkipTask;
+        GameEventsManager.instance.miscEvents.OnPaperInBoat += SetPaperInBoat;
+        GameEventsManager.instance.miscEvents.OnObjectOnScale += CheckFinishTaskStep;
     }
+
     void OnDisable()
     {
-        GameEventsManager.instance.inputEvents.onAButtonPressed -= SkipTask;
+        GameEventsManager.instance.miscEvents.OnPaperInBoat -= SetPaperInBoat;
+        GameEventsManager.instance.miscEvents.OnObjectOnScale -= CheckFinishTaskStep;
     }
-    private void SkipTask(InputAction.CallbackContext obj)
+
+    /// <summary>
+    /// Sets the state of the paper in the boat. If the paper is in the boat, the task step can be completed.
+    /// </summary>
+    /// <param name="isInBoat"></param>
+    private void SetPaperInBoat(bool isInBoat) => boatPrepared = isInBoat;
+
+    /// <summary>
+    /// Checks if the paper is in the boat and if the boat is on the scale. If both are true, the task step can be completed.
+    /// </summary>
+    private void CheckFinishTaskStep()
     {
-        FinishTaskStep();
+        if (boatPrepared)
+            FinishTaskStep();
     }
 }

@@ -1,31 +1,29 @@
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-using UnityEngine.InputSystem;
-
 public class Clean_Scale : TaskStep
 {
+    bool hasBeenTurnedOff;
+
     protected override void SetTaskStepState(string state)
     {
-        throw new System.NotImplementedException();
+        // Not needed for this task step
     }
-    private void Update()
-    {
-        if (Keyboard.current.cKey.wasPressedThisFrame)
-        {
-            FinishTaskStep();
-        }
-    }
+
     void OnEnable()
     {
-        GameEventsManager.instance.inputEvents.onAButtonPressed += SkipTask;
+        GameEventsManager.instance.miscEvents.OnScalePowerOff += () => hasBeenTurnedOff = true;
+        GameEventsManager.instance.miscEvents.OnCleanScale += () =>
+        {
+            if (hasBeenTurnedOff)
+                FinishTaskStep();
+        };
     }
+
     void OnDisable()
     {
-        GameEventsManager.instance.inputEvents.onAButtonPressed -= SkipTask;
-    }
-    private void SkipTask(InputAction.CallbackContext obj)
-    {
-        FinishTaskStep();
+        GameEventsManager.instance.miscEvents.OnScalePowerOff -= () => hasBeenTurnedOff = true;
+        GameEventsManager.instance.miscEvents.OnCleanScale -= () =>
+        {
+            if (hasBeenTurnedOff)
+                FinishTaskStep();
+        };
     }
 }

@@ -29,9 +29,18 @@ public class Inspect_Glassware : TaskStep
     {
         isWebGL = GameObject.Find("Glassware Use").GetComponent<Glassware_Use_Overview>().isWebGL;
 
+        if (isWebGL)
+            GameEventsManager.instance.webGLEvents.OnObjectGrabbed += WebGLInspectObject; // Subscribe to the WebGL event for object grabbing.
+
         foreach (string glasswareName in glasswareNames) // Loop through each glassware name in the array and find the corresponding GameObject in the scene.
         {
             GameObject glasswareObject = GameObject.Find(glasswareName);
+
+            if (glasswareObject.activeSelf == false)
+            {
+                Debug.LogWarning($"Glassware item '{glasswareName}' is not active in the scene.");
+                continue;
+            }
 
             if (glasswareObject != null && glasswareObject.TryGetComponent(out XRGrabInteractable grabInteractable))
             {
@@ -58,6 +67,8 @@ public class Inspect_Glassware : TaskStep
                     item.grabInteractable.selectEntered.RemoveListener(OnInspect);
             }
         }
+        else
+            GameEventsManager.instance.webGLEvents.OnObjectGrabbed -= WebGLInspectObject; // Unsubscribe from the WebGL event for object grabbing.
     }
     #endregion
 
