@@ -161,7 +161,10 @@ public class MiscellaneousEvents
 
     #region Scale Events
     public event Action OnScalePowerOn;
-    public void ScalePowerOn() => OnScalePowerOn?.Invoke();
+    public void ScalePowerOn()
+    {
+        OnScalePowerOn?.Invoke();
+    }
 
     public event Action OnScalePowerOff;
     public void ScalePowerOff() => OnScalePowerOff?.Invoke();
@@ -180,5 +183,9 @@ public class MiscellaneousEvents
 
     public event Action OnObjectOnScale;
     public void ObjectOnScale() => OnObjectOnScale?.Invoke();
+    #endregion
+
+    #region
+
     #endregion
 }
