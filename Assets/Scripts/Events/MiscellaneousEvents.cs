@@ -166,22 +166,22 @@ public class MiscellaneousEvents
         OnScalePowerOn?.Invoke();
     }
 
-    public event Action OnScalePowerOff;
+    public event Action OnScalePowerOff; //see scale_Manager.cs on "SPACED scale using hover 1"
     public void ScalePowerOff() => OnScalePowerOff?.Invoke();
 
-    public event Action OnScaleTare;
+    public event Action OnScaleTare; //see scale_Manager.cs on "SPACED scale using hover 1"
     public void ScaleTare() => OnScaleTare?.Invoke();
 
-    public event Action OnScaleMode;
+    public event Action OnScaleMode; //see scale_Manager.cs on "SPACED scale using hover 1"
     public void ScaleMode() => OnScaleMode?.Invoke();
 
-    public event Action<string> OnScaleModeChanged;
+    public event Action<string> OnScaleModeChanged; //see scale_Manager.cs on "SPACED scale using hover 1"
     public void ScaleModeChanged(string mode) => OnScaleModeChanged?.Invoke(mode);
 
-    public event Action<bool> OnPaperInBoat;
+    public event Action<bool> OnPaperInBoat; //see Put_Paper_on_Boat.cs on "weight_paper_small/medium"
     public void PaperInBoat(bool inBoat) => OnPaperInBoat?.Invoke(inBoat);
 
-    public event Action OnObjectOnScale;
+    public event Action OnObjectOnScale; //see Scale_Plate.cs on "Scale"
     public void ObjectOnScale() => OnObjectOnScale?.Invoke();
     #endregion
 
