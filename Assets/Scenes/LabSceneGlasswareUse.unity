@@ -3098,8 +3098,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   gloves: {fileID: 2100000, guid: b836e099c6a7f0d4e8e5bbfb5e18ce8e, type: 2}
-  leftHand: {fileID: 0}
-  rightHand: {fileID: 0}
+  leftHand: {fileID: 1611788191}
+  rightHand: {fileID: 1611788190}
 --- !u!114 &627625003
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5422,8 +5422,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   itemToWear: {fileID: 930599082}
-  leftHand: {fileID: 0}
-  rightHand: {fileID: 0}
+  leftHand: {fileID: 1611788191}
+  rightHand: {fileID: 1611788190}
 --- !u!65 &930599085
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -6649,8 +6649,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   itemToWear: {fileID: 1251611136}
-  leftHand: {fileID: 0}
-  rightHand: {fileID: 0}
+  leftHand: {fileID: 1611788191}
+  rightHand: {fileID: 1611788190}
 --- !u!65 &1059454152
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -14221,6 +14221,16 @@ PrefabInstance:
 Transform:
   m_CorrespondingSourceObject: {fileID: 3272293269906984387, guid: a7bc9e785c16ed84493ff9ca254a1fa2, type: 3}
   m_PrefabInstance: {fileID: 1600045534}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &1611788190 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7368520449127839419, guid: 371b04e3d0c0cca468964507769f98aa, type: 3}
+  m_PrefabInstance: {fileID: 1870795819}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &1611788191 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6827091020360830791, guid: 371b04e3d0c0cca468964507769f98aa, type: 3}
+  m_PrefabInstance: {fileID: 1870795819}
   m_PrefabAsset: {fileID: 0}
 --- !u!4 &1613365931 stripped
 Transform:

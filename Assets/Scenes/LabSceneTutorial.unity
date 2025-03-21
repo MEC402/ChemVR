@@ -6557,8 +6557,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   gloves: {fileID: 2100000, guid: b836e099c6a7f0d4e8e5bbfb5e18ce8e, type: 2}
-  leftHand: {fileID: 1063988239}
-  rightHand: {fileID: 360714043}
+  leftHand: {fileID: 1342163738}
+  rightHand: {fileID: 1342163737}
 --- !u!114 &674017644
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -9649,11 +9649,11 @@ PrefabInstance:
     - target: {fileID: 3341886023740131182, guid: c576634efb7558247b4597779149a667, type: 3}
       propertyPath: leftHand
       value: 
-      objectReference: {fileID: 1063988239}
+      objectReference: {fileID: 1342163738}
     - target: {fileID: 3341886023740131182, guid: c576634efb7558247b4597779149a667, type: 3}
       propertyPath: rightHand
       value: 
-      objectReference: {fileID: 360714043}
+      objectReference: {fileID: 1342163737}
     - target: {fileID: 6229175955969732158, guid: c576634efb7558247b4597779149a667, type: 3}
       propertyPath: m_LocalScale.x
       value: 0.04625854
@@ -12424,6 +12424,16 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!1 &1342163737 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7368520449127839419, guid: 371b04e3d0c0cca468964507769f98aa, type: 3}
+  m_PrefabInstance: {fileID: 119755056}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &1342163738 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6827091020360830791, guid: 371b04e3d0c0cca468964507769f98aa, type: 3}
+  m_PrefabInstance: {fileID: 119755056}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &1349398555 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 3731011830512960405, guid: 6e395cf5504e2b345b60a1c1aec7639b, type: 3}
@@ -13834,11 +13844,11 @@ PrefabInstance:
     - target: {fileID: 2181433979430515519, guid: df746f2b6276af54c9f21d6cdbed28b2, type: 3}
       propertyPath: leftHand
       value: 
-      objectReference: {fileID: 1063988239}
+      objectReference: {fileID: 1342163738}
     - target: {fileID: 2181433979430515519, guid: df746f2b6276af54c9f21d6cdbed28b2, type: 3}
       propertyPath: rightHand
       value: 
-      objectReference: {fileID: 360714043}
+      objectReference: {fileID: 1342163737}
     - target: {fileID: 5141978815548021346, guid: df746f2b6276af54c9f21d6cdbed28b2, type: 3}
       propertyPath: m_Name
       value: goggles
