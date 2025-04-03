@@ -1,3 +1,5 @@
+using UnityEngine.InputSystem;
+
 public class Pour_Into_Flask : TaskStep
 {
     protected override void SetTaskStepState(string state)
@@ -11,6 +13,8 @@ public class Pour_Into_Flask : TaskStep
         GameEventsManager.instance.miscEvents.EnableFlaskTrigger(true);
 
         GameEventsManager.instance.miscEvents.OnTransferMaterialToGlass += FinishTaskStep;
+
+        GameEventsManager.instance.inputEvents.onAButtonPressed += SkipTask;
     }
 
     void OnDisable()
@@ -18,5 +22,12 @@ public class Pour_Into_Flask : TaskStep
         GameEventsManager.instance.miscEvents.EnableFlaskTrigger(false);
 
         GameEventsManager.instance.miscEvents.OnTransferMaterialToGlass -= FinishTaskStep;
+
+        GameEventsManager.instance.inputEvents.onAButtonPressed -= SkipTask;
+    }
+
+    private void SkipTask(InputAction.CallbackContext obj)
+    {
+        FinishTaskStep();
     }
 }

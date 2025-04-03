@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem;
 using UnityEngine.XR.Interaction.Toolkit;
 
 public class Inspect_Glassware : TaskStep
@@ -28,6 +29,8 @@ public class Inspect_Glassware : TaskStep
     void OnEnable()
     {
         isWebGL = GameObject.Find("Glassware Use").GetComponent<Glassware_Use_Overview>().isWebGL;
+
+        GameEventsManager.instance.inputEvents.onAButtonPressed += SkipTask;
 
         if (isWebGL)
             GameEventsManager.instance.webGLEvents.OnObjectGrabbed += WebGLInspectObject; // Subscribe to the WebGL event for object grabbing.
@@ -59,6 +62,8 @@ public class Inspect_Glassware : TaskStep
 
     void OnDisable()
     {
+        GameEventsManager.instance.inputEvents.onAButtonPressed -= SkipTask;
+
         if (!isWebGL)
         {
             foreach (var item in glasswareItems) // Loop through each glassware item in the list and remove the listener from the XRGrabInteractable component.
@@ -121,6 +126,11 @@ public class Inspect_Glassware : TaskStep
         }
 
         return true;
+    }
+
+    private void SkipTask(InputAction.CallbackContext obj)
+    {
+        FinishTaskStep();
     }
     #endregion
 }

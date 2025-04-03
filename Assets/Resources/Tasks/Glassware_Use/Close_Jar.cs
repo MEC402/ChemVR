@@ -1,4 +1,6 @@
+using System;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class Close_Jar : TaskStep
 {
@@ -10,11 +12,20 @@ public class Close_Jar : TaskStep
     void OnEnable()
     {
         GameEventsManager.instance.miscEvents.OnJarClosed += CloseJar;
+
+        GameEventsManager.instance.inputEvents.onAButtonPressed += SkipTask;
     }
 
     void OnDisable()
     {
         GameEventsManager.instance.miscEvents.OnJarClosed -= CloseJar;
+
+        GameEventsManager.instance.inputEvents.onAButtonPressed += SkipTask;
+    }
+
+    private void SkipTask(InputAction.CallbackContext context)
+    {
+        FinishTaskStep();
     }
 
     private void CloseJar(GameObject jar, bool isClosed)

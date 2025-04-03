@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class Put_On_Gear_GU : TaskStep
 {
@@ -20,6 +21,8 @@ public class Put_On_Gear_GU : TaskStep
         GameEventsManager.instance.miscEvents.onPutOnLeftGlove += LeftGloveOn;
         GameEventsManager.instance.miscEvents.onTakeOffRightGlove += RightGloveOff;
         GameEventsManager.instance.miscEvents.onTakeOffLeftGlove += LeftGloveOff;
+
+        GameEventsManager.instance.inputEvents.onAButtonPressed += SkipTask;
     }
     private void OnDisable()
     {
@@ -27,6 +30,8 @@ public class Put_On_Gear_GU : TaskStep
         GameEventsManager.instance.miscEvents.onPutOnLeftGlove -= LeftGloveOn;
         GameEventsManager.instance.miscEvents.onTakeOffRightGlove -= RightGloveOff;
         GameEventsManager.instance.miscEvents.onTakeOffLeftGlove -= LeftGloveOff;
+
+        GameEventsManager.instance.inputEvents.onAButtonPressed -= SkipTask;
     }
 
     private void RightGloveOn()
@@ -56,5 +61,10 @@ public class Put_On_Gear_GU : TaskStep
         {
             FinishTaskStep();
         }
+    }
+
+    private void SkipTask(InputAction.CallbackContext obj)
+    {
+        FinishTaskStep();
     }
 }

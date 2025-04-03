@@ -1,3 +1,6 @@
+using System;
+using UnityEngine.InputSystem;
+
 public class Clean_Scale : TaskStep
 {
     bool hasBeenTurnedOff;
@@ -15,6 +18,8 @@ public class Clean_Scale : TaskStep
             if (hasBeenTurnedOff)
                 FinishTaskStep();
         };
+
+        GameEventsManager.instance.inputEvents.onAButtonPressed += SkipTask;
     }
 
     void OnDisable()
@@ -25,5 +30,12 @@ public class Clean_Scale : TaskStep
             if (hasBeenTurnedOff)
                 FinishTaskStep();
         };
+
+        GameEventsManager.instance.inputEvents.onAButtonPressed -= SkipTask;
+    }
+
+    private void SkipTask(InputAction.CallbackContext context)
+    {
+        FinishTaskStep();
     }
 }

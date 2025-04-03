@@ -1,3 +1,5 @@
+using UnityEngine.InputSystem;
+
 public class Scoop_To_Boat : TaskStep
 {
     readonly float neededAmountOfSulfur = 1.500f;
@@ -11,11 +13,16 @@ public class Scoop_To_Boat : TaskStep
     void OnEnable()
     {
         GameEventsManager.instance.miscEvents.OnUpdateMaterialHeld += MaterialCheck;
+
+        GameEventsManager.instance.inputEvents.onAButtonPressed += SkipTask;
+
     }
 
     void OnDisable()
     {
         GameEventsManager.instance.miscEvents.OnUpdateMaterialHeld -= MaterialCheck;
+
+        GameEventsManager.instance.inputEvents.onAButtonPressed -= SkipTask;
     }
 
     private void MaterialCheck(float amount)
@@ -32,5 +39,10 @@ public class Scoop_To_Boat : TaskStep
 
         if (currentAmountOfSulfur >= neededAmountOfSulfur - 0.15f && currentAmountOfSulfur <= neededAmountOfSulfur + 0.15f)
             FinishTaskStep();
+    }
+
+    private void SkipTask(InputAction.CallbackContext obj)
+    {
+        FinishTaskStep();
     }
 }

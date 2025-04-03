@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -16,12 +17,21 @@ public class Add_WeighBoat : TaskStep
     {
         GameEventsManager.instance.miscEvents.OnPaperInBoat += SetPaperInBoat;
         GameEventsManager.instance.miscEvents.OnObjectOnScale += CheckFinishTaskStep;
+
+        GameEventsManager.instance.inputEvents.onAButtonPressed += SkipTask;
+    }
+
+    private void SkipTask(InputAction.CallbackContext context)
+    {
+        FinishTaskStep();
     }
 
     void OnDisable()
     {
         GameEventsManager.instance.miscEvents.OnPaperInBoat -= SetPaperInBoat;
         GameEventsManager.instance.miscEvents.OnObjectOnScale -= CheckFinishTaskStep;
+
+        GameEventsManager.instance.inputEvents.onAButtonPressed -= SkipTask;
     }
 
     /// <summary>

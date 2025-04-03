@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -13,11 +14,20 @@ public class Change_Unit : TaskStep
     void OnEnable()
     {
         GameEventsManager.instance.miscEvents.OnScaleModeChanged += CheckScaleMode;
+
+        GameEventsManager.instance.inputEvents.onAButtonPressed += SkipTask;
     }
 
     void OnDisable()
     {
         GameEventsManager.instance.miscEvents.OnScaleModeChanged -= CheckScaleMode;
+
+        GameEventsManager.instance.inputEvents.onAButtonPressed += SkipTask;
+    }
+
+    private void SkipTask(InputAction.CallbackContext context)
+    {
+        FinishTaskStep();
     }
 
     private void CheckScaleMode(string mode)
