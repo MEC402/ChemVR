@@ -11,4 +11,7 @@ public class PrinterSlap : MonoBehaviour
             GameEventsManager.instance.miscEvents.PrinterSlap();
         }
     }
+
+
+
 }

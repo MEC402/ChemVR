@@ -7,23 +7,21 @@ public class Tare_Scale : TaskStep
 {
     protected override void SetTaskStepState(string state)
     {
-        throw new System.NotImplementedException();
+        // Not necessary for this task step
     }
-    private void Update()
-    {
-        if (Keyboard.current.cKey.wasPressedThisFrame)
-        {
-            FinishTaskStep();
-        }
-    }
+
     void OnEnable()
     {
+        GameEventsManager.instance.miscEvents.OnScaleTare += FinishTaskStep;
         GameEventsManager.instance.inputEvents.onAButtonPressed += SkipTask;
     }
+
     void OnDisable()
     {
+        GameEventsManager.instance.miscEvents.OnScaleTare -= FinishTaskStep;
         GameEventsManager.instance.inputEvents.onAButtonPressed -= SkipTask;
     }
+
     private void SkipTask(InputAction.CallbackContext obj)
     {
         FinishTaskStep();

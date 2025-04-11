@@ -16,8 +16,12 @@ public class WearCoat : MonoBehaviour
     void Start()
     {
         itemRen = itemToWear.GetComponent<Renderer>();
-        lHandRen = leftHand.GetComponent<Renderer>();
-        rHandRen = rightHand.GetComponent<Renderer>();
+
+        if (leftHand != null)
+            lHandRen = leftHand.GetComponent<Renderer>();
+        if (rightHand != null)
+            rHandRen = rightHand.GetComponent<Renderer>();
+
         wearing = false;
         GameEventsManager.instance.inputEvents.onAButtonPressed += OnAPress;
         GameEventsManager.instance.inputEvents.onXButtonPressed += OnXPress;
@@ -47,12 +51,25 @@ public class WearCoat : MonoBehaviour
 
     private bool IsTouching(Renderer handRen)
     {
+        if (handRen == null)
+            return false;
+
         // Check if the bounds of the renderers intersect
         return handRen.bounds.Intersects(itemRen.bounds);
     }
 
+    /// <summary>
+    /// This method is called from the WebGL build since the input system is different
+    /// </summary>
+    public void WebPutOn()
+    {
+        PutOn();
+        ActiveItemsCanvas.Instance.UpdateItemUI();
+    }
+
     private void PutOn()
     {
+        AudioEventManager.LabCoatSound();
         wearing = true;
         itemToWear.SetActive(false);
     }

@@ -18,6 +18,9 @@ public class Answer_Phone : TaskStep
     {
         phone = GameObject.Find("phone2k");
 
+        if (phone.TryGetComponent(out AudioSource audioSource))
+            audioSource.Play();
+
         //point at the phone
         GameEventsManager.instance.miscEvents.SetHint(phone);
 
@@ -46,26 +49,29 @@ public class Answer_Phone : TaskStep
     }
     private void OnGrab(SelectEnterEventArgs arg0)
     {
-        //Debug.LogWarning(arg0.interactableObject);
-        if (arg0.interactableObject.Equals(phone.GetComponent<IXRSelectInteractable>()))
-        {
-            //Debug.LogWarning("Picked up phone");
-            holdingPhone = true;
-        }
+        // Debug.LogWarning(arg0.interactableObject);
+        // if (arg0.interactableObject.Equals(phone.GetComponent<IXRSelectInteractable>()))
+        // {
+        //Debug.LogWarning("Picked up phone");
+        holdingPhone = true;
+        // }
     }
     private void OnRelease(SelectExitEventArgs arg0)
     {
         //Debug.LogWarning(arg0.interactableObject);
-        if (arg0.interactableObject.Equals(phone.GetComponent<IXRSelectInteractable>()))
-        {
-            //Debug.LogWarning("Put down phone");
-            holdingPhone = false;
-        }
+        // if (arg0.interactableObject.Equals(phone.GetComponent<IXRSelectInteractable>()))
+        // {
+        //Debug.LogWarning("Put down phone");
+        holdingPhone = false;
+        // }
     }
     private void answer(InputAction.CallbackContext obj)
     {
-        if(holdingPhone)
+        if (holdingPhone)
         {
+            if (phone.TryGetComponent(out AudioSource audioSource))
+                audioSource.Stop();
+
             FinishTaskStep();
         }
     }

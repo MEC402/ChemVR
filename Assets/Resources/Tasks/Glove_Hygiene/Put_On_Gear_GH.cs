@@ -5,6 +5,8 @@ using UnityEngine;
 
 public class Put_On_Gear_GH : TaskStep
 {
+    bool hasStartedEnd = false;
+
     protected override void SetTaskStepState(string state)
     {
         throw new System.NotImplementedException();
@@ -55,21 +57,22 @@ public class Put_On_Gear_GH : TaskStep
     private void Update()
     {
         // If wearing both gloves, the coat, and goggles.
-        if ((wearingLeftGlove && wearingRightGlove) && (WearCoat.IsWearing()) && (WearGoggles.IsWearing()))
+        if ((wearingLeftGlove && wearingRightGlove) && (WearCoat.IsWearing()) && (WearGoggles.IsWearing()) && !hasStartedEnd)
         {
-            FinishTaskStep();
-        } else if (!(wearingLeftGlove && wearingRightGlove))
+            hasStartedEnd = true;
+            FinishTaskStepWithDelay(1, 3);
+        }
+        else if (!(wearingLeftGlove && wearingRightGlove))
         {
             GameEventsManager.instance.miscEvents.SetHint(GameObject.Find("glovebox"));
-        } else if (!WearCoat.IsWearing())
+        }
+        else if (!WearCoat.IsWearing())
         {
             GameEventsManager.instance.miscEvents.SetHint(GameObject.Find("labcoat"));
-        } else if (!WearGoggles.IsWearing())
+        }
+        else if (!WearGoggles.IsWearing())
         {
             GameEventsManager.instance.miscEvents.SetHint(GameObject.Find("goggles"));
         }
-
-
     }
-
 }
