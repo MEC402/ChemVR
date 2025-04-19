@@ -6,6 +6,9 @@ using UnityEngine.InputSystem;
 public class Start_Titration : TaskStep
 {
     int blueDrops;
+
+    bool startedMix;
+
     protected override void SetTaskStepState(string state)
     {
         throw new System.NotImplementedException();
@@ -25,11 +28,17 @@ public class Start_Titration : TaskStep
     {
         if (container.name.ToLower().Contains("beaker"))
         {
+            if (!startedMix)
+            {
+                startedMix = true;
+                AudioEventManager.BubbleSound();
+            }
+
             string contents = chemMix.ContentsToString();
             string[] sepContents = contents.Split('\n');
             foreach (string s in sepContents)
             {
-                if (!s.EndsWith(": 0") && (s.Contains("WATER")||s.Contains("H2O")))
+                if (!s.EndsWith(": 0") && (s.Contains("WATER") || s.Contains("H2O")))
                 {
                     blueDrops++;
                 }
@@ -38,7 +47,7 @@ public class Start_Titration : TaskStep
 
         if (blueDrops >= 1)
         {
-            FinishTaskStep();
+            FinishTaskStepWithDelay(1, 2);
         }
     }
 }

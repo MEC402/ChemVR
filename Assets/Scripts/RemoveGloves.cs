@@ -1,9 +1,6 @@
 using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
-using UnityEngine.XR.Interaction.Toolkit;
 
 public class RemoveGloves : MonoBehaviour
 {
@@ -14,12 +11,16 @@ public class RemoveGloves : MonoBehaviour
     private bool leftIsTouching;
     private bool rightIsTouching;
 
+    [SerializeField] AudioSource trashSound;
+
     void Start()
     {
         // Get and store the original material
         leftIsTouching = false;
         rightIsTouching = false;
-        original = rightHand.GetComponent<SkinnedMeshRenderer>().material;
+
+        if (rightHand != null)
+            original = rightHand.GetComponent<SkinnedMeshRenderer>().material;
     }
     private void OnEnable()
     {
@@ -51,7 +52,8 @@ public class RemoveGloves : MonoBehaviour
         if (other.name.Contains("right") && other.name.Contains("hand"))
         {
             rightIsTouching = true;
-        } else if (other.name.Contains("left") && other.name.Contains("hand"))
+        }
+        else if (other.name.Contains("left") && other.name.Contains("hand"))
         {
             leftIsTouching = true;
         }
@@ -70,13 +72,32 @@ public class RemoveGloves : MonoBehaviour
     void TakeOffLeftGlove()
     {
         leftHand.GetComponent<SkinnedMeshRenderer>().material = original;
+        PlayTrashAudio();
         GameEventsManager.instance.miscEvents.TakeOffLeftGlove();
         //Debug.Log("Left glove taken off!");
     }
     void TakeOffRightGlove()
     {
         rightHand.GetComponent<SkinnedMeshRenderer>().material = original;
+        PlayTrashAudio();
         GameEventsManager.instance.miscEvents.TakeOffRightGlove();
         //Debug.Log("Right glove taken off!");
+    }
+
+    public void WebTakeOffGloves()
+    {
+        GameEventsManager.instance.miscEvents.TakeOffLeftGlove();
+        GameEventsManager.instance.miscEvents.TakeOffRightGlove();
+
+        PlayTrashAudio();
+    }
+
+    private void PlayTrashAudio()
+    {
+        if (trashSound == null) return;
+
+        trashSound.pitch = UnityEngine.Random.Range(0.9f, 1.1f);
+
+        trashSound.Play();
     }
 }

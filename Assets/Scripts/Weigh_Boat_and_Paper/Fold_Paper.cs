@@ -53,6 +53,7 @@ public class Fold_Paper : MonoBehaviour
         if (flatPaperCollider.enabled == true)
         {
             folded = true;
+            Debug.Log("Folded " + folded);
         }
             if (!folded)
         {

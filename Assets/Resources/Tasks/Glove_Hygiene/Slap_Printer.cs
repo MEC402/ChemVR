@@ -1,13 +1,11 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.InputSystem;
-using UnityEngine.XR.Interaction.Toolkit;
 
 public class Slap_Printer : TaskStep
 {
-    int slapCount;
+    int slapCount, slapsToFinish;
+
+    AudioSource brokenPrinterAudio;
+
     protected override void SetTaskStepState(string state)
     {
         //Not needed
@@ -16,8 +14,16 @@ public class Slap_Printer : TaskStep
     {
         GameEventsManager.instance.miscEvents.SetHint(GameObject.Find("printer"));
 
+        brokenPrinterAudio = GameObject.Find("printer").GetComponent<AudioSource>();
+
+        PlayPrinterAudio();
+
         slapCount = 0;
-        GameEventsManager.instance.miscEvents.onPrinterSlap += Slap; 
+
+        // Randomize slapsToFinish between 2 and 5 times
+        slapsToFinish = Random.Range(2, 6);
+
+        GameEventsManager.instance.miscEvents.onPrinterSlap += Slap;
     }
 
     void OnDisable()
@@ -27,11 +33,21 @@ public class Slap_Printer : TaskStep
 
     private void Slap()
     {
-        slapCount += 1;
-        if (slapCount >= 3)
+        slapCount++;
+
+        if (slapCount >= slapsToFinish)
         {
+            if (brokenPrinterAudio != null)
+                brokenPrinterAudio.Stop();
+
             FinishTaskStep();
         }
     }
 
+    private void PlayPrinterAudio()
+    {
+        if (brokenPrinterAudio == null) return;
+
+        brokenPrinterAudio.Play();
+    }
 }

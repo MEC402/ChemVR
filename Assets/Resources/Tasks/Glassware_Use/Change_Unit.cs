@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -7,25 +8,31 @@ public class Change_Unit : TaskStep
 {
     protected override void SetTaskStepState(string state)
     {
-        throw new System.NotImplementedException();
+        // Not necessary for this task step
     }
-    private void Update()
-    {
-        if (Keyboard.current.cKey.wasPressedThisFrame)
-        {
-            FinishTaskStep();
-        }
-    }
+
     void OnEnable()
     {
+        GameEventsManager.instance.miscEvents.OnScaleModeChanged += CheckScaleMode;
+
         GameEventsManager.instance.inputEvents.onAButtonPressed += SkipTask;
     }
+
     void OnDisable()
     {
-        GameEventsManager.instance.inputEvents.onAButtonPressed -= SkipTask;
+        GameEventsManager.instance.miscEvents.OnScaleModeChanged -= CheckScaleMode;
+
+        GameEventsManager.instance.inputEvents.onAButtonPressed += SkipTask;
     }
-    private void SkipTask(InputAction.CallbackContext obj)
+
+    private void SkipTask(InputAction.CallbackContext context)
     {
         FinishTaskStep();
+    }
+
+    private void CheckScaleMode(string mode)
+    {
+        if (mode == "grams")
+            FinishTaskStep();
     }
 }

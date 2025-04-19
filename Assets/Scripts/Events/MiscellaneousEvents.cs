@@ -11,6 +11,7 @@ public class MiscellaneousEvents
     {
         if (onPutOnLeftGlove != null)
         {
+            AudioEventManager.GloveSound();
             onPutOnLeftGlove();
         }
     }
@@ -20,6 +21,7 @@ public class MiscellaneousEvents
     {
         if (onPutOnRightGlove != null)
         {
+            AudioEventManager.GloveSound();
             onPutOnRightGlove();
         }
     }
@@ -133,4 +135,57 @@ public class MiscellaneousEvents
             onSetHint(target);
         }
     }
+
+    // Glassware related events
+    public event Action<GameObject, bool> OnJarClosed;
+    public void JarClosed(GameObject jar, bool isClosed) => OnJarClosed?.Invoke(jar, isClosed);
+
+    public event Action OnScoopInJar;
+    public void ScoopInJar() => OnScoopInJar?.Invoke();
+
+    public event Action<float> OnUpdateMaterialHeld;
+    public void UpdateMaterialHeld(float amount) => OnUpdateMaterialHeld?.Invoke(amount);
+
+    public event Action OnAllowBoatTransfer;
+    public void AllowBoatTransfer() => OnAllowBoatTransfer?.Invoke();
+
+    public event Action OnCleanScale;
+    public void CleanScale() => OnCleanScale?.Invoke();
+
+    // Flask related events
+    public event Action<bool> OnEnableFlaskTrigger;
+    public void EnableFlaskTrigger(bool enable) => OnEnableFlaskTrigger?.Invoke(enable);
+
+    public event Action OnTransferMaterialToGlass;
+    public void TransferMaterialToGlass() => OnTransferMaterialToGlass?.Invoke();
+
+    #region Scale Events
+    public event Action OnScalePowerOn;
+    public void ScalePowerOn()
+    {
+        OnScalePowerOn?.Invoke();
+    }
+
+    public event Action OnScalePowerOff; //see scale_Manager.cs on "SPACED scale using hover 1"
+    public void ScalePowerOff() => OnScalePowerOff?.Invoke();
+
+    public event Action OnScaleTare; //see scale_Manager.cs on "SPACED scale using hover 1"
+    public void ScaleTare() => OnScaleTare?.Invoke();
+
+    public event Action OnScaleMode; //see scale_Manager.cs on "SPACED scale using hover 1"
+    public void ScaleMode() => OnScaleMode?.Invoke();
+
+    public event Action<string> OnScaleModeChanged; //see scale_Manager.cs on "SPACED scale using hover 1"
+    public void ScaleModeChanged(string mode) => OnScaleModeChanged?.Invoke(mode);
+
+    public event Action<bool> OnPaperInBoat; //see Put_Paper_on_Boat.cs on "weight_paper_small/medium"
+    public void PaperInBoat(bool inBoat) => OnPaperInBoat?.Invoke(inBoat);
+
+    public event Action OnObjectOnScale; //see Scale_Plate.cs on "Scale"
+    public void ObjectOnScale() => OnObjectOnScale?.Invoke();
+    #endregion
+
+    #region
+
+    #endregion
 }
