@@ -1,33 +1,27 @@
-using System.Collections;
-using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
-using UnityEngine.InputSystem;
-
 
 public class Configure_Balance : TaskStep
 {
     protected override void SetTaskStepState(string state)
     {
-        throw new System.NotImplementedException();
-    }
-    private void Update()
-    {
-        if (Keyboard.current.cKey.wasPressedThisFrame)
-        {
-            FinishTaskStep();
-        }
-    }
-    void OnEnable()
-    {
-        GameEventsManager.instance.inputEvents.onAButtonPressed += SkipTask;
-    }
-    void OnDisable()
-    {
-        GameEventsManager.instance.inputEvents.onAButtonPressed -= SkipTask;
-    }
-    private void SkipTask(InputAction.CallbackContext obj)
-    {
-        FinishTaskStep();
+        // Not needed for this task step
+        //this is the script for chem change
     }
 
+    void OnEnable()
+    {
+        GameEventsManager.instance.miscEvents.OnScaleModeChanged += CheckScaleMode;
+    }
+
+    void OnDisable()
+    {
+        GameEventsManager.instance.miscEvents.OnScaleModeChanged -= CheckScaleMode;
+    }
+
+    private void CheckScaleMode(string mode)
+    {
+            if (mode == "grams")
+                FinishTaskStep();
+    }
 }

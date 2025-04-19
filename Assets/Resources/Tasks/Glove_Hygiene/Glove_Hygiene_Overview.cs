@@ -50,7 +50,7 @@ public class Glove_Hygiene_Overview : MonoBehaviour
         this.gameObject.GetComponent<ToggleTextSimple>().enabled = true;
     }
 
-    string[] text = {"Before beginning the lab, find gloves, goggles, and a lab coat and put them on with (A/X).\n\nRemove gloves anytime by holding your hands over the trashcan near the office door and pressing (A/X).\n\nRemember to take them off when you step away from the experiment!",
+    string[] text = {"Before beginning the Glove Hygiene lab, find gloves, goggles, and a lab coat and put them on with (A/X).\n\nRemove gloves anytime by holding your hands over the trashcan near the office door and pressing (A/X).\n\nRemember to take them off when you step away from the experiment!",
                     //"For this lab, bring the following to a table in the red zone / C zone:\n\nBeaker\nErlenmeyer flask with colorless solution\nErlenmeyer flask with blue solution", //disabled task step 2 (add to TaskInfoSO block and uncomment to undo)
                     //"You will need these items as well:\n\nBurret\nFunnel", //disabled task step 2_5 (add to TaskInfoSO block and uncomment to undo)
                     "You're getting a call! It might be urgent.\n\nYour phone is in the office on your right, pick it up and press (A/X) to answer it.",
@@ -68,7 +68,7 @@ public class Glove_Hygiene_Overview : MonoBehaviour
                     "This completes the glove hygiene module. We will now display in red everything you touched while wearing possibly contaminated gloves.\n\n(Y Button) Hides Popup\n(Hamburger Button) Opens Menu"
                     };
 
-    string[] webGLText = {"Before beginning the lab, please hit Escape to pause the game and read the controls. After that find gloves, goggles, and a lab coat and put them on by grabbing them with (LeftClick/E).\n\nRemove gloves anytime by grabbing (LeftClick/E) the trashcan near the office door.\n\nRemember to take them off when you step away from the experiment!",
+    string[] webGLText = {"Before beginning the Glove Hygiene lab, please hit Escape to pause the game and read the controls. After that find gloves, goggles, and a lab coat and put them on by grabbing them with (LeftClick/E).\n\nRemove gloves anytime by grabbing (LeftClick/E) the trashcan near the office door.\n\nRemember to take them off when you step away from the experiment!",
                     //"For this lab, bring the following to a table in the red zone / C zone:\n\nBeaker\nErlenmeyer flask with colorless solution\nErlenmeyer flask with blue solution", //disabled task step 2 (add to TaskInfoSO block and uncomment to undo)
                     //"You will need these items as well:\n\nBurret\nFunnel", //disabled task step 2_5 (add to TaskInfoSO block and uncomment to undo)
                     "You're getting a call! It might be urgent.\n\nYour phone is in the office on your right, pick it up by pressing (LeftClick/E) and (F) to answer it.",
