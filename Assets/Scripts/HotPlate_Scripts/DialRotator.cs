@@ -139,24 +139,23 @@ public class DialRotator : MonoBehaviour
     private void RotateDialClockwise()
     {
         float rawZ = linkedDial.localEulerAngles.z + snapRotationAmount;
-        //float newZ = (rawZ / 360 * 100);
+        Debug.Log("Clockwise rawZ: " + rawZ);
+        if (rawZ > 360f)
+        {
+            rawZ -= 360f;
+        }
 
-          if ((rawZ /360f * 100) > 320f)
-          {
-              //newZ = 350f;
-              Debug.Log("Clamped newZ to 350f");
-              return;
+        if (rawZ > 320f)
+        {
+            return;
+        }
 
-          }
         linkedDial.localEulerAngles = new Vector3(linkedDial.localEulerAngles.x, linkedDial.localEulerAngles.y, rawZ);
-        //linkedDial.localEulerAngles = new Vector3(linkedDial.localEulerAngles.x, linkedDial.localEulerAngles.y, linkedDial.localEulerAngles.z + snapRotationAmount);
 
         if (hotplate != null)
         {
             hotplate.DialChanged(rawZ);
-            Debug.Log("Clockwise: " + rawZ);
-            //hotplate.DialChanged(linkedDial.localEulerAngles.z);
-            //Debug.Log("Clockwise: " + linkedDial.localEulerAngles.z);
+            
         }
         else
         {
@@ -168,35 +167,19 @@ public class DialRotator : MonoBehaviour
     private void RotateDialAntiClockwise()
     {
         float rawZ = linkedDial.localEulerAngles.z - snapRotationAmount;
-        //float newZ = (rawZ / 360 * 100);
+        Debug.Log("Anticlockwise rawZ " + rawZ);
 
-        if ((rawZ / 360 * 100) < 0f)
+        if (rawZ < 0f)
         {
-            //newZ = 0f;
-            Debug.Log("Clamped rawZ to 0f");
             return;
         }
-        /*if(newZ < 1f && newZ > 0f)
-        {
-            newZ = 0f;
-            Debug.Log("Fixed micro rotations?");
-        }*/
-        /*if (newZ < 360f && newZ > 350f)
-        {
-            newZ = 0f;
-            Debug.Log("prevented 0 to 10 wrap around");
-        }*/
 
         linkedDial.localEulerAngles = new Vector3(linkedDial.localEulerAngles.x, linkedDial.localEulerAngles.y, rawZ);
 
-        //linkedDial.localEulerAngles = new Vector3(linkedDial.localEulerAngles.x, linkedDial.localEulerAngles.y, linkedDial.localEulerAngles.z - snapRotationAmount);
 
         if (hotplate != null)
         {
             hotplate.DialChanged(rawZ);
-            //hotplate.DialChanged(linkedDial.localEulerAngles.z);
-            Debug.Log("AntiClockwise: " + rawZ);
-            //Debug.Log("AntiClockwise: " + linkedDial.localEulerAngles.z);
         }
         else
         {

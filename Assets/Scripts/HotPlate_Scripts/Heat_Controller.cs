@@ -11,7 +11,7 @@ public class Heat_Controller : MonoBehaviour, IDial
     float tintPrecentage;
     public void DialChanged(float dialvalue)
     {
-        Debug.Log("Dial value: " + dialvalue);
+        //Debug.Log("Dial value: " + dialvalue);
        //tintPrecentage = dialvalue;
        tintPrecentage = (dialvalue / 360f) * 100;
        // Debug.Log("tintPrecentage: " + tintPrecentage);
