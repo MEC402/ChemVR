@@ -11,11 +11,13 @@ public class DialRotator : MonoBehaviour
     [SerializeField] private GameObject Righthandmodel;
     [SerializeField] private GameObject LefthandModel;
     [SerializeField] bool shouldUseDummyHands;
+    [SerializeField] private Heat_Controller hotplate;
 
     private XRBaseInteractor interactor;
     private float startAngle;
     private bool requiresStartAngle = true;
     private bool shouldGetHandRotation = false;
+    //    private float 
 
     private XRGrabInteractable grabInteractor => GetComponent<XRGrabInteractable>();
 
@@ -136,18 +138,70 @@ public class DialRotator : MonoBehaviour
 
     private void RotateDialClockwise()
     {
-        linkedDial.localEulerAngles = new Vector3(linkedDial.localEulerAngles.x, linkedDial.localEulerAngles.y, linkedDial.localEulerAngles.z + snapRotationAmount);
+        float rawZ = linkedDial.localEulerAngles.z + snapRotationAmount;
+        //float newZ = (rawZ / 360 * 100);
 
-        if (TryGetComponent<IDial>(out IDial dial))
-            dial.DialChanged(linkedDial.localEulerAngles.z);
+          if ((rawZ /360f * 100) > 320f)
+          {
+              //newZ = 350f;
+              Debug.Log("Clamped newZ to 350f");
+              return;
+
+          }
+        linkedDial.localEulerAngles = new Vector3(linkedDial.localEulerAngles.x, linkedDial.localEulerAngles.y, rawZ);
+        //linkedDial.localEulerAngles = new Vector3(linkedDial.localEulerAngles.x, linkedDial.localEulerAngles.y, linkedDial.localEulerAngles.z + snapRotationAmount);
+
+        if (hotplate != null)
+        {
+            hotplate.DialChanged(rawZ);
+            Debug.Log("Clockwise: " + rawZ);
+            //hotplate.DialChanged(linkedDial.localEulerAngles.z);
+            //Debug.Log("Clockwise: " + linkedDial.localEulerAngles.z);
+        }
+        else
+        {
+            Debug.LogWarning("HotPlate ref not set. Assign in inspector?");
+        }
+
     }
 
     private void RotateDialAntiClockwise()
     {
-        linkedDial.localEulerAngles = new Vector3(linkedDial.localEulerAngles.x, linkedDial.localEulerAngles.y, linkedDial.localEulerAngles.z - snapRotationAmount);
+        float rawZ = linkedDial.localEulerAngles.z - snapRotationAmount;
+        //float newZ = (rawZ / 360 * 100);
 
-        if (TryGetComponent<IDial>(out IDial dial))
-            dial.DialChanged(linkedDial.localEulerAngles.z);
+        if ((rawZ / 360 * 100) < 0f)
+        {
+            //newZ = 0f;
+            Debug.Log("Clamped rawZ to 0f");
+            return;
+        }
+        /*if(newZ < 1f && newZ > 0f)
+        {
+            newZ = 0f;
+            Debug.Log("Fixed micro rotations?");
+        }*/
+        /*if (newZ < 360f && newZ > 350f)
+        {
+            newZ = 0f;
+            Debug.Log("prevented 0 to 10 wrap around");
+        }*/
+
+        linkedDial.localEulerAngles = new Vector3(linkedDial.localEulerAngles.x, linkedDial.localEulerAngles.y, rawZ);
+
+        //linkedDial.localEulerAngles = new Vector3(linkedDial.localEulerAngles.x, linkedDial.localEulerAngles.y, linkedDial.localEulerAngles.z - snapRotationAmount);
+
+        if (hotplate != null)
+        {
+            hotplate.DialChanged(rawZ);
+            //hotplate.DialChanged(linkedDial.localEulerAngles.z);
+            Debug.Log("AntiClockwise: " + rawZ);
+            //Debug.Log("AntiClockwise: " + linkedDial.localEulerAngles.z);
+        }
+        else
+        {
+            Debug.LogWarning("HotPlate ref not set. Assign in inspector?");
+        }
 
     }
 
