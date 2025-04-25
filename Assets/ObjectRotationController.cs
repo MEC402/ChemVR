@@ -4,46 +4,50 @@ public class ObjectRotationController : MonoBehaviour
 {
     #region Variables
     [Header("References")]
-    [SerializeField] WebGLInput inputScript; // Reference to the input script managing player inputs.
+    [SerializeField] WebGLInput inputScript;
+    [SerializeField] Camera playerCamera; // Reference to the camera for relative rotation
 
-    [HideInInspector] public Transform objectToRotate; // The object that will be rotated.
+    [HideInInspector] public Transform objectToRotate;
 
     [Header("Rotation Settings")]
-    [SerializeField] float rotationSpeed = 100f; // Speed at which the object rotates.
-
+    [SerializeField] float rotationSpeed = 100f;
     #endregion
+
     #region Unity Methods
-    /// <summary>
-    /// Monitors player input and applies rotation to the object when appropriate.
-    /// </summary>
     private void Update()
     {
         HandleObjectRotation();
     }
-
     #endregion
+
     #region Custom Methods
-    /// <summary>
-    /// Rotates the specified object based on the player's mouse movement.
-    /// Only rotates the object when the player is actively rotating and providing input.
-    /// </summary>
     private void HandleObjectRotation()
     {
-        // Exit if there are missing references.
-        if (inputScript == null || objectToRotate == null) return;
+        if (inputScript == null || objectToRotate == null || playerCamera == null) return;
 
-        if (inputScript.isRotating && objectToRotate != null)
+        if (inputScript.isRotating)
         {
             inputScript.LookDisable();
             inputScript.MoveDisable();
 
-            if (inputScript.rotationInput != Vector2.zero)
+            Vector2 input = inputScript.rotationInput;
+            if (input != Vector2.zero)
             {
-                // Yaw around the world's Up axis
-                objectToRotate.Rotate(Vector3.up, -inputScript.rotationInput.x * rotationSpeed * Time.deltaTime, Space.World);
+                float deltaTime = Time.deltaTime;
+                float yaw = -input.x * rotationSpeed * deltaTime;
+                float pitch = input.y * rotationSpeed * deltaTime;
 
-                // Pitch around the object's local X axis
-                objectToRotate.Rotate(Vector3.right, inputScript.rotationInput.y * rotationSpeed * Time.deltaTime, Space.Self);
+                // Get camera-relative axes
+                Vector3 camRight = playerCamera.transform.right;
+                Vector3 camUp = playerCamera.transform.up;
+
+                // Apply rotation around camera's right (pitch) and up (yaw)
+                Quaternion pitchRotation = Quaternion.AngleAxis(pitch, camRight);
+                Quaternion yawRotation = Quaternion.AngleAxis(yaw, camUp);
+
+                Quaternion combinedRotation = yawRotation * pitchRotation;
+
+                objectToRotate.rotation = combinedRotation * objectToRotate.rotation;
             }
         }
         else
