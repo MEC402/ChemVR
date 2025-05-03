@@ -3260,6 +3260,14 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1141465575}
     m_Modifications:
+    - target: {fileID: 789325882256926132, guid: ccf93f817ba131147bee6fbb1cf24837, type: 3}
+      propertyPath: m_TagString
+      value: Untagged
+      objectReference: {fileID: 0}
+    - target: {fileID: 4320213312573251720, guid: ccf93f817ba131147bee6fbb1cf24837, type: 3}
+      propertyPath: m_TagString
+      value: Untagged
+      objectReference: {fileID: 0}
     - target: {fileID: 5926270094660761884, guid: ccf93f817ba131147bee6fbb1cf24837, type: 3}
       propertyPath: currentVolume
       value: 100
@@ -3275,6 +3283,10 @@ PrefabInstance:
     - target: {fileID: 5926270094660761884, guid: ccf93f817ba131147bee6fbb1cf24837, type: 3}
       propertyPath: initialContents.Array.data[0].volume
       value: 100
+      objectReference: {fileID: 0}
+    - target: {fileID: 6151502379467916872, guid: ccf93f817ba131147bee6fbb1cf24837, type: 3}
+      propertyPath: m_TagString
+      value: Untagged
       objectReference: {fileID: 0}
     - target: {fileID: 7411255650055742142, guid: ccf93f817ba131147bee6fbb1cf24837, type: 3}
       propertyPath: m_LocalPosition.x
@@ -3319,6 +3331,10 @@ PrefabInstance:
     - target: {fileID: 7895303912656058372, guid: ccf93f817ba131147bee6fbb1cf24837, type: 3}
       propertyPath: m_Name
       value: BeakerUp500mL_largerText
+      objectReference: {fileID: 0}
+    - target: {fileID: 7895303912656058372, guid: ccf93f817ba131147bee6fbb1cf24837, type: 3}
+      propertyPath: m_TagString
+      value: CanBoil
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -3411,6 +3427,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1141465575}
     m_Modifications:
+    - target: {fileID: 5926270094660761884, guid: ccf93f817ba131147bee6fbb1cf24837, type: 3}
+      propertyPath: maxVolume
+      value: 550
+      objectReference: {fileID: 0}
     - target: {fileID: 7411255650055742142, guid: ccf93f817ba131147bee6fbb1cf24837, type: 3}
       propertyPath: m_LocalPosition.x
       value: -0.875
@@ -3454,6 +3474,10 @@ PrefabInstance:
     - target: {fileID: 7895303912656058372, guid: ccf93f817ba131147bee6fbb1cf24837, type: 3}
       propertyPath: m_Name
       value: BeakerUp500mL_largerText
+      objectReference: {fileID: 0}
+    - target: {fileID: 7895303912656058372, guid: ccf93f817ba131147bee6fbb1cf24837, type: 3}
+      propertyPath: m_TagString
+      value: CanBoil
       objectReference: {fileID: 0}
     - target: {fileID: 9160777431872573625, guid: ccf93f817ba131147bee6fbb1cf24837, type: 3}
       propertyPath: m_Enabled
