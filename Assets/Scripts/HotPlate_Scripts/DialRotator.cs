@@ -141,7 +141,7 @@ public class DialRotator : MonoBehaviour
     private void RotateDialClockwise()
     {
         float rawZ = linkedDial.localEulerAngles.z + snapRotationAmount;
-        Debug.Log("Clockwise rawZ: " + rawZ);
+       // Debug.Log("Clockwise rawZ: " + rawZ);
         if (rawZ > 360f)
         {
             rawZ -= 360f;
@@ -169,7 +169,7 @@ public class DialRotator : MonoBehaviour
     private void RotateDialAntiClockwise()
     {
         float rawZ = linkedDial.localEulerAngles.z - snapRotationAmount;
-        Debug.Log("Anticlockwise rawZ " + rawZ);
+       // Debug.Log("Anticlockwise rawZ " + rawZ);
 
         if (rawZ < 0f)
         {
@@ -193,14 +193,14 @@ public class DialRotator : MonoBehaviour
 
     private void CheckRotationValue(float z)
     {
-        Debug.Log("Z: " + z);
+        //Debug.Log("Z: " + z);
 
         switch (z)
         {
             case float n when (n >= 0 && n < 40):
                 //value of 0
                 UpdateText(0);
-                Debug.Log("hotplate at level 0");
+                //Debug.Log("hotplate at level 0");
                 break;
 
             case float n when (n >= 40 && n < 70):
@@ -250,7 +250,7 @@ public class DialRotator : MonoBehaviour
     {
         string nString = n.ToString();
         HotPlateLabel.text = nString;
-        Debug.Log("set number pannel to value!");
+        //Debug.Log("set number pannel to value!");
     }
 
 }
