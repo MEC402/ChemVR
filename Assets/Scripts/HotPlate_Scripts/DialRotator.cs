@@ -250,7 +250,11 @@ public class DialRotator : MonoBehaviour
     {
         string nString = n.ToString();
         HotPlateLabel.text = nString;
-        if (n > 0)
+        if(n == 0)
+        {
+            hotplate.canSteam = false;
+        }
+        else if (n > 0)
         {
             hotplate.canSteam = true;
         }

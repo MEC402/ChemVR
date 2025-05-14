@@ -29,6 +29,7 @@ public class Heat_Controller : MonoBehaviour, IDial
         Color tintedColor = Color.Lerp(Color.white, redTint, tintLevel / 100f); //calculate the red tint
         targetRenderer.material.color = tintedColor; //apply tint to material
 
+
     }
     private void OnTriggerEnter(Collider other)
     {
@@ -61,6 +62,11 @@ public class Heat_Controller : MonoBehaviour, IDial
             if (canSteam)
             {
                 playParticleEffect();
+            }
+
+            if (!canSteam)
+            {
+                stopParticleEffect();
             }
             if (chemContainerScript != null)
             {
