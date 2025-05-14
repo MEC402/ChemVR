@@ -456,7 +456,7 @@ Transform:
   m_GameObject: {fileID: 2653305121023091143}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.274, y: 2.378, z: -0}
+  m_LocalPosition: {x: 0, y: 0, z: -0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -478,7 +478,7 @@ ParticleSystem:
   ringBufferLoopRange: {x: 0, y: 1}
   emitterVelocityMode: 1
   looping: 1
-  prewarm: 0
+  prewarm: 1
   playOnAwake: 0
   useUnscaledTime: 0
   autoRandomSeed: 1
@@ -5655,7 +5655,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   targetRenderer: {fileID: 5065411279975146284}
-  tintLevel: 10.1
+  tintLevel: 0
+  steamEffect: {fileID: 7785661602729831909}
+  canSteam: 0
+  isSteamOn: 0
 --- !u!1 &7422545403105678788
 GameObject:
   m_ObjectHideFlags: 0
