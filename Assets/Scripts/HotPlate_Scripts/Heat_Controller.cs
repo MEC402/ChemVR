@@ -5,12 +5,17 @@ using UnityEngine;
 
 public class Heat_Controller : MonoBehaviour, IDial
 {
+    //please note that any object you want to be affected by the hot plate must have the tag "CanBoil" otherwise this script will not work.
+    //also note that when you add the hotplate to the scene you need to assign the particle system for the steam in the inspector otherwise that will not work
+    /*there is a known bug where after you boil the liquid out of the beaker and go to pour more into it it automaticlly returns to a volume equal
+    to what was the beaker (or flask) before you boiled the liquid on the hot plate. I think this bug is on the chemContainer script but idk how to fix*/
+
     [SerializeField] private Renderer targetRenderer;
     [SerializeField, Range(0, 100)] private float tintLevel;
     Color redTint = new Color(203f / 255f, 67f / 255f, 53f / 255f);
     private ChemContainer chemContainerScript;
     public ParticleSystem steamEffect;
-    public bool canSteam;
+    public bool canSteam; //t/f is assignedd in the DialRotator script 
     public bool isSteamOn;
 
     float startingVolume;
