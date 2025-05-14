@@ -250,6 +250,13 @@ public class DialRotator : MonoBehaviour
     {
         string nString = n.ToString();
         HotPlateLabel.text = nString;
+        if (n > 0)
+        {
+            hotplate.canSteam = true;
+        }
+        else {
+            hotplate.canSteam = false;
+        }
         //Debug.Log("set number pannel to value!");
     }
 

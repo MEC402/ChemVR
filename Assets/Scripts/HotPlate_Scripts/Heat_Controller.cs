@@ -9,15 +9,17 @@ public class Heat_Controller : MonoBehaviour, IDial
     [SerializeField, Range(0, 100)] private float tintLevel;
     Color redTint = new Color(203f / 255f, 67f / 255f, 53f / 255f);
     private ChemContainer chemContainerScript;
+    public ParticleSystem steamEffect;
+    public bool canSteam;
+    public bool isSteamOn;
 
+    float startingVolume;
     float tintPrecentage;
-    float BoilRate = 0.02f;
+    float BoilRate = .1f;
     public void DialChanged(float dialvalue)
     {
-        //Debug.Log("Dial value: " + dialvalue);
         //tintPrecentage = dialvalue;
         tintPrecentage = (dialvalue / 360f) * 100;
-        // Debug.Log("tintPrecentage: " + tintPrecentage);
         tintLevel = tintPrecentage;
     }
 
@@ -26,48 +28,74 @@ public class Heat_Controller : MonoBehaviour, IDial
         //Color tintedColor = Color.Lerp(Color.white, Color.red, tintLevel / 100f); //calculate the red tint
         Color tintedColor = Color.Lerp(Color.white, redTint, tintLevel / 100f); //calculate the red tint
         targetRenderer.material.color = tintedColor; //apply tint to material
+
     }
     private void OnTriggerEnter(Collider other)
     {
-        Debug.Log("Triggered with: " + other.gameObject.name + " | Tag: " + other.tag);
-        //Debug.Log("OnCollisionEnter");
         if (other.gameObject.CompareTag("CanBoil"))
         {
+            Transform liquidOpeningTransform;
             chemContainerScript = other.gameObject.GetComponent<ChemContainer>();
-            Debug.Log("ChemContainerSet. " + chemContainerScript);
-        }
-        else
-        {
-            chemContainerScript = null;
-            Debug.Log("the other object cannot boil. script set to null");
+            //get the transform location of the opening component of the glassware
+            liquidOpeningTransform = other.transform.Find("Opening");
+            //set the particle system for the steam location equal to where the opening is so it looks like the liquid is steaming
+            steamEffect.transform.position = liquidOpeningTransform.position;
+
         }
     }
     private void OnTriggerExit(Collider other)
     {
-        Debug.Log("OnCollisionExit");
-        chemContainerScript = null;
+        if (other.gameObject.CompareTag("CanBoil"))
+        {
+            chemContainerScript = null;
+            stopParticleEffect();
+            //isSteamOn = false;
+        }
     }
     private void OnTriggerStay(Collider other)
     {
-        //Debug.Log("OnCollisionStay");
-        float startingVolume;
+        
         float lossPerSecond = (tintPrecentage * BoilRate);
-
-        if (chemContainerScript != null)
+        if (other.gameObject.CompareTag("CanBoil"))
         {
-            startingVolume = chemContainerScript.currentVolume;
+            if (canSteam)
+            {
+                playParticleEffect();
+            }
+            if (chemContainerScript != null)
+            {
+                startingVolume = chemContainerScript.currentVolume;
 
-            startingVolume -= lossPerSecond * Time.deltaTime;
-            chemContainerScript.currentVolume = startingVolume;
+                startingVolume -= lossPerSecond * Time.deltaTime;
+                chemContainerScript.currentVolume = startingVolume;
 
-            Debug.Log("Current volume: " + startingVolume);
-            //Debug.Log("tintPrecentage: " + tintPrecentage);
-            Debug.Log("boil rate after multiply: " + lossPerSecond);
 
+                if (chemContainerScript.currentVolume <= 0)
+                {
+                    chemContainerScript.currentVolume = 0;
+                    stopParticleEffect();
+                }
+
+            }
         }
-        else
+
+    }
+
+    private void playParticleEffect()
+    {
+        if (!isSteamOn)
         {
-           // Debug.Log("ChemContainerScript is Null.");
+            steamEffect.Play();
+            isSteamOn = true;
+        }
+    }
+
+    private void stopParticleEffect()
+    {
+        if (isSteamOn)
+        {
+            steamEffect.Stop();
+            isSteamOn = false;
         }
     }
 }
