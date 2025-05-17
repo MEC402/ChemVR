@@ -62,7 +62,8 @@ public class Chemical_Change_Overview : MonoBehaviour
                     "Set up 2 volumetric pipettes with a bulb on top.\n\n\nSkip with B",
                     "Draw up 25mL of NaOH stock solution and place into beaker.\n\n\nSkip with B", //NaOH is clear, transparent liquid
                     "Mix with a glass stir rod.\n\n\nSkip with B", //Color changes forming green solid clumps and the liquid is light green tinted.
-                    "Draw up 25mL of H2O2 stock solution in a new volumetric pipette and transfer into the beaker.\n\n\nSkip with B",
+                    "Using a new volumetric pipette,\n Draw up 25mL of H2O2 stock solution\n\n\nSkip with B",
+                    "Transfer the H2O2 solution into the beaker.\n\n\nSkip with B",
                     "Mix with a glass stir rod.\n\n\nSkip with B", //Color changes from green to dark blue with fizzy bubbles on top.
                     "Is this a chemical change?\nYes or no?\n\n\nSkip with B", 
                     "Place the beaker of solution on a hot plate.\n\n\nSkip with B",
