@@ -21,7 +21,11 @@ public class Configure_Balance : TaskStep
 
     private void CheckScaleMode(string mode)
     {
+        Debug.Log("before: " + mode);
             if (mode == "grams")
-                FinishTaskStep();
+        {
+            Debug.Log("after: " + mode);
+            FinishTaskStep();
+        }
     }
 }
