@@ -28,6 +28,7 @@ public class MaterialHold : MonoBehaviour
 
         if (putPaperOnBoat != null && putPaperOnBoat.isInBoat)
             triggerCollider.enabled = true;
+        Debug.Log("Trigger collider: " + triggerCollider);
     }
 
     private void AddMaterialToBoat(float amount)
@@ -36,5 +37,6 @@ public class MaterialHold : MonoBehaviour
 
         if (putPaperOnBoat.isInBoat)
             materialVisuals.SetActive(true);
+            Debug.Log("material visuals: "+ materialVisuals);
     }
 }
