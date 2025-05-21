@@ -224,6 +224,7 @@ public class ChemContainer : MonoBehaviour {
 
             if (hit.collider != null) //Added all of this into this if statement to try to catch the bug that is occassionally thrown.
             {
+                //the receiving obj has to have the chemContainer script attatched? AW
                 ChemContainer recipient = hit.collider.gameObject.GetComponentInParent<ChemContainer>();            // BUG! Every now and again if you drop a chem container a null error throws here. I'm trying to find it above.
                 float amountPoured = Mathf.Min(pourRate * Time.fixedDeltaTime, currentVolume, (recipient.flags.infiniteCapacity ? float.MaxValue : recipient.maxVolume - recipient.currentVolume));
 
