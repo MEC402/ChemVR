@@ -7,17 +7,18 @@ using Cinemachine;
 public class FirstPersonMovement : MonoBehaviour
 {
     public WebGLInput webGLInput;
-    [SerializeField] public CinemachineVirtualCamera playerCamera; // Reference to the first-person camera
+    public CinemachineVirtualCamera playerCamera; // Reference to the first-person camera
     private Rigidbody rb;
 
     [SerializeField] private float moveSpeed = 15f;
-    [SerializeField] private float maxSpeed = 10f;
-    [SerializeField] private float stoppingTime = 0.2f;
-    public float mouseSensitivity = 1f;
-    [SerializeField] private float cameraSmoothing = 5f; // Smoothing factor for camera rotation
+    public float mouseSensitivity = 0.05f;
+    [SerializeField] private float cameraSmoothing = 2f; // Smoothing factor for camera rotation
 
     private Vector2 rotation = Vector2.zero;
     private Vector2 rotationSmooth = Vector2.zero; // Smoothed rotation values
+
+    private Vector2 movementInput;
+    private Vector2 mouseInput;
 
     private void Start()
     {
@@ -26,43 +27,32 @@ public class FirstPersonMovement : MonoBehaviour
         Cursor.visible = false; // Hide cursor at start
     }
 
+    private void Update()
+    {
+        if (Time.timeScale == 0f) return;
+
+        movementInput = webGLInput.movementInput;
+        mouseInput = webGLInput.lookInput;
+    }
+
     private void FixedUpdate()
     {
-        Vector2 movementInput = webGLInput.movementInput;
-        Vector2 mouseInput = webGLInput.lookInput;
+        Vector3 cameraForward = Vector3.Scale(playerCamera.transform.forward, new Vector3(1, 0, 1)).normalized;
+        Vector3 moveDirection = (cameraForward * movementInput.y + playerCamera.transform.right * movementInput.x).normalized;
+        Vector3 movement = moveSpeed * Time.fixedDeltaTime * moveDirection;
 
-        // Rotate the player based on mouse input
+        rb.MovePosition(rb.position + movement);
+    }
+
+    private void LateUpdate()
+    {
+        if (Time.timeScale == 0f) return;
+
         rotation += mouseInput * mouseSensitivity;
-        rotation.y = Mathf.Clamp(rotation.y, -90f, 90f); // Limit vertical rotation
-
-        // Smooth the rotation
+        rotation.y = Mathf.Clamp(rotation.y, -90f, 90f);
         rotationSmooth = Vector2.Lerp(rotationSmooth, rotation, 1f / cameraSmoothing);
 
-        playerCamera.transform.localRotation = Quaternion.Euler(-rotationSmooth.y, 0, 0); // Rotate camera vertically
-        transform.rotation = Quaternion.Euler(0, rotationSmooth.x, 0); // Rotate player horizontally
-
-        // Get the forward direction of the camera without vertical component
-        Vector3 cameraForward = Vector3.Scale(playerCamera.transform.forward, new Vector3(1, 0, 1)).normalized;
-
-        // Calculate movement direction relative to the camera
-        Vector3 moveDirection = (cameraForward * movementInput.y + playerCamera.transform.right * movementInput.x).normalized;
-
-        // Calculate movement
-        Vector3 movement = moveDirection * moveSpeed * Time.fixedDeltaTime;
-
-        // Move the player using Rigidbody velocity
-        rb.MovePosition(rb.position + movement);
-
-        // Limit the velocity to the maximum speed
-        if (rb.velocity.magnitude > maxSpeed)
-        {
-            rb.velocity = rb.velocity.normalized * maxSpeed;
-        }
-
-        // If there is no input, ease into stop
-        if (movementInput == Vector2.zero)
-        {
-            rb.velocity = Vector3.Lerp(rb.velocity, Vector3.zero, stoppingTime);
-        }
+        playerCamera.transform.localRotation = Quaternion.Euler(-rotationSmooth.y, 0, 0);
+        transform.rotation = Quaternion.Euler(0, rotationSmooth.x, 0);
     }
 }

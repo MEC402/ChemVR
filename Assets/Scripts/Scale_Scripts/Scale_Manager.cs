@@ -98,6 +98,8 @@ public class Scale_Manager : MonoBehaviour
     public void pressOn()
     {
         power = true;
+        currentUnit = unit.pounds; //so the scale doesnt start at grams on turning on?
+       // Debug.Log("scale turned on and set to: " + currentUnit.ToString());
         // pressTare(); // a lot of scales start at zero despite weight
     }
 
@@ -132,8 +134,9 @@ public class Scale_Manager : MonoBehaviour
             default:
                 break;
         }
-
+        //Debug.Log("from scale manager, currentUnitPre: " + currentUnit.ToString());
         GameEventsManager.instance.miscEvents.ScaleModeChanged(currentUnit.ToString());
+        //Debug.Log("from scale manager, currentUnitPost: " +  currentUnit.ToString());
     }
 
     public void pressTare()

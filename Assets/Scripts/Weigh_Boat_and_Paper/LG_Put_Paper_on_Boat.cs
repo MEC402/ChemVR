@@ -6,7 +6,7 @@ using UnityEngine;
 using UnityEngine.XR.Interaction.Toolkit;
 
 
-public class Put_Paper_on_Boat : MonoBehaviour
+public class LG_Put_Paper_on_Boat : MonoBehaviour
 {
     [SerializeField] Collider initialCollider;
     private XRGrabInteractable grabInteractable; //XRGrabInteractable of attached gameObject
@@ -133,7 +133,7 @@ public class Put_Paper_on_Boat : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.name.Contains("boat") && !other.name.Contains("large"))
+        if (other.name.Contains("boat") && !other.name.Contains("small"))
         {
             boat = other.gameObject;
             touching = true;
@@ -155,18 +155,18 @@ public class Put_Paper_on_Boat : MonoBehaviour
 
     private void OnTriggerExit(Collider other)
     {
-       /* if (other.name.Contains("boat"))
-        {
-            touching = false;
+        /* if (other.name.Contains("boat"))
+         {
+             touching = false;
 
-            GameEventsManager.instance.miscEvents.PaperInBoat(false);
+             GameEventsManager.instance.miscEvents.PaperInBoat(false);
 
-            if (isGrabbed)
-                LetGo();
-            else if (snap)
-                SetPositionToBoat();
-        }*/
-       //i didnt think you could remove the paper from the boat--i think this is causing issues with the task completion
+             if (isGrabbed)
+                 LetGo();
+             else if (snap)
+                 SetPositionToBoat();
+         }*/
+        //i didnt think you could remove the paper from the boat--i think this is causing issues with the task completion
     }
 
     private void OnGrab(SelectEnterEventArgs arg0)
@@ -179,7 +179,7 @@ public class Put_Paper_on_Boat : MonoBehaviour
     {
         isGrabbed = false;
 
-        if (touching && !boat.name.Contains("large"))
+        if (touching && !boat.name.Contains("small"))
         {
             snap = true;
             myRb.useGravity = false;

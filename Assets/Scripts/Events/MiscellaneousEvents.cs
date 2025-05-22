@@ -176,7 +176,11 @@ public class MiscellaneousEvents
     public void ScaleMode() => OnScaleMode?.Invoke();
 
     public event Action<string> OnScaleModeChanged; //see scale_Manager.cs on "SPACED scale using hover 1"
-    public void ScaleModeChanged(string mode) => OnScaleModeChanged?.Invoke(mode);
+    public void ScaleModeChanged(string mode)
+    {
+        //Debug.Log("misc events sending this as the mode: " +  mode);
+        OnScaleModeChanged?.Invoke(mode);
+    }
 
     public event Action<bool> OnPaperInBoat; //see Put_Paper_on_Boat.cs on "weight_paper_small/medium"
     public void PaperInBoat(bool inBoat) => OnPaperInBoat?.Invoke(inBoat);

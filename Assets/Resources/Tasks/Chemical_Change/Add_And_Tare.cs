@@ -22,10 +22,20 @@ public class Add_And_Tare : TaskStep
     {
         GameEventsManager.instance.miscEvents.OnPaperInBoat -= SetPaperInBoat;
     }
-    private void SetPaperInBoat(bool isInBoat) => isBoatPrepared = isInBoat; //set a bool based on if the paper is in the boat
-    private void SetObjectOnScale () => isBoatOnScale = true;
+    private void SetPaperInBoat(bool isInBoat)
+    {
+        Debug.Log("before:: isBoatPrepared " + isBoatPrepared + "; isInBoat " + isInBoat);
+        isBoatPrepared = isInBoat; //set a bool based on if the paper is in the boat
+        Debug.Log("after:: isBoatPrepared " + isBoatPrepared + "; isInBoat " + isInBoat);
+    }
+    private void SetObjectOnScale()
+    {
+        isBoatOnScale = true;
+        Debug.Log("Set obj on scale called. is boat on scale: " + isBoatOnScale);
+    }
     private void CheckFinishTaskStep()
     {
+        Debug.Log("CheckFinishTaskStep is called? IDK how we got here tho.");
         if (isBoatPrepared && isBoatOnScale)
             FinishTaskStep();
     }
