@@ -47,6 +47,9 @@ public class ChemistryManager : MonoBehaviour
             case ChemType.SOLID_SUGAR:
                 isASolid = true;
                 return Color.red;
+            case ChemType.SOLID_CHROMIUMIIICHLORIDE:
+                isASolid = true;
+                return Color.green;
             default:
                 return Color.black;
         }
