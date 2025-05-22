@@ -85,6 +85,10 @@ public class JarLid : MonoBehaviour
         {
             UsesGravity(false);
         }
+        else
+        {
+            UsesGravity(true);
+        }
     }
 
     /// <summary>
@@ -120,9 +124,9 @@ public class JarLid : MonoBehaviour
         if (TryGetComponent<Rigidbody>(out var rb))
             rb.useGravity = useGravity;
 
-        // Reset scale if it has changed
+       /* // Reset scale if it has changed
         if (transform.localScale != new Vector3(5, 5, 5))
-            transform.localScale = new Vector3(5, 5, 5);
+            transform.localScale = new Vector3(5, 5, 5);*/
 
         if (!useGravity)
         {
