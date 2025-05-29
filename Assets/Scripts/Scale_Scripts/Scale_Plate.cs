@@ -85,6 +85,10 @@ public class Scale_Plate : MonoBehaviour
                     {
                         totalFluidInGrams += (1.36f * unConvertedContents);
                     }
+                    else if (type_to_Amount[0].Contains("SOLID_SUGAR")) //CrCl3 & Sugar need to have a visible amount at 2g
+                    {
+                        totalFluidInGrams += (.5f * unConvertedContents);
+                    }
                 }
 
             }
