@@ -6,6 +6,7 @@ using System;
 public class Scale_Plate : MonoBehaviour
 {
     //NOTE TO SELF: Consider changing collider to a very tall collider from the plate and up! so that anything stacked would count towards the weight as well.
+    
     public float measuredWeight = 0;
     private float fluctuation = 0;
     private HashSet<GameObject> ObjectsOnScale = new HashSet<GameObject>();
@@ -87,7 +88,7 @@ public class Scale_Plate : MonoBehaviour
                     }
                     else if (type_to_Amount[0].Contains("SOLID_SUGAR")) //CrCl3 & Sugar need to have a visible amount at 2g
                     {
-                        totalFluidInGrams += (.5f * unConvertedContents);
+                        totalFluidInGrams += (.1f * unConvertedContents); //30mL *.1 = 3g
                     }
                 }
 

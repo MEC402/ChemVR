@@ -23057,12 +23057,20 @@ PrefabInstance:
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6194530907126802132, guid: 15582245fe628c6448f45e3340aeb6f2, type: 3}
+      propertyPath: pourRate
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 6194530907126802132, guid: 15582245fe628c6448f45e3340aeb6f2, type: 3}
       propertyPath: pourEffect
       value: 
       objectReference: {fileID: 876128073}
     - target: {fileID: 6194530907126802132, guid: 15582245fe628c6448f45e3340aeb6f2, type: 3}
       propertyPath: currentVolume
       value: 300
+      objectReference: {fileID: 0}
+    - target: {fileID: 6194530907126802132, guid: 15582245fe628c6448f45e3340aeb6f2, type: 3}
+      propertyPath: initialContents.Array.data[0].type
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 6194530907126802132, guid: 15582245fe628c6448f45e3340aeb6f2, type: 3}
       propertyPath: initialContents.Array.data[0].volume
@@ -29337,9 +29345,9 @@ MonoBehaviour:
   opening: {fileID: 6151502378016528859}
   pourEffect: {fileID: 2672613431907868697}
   pourActivator: {fileID: 0}
-  maxVolume: 100
-  currentVolume: 100
-  pourRate: 50
+  maxVolume: 30
+  currentVolume: 0
+  pourRate: 5
   pourAngle: -90
   flags:
     pouringUsesActivator: 0
@@ -29865,7 +29873,7 @@ GameObject:
   - component: {fileID: 6199518438831288916}
   m_Layer: 0
   m_Name: weigh_boat_fluids_small
-  m_TagString: CanBoil
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
