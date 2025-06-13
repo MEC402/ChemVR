@@ -3,15 +3,18 @@ using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
 
-public class ChemistryManager : MonoBehaviour 
+public class ChemistryManager : MonoBehaviour
 {
     public static ChemistryManager instance;
 
     [SerializeField]
     public float transparency = .5f;
+    public bool isASolid;
 
-    public void Awake() {
-        if (instance != null) {
+    public void Awake()
+    {
+        if (instance != null)
+        {
             Debug.LogError("More than one ChemistryManager was found in the scene.");
         }
         instance = this;
@@ -27,8 +30,10 @@ public class ChemistryManager : MonoBehaviour
     /// </summary>
     /// <param name="chemType">ChemType to get the color of</param>
     /// <returns>Color for the given ChemType</returns>
-    public Color GetColor(ChemType chemType) {
-        switch (chemType) {
+    public Color GetColor(ChemType chemType)
+    {
+        switch (chemType)
+        {
             case ChemType.WATER:
                 return Color.cyan;
             case ChemType.HYDROCHLORIC_ACID:
@@ -39,6 +44,12 @@ public class ChemistryManager : MonoBehaviour
                 return Color.blue;
             case ChemType.GLUCOSE:
                 return Color.white;
+            case ChemType.SOLID_SUGAR:
+                isASolid = true;
+                return Color.white;
+            case ChemType.SOLID_CHROMIUMIIICHLORIDE:
+                isASolid = true;
+                return new Color32(0, 15, 2, 0);
             default:
                 return Color.black;
         }
@@ -53,10 +64,20 @@ public class ChemistryManager : MonoBehaviour
     /// </remarks>
     /// <param name="chemFluid"></param>
     /// <returns></returns>
-    public Color GetColor(ChemFluid chemFluid) {
+    public Color GetColor(ChemFluid chemFluid)
+    {
         Color chemColor = new Color();
-        foreach (Chem chem in chemFluid.GetChems()) {
+        foreach (Chem chem in chemFluid.GetChems())
+        {
             chemColor = chemColor + (GetColor(chem.type) * (chem.volume / chemFluid.totalVolume));
+        }
+        if (isASolid)
+        {
+            transparency = 1f;
+        }
+        else
+        {
+            transparency = 0.5f;
         }
         chemColor.a = chemColor.a * transparency;
         return chemColor;

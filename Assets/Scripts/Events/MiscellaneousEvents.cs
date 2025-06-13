@@ -185,8 +185,9 @@ public class MiscellaneousEvents
     public event Action<bool> OnPaperInBoat; //see Put_Paper_on_Boat.cs on "weight_paper_small/medium"
     public void PaperInBoat(bool inBoat) => OnPaperInBoat?.Invoke(inBoat);
 
-    public event Action OnObjectOnScale; //see Scale_Plate.cs on "Scale"
+    public event Action OnObjectOnScale; //see Scale_Plate.cs on "Scale" specifically the OnTriggerEnter and OnTriggerExit Methods in which this is caled
     public void ObjectOnScale() => OnObjectOnScale?.Invoke();
+
     #endregion
 
     #region
