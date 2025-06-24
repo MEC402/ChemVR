@@ -12,7 +12,7 @@ public class Collect_DI : TaskStep
     }
     void OnEnable()
     {
-        GameEventsManager.instance.miscEvents.SetHint(null);
+        //GameEventsManager.instance.miscEvents.SetHint(null);
 
         GameEventsManager.instance.chemistryEvents.onPourIn += addChem;
     }
@@ -24,8 +24,8 @@ public class Collect_DI : TaskStep
 
     private void addChem(ChemContainer container, ChemFluid chemMix)
     {
-        float fiftyMlFull = container.maxVolume / 11;
-        if (container.name.ToLower().Contains("beaker")) //what is the object we are checking
+        float fiftyMlFull = container.maxVolume / 2;
+        if (container.name.ToLower().Contains("graduatedcylinder")) //what is the object we are checking
         {
             //NOTE: CHEM_MIX IS THE MIXTURE OF CHEMICALS ADDED TO THE BEAKER, NOT THE TOTAL CHEMICAL MIXTURE. USE CONTAINER.GETCONTENTS()
             string wholeContents = container.getContents();

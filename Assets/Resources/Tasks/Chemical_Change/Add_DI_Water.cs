@@ -13,7 +13,7 @@ public class Add_DI_Water : TaskStep
 
     void OnEnable()
     {
-        GameEventsManager.instance.miscEvents.SetHint(null);
+        //GameEventsManager.instance.miscEvents.SetHint(null);
 
         GameEventsManager.instance.chemistryEvents.onPourIn += addChem;
     }
