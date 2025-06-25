@@ -10,24 +10,14 @@ public class Stir_Sugar : TaskStep
     {
         throw new System.NotImplementedException();
     }
-    private void Update()
-    {
-        if (Keyboard.current.cKey.wasPressedThisFrame)
-        {
-            FinishTaskStep();
-        }
-    }
     void OnEnable()
     {
-        GameEventsManager.instance.inputEvents.onAButtonPressed += SkipTask;
+        GameEventsManager.instance.miscEvents.OnStirBeaker += FinishTaskStep;
     }
+
     void OnDisable()
     {
-        GameEventsManager.instance.inputEvents.onAButtonPressed -= SkipTask;
-    }
-    private void SkipTask(InputAction.CallbackContext obj)
-    {
-        FinishTaskStep();
+        GameEventsManager.instance.miscEvents.OnStirBeaker -= FinishTaskStep;
     }
 
 }
