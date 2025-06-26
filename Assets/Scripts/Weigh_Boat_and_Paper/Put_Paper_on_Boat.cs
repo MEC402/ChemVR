@@ -149,7 +149,7 @@ public class Put_Paper_on_Boat : MonoBehaviour
         }
         else
         {
-            UnityEngine.Debug.Log("Other.name.contains: " + other.name);
+           // UnityEngine.Debug.Log("Other.name.contains: " + other.name);
         }
     }
 
