@@ -5,7 +5,7 @@ using UnityEngine;
 using UnityEngine.XR.Interaction.Toolkit;
 
 
-public class SnapBulbToPipet : MonoBehaviour
+public class SnapBulbToPipetTwo : MonoBehaviour
 {
     private XRGrabInteractable grabInteractable; //XRGrabInteractable of attached gameObject
     private Rigidbody myRb; //Rigidbody of attached gameObject
@@ -75,7 +75,7 @@ public class SnapBulbToPipet : MonoBehaviour
         {
             pipet = other.gameObject;
             touching = true;
-            GameEventsManager.instance.miscEvents.PippetConnectedFirst();
+            GameEventsManager.instance.miscEvents.PippetConnectedSecond();
         }
     }
 

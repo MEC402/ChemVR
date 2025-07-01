@@ -6,28 +6,32 @@ using UnityEngine.InputSystem;
 
 public class Set_Up_Two_Pipettes : TaskStep
 {
+    private bool First_PipetConnected = false;
+    private bool Second_PipetConnected = false;
     protected override void SetTaskStepState(string state)
     {
         throw new System.NotImplementedException();
     }
+
+    void OnEnable()
+    {
+        GameEventsManager.instance.miscEvents.OnPippetConnectedFirst += () => First_PipetConnected = true;
+
+        GameEventsManager.instance.miscEvents.OnPippetConnectedSecond += () => Second_PipetConnected = true;
+    }
+    void OnDisable()
+    {
+        GameEventsManager.instance.miscEvents.OnPippetConnectedFirst -= () => First_PipetConnected = true;
+
+        GameEventsManager.instance.miscEvents.OnPippetConnectedSecond -= () => Second_PipetConnected = true;
+    }
+
     private void Update()
     {
-        if (Keyboard.current.cKey.wasPressedThisFrame)
+        if (First_PipetConnected && Second_PipetConnected)
         {
             FinishTaskStep();
         }
     }
-    void OnEnable()
-    {
-        GameEventsManager.instance.inputEvents.onAButtonPressed += SkipTask;
-    }
-    void OnDisable()
-    {
-        GameEventsManager.instance.inputEvents.onAButtonPressed -= SkipTask;
-    }
-    private void SkipTask(InputAction.CallbackContext obj)
-    {
-        FinishTaskStep();
-    }
-
+    
 }

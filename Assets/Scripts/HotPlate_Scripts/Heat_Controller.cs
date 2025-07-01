@@ -85,6 +85,7 @@ public class Heat_Controller : MonoBehaviour, IDial
                 {
                     chemContainerScript.currentVolume = 0;
                     stopParticleEffect();
+                    //chemContainerScript.chemFluid.totalVolume = 0;?
                 }
 
             }

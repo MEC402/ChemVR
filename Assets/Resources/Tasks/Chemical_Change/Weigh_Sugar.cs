@@ -12,7 +12,7 @@ public class Weigh_Sugar : TaskStep
     float amt;
     protected override void SetTaskStepState(string state)
     {
-        //not Necessary here
+        throw new System.NotImplementedException();
     }
 
     private void Start()

@@ -152,7 +152,13 @@ public class MiscellaneousEvents
     public event Action OnCleanScale;
     public void CleanScale() => OnCleanScale?.Invoke();
 
-    
+    public event Action OnPippetConnectedFirst;
+    public void PippetConnectedFirst() => OnPippetConnectedFirst?.Invoke();
+
+    public event Action OnPippetConnectedSecond;
+    public void PippetConnectedSecond() => OnPippetConnectedSecond?.Invoke();
+
+
 
     // Flask & Beaker related events
     public event Action<bool> OnEnableFlaskTrigger;

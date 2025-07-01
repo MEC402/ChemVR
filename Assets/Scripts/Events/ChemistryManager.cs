@@ -34,6 +34,9 @@ public class ChemistryManager : MonoBehaviour
     {
         switch (chemType)
         {
+            case ChemType.HYDROGEN_PEROXIDE:
+                return Color.clear;
+                //return new Color32(0, 128, 128, 5);
             case ChemType.WATER:
                 return Color.cyan;
             case ChemType.HYDROCHLORIC_ACID:
@@ -49,7 +52,10 @@ public class ChemistryManager : MonoBehaviour
                 return Color.white;
             case ChemType.SOLID_CHROMIUMIIICHLORIDE:
                 isASolid = true;
-                return new Color32(0, 15, 2, 0);
+                return Color.green;
+            case ChemType.CHROMIUM_III_CHLORIDE:
+                return Color.black;
+               // return new Color32(0, 15, 2, 0);
             default:
                 return Color.black;
         }

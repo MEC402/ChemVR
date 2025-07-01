@@ -475,7 +475,7 @@ Transform:
   m_GameObject: {fileID: 4278026370663638014}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -1, z: -0.000000074505806, w: 0}
-  m_LocalPosition: {x: 0.00018775463, y: 0.07089865, z: -0.00010562081}
+  m_LocalPosition: {x: 0, y: 0, z: -0.00010562081}
   m_LocalScale: {x: 1, y: 1, z: 0.9823242}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -5515,7 +5515,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6875643855629123237}
   serializedVersion: 2
-  m_LocalRotation: {x: -0.50000006, y: -0.49999997, z: -0.50000006, w: 0.49999997}
+  m_LocalRotation: {x: -0.5, y: -0.5, z: -0.5, w: 0.5}
   m_LocalPosition: {x: -2.0300972, y: 1.1345, z: -3.7867756}
   m_LocalScale: {x: 2, y: 2, z: 9.467343}
   m_ConstrainProportionsScale: 0
@@ -5526,7 +5526,7 @@ Transform:
   - {fileID: 5670043835619165525}
   - {fileID: 3304525746883807555}
   m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: -90, y: 0, z: -90}
 --- !u!33 &654685236725613712
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -5622,7 +5622,7 @@ MonoBehaviour:
   initialContents:
   - name: 
     type: 0
-    volume: 50
+    volume: 0
   chemFluid:
     totalVolume: 0
     chems:
