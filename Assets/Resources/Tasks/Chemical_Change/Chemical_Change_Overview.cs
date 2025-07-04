@@ -48,12 +48,12 @@ public class Chemical_Change_Overview : MonoBehaviour
     string[] text = {"Welcome to the Physical & Chemical Change Lab!\nBefore we begin, you need to put on your lab gear.\n\nYou should be wearing closed toed shoes and have your hair tied back.\n\nFind gloves, goggles, and a lab coat and put them on with (X/A).\n\nPRESS B TO SKIP INSTRUCTIONS! ",
                     //"For this lab, bring the following to a table in the yellow zone:\n250mL beaker\n100mL graduated cylinder\nGlass stir rod\nStock Container of sugar (C6H12O6)\nWeigh boat and paper\n\n\nSkip with B", //disabled task step 2 (add to TaskInfoSO block and uncomment to undo)
                     //"Locate these tools that you will need in the lab:\nAnalytical Balance\nDI water\nWhen you are ready to continue, press (A).\n\n\nSkip with B", //disabled task step 3 (add to TaskInfoSO block and uncomment to undo)
-                    "Collect 50mL of DI water into graduated cylinder.\n\n\nSkip with B",
+                    "Pour 50mL of DI water into graduated cylinder.\n\n\nSkip with B",
                     "Configure the balance.\n\n\nSkip with B",
                     "Add weigh paper to analytical balance and tare to 0.000g.\n\n\nSkip with B",
                     "Weigh out 2g of sugar.\n\n\nSkip with B",
                     "Fold up sugar in weigh paper and add to empty beaker.\n\n\nSkip with B",
-                    "Pour in 50mL water into beaker.\n\n\nSkip with B",
+                    "Pour in 50mL water from Graduated Cylinder into beaker.\n\n\nSkip with B",
                     "Stir with glass rod.\n\n\nSkip with B", //Solution is clear and transparent.
                     "Is this a chemical change?\nYes or no?\n\n\nSkip with B", //TODO: Make this chooseable
                     "Gather\n250mL beaker\nGlass stir rod\n2 volumetric pipettes\nStock Containers of:\nCrCl3\nNaOH\nH2O2.\n\n\nSkip with B",

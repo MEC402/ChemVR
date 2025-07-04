@@ -13,7 +13,7 @@ public class Add_DI_Water : TaskStep
 
     void OnEnable()
     {
-        GameEventsManager.instance.miscEvents.SetHint(null);
+        //GameEventsManager.instance.miscEvents.SetHint(null);
 
         GameEventsManager.instance.chemistryEvents.onPourIn += addChem;
     }
@@ -26,7 +26,7 @@ public class Add_DI_Water : TaskStep
     private void addChem(ChemContainer container, ChemFluid chemMix)
     {
         float fiftyMlFull = container.maxVolume / 11;
-        if (container.name.ToLower().Contains("beaker")) //what is the object we are checking
+        if (container.name.ToLower().Contains("beaker")) //what is the object we are checking //ToLower is a function to convert all the string letters to lowercase for comparison
         {
             //NOTE: CHEM_MIX IS THE MIXTURE OF CHEMICALS ADDED TO THE BEAKER, NOT THE TOTAL CHEMICAL MIXTURE. USE CONTAINER.GETCONTENTS()
             string wholeContents = container.getContents();
