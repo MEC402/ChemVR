@@ -15,6 +15,8 @@ public enum ChemType : int
     SOLID_CHROMIUMIIICHLORIDE = 6,
     HYDROGEN_PEROXIDE = 7,
     CHROMIUM_III_CHLORIDE = 8,
+    ChemicalMix = 9,
+    ChemicalMix2 = 10,
 
     /* Abbreviation Aliases */
     H2O = WATER,
@@ -26,4 +28,6 @@ public enum ChemType : int
     SOLIDCrCl3 = SOLID_CHROMIUMIIICHLORIDE,
     H2O2 = HYDROGEN_PEROXIDE,
     CrCl3 = CHROMIUM_III_CHLORIDE,
+    ChemMix = ChemicalMix,
+    ChemMix2 = ChemicalMix2,
 }

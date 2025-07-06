@@ -52,10 +52,15 @@ public class ChemistryManager : MonoBehaviour
                 return Color.white;
             case ChemType.SOLID_CHROMIUMIIICHLORIDE:
                 isASolid = true;
-                return Color.green;
+                return new Color(0f, .15f, 0f); //dark green
+                //return Color.green;
             case ChemType.CHROMIUM_III_CHLORIDE:
                 return Color.black;
-               // return new Color32(0, 15, 2, 0);
+            // return new Color32(0, 15, 2, 0);
+            case ChemType.ChemicalMix:
+                return new Color(0.04196228f, 0f, 0.3679245f); //blue
+            case ChemType.ChemicalMix2:
+                return new Color(0.1478891f, 0.3686274f, 0f); //lime green
             default:
                 return Color.black;
         }

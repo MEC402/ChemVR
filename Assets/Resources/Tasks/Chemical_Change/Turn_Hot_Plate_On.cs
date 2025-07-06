@@ -10,23 +10,23 @@ public class Turn_Hot_Plate_On : TaskStep
     {
         throw new System.NotImplementedException();
     }
-    private void Update()
-    {
-        if (Keyboard.current.cKey.wasPressedThisFrame)
-        {
-            FinishTaskStep();
-        }
-    }
     void OnEnable()
     {
-        GameEventsManager.instance.inputEvents.onAButtonPressed += SkipTask;
+        GameEventsManager.instance.miscEvents.OnBeakerToLevelThree += CallDelay;
     }
     void OnDisable()
     {
-        GameEventsManager.instance.inputEvents.onAButtonPressed -= SkipTask;
+        GameEventsManager.instance.miscEvents.OnBeakerToLevelThree -= CallDelay;
     }
-    private void SkipTask(InputAction.CallbackContext obj)
+
+    void CallDelay()
     {
+        StartCoroutine(DelayThenFinish());
+    }
+
+    IEnumerator DelayThenFinish()
+    {
+        yield return new WaitForSeconds(2f); // delay for 2 seconds
         FinishTaskStep();
     }
 

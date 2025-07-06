@@ -39,7 +39,7 @@ public class Pour_Sugar : TaskStep
                         //Debug.Log("boat amount: " + amt);
                         if (amt <= 0)
                         {
-                            Debug.Log("poured complete contents into a beaker");
+                            //Debug.Log("poured complete contents into a beaker");
                             FinishTaskStep();
                         }
                     }
