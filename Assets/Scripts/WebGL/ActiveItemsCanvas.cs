@@ -7,6 +7,7 @@ public class ActiveItemsCanvas : MonoBehaviour
     public static ActiveItemsCanvas Instance { get; private set; }
 
     [SerializeField] GameObject gloveText, coatText, gogglesText;
+    [SerializeField] Toggle gloveToggle, coatToggle, gogglesToggle;
     [SerializeField] Image interactIcon;
     [SerializeField] Color noGloveColor, gloveColor;
 
@@ -86,9 +87,13 @@ public class ActiveItemsCanvas : MonoBehaviour
     /// </summary>
     public void UpdateItemUI()
     {
-        gogglesText.SetActive(WearGoggles.IsWearing());
-        coatText.SetActive(WearCoat.IsWearing());
-        gloveText.SetActive(isWearingGloves);
+        // gogglesText.SetActive(WearGoggles.IsWearing());
+        // coatText.SetActive(WearCoat.IsWearing());
+        // gloveText.SetActive(isWearingGloves);
+
+        gogglesToggle.isOn = WearGoggles.IsWearing();
+        coatToggle.isOn = WearCoat.IsWearing();
+        gloveToggle.isOn = isWearingGloves;
 
         if (isWearingGloves)
             interactIcon.color = gloveColor;

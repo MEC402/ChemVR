@@ -53,7 +53,8 @@ public class WebGLGrab : MonoBehaviour
         if (isHoldingObject)
         {
             MoveObjectToHoldPoint();
-            playerIcon.sprite = closedIcon;
+            // playerIcon.sprite = closedIcon;
+            playerIcon.enabled = false;
         }
         else
             CheckRaycast(); // Not holding anything, so keep checking the raycast to set the player's icon for potential interactions
@@ -91,6 +92,7 @@ public class WebGLGrab : MonoBehaviour
         // playerIcon.sprite = defaultIcon;
 
         if (!mainCamera) return;
+        if (!playerIcon.enabled) playerIcon.enabled = true;
 
         // Create a ray from the center of the screen
         centerRay = mainCamera.ScreenPointToRay(new Vector2(Screen.width / 2f, Screen.height / 2f));
@@ -219,7 +221,8 @@ public class WebGLGrab : MonoBehaviour
         GameEventsManager.instance.webGLEvents.ObjectGrabbed(heldObject.gameObject);
 
         // Snap to hold point
-        heldObject.SetPositionAndRotation(holdPoint.position, holdPoint.rotation);
+        // heldObject.SetPositionAndRotation(holdPoint.position, holdPoint.rotation);
+        heldObject.position = holdPoint.position;
         objectRotationController.objectToRotate = heldObject;
 
         playerIcon.sprite = closedIcon;
