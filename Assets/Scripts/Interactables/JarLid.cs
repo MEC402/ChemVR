@@ -23,7 +23,9 @@ public class JarLid : MonoBehaviour
     void Start()
     {
         initialRotation = transform.localRotation;
-        initialPos = transform.localPosition;
+        //initialPos = transform.localPosition;
+        initialPos = new Vector3(0.00f, 0.00f, 0.0292f);
+           // Vector3(0, 0, 0.03391998);
 
         UsesGravity(false);
     }
@@ -85,6 +87,10 @@ public class JarLid : MonoBehaviour
         {
             UsesGravity(false);
         }
+        else
+        {
+            UsesGravity(true);
+        }
     }
 
     /// <summary>
@@ -120,9 +126,9 @@ public class JarLid : MonoBehaviour
         if (TryGetComponent<Rigidbody>(out var rb))
             rb.useGravity = useGravity;
 
-        // Reset scale if it has changed
+       /* // Reset scale if it has changed
         if (transform.localScale != new Vector3(5, 5, 5))
-            transform.localScale = new Vector3(5, 5, 5);
+            transform.localScale = new Vector3(5, 5, 5);*/
 
         if (!useGravity)
         {
@@ -138,7 +144,10 @@ public class JarLid : MonoBehaviour
             rb.constraints = RigidbodyConstraints.FreezeAll;
         }
         else
+        {
             rb.constraints = RigidbodyConstraints.None;
+            transform.SetParent(null);
+        }
 
         // Trigger the jar closed event
         GameEventsManager.instance.miscEvents.JarClosed(parentJar, !useGravity);
