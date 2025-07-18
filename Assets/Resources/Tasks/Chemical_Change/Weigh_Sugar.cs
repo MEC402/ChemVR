@@ -15,11 +15,11 @@ public class Weigh_Sugar : TaskStep
         throw new System.NotImplementedException();
     }
 
-    private void Start()
+   /* private void Start()
     {
         GameObject Spaced_Scale = GameObject.Find("SPACED scale using hover 1");
         scalePlateRef = Spaced_Scale.GetComponentInChildren<Scale_Plate>();
-    }
+    }*/
     void OnEnable()
     {
         GameEventsManager.instance.chemistryEvents.onPourIn += addChem;
