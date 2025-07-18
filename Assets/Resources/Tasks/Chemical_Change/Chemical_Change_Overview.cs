@@ -51,22 +51,23 @@ public class Chemical_Change_Overview : MonoBehaviour
                     "Pour 50mL of DI water into graduated cylinder.\n\n\nSkip with B",
                     "Configure the balance.\n\n\nSkip with B",
                     "Add weigh paper to analytical balance and tare to 0.000g.\n\n\nSkip with B",
-                    "Weigh out 2g of sugar.\n\n\nSkip with B",
+                    "Weigh out 2g of sugar (White Jar).\n\n\nSkip with B",
                     "Fold up sugar in weigh paper and add to empty beaker.\n\n\nSkip with B",
                     "Pour in 50mL water from Graduated Cylinder into beaker.\n\n\nSkip with B",
                     "Stir with glass rod.\n\n\nSkip with B", //Solution is clear and transparent.
                     "Is this a chemical change?\nYes or no?\n\n\nSkip with B", //TODO: Make this chooseable
                     "Gather\n250mL beaker\nGlass stir rod\n2 volumetric pipettes\nStock Containers of:\nCrCl3\nNaOH\nH2O2.\n\n\nSkip with B",
-                    "Weigh out 2g of CrCl3 on weigh paper on analytical balance.\n\n\nSkip with B", //CrCl3 is Dark green crystalline dry flakes
+                    "Weigh out 2g of CrCl3 (Green Jar) on weigh paper on analytical balance.\n\n\nSkip with B", //CrCl3 is Dark green crystalline dry flakes
                     "Fold paper and dump into an empty beaker.\n\n\nSkip with B",
                     "Set up 2 volumetric pipettes with a bulb on top.\n\n\nSkip with B",
-                    "Draw up 25mL of NaOH stock solution and place into beaker.\n\n\nSkip with B", //NaOH is clear, transparent liquid
+                    "Using a volumetric pipette,\n You draw up 25mL of NaOH (Yellow) stock solution. \nPress A to continue to next step",
+                    "Pour 25mL of NaOH (Yellow) stock solution into the 250mL beaker.\n\n\nSkip with B", //NaOH is Yellow liquid
                     "Mix with a glass stir rod.\n\n\nSkip with B", //Color changes forming green solid clumps and the liquid is light green tinted.
-                    "Using a new volumetric pipette,\n Draw up 25mL of H2O2 stock solution\n\n\nSkip with B",
-                    "Transfer the H2O2 solution into the beaker.\n\n\nSkip with B",
+                    "Using a new volumetric pipette,\n You draw up 25mL of H2O2 (Clear) stock solution. \nPress A to continue to next step",
+                    "Pour 25mL H2O2 (Clear) solution into the 250mL beaker.\n\n\nSkip with B", //H2O2 is clear, transparent liquid
                     "Mix with a glass stir rod.\n\n\nSkip with B", //Color changes from green to dark blue with fizzy bubbles on top.
                     "Is this a chemical change?\nYes or no?\n\n\nSkip with B", 
-                    "Place the beaker of solution on a hot plate.\n\n\nSkip with B",
+                    "Place the 250mL beaker of solution on a hot plate.\n\n\nSkip with B",
                     "Turns the dial to ON, level 3 on the hot plate.\n\n\nSkip with B", //Liquid slowly boils and vapor comes off top of the beaker.
                     "Is this a chemical change?\nYes or no?\n\n\nSkip with B", //Tell them if correct for each
                     "This concludes the chemical change use module. Thank you for your time.\n\n(Y) Hides Popup\n(Hamburger Button) Opens Menu"

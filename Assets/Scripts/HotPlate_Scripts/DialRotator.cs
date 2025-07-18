@@ -18,7 +18,7 @@ public class DialRotator : MonoBehaviour
     private float startAngle;
     private bool requiresStartAngle = true;
     private bool shouldGetHandRotation = false;
-    public  TextMeshProUGUI HotPlateLabel;
+    public TextMeshProUGUI HotPlateLabel;
     //    private float 
 
     private XRGrabInteractable grabInteractor => GetComponent<XRGrabInteractable>();
@@ -141,7 +141,7 @@ public class DialRotator : MonoBehaviour
     private void RotateDialClockwise()
     {
         float rawZ = linkedDial.localEulerAngles.z + snapRotationAmount;
-       // Debug.Log("Clockwise rawZ: " + rawZ);
+        // Debug.Log("Clockwise rawZ: " + rawZ);
         if (rawZ > 360f)
         {
             rawZ -= 360f;
@@ -169,7 +169,7 @@ public class DialRotator : MonoBehaviour
     private void RotateDialAntiClockwise()
     {
         float rawZ = linkedDial.localEulerAngles.z - snapRotationAmount;
-       // Debug.Log("Anticlockwise rawZ " + rawZ);
+        // Debug.Log("Anticlockwise rawZ " + rawZ);
 
         if (rawZ < 0f)
         {
@@ -250,15 +250,20 @@ public class DialRotator : MonoBehaviour
     {
         string nString = n.ToString();
         HotPlateLabel.text = nString;
-        if(n == 0)
+        if (n == 0)
         {
             hotplate.canSteam = false;
         }
         else if (n > 0)
         {
             hotplate.canSteam = true;
+            if (n == 3)
+            {
+                GameEventsManager.instance.miscEvents.BeakerToLevelThree();
+            }
         }
-        else {
+        else
+        {
             hotplate.canSteam = false;
         }
         //Debug.Log("set number pannel to value!");

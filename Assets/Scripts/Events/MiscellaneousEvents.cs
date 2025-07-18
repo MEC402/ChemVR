@@ -152,7 +152,13 @@ public class MiscellaneousEvents
     public event Action OnCleanScale;
     public void CleanScale() => OnCleanScale?.Invoke();
 
-    
+    public event Action OnPippetConnectedFirst;
+    public void PippetConnectedFirst() => OnPippetConnectedFirst?.Invoke();
+
+    public event Action OnPippetConnectedSecond;
+    public void PippetConnectedSecond() => OnPippetConnectedSecond?.Invoke();
+
+
 
     // Flask & Beaker related events
     public event Action<bool> OnEnableFlaskTrigger;
@@ -163,6 +169,13 @@ public class MiscellaneousEvents
 
     public event Action OnStirBeaker;
     public void StirBeaker() => OnStirBeaker?.Invoke(); //see StirWithStirRod.cs under scripts folder
+
+    //HotPlate Related Events
+    public event Action OnBeakerOnHotPlate;
+    public void BeakerOnHotPlate() => OnBeakerOnHotPlate?.Invoke();
+
+    public event Action OnBeakerToLevelThree;
+    public void BeakerToLevelThree() => OnBeakerToLevelThree?.Invoke();
 
     //Scale Related Events
     #region Scale Events
@@ -193,7 +206,7 @@ public class MiscellaneousEvents
     public event Action<bool> OnPaperInBoat; //see Put_Paper_on_Boat.cs on "weight_paper_small/medium"
     public void PaperInBoat(bool inBoat) => OnPaperInBoat?.Invoke(inBoat);
 
-    
+
 
     #endregion
 

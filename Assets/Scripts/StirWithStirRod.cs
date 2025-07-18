@@ -8,9 +8,9 @@ public class StirWithStirRod : MonoBehaviour
     {
         if (other.name.Contains("Beaker"))
         {
-            Debug.Log("event to be called");
+            //Debug.Log("event to be called");
             GameEventsManager.instance.miscEvents.StirBeaker();
-            Debug.Log("event called");
+            //Debug.Log("event called");
         }
     }
 }

@@ -48,6 +48,11 @@ public class Heat_Controller : MonoBehaviour, IDial
             steamEffect.transform.position = liquidOpeningTransform.position;
 
         }
+
+        if(other.name.Contains("Beaker") && other.name.Contains("250"))
+        {
+            GameEventsManager.instance.miscEvents.BeakerOnHotPlate();
+        }
     }
     private void OnTriggerExit(Collider other)
     {
@@ -85,6 +90,7 @@ public class Heat_Controller : MonoBehaviour, IDial
                 {
                     chemContainerScript.currentVolume = 0;
                     stopParticleEffect();
+                    //chemContainerScript.chemFluid.totalVolume = 0;?
                 }
 
             }

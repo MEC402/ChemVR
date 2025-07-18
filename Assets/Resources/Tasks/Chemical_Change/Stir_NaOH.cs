@@ -10,24 +10,41 @@ public class Stir_NaOH : TaskStep
     {
         throw new System.NotImplementedException();
     }
-    private void Update()
-    {
-        if (Keyboard.current.cKey.wasPressedThisFrame)
-        {
-            FinishTaskStep();
-        }
-    }
     void OnEnable()
     {
-        GameEventsManager.instance.inputEvents.onAButtonPressed += SkipTask;
-    }
-    void OnDisable()
-    {
-        GameEventsManager.instance.inputEvents.onAButtonPressed -= SkipTask;
-    }
-    private void SkipTask(InputAction.CallbackContext obj)
-    {
-        FinishTaskStep();
+        GameEventsManager.instance.miscEvents.OnStirBeaker += StirEvent;
     }
 
+    void OnDisable()
+    {
+        GameEventsManager.instance.miscEvents.OnStirBeaker -= StirEvent;
+    }
+
+    void StirEvent()
+    {
+        ParticleSystem NaOHps = GameObject.Find("NaOHStirEventParticleSystem")?.GetComponent<ParticleSystem>();
+        if (NaOHps != null)
+        {
+            NaOHps.Play();
+            //Debug.Log("Particle system found.");
+        }
+        else
+        {
+            Debug.LogWarning("Particle system not found.");
+        }
+        ChemContainer CC = GameObject.Find("BeakerUp250mL_largerText")?.GetComponent<ChemContainer>();
+        //ChemFluid CF = GameObject.Find("BeakerUp250mL_largerText")?.GetComponent<ChemFluid>();
+        if (CC != null)
+        {
+            CC.EmptyChem();
+            Debug.Log("ChemFluid set to empty!");
+            CC.AddChem(ChemType.ChemicalMix2, 27);
+            Debug.Log("Color Changed!");
+        }
+        else
+        {
+            Debug.LogWarning("ChemFluid not found!");
+        }
+        FinishTaskStep();
+    }
 }

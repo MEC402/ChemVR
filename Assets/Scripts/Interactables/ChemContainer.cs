@@ -321,4 +321,8 @@ public class ChemContainer : MonoBehaviour {
     public void SelectExit(XRBaseInteractable interactable) {
         GameEventsManager.instance.interactableEvents.PlayerDropInteractable(gameObject);
     }
+
+    public void AddChem(ChemType type, float amount) => chemFluid.Add(type, amount);
+    public void EmptyChem() => chemFluid.SetToEmpty();
+
 }

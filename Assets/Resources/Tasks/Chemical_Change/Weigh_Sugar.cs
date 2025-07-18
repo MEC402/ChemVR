@@ -12,14 +12,14 @@ public class Weigh_Sugar : TaskStep
     float amt;
     protected override void SetTaskStepState(string state)
     {
-        //not Necessary here
+        throw new System.NotImplementedException();
     }
 
-    private void Start()
+   /* private void Start()
     {
         GameObject Spaced_Scale = GameObject.Find("SPACED scale using hover 1");
         scalePlateRef = Spaced_Scale.GetComponentInChildren<Scale_Plate>();
-    }
+    }*/
     void OnEnable()
     {
         GameEventsManager.instance.chemistryEvents.onPourIn += addChem;
