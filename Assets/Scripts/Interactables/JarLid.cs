@@ -24,7 +24,7 @@ public class JarLid : MonoBehaviour
     {
         initialRotation = transform.localRotation;
         //initialPos = transform.localPosition;
-        initialPos = new Vector3(0.00f, 0.00f, 0.0292f);
+        initialPos = transform.localPosition;
            // Vector3(0, 0, 0.03391998);
 
         UsesGravity(false);
