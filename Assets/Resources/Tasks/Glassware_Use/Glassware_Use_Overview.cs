@@ -43,27 +43,24 @@ public class Glassware_Use_Overview : MonoBehaviour
         this.gameObject.GetComponent<ToggleTextSimple>().enabled = true;
     }
 
-    string[] text = {/*0*/"Welcome!\nBefore we begin the lab, you need to put on your lab gear.\n\nYou should be wearing closed toed shoes and have your hair tied back.\n\nFind gloves, goggles, and a lab coat and put them on with (B).",
+    string[] text = {"Welcome!\nBefore we begin the lab, you need to put on your lab gear.\n\nYou should be wearing closed toed shoes and have your hair tied back.\n\nFind gloves, goggles, and a lab coat and put them on with (B).",
                     //"For this lab, you will need to bring the required materials to a table in the blue zone, with tables labelled B:\nNote: Inspect all glassware for cracks or chips.\n\nStart with:\n3 250mL Volumetric Flasks.\n\n\nSkip with A", //disabled task step 2 (add to TaskInfoSO block and uncomment to undo)
                     //"Next bring:\n1 100mL Graduated Cylinder\n1 Glass Stir Rod\n1 10mL Volumetric Pipette\n to the table.\n\n\nSkip with A", //disabled task step 3 (add to TaskInfoSO block and uncomment to undo)
                     //"Finally you will need:\nSmall Weigh Boat With Paper\nCopper Sulfate\nPaper Towels\n\n\nSkip with A", //disabled task step 4 (add to TaskInfoSO block and uncomment to undo)
                     //"Locate these tools that you will need in the lab:\nAnalytical Balance\nBalance Brush\nDI water\nWhen you are ready to continue, press (A).\n\n\nSkip with A", //disabled task step 5 (add to TaskInfoSO block and uncomment to undo)
-                    /*1*/"Inspect all glassware for cracks or chips.\n\n\nPick them up to inspect them.",
-                    /*2*/"Turn on the analytical balance, and allow for it to stabilize.\n\n\nTo do this, press the on button on the left side of the scale.",
-                    /*3*/"Place a weigh paper in a weigh boat, and then place the weigh boat on the scale.",
-                    /*4*/"Set the scale units to grams by pressing the mode button on the front of the scale.",
-                    /*5*/"Press the tare button on the front of the scale to reset the weight to zero.",
-                    /*6*/"Use the scoopula to transfer 1.500g copper sulfate to the boat.\n\nTransfer small amounts at a time to avoid transferring too much.",
-                    /*7*/"Remember to close the copper sulfate jar.",
-                    /*8*/"Pour the contents of the weigh paper into a 250ml beaker.",
-                    /*9*/"Turn off the balance and clean it with a brush.",
-                    /*10*/"Bring a graduated cylinder over to the DI water.\n\nFill it until the meniscus is at 50mL.\n\n\nSkip with A",
-                    /*11*/"Bring the copper sulfate and DI water back to your hood, and then open the hood and lower it to a working height.\n\n\nSkip with A",
-                    /*12*/"Set up a volumetric pipette with a bulb top.\n\n\nSkip with A",
-                    //"Set up a volumetric pipette with a bulb top.\n\nDraw up water to more than 50mL\nPush excess water out until 50mL\nTouch excess drip to side of the glass\nWipe the tip with folded paper towel.\n\n\nSkip with A",
-                    "Pour the DI Water from the graduated cylinder into the 250mL beaker with the Copper Sulfate",
-                    "Mix copper sulfate and water with the glass stir rod\n\n\nSkip with A",
-                    //"Mix copper sulfate and water with the glass stir rod /*and write down any chemical changes in your notebook.*/\n\n\nSkip with A",
+                    "Inspect all glassware for cracks or chips.\n\n\nPick them up to inspect them.",
+                    "Turn on the analytical balance, and allow for it to stabilize.\n\n\nTo do this, press the on button on the left side of the scale.",
+                    "Place a weigh paper in a weigh boat, and then place the weigh boat on the scale.",
+                    "Set the scale units to grams by pressing the mode button on the front of the scale.",
+                    "Press the tare button on the front of the scale to reset the weight to zero.",
+                    "Use the scoopula to transfer 1.500g copper sulfate to the boat.\n\nTransfer small amounts at a time to avoid transferring too much.",
+                    "Remember to close the copper sulfate jar.",
+                    "Pour the contents of the weigh paper into a 250ml flask.",
+                    "Turn off the balance and clean it with a brush.",
+                    "Bring a graduated cylinder over to the DI water.\n\nFill it until the meniscus is at 50mL.\n\n\nSkip with A",
+                    "Bring the copper sulfate and DI water back to your hood, and then open the hood and lower it to a working height.\n\n\nSkip with A",
+                    "Set up a volumetric pipette with a bulb top.\n\nDraw up water to more than 50mL\nPush excess water out until 50mL\nTouch excess drip to side of the glass\nWipe the tip with folded paper towel.\n\n\nSkip with A",
+                    "Mix copper sulfate and water with the glass stir rod and write down any chemical changes in your notebook.\n\n\nSkip with A",
                     "Line up 3 volumetric flasks.\n\nFill each flask with 15mL of the blue fluid using the volumetric pipette.\n\n\nSkip with A",
                     "Fill flasks with 25mL, 35mL, 45mL water respectively and observe and record changes.\n\n\nSkip with A",
                     "Time to clean up! Pre-rinse your glasses with tap water.\n\n\nSkip with A",
