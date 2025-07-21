@@ -3,18 +3,21 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-public class Retrieve_DI_Water : TaskStep
+public class Transfer_DI_Into_Beaker : TaskStep
 {
+
     protected override void SetTaskStepState(string state)
     {
-        throw new System.NotImplementedException();
+        // Not needed for this task step
     }
-    void OnEnable()
+
+    private void OnEnable()
     {
         GameEventsManager.instance.chemistryEvents.onPourIn += addChem;
         GameEventsManager.instance.inputEvents.onAButtonPressed += SkipTask;
     }
-    void OnDisable()
+
+    private void OnDisable()
     {
         GameEventsManager.instance.chemistryEvents.onPourIn -= addChem;
         GameEventsManager.instance.inputEvents.onAButtonPressed -= SkipTask;
@@ -25,8 +28,9 @@ public class Retrieve_DI_Water : TaskStep
     }
     private void addChem(ChemContainer container, ChemFluid chemMix)
     {
-        float fiftyMlFull = container.maxVolume / 2;
-        if (container.name.ToLower().Contains("graduatedcylinder")) //what is the object we are checking
+        //Debug.Log("Add chem called");
+        float fiftyMlFull = container.maxVolume / 5; //max is 250mL
+        if (container.name.ToLower().Contains("BeakerUp250mL")) //what is the object we are checking
         {
             //NOTE: CHEM_MIX IS THE MIXTURE OF CHEMICALS ADDED TO THE BEAKER, NOT THE TOTAL CHEMICAL MIXTURE. USE CONTAINER.GETCONTENTS()
             string wholeContents = container.getContents();

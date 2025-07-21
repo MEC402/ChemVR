@@ -75,6 +75,7 @@ public class SnapBulbToPipet : MonoBehaviour
         {
             pipet = other.gameObject;
             touching = true;
+            Debug.Log("Pipettes connected");
             GameEventsManager.instance.miscEvents.PippetConnectedFirst();
         }
     }

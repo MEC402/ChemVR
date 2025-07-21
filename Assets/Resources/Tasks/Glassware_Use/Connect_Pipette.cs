@@ -3,27 +3,28 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-public class Mix_With_Water : TaskStep
+public class Connect_Pipette : TaskStep
 {
     protected override void SetTaskStepState(string state)
     {
         throw new System.NotImplementedException();
     }
+    private void Update()
+    {
+        if (Keyboard.current.cKey.wasPressedThisFrame)
+        {
+            FinishTaskStep();
+        }
+    }
     void OnEnable()
     {
-        GameEventsManager.instance.miscEvents.OnStirBeaker += StirEvent;
         GameEventsManager.instance.inputEvents.onAButtonPressed += SkipTask;
     }
     void OnDisable()
     {
-        GameEventsManager.instance.miscEvents.OnStirBeaker -= StirEvent;
         GameEventsManager.instance.inputEvents.onAButtonPressed -= SkipTask;
     }
     private void SkipTask(InputAction.CallbackContext obj)
-    {
-        FinishTaskStep();
-    }
-    private void StirEvent()
     {
         FinishTaskStep();
     }
