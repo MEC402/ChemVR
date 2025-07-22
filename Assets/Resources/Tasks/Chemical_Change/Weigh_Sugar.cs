@@ -52,9 +52,9 @@ public class Weigh_Sugar : TaskStep
                         if (amt >= twoThirdsFull)
                         {
                             //Debug.Log("the amount poured was at least 2/3 of the amount necessary");
-                            checkScaleWeight();
+                            //checkScaleWeight();
                             //Invoke("checkScaleWeight", .5f);
-                            //FinishTaskStep();
+                            FinishTaskStep();
                         }
                     }
                 }
