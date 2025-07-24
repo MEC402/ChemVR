@@ -34,7 +34,7 @@ public class Transfer_DI_Into_beaker : TaskStep
     private void addChem(ChemContainer container, ChemFluid chemMix)
     {
         float fiftyMlFull = container.maxVolume / 6; //max is 250mL
-        if (container.name.ToLower().Contains("Beaker")) //what is the object we are checking
+        if (container.name.ToLower().Contains("beakerup250ml")) //what is the object we are checking
         {
             //NOTE: CHEM_MIX IS THE MIXTURE OF CHEMICALS ADDED TO THE BEAKER, NOT THE TOTAL CHEMICAL MIXTURE. USE CONTAINER.GETCONTENTS()
             string wholeContents = container.getContents();
