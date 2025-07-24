@@ -7,7 +7,7 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: CrackedGlass
+  m_Name: CrackedGlassBeaker500
   m_Shader: {fileID: -6465566751694194690, guid: 959b1f4b0ff263c49b0c1c5b18a8ce33, type: 3}
   m_Parent: {fileID: -876546973899608171, guid: 959b1f4b0ff263c49b0c1c5b18a8ce33, type: 3}
   m_ModifiedSerializedProperties: 2
@@ -26,13 +26,27 @@ Material:
   m_LockedProperties: 
   m_SavedProperties:
     serializedVersion: 3
-    m_TexEnvs: []
+    m_TexEnvs:
+    - _CrackTexture:
+        m_Texture: {fileID: 2800000, guid: d3dc9136914dfa84493def2cbf1cc03f, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _TextTexture:
+        m_Texture: {fileID: 2800000, guid: 42c40dcae972fe2499b21268eb324986, type: 3}
+        m_Scale: {x: 0, y: 0}
+        m_Offset: {x: 0, y: 0}
     m_Ints: []
     m_Floats:
+    - _CrackScale: -0.74
     - _DstBlend: 10
-    - _HasCrack: 0
+    - _HasCrack: 1
     - _QueueControl: 0
-    m_Colors: []
+    - _Scale: 0
+    - _Scale_2: 0
+    m_Colors:
+    - _CrackVector: {r: 1, g: 1, b: 0, a: 0}
+    - _XY1: {r: 0, g: 0, b: 0, a: 0}
+    - _XY2: {r: 0, g: 0, b: 0, a: 0}
   m_BuildTextureStacks: []
 --- !u!114 &3691379227615084565
 MonoBehaviour:
