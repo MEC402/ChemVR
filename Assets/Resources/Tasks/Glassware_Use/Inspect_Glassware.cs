@@ -33,9 +33,10 @@ public class Inspect_Glassware : TaskStep
     #region Unity Methods
     void OnEnable()
     {
-        isWebGL = GameObject.Find("Glassware Use").GetComponent<Glassware_Use_Overview>().isWebGL;
+        //isWebGL = GameObject.Find("Glassware Use").GetComponent<Glassware_Use_Overview>().isWebGL;
         trashcan = GameObject.Find("glassDisposalTrashcan");
         gD = trashcan.GetComponent<GlassDisposal>();
+        gD.iG = this; // Set the reference to this script in the GlassDisposal script.  
 
         GameEventsManager.instance.inputEvents.onAButtonPressed += SkipTask;
 
@@ -45,6 +46,11 @@ public class Inspect_Glassware : TaskStep
         foreach (string glasswareName in glasswareNames) // Loop through each glassware name in the array and find the corresponding GameObject in the scene.
         {
             GameObject glasswareObject = GameObject.Find(glasswareName);
+            if (glasswareObject == null)
+            {
+                Debug.LogWarning($"Glassware item '{glasswareName}' not found in the scene.");
+                continue;
+            }
 
             if (glasswareObject.activeSelf == false)
             {
@@ -110,15 +116,31 @@ public class Inspect_Glassware : TaskStep
         {
             if (glasswareItems[i].glassware == grabbedObject && !glasswareItems[i].inspected)
             {
+                Debug.Log($"Inspecting glassware: {glasswareItems[i].glassware.name}");
                 glasswareItems[i] = new GlasswareItem(glasswareItems[i].glassware, true, glasswareItems[i].grabInteractable);
 
                 if (AllGlasswareInspected() && gD.IsObjectiveComplete())
+                {
                     FinishTaskStep();
-
-                break;
+                    break;
+                }
             }
         }
     }
+
+    public void AllGlasswareDisposed()
+    {
+        if (AllGlasswareInspected() && gD.IsObjectiveComplete())
+        {
+            Debug.Log("All glassware inspected and disposed.");
+            FinishTaskStep();
+        }
+        else
+        {
+            Debug.Log("Not all glassware inspected or disposed.");
+        }
+    }
+
 
     /// <summary>
     /// Checks if all glassware items have been inspected.

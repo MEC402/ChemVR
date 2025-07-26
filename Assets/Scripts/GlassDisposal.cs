@@ -9,13 +9,18 @@ public class GlassDisposal : MonoBehaviour
     private bool objectiveComplete = false;
     private int objectsDisposed = 0;
 
+    public Inspect_Glassware iG;
+
+
 
     private void OnTriggerEnter(Collider other)
     {
         if (other.CompareTag("CrackedGlass"))
         {
+            Debug.Log("Glass disposed: " + other.gameObject.name);
             Destroy(other.gameObject);
             objectsDisposed++;
+            Debug.Log("Objects disposed: " + objectsDisposed);
             CheckObjectiveCompletion();
         }
     }
@@ -25,6 +30,8 @@ public class GlassDisposal : MonoBehaviour
         if (objectsDisposed >= 2)
         {
             objectiveComplete = true;
+            Debug.Log("Objective complete: All cracked glass disposed.");
+            iG.AllGlasswareDisposed(); // Notify the Inspect_Glassware script that all glassware has been disposed.
         }
     }
 
