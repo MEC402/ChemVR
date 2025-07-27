@@ -7,14 +7,14 @@ using UnityEngine;
 using UnityEngine.InputSystem.Controls;
 
 [System.Serializable]
-public class ChemFluid 
+public class ChemFluid
 {
     [SerializeField]
     public float totalVolume;
     [SerializeField]
     private Chem[] chems;
-    
- 
+
+
     public ChemFluid()
     {
         int numUniqueChemTypes = new HashSet<int>(Enum.GetValues(typeof(ChemType)).Cast<int>()).Count;
@@ -23,7 +23,7 @@ public class ChemFluid
         {
             chems[i] = new Chem((ChemType)i, 0);
         }
-        totalVolume = 0;        
+        totalVolume = 0;
     }
 
     public ChemFluid(Chem[] initialVolumes) : this()
@@ -39,7 +39,8 @@ public class ChemFluid
     /// Returns a read-only copy of the ChemFluid's chems array. Does not modify internal state.
     /// </summary>
     /// <returns>read-only copy of contents</returns>
-    public ReadOnlyCollection<Chem> GetChems () {
+    public ReadOnlyCollection<Chem> GetChems()
+    {
         return Array.AsReadOnly<Chem>(chems);
     }
 
@@ -176,7 +177,17 @@ public class ChemFluid
             message += $"{((ChemType)i).ToString()}: {chems[i].volume}\n";
         }
         message += $"TOTAL: {totalVolume}";
-        return message; 
+        return message;
+    }
+
+
+    /// <summary>
+    /// Returns the main chem in the ChemFluid, to be accessed by a pipette.
+    /// </summary>
+    /// <returns>the first chem in the ChemFluid</returns>
+    public Chem GetMainChem()
+    {
+        return chems[0];
     }
 
 }

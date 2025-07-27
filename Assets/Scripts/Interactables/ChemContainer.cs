@@ -313,8 +313,10 @@ public class ChemContainer : MonoBehaviour {
     {
         return chemFluid.ContentsToString();
     }
+    public Chem GetChemFluid() => initialContents[0];
 
-    public void SelectEnter(XRBaseInteractable interactable) {
+    public void SelectEnter(XRBaseInteractable interactable)
+    {
         GameEventsManager.instance.interactableEvents.PlayerGrabInteractable(gameObject);
     }
 
@@ -323,6 +325,12 @@ public class ChemContainer : MonoBehaviour {
     }
 
     public void AddChem(ChemType type, float amount) => chemFluid.Add(type, amount);
+
+    public void UpdateChem()
+    {
+        currentVolume = chemFluid.totalVolume;
+        internalFluid.fill = (flags.infiniteFluid) ? 1 : currentVolume / maxVolume;
+    }
     public void EmptyChem() => chemFluid.SetToEmpty();
 
 }

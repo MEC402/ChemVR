@@ -36,4 +36,13 @@ public class ResizeFluid : MonoBehaviour
     {
         Destroy(material);
     }
+
+    public void SetColor(Color newColor)
+    {
+        color = newColor;
+        sideColor = color;
+        topColor = color * 1.1f;
+        material.SetColor("_TopColor", topColor);
+        material.SetColor("_SideColor", sideColor);
+    }
 }
