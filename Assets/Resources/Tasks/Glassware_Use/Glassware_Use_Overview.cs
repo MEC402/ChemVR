@@ -69,7 +69,9 @@ public class Glassware_Use_Overview : MonoBehaviour
                     /*9*/"Turn off the balance and clean it with a brush.",
                     /*10*/"Bring a graduated cylinder over to the DI water.\n\nFill it until the meniscus is at 50mL.\n\n\nSkip with A",
                     /*11*/"Bring the copper sulfate and DI water back to your hood\n\n\nSkip with A",
-                    /*12*/"Using the button, Raise the hood sash to a working height\n\n\nSkip with A",
+                    "Set down the graduated cylinder and beaker, then inspect the flasks.\n\n Place all broken glass in the disposal bin.",
+                    /*12*/
+        "Using the button, Raise the hood sash to a working height\n\n\nSkip with A",
                     /*13*/"Set up a volumetric pipette with a bulb top. \n\nNext Task is new instructions. \n\n\nSkip with A",
                     //"Set up a volumetric pipette with a bulb top.\n\nDraw up water to more than 50mL\nPush excess water out until 50mL\nTouch excess drip to side of the glass\nWipe the tip with folded paper towel.\n\n\nSkip with A",
                     //"Use the pipette to transfer water into the 250mL Beaker",

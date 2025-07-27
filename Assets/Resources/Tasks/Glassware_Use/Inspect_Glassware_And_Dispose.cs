@@ -3,7 +3,7 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.XR.Interaction.Toolkit;
 
-public class Inspect_Glassware : TaskStep
+public class Inspect_Glassware_And_Dispose : TaskStep
 {
     #region Variables
     List<GlasswareItem> glasswareItems = new List<GlasswareItem>(); // List to hold all glassware items in the scene.
@@ -11,7 +11,11 @@ public class Inspect_Glassware : TaskStep
     // Array of glassware names to be inspected. These names should match the names of the GameObjects in the scene. If you add more glassware, add them to this array.
     private readonly string[] glasswareNames =
     {
-        "BeakerUp250mL_largerText"    };
+        "volumetricFlaskWrapLabel250mL_1",
+        "volumetricFlaskWrapLabel250mL_2",
+        "volumetricFlaskWrapLabel250mL_3",
+        "BeakerUp500mL_Glassware"
+    };
 
     bool isWebGL = false;
     #endregion
@@ -135,17 +139,17 @@ public class Inspect_Glassware : TaskStep
 /// <summary>
 /// Struct to hold information about glassware items in the scene.
 /// </summary>
-public struct GlasswareItem
-{
-    public GameObject glassware;
-    public bool inspected;
-    public XRGrabInteractable grabInteractable;
+// public struct GlasswareItem
+// {
+//     public GameObject glassware;
+//     public bool inspected;
+//     public XRGrabInteractable grabInteractable;
 
-    public GlasswareItem(GameObject glassware, bool inspected, XRGrabInteractable grabInteractable)
-    {
-        this.glassware = glassware;
-        this.inspected = inspected;
-        this.grabInteractable = grabInteractable;
-    }
-}
+//     public GlasswareItem(GameObject glassware, bool inspected, XRGrabInteractable grabInteractable)
+//     {
+//         this.glassware = glassware;
+//         this.inspected = inspected;
+//         this.grabInteractable = grabInteractable;
+//     }
+// }
 #endregion
