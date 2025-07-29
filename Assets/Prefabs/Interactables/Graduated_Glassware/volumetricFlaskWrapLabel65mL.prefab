@@ -108,6 +108,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4980409225234150054}
+  - component: {fileID: 5492962149679475854}
+  - component: {fileID: 66757814941676436}
   m_Layer: 0
   m_Name: Pour Point
   m_TagString: Untagged
@@ -130,6 +132,56 @@ Transform:
   m_Children: []
   m_Father: {fileID: 3476520802704965331}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!33 &5492962149679475854
+MeshFilter:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2702195022256954479}
+  m_Mesh: {fileID: 10206, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!23 &66757814941676436
+MeshRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2702195022256954479}
+  m_Enabled: 0
+  m_CastShadows: 1
+  m_ReceiveShadows: 1
+  m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
+  m_MotionVectors: 1
+  m_LightProbeUsage: 1
+  m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 2
+  m_RayTraceProcedural: 0
+  m_RenderingLayerMask: 1
+  m_RendererPriority: 0
+  m_Materials:
+  - {fileID: 2100000, guid: 5d46bb438eef41d449bb7588f4a77e06, type: 2}
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
+  m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_StitchLightmapSeams: 1
+  m_SelectedEditorRenderState: 3
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 0
+  m_AdditionalVertexStreams: {fileID: 0}
 --- !u!1 &3841117356221923413
 GameObject:
   m_ObjectHideFlags: 0
@@ -140,6 +192,8 @@ GameObject:
   m_Component:
   - component: {fileID: 2380943043233686398}
   - component: {fileID: 357624555510956480}
+  - component: {fileID: 2191632291210254698}
+  - component: {fileID: 7676184162229391044}
   m_Layer: 19
   m_Name: Opening
   m_TagString: Untagged
@@ -184,6 +238,56 @@ MeshCollider:
   m_Convex: 1
   m_CookingOptions: 30
   m_Mesh: {fileID: 10206, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!33 &2191632291210254698
+MeshFilter:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3841117356221923413}
+  m_Mesh: {fileID: 10206, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!23 &7676184162229391044
+MeshRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3841117356221923413}
+  m_Enabled: 0
+  m_CastShadows: 1
+  m_ReceiveShadows: 1
+  m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
+  m_MotionVectors: 1
+  m_LightProbeUsage: 1
+  m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 2
+  m_RayTraceProcedural: 0
+  m_RenderingLayerMask: 1
+  m_RendererPriority: 0
+  m_Materials:
+  - {fileID: -8309319643020345216, guid: 7ab6f3b0fd1a6ba41b2a47766c16613f, type: 3}
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
+  m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_StitchLightmapSeams: 1
+  m_SelectedEditorRenderState: 3
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 0
+  m_AdditionalVertexStreams: {fileID: 0}
 --- !u!1 &3894541369757566263
 GameObject:
   m_ObjectHideFlags: 0
@@ -356,27 +460,27 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: -8679921383154817045, guid: 03746b10e162d9142b9dc4c5271a5fb3, type: 3}
       propertyPath: m_LocalScale.x
-      value: 0.42
+      value: 0.68136597
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 03746b10e162d9142b9dc4c5271a5fb3, type: 3}
       propertyPath: m_LocalScale.y
-      value: 0.42
+      value: 0.68136597
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 03746b10e162d9142b9dc4c5271a5fb3, type: 3}
       propertyPath: m_LocalScale.z
-      value: 0.42
+      value: 0.68136597
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 03746b10e162d9142b9dc4c5271a5fb3, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -3.2047
+      value: -0.2979
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 03746b10e162d9142b9dc4c5271a5fb3, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.18799996
+      value: 0.0699
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 03746b10e162d9142b9dc4c5271a5fb3, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -1.0663
+      value: 0.1907
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 03746b10e162d9142b9dc4c5271a5fb3, type: 3}
       propertyPath: m_LocalRotation.w
@@ -498,9 +602,9 @@ MonoBehaviour:
   opening: {fileID: 3841117356221923413}
   pourEffect: {fileID: 4456724505838182742}
   pourActivator: {fileID: 0}
-  maxVolume: 275
-  currentVolume: 250
-  pourRate: 0
+  maxVolume: 65
+  currentVolume: 30
+  pourRate: 20
   pourAngle: 90
   flags:
     pouringUsesActivator: 0
@@ -526,7 +630,7 @@ MonoBehaviour:
   initialContents:
   - name: 
     type: 0
-    volume: 0
+    volume: 45
   chemFluid:
     totalVolume: 0
     chems:
@@ -786,7 +890,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 45ced10cc162de644a3ae5eb4cc76916, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  fill: 0.90909094
+  fill: 1
   color: {r: 0, g: 1, b: 1, a: 1}
   remapBounds: {x: -0.06, y: 0.0434}
   material: {fileID: 0}
