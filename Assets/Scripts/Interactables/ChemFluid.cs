@@ -185,9 +185,18 @@ public class ChemFluid
     /// Returns the main chem in the ChemFluid, to be accessed by a pipette.
     /// </summary>
     /// <returns>the first chem in the ChemFluid</returns>
-    public Chem GetMainChem()
+    public Chem[] GetChemArray()
     {
-        return chems[0];
+        return chems;
+    }
+    public void AssignNewChems(Chem[] newChems)
+    {
+        for (int i = 0; i < chems.Length; i++)
+        {
+            chems[i].type = newChems[i].type;
+            chems[i].volume = newChems[i].volume;
+        }
+        UpdateVolume();
     }
 
 }

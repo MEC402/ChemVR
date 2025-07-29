@@ -12,7 +12,7 @@ public class PipetteFunctions : MonoBehaviour
     public bool isHeld = false;
 
     [SerializeField]private float dispenseAmount = 10f; // Amount to dispense per interaction
-    [SerializeField] private Chem currentFluid;
+    [SerializeField] public ChemFluid currentFluids;
 
     // Hand tracking variables
     private enum HandType { None, Left, Right }
@@ -101,10 +101,15 @@ public class PipetteFunctions : MonoBehaviour
             if (isOverlapping)
             {
                 ChemContainer container = currentContainer.GetComponent<ChemContainer>();
-                container.AddChem(currentFluid.type, dispenseAmount);
+
+                for (int i = 0; i < currentFluids.GetChemArray().Length; i++)
+                {
+                    container.AddChem(currentFluids.GetChemArray()[i].type, currentFluids.GetChemArray()[i].volume);
+                }
                 container.UpdateChem();
+                GameEventsManager.instance.chemistryEvents.PipetteDispense(this, container, currentFluids);
                 canDispense = false; // Reset after dispensing
-                Debug.Log($"Dispensed {dispenseAmount} of {currentFluid} into container.");
+                Debug.Log($"Dispensed {dispenseAmount} of {currentFluids} into container.");
                 internalFluid.gameObject.SetActive(false); // Hide the internal fluid after dispensing
             }
             else
@@ -117,13 +122,11 @@ public class PipetteFunctions : MonoBehaviour
             if (isOverlapping)
             {
                 ChemContainer container = currentContainer.GetComponent<ChemContainer>();
-                Chem activeChem = container.GetChemFluid();
-                currentFluid = activeChem; // Update currentFluid to the main chem type
+                Chem[] activeChems = container.GetChemFluid(dispenseAmount);
+                currentFluids.AssignNewChems(activeChems); // Update currentFluid to the main chem type
                 canDispense = true; // Allow dispensing again
-                Debug.Log($"Ready to dispense {currentFluid} from container.");
                 internalFluid.gameObject.SetActive(true); // Show the internal fluid when ready to dispense
-                Color chemColor = ChemistryManager.instance.GetColor(currentFluid.type);
-                Debug.Log($"Setting internal fluid color to: {chemColor}");
+                Color chemColor = ChemistryManager.instance.GetColor(currentFluids);
                 internalFluid.SetColor(chemColor);
 
             }

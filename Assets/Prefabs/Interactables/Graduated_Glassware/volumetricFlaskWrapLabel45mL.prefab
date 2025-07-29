@@ -177,6 +177,18 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: -8679921383154817045, guid: 03746b10e162d9142b9dc4c5271a5fb3, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 0.35
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 03746b10e162d9142b9dc4c5271a5fb3, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 0.35
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 03746b10e162d9142b9dc4c5271a5fb3, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 0.35
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 03746b10e162d9142b9dc4c5271a5fb3, type: 3}
       propertyPath: m_LocalPosition.x
       value: -3.218
       objectReference: {fileID: 0}
@@ -215,6 +227,10 @@ PrefabInstance:
     - target: {fileID: -8679921383154817045, guid: 03746b10e162d9142b9dc4c5271a5fb3, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 03746b10e162d9142b9dc4c5271a5fb3, type: 3}
+      propertyPath: m_ConstrainProportionsScale
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: -7511558181221131132, guid: 03746b10e162d9142b9dc4c5271a5fb3, type: 3}
       propertyPath: m_Materials.Array.data[0]
@@ -296,8 +312,8 @@ MonoBehaviour:
   opening: {fileID: 5547192854897572277}
   pourEffect: {fileID: 5246874005717744476}
   pourActivator: {fileID: 0}
-  maxVolume: 275
-  currentVolume: 250
+  maxVolume: 45
+  currentVolume: 45
   pourRate: 0
   pourAngle: 90
   flags:
@@ -591,7 +607,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   fill: 0.90909094
   color: {r: 0, g: 1, b: 1, a: 1}
-  remapBounds: {x: -0.5, y: 0.165}
+  remapBounds: {x: -0.045, y: 0.0365}
   material: {fileID: 0}
 --- !u!1001 &7307821660737040511
 PrefabInstance:

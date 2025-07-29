@@ -313,7 +313,17 @@ public class ChemContainer : MonoBehaviour {
     {
         return chemFluid.ContentsToString();
     }
-    public Chem GetChemFluid() => initialContents[0];
+    public Chem[] GetChemFluid(float pipetteVolume)
+    {
+        Chem[] currentChems = chemFluid.GetChemArray();
+        Chem[] adjustedVolumes = new Chem[currentChems.Length];
+
+        for (int i = 0; i < currentChems.Length; i++)
+        {
+            adjustedVolumes[i] = new Chem(currentChems[i].type, pipetteVolume * (currentChems[i].volume / chemFluid.totalVolume));
+        }
+       return adjustedVolumes;
+    }
 
     public void SelectEnter(XRBaseInteractable interactable)
     {
