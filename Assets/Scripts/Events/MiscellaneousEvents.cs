@@ -176,6 +176,9 @@ public class MiscellaneousEvents
     public event Action OnStirBeaker;
     public void StirBeaker() => OnStirBeaker?.Invoke(); //see StirWithStirRod.cs under scripts folder
 
+    public event Action OnScrubWithBrush;
+    public void ScrubWithBrush() => OnScrubWithBrush?.Invoke();
+
     //HotPlate Related Events
     public event Action OnBeakerOnHotPlate;
     public void BeakerOnHotPlate() => OnBeakerOnHotPlate?.Invoke();

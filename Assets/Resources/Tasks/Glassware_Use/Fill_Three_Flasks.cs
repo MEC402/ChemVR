@@ -27,7 +27,7 @@ public class Fill_Three_Flasks : TaskStep
     }
     void OnEnable()
     {
-        GameEventsManager.instance.inputEvents.onAButtonPressed += SkipTask;
+        //GameEventsManager.instance.inputEvents.onAButtonPressed += SkipTask;
         GameEventsManager.instance.chemistryEvents.onPipetteDispense += addChem;
         mixtureToMatch[0] = new Chem(ChemType.H2O, (15f * (50f / 65f)));
         mixtureToMatch[1] = new Chem(ChemType.CuSO4, (15f * (15f / 65f)));
@@ -35,7 +35,7 @@ public class Fill_Three_Flasks : TaskStep
     }
     void OnDisable()
     {
-        GameEventsManager.instance.inputEvents.onAButtonPressed -= SkipTask;
+        //GameEventsManager.instance.inputEvents.onAButtonPressed -= SkipTask;
     }
     private void SkipTask(InputAction.CallbackContext obj)
     {

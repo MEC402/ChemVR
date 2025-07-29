@@ -17,6 +17,7 @@ public enum ChemType : int
     CHROMIUM_III_CHLORIDE = 8,
     ChemicalMix = 9,
     ChemicalMix2 = 10,
+    Soap = 11,
 
     /* Abbreviation Aliases */
     H2O = WATER,
@@ -30,4 +31,5 @@ public enum ChemType : int
     CrCl3 = CHROMIUM_III_CHLORIDE,
     ChemMix = ChemicalMix,
     ChemMix2 = ChemicalMix2,
+    SOAP = Soap,
 }

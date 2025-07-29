@@ -61,6 +61,8 @@ public class ChemistryManager : MonoBehaviour
                 return new Color(0.04196228f, 0f, 0.3679245f); //blue
             case ChemType.ChemicalMix2:
                 return new Color(0.1478891f, 0.3686274f, 0f); //lime green
+            case ChemType.Soap:
+                return new Color(1f, 0.980f, 0.835f); //soapy white-yellow
             default:
                 return Color.black;
         }
