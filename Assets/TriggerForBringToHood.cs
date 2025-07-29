@@ -13,11 +13,15 @@ public class TriggerForBringToHood : MonoBehaviour
     {
         if (other.name.ToLower().Contains("beakerup250ml"))
         {
+            Debug.Log("beaker collided.");
             BeakerinHood = true;
+            Debug.Log("BeakerinHood "+ BeakerinHood);
         }
-        if (other.name.ToLower().Contains("graudatedcylinder"))
+        if (other.name.ToLower().Contains("graduatedcylinder"))
         {
+            Debug.Log("gradu cylinder collided.");
             GraduatedCylinderinHood = true;
+            Debug.Log("GraduatedCylinderinHood " + GraduatedCylinderinHood);
         }
     }
 
