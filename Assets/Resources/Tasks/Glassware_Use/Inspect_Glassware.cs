@@ -1,5 +1,4 @@
 using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.XR.Interaction.Toolkit;
@@ -14,10 +13,6 @@ public class Inspect_Glassware : TaskStep
     {
         "BeakerUp250mL_largerText"    };
 
-    private GameObject trashcan;
-    private GlassDisposal gD;
-    //Trashcan and Glass Disposal script references.
-
     bool isWebGL = false;
     #endregion
 
@@ -30,8 +25,6 @@ public class Inspect_Glassware : TaskStep
     void OnEnable()
     {
         isWebGL = GameObject.Find("Glassware Use").GetComponent<Glassware_Use_Overview>().isWebGL;
-        trashcan = GameObject.Find("glassDisposalTrashcan");
-        gD = trashcan.GetComponent<GlassDisposal>();
 
         GameEventsManager.instance.inputEvents.onAButtonPressed += SkipTask;
 
@@ -108,7 +101,7 @@ public class Inspect_Glassware : TaskStep
             {
                 glasswareItems[i] = new GlasswareItem(glasswareItems[i].glassware, true, glasswareItems[i].grabInteractable);
 
-                if (AllGlasswareInspected() && gD.IsObjectiveComplete())
+                if (AllGlasswareInspected())
                     FinishTaskStep();
 
                 break;
@@ -118,7 +111,6 @@ public class Inspect_Glassware : TaskStep
 
     /// <summary>
     /// Checks if all glassware items have been inspected.
-    /// Checks if at least two broken glass items have been thrown away in the trashcan.
     /// </summary>
     /// <returns>True if all glassware items are inspected, otherwise false.</returns>
     private bool AllGlasswareInspected()

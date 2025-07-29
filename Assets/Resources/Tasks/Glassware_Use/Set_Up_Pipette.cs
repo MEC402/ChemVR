@@ -9,23 +9,12 @@ public class Set_Up_Pipette : TaskStep
     {
         throw new System.NotImplementedException();
     }
-    private void Update()
-    {
-        if (Keyboard.current.cKey.wasPressedThisFrame)
-        {
-            FinishTaskStep();
-        }
-    }
     void OnEnable()
     {
-        GameEventsManager.instance.inputEvents.onAButtonPressed += SkipTask;
+        GameEventsManager.instance.miscEvents.OnPippetConnectedFirst += FinishTaskStep;
     }
     void OnDisable()
     {
-        GameEventsManager.instance.inputEvents.onAButtonPressed -= SkipTask;
-    }
-    private void SkipTask(InputAction.CallbackContext obj)
-    {
-        FinishTaskStep();
+        GameEventsManager.instance.miscEvents.OnPippetConnectedFirst -= FinishTaskStep;
     }
 }
