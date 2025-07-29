@@ -158,12 +158,6 @@ public class MiscellaneousEvents
     public event Action OnPippetConnectedSecond;
     public void PippetConnectedSecond() => OnPippetConnectedSecond?.Invoke();
 
-    public event Action OnHoodSashHeightSet;
-    public void HoodSashHeightSet() => OnHoodSashHeightSet?.Invoke();
-
-    public event Action OnObjsBroughtToHood;
-    public void ObjectsBroughtToHood() => OnObjsBroughtToHood?.Invoke();
-
 
 
     // Flask & Beaker related events
