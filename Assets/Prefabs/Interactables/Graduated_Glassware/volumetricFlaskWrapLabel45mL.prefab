@@ -178,27 +178,27 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: -8679921383154817045, guid: 03746b10e162d9142b9dc4c5271a5fb3, type: 3}
       propertyPath: m_LocalScale.x
-      value: 0.35
+      value: 0.567805
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 03746b10e162d9142b9dc4c5271a5fb3, type: 3}
       propertyPath: m_LocalScale.y
-      value: 0.35
+      value: 0.567805
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 03746b10e162d9142b9dc4c5271a5fb3, type: 3}
       propertyPath: m_LocalScale.z
-      value: 0.35
+      value: 0.567805
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 03746b10e162d9142b9dc4c5271a5fb3, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -3.218
+      value: -3.13
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 03746b10e162d9142b9dc4c5271a5fb3, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.18799996
+      value: 0.1471
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 03746b10e162d9142b9dc4c5271a5fb3, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -1.382
+      value: -1.4602
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 03746b10e162d9142b9dc4c5271a5fb3, type: 3}
       propertyPath: m_LocalRotation.w
@@ -314,7 +314,7 @@ MonoBehaviour:
   pourActivator: {fileID: 0}
   maxVolume: 45
   currentVolume: 45
-  pourRate: 0
+  pourRate: 20
   pourAngle: 90
   flags:
     pouringUsesActivator: 0
@@ -340,7 +340,7 @@ MonoBehaviour:
   initialContents:
   - name: 
     type: 0
-    volume: 0
+    volume: 45
   chemFluid:
     totalVolume: 0
     chems:
