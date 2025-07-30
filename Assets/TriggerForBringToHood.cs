@@ -31,7 +31,8 @@ public class TriggerForBringToHood : MonoBehaviour
         if (GraduatedCylinderinHood && BeakerinHood)
         {
             GameEventsManager.instance.miscEvents.ObjectsBroughtToHood();
-            Debug.Log("Objs in hood");
+            //Debug.Log("Objs in hood");
+            //Got really annoying to debug other things with this printing every frame. -ZB
         }
     }
 }

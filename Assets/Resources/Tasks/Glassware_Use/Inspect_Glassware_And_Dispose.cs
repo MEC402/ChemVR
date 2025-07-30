@@ -11,11 +11,13 @@ public class Inspect_Glassware_And_Dispose : TaskStep
     // Array of glassware names to be inspected. These names should match the names of the GameObjects in the scene. If you add more glassware, add them to this array.
     private readonly string[] glasswareNames =
     {
-        "volumetricFlaskWrapLabel250mL_1",
-        "volumetricFlaskWrapLabel250mL_2",
-        "volumetricFlaskWrapLabel250mL_3",
-        "BeakerUp500mL_Glassware"
+        "volumetricFlaskWrapLabel45mL",
+        "volumetricFlaskWrapLabel55mL",
+        "volumetricFlaskWrapLabel65mL"
     };
+
+    private GameObject trashCan;
+    private GlassDisposal gD;
 
     bool isWebGL = false;
     #endregion
@@ -28,7 +30,11 @@ public class Inspect_Glassware_And_Dispose : TaskStep
     #region Unity Methods
     void OnEnable()
     {
-        isWebGL = GameObject.Find("Glassware Use").GetComponent<Glassware_Use_Overview>().isWebGL;
+        //isWebGL = GameObject.Find("Glassware Use").GetComponent<Glassware_Use_Overview>().isWebGL;
+
+        trashCan = GameObject.Find("glassDisposalTrash");
+        gD = trashCan.GetComponent<GlassDisposal>();
+        gD.iGD = this;
 
         GameEventsManager.instance.inputEvents.onAButtonPressed += SkipTask;
 
@@ -105,11 +111,20 @@ public class Inspect_Glassware_And_Dispose : TaskStep
             {
                 glasswareItems[i] = new GlasswareItem(glasswareItems[i].glassware, true, glasswareItems[i].grabInteractable);
 
-                if (AllGlasswareInspected())
+                if (AllGlasswareInspected() && gD.IsObjectiveComplete())
                     FinishTaskStep();
 
                 break;
             }
+        }
+    }
+
+    public void GlasswareDisposed()
+    {
+        if (AllGlasswareInspected() && gD.IsObjectiveComplete())
+        {
+            Debug.Log("All glassware inspected and disposed.");
+            FinishTaskStep();
         }
     }
 
