@@ -19,15 +19,15 @@ public class ScrubWithBrushObj : MonoBehaviour
         {
             graduatedCylinderscrubbed = true;
         }
-        if (other.name.ToLower().Contains("volumetricFlaskWrapLabel45mL"))
+        if (other.name.ToLower().Contains("volumetricflaskwraplabel45ml"))
         {
             flask45scrubbed = true;
         }
-        if (other.name.ToLower().Contains("volumetricFlaskWrapLabel55mL"))
+        if (other.name.ToLower().Contains("volumetricflaskwraplabel55ml"))
         {
             flask55scrubbed = true;
         }
-        if (other.name.ToLower().Contains("volumetricFlaskWrapLabel65mL"))
+        if (other.name.ToLower().Contains("volumetricflaskwraplabel65ml"))
         {
             flask65scrubbed = true;
         }

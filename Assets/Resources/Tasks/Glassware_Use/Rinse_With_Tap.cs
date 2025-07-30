@@ -86,7 +86,7 @@ public class Rinse_With_Tap : TaskStep
                 }
             }
         }
-        if (container.name.ToLower().Contains("volumetricFlaskWrapLabel45mL")) //what is the object we are checking
+        if (container.name.ToLower().Contains("volumetricflaskwraplabel45ml")) //what is the object we are checking
         {
             //NOTE: CHEM_MIX IS THE MIXTURE OF CHEMICALS ADDED TO THE BEAKER, NOT THE TOTAL CHEMICAL MIXTURE. USE CONTAINER.GETCONTENTS()
             string wholeContents = container.getContents();
@@ -108,7 +108,7 @@ public class Rinse_With_Tap : TaskStep
                 }
             }
         }
-        if (container.name.ToLower().Contains("volumetricFlaskWrapLabel55mL")) //what is the object we are checking
+        if (container.name.ToLower().Contains("volumetricflaskwraplabel55ml")) //what is the object we are checking
         {
             //NOTE: CHEM_MIX IS THE MIXTURE OF CHEMICALS ADDED TO THE BEAKER, NOT THE TOTAL CHEMICAL MIXTURE. USE CONTAINER.GETCONTENTS()
             string wholeContents = container.getContents();
@@ -130,7 +130,7 @@ public class Rinse_With_Tap : TaskStep
                 }
             }
         }
-        if (container.name.ToLower().Contains("volumetricFlaskWrapLabel65mL")) //what is the object we are checking
+        if (container.name.ToLower().Contains("volumetricflaskwraplabel65ml")) //what is the object we are checking
         {
             //NOTE: CHEM_MIX IS THE MIXTURE OF CHEMICALS ADDED TO THE BEAKER, NOT THE TOTAL CHEMICAL MIXTURE. USE CONTAINER.GETCONTENTS()
             string wholeContents = container.getContents();
