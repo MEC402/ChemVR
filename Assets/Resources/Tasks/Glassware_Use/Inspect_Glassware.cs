@@ -11,7 +11,7 @@ public class Inspect_Glassware : TaskStep
     // Array of glassware names to be inspected. These names should match the names of the GameObjects in the scene. If you add more glassware, add them to this array.
     private readonly string[] glasswareNames =
     {
-        "BeakerUp250mL_largerText"    };
+        "BeakerUp250mL_largerText_1"    };
 
     bool isWebGL = false;
     #endregion
@@ -24,7 +24,7 @@ public class Inspect_Glassware : TaskStep
     #region Unity Methods
     void OnEnable()
     {
-        isWebGL = GameObject.Find("Glassware Use").GetComponent<Glassware_Use_Overview>().isWebGL;
+        //isWebGL = GameObject.Find("Glassware Use").GetComponent<Glassware_Use_Overview>().isWebGL;
 
         GameEventsManager.instance.inputEvents.onAButtonPressed += SkipTask;
 

@@ -22,15 +22,17 @@ public class Fill_Three_Flasks : TaskStep
     {
         if (Keyboard.current.cKey.wasPressedThisFrame)
         {
-            FinishTaskStep();
+            //FinishTaskStep();
         }
     }
     void OnEnable()
     {
         //GameEventsManager.instance.inputEvents.onAButtonPressed += SkipTask;
         GameEventsManager.instance.chemistryEvents.onPipetteDispense += addChem;
-        mixtureToMatch[0] = new Chem(ChemType.H2O, (15f * (50f / 65f)));
-        mixtureToMatch[1] = new Chem(ChemType.CuSO4, (15f * (15f / 65f)));
+        mixtureToMatch = new Chem[2];
+        mixtureToMatch[0] = new Chem(ChemType.H2O, 15f * (50f / 65f));
+        mixtureToMatch[1] = new Chem(ChemType.CuSO4, 15f * (15f / 65f));
+        Debug.Log("Mixture to match: " + mixtureToMatch[0].type + " " + mixtureToMatch[0].volume + " and " + mixtureToMatch[1].type + " " + mixtureToMatch[1].volume);
         
     }
     void OnDisable()
@@ -45,37 +47,47 @@ public class Fill_Three_Flasks : TaskStep
 
     private void addChem(PipetteFunctions pipette, ChemContainer container, ChemFluid chemMix)
     {
-        if (container.name.ToLower().Contains("Label45mL")) //what is the object we are checking
+        if (container.name.ToLower().Contains("label45ml")) //what is the object we are checking
         {
             for (int i = 0; i < pipette.currentFluids.GetChemArray().Length; i++)
             {
                 Chem currentChem = pipette.currentFluids.GetChemArray()[i];
-                if ((currentChem.type == mixtureToMatch[0].type && currentChem.volume == mixtureToMatch[0].volume))
+
+                if (currentChem.type == mixtureToMatch[0].type && currentChem.volume <= mixtureToMatch[0].volume && currentChem.volume > 10.0f)
                 {
+
                     check1 = true;
                 }
-                else if ((currentChem.type == mixtureToMatch[1].type && currentChem.volume == mixtureToMatch[1].volume))
+            }
+            for (int i = 0; i < pipette.currentFluids.GetChemArray().Length; i++)
+            {
+                Chem currentChem = pipette.currentFluids.GetChemArray()[i];
+                if (currentChem.type == mixtureToMatch[1].type && currentChem.volume <= mixtureToMatch[1].volume && currentChem.volume > 0.0f)
                 {
                     check2 = true;
                 }
             }
             if (check1 && check2)
             {
-                container1Filled = true;
+                container1Filled = true;;
             }
             check1 = false;
             check2 = false;
         }
-        if (container.name.ToLower().Contains("Label55mL")) //what is the object we are checking
+        if (container.name.ToLower().Contains("label55ml")) //what is the object we are checking
         {
             for (int i = 0; i < pipette.currentFluids.GetChemArray().Length; i++)
             {
                 Chem currentChem = pipette.currentFluids.GetChemArray()[i];
-                if ((currentChem.type == mixtureToMatch[0].type && currentChem.volume == mixtureToMatch[0].volume))
+                if (currentChem.type == mixtureToMatch[0].type && currentChem.volume <= mixtureToMatch[0].volume && currentChem.volume > 10.0f)
                 {
                     check1 = true;
                 }
-                else if ((currentChem.type == mixtureToMatch[1].type && currentChem.volume == mixtureToMatch[1].volume))
+            }
+            for (int i = 0; i < pipette.currentFluids.GetChemArray().Length; i++)
+            {
+                Chem currentChem = pipette.currentFluids.GetChemArray()[i];
+                if (currentChem.type == mixtureToMatch[1].type && currentChem.volume <= mixtureToMatch[1].volume && currentChem.volume > 0.0f)
                 {
                     check2 = true;
                 }
@@ -84,19 +96,23 @@ public class Fill_Three_Flasks : TaskStep
             {
                 container2Filled = true;
             }
-            check1 = false;
+        check1 = false; 
             check2 = false;
         }
-        if (container.name.ToLower().Contains("Label65mL")) //what is the object we are checking
+        if (container.name.ToLower().Contains("label65ml")) //what is the object we are checking
         {
             for (int i = 0; i < pipette.currentFluids.GetChemArray().Length; i++)
             {
                 Chem currentChem = pipette.currentFluids.GetChemArray()[i];
-                if ((currentChem.type == mixtureToMatch[0].type && currentChem.volume == mixtureToMatch[0].volume))
+                if (currentChem.type == mixtureToMatch[0].type && currentChem.volume <= mixtureToMatch[0].volume && currentChem.volume > 10.0f)
                 {
                     check1 = true;
                 }
-                else if ((currentChem.type == mixtureToMatch[1].type && currentChem.volume == mixtureToMatch[1].volume))
+            }
+            for (int i = 0; i < pipette.currentFluids.GetChemArray().Length; i++)
+            {
+                Chem currentChem = pipette.currentFluids.GetChemArray()[i];
+                if (currentChem.type == mixtureToMatch[1].type && currentChem.volume <= mixtureToMatch[1].volume && currentChem.volume > 0.0f)
                 {
                     check2 = true;
                 }
