@@ -348,7 +348,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   fill: 0
   color: {r: 0, g: 0, b: 0, a: 0}
-  remapBounds: {x: -0.105, y: 0.09}
+  remapBounds: {x: -0.102, y: -0.0065}
   material: {fileID: 0}
 --- !u!114 &6588051251184924511
 MonoBehaviour:
@@ -5594,8 +5594,8 @@ MonoBehaviour:
   opening: {fileID: 8665363066985471061}
   pourEffect: {fileID: 7551288837117884612}
   pourActivator: {fileID: 0}
-  maxVolume: 100
-  currentVolume: 50
+  maxVolume: 50
+  currentVolume: 0
   pourRate: 5
   pourAngle: 90
   flags:
@@ -5622,7 +5622,7 @@ MonoBehaviour:
   initialContents:
   - name: 
     type: 0
-    volume: 0
+    volume: 50
   chemFluid:
     totalVolume: 0
     chems:
