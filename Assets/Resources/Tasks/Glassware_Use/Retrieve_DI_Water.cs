@@ -20,7 +20,7 @@ public class Retrieve_DI_Water : TaskStep
 
     private void addChem(ChemContainer container, ChemFluid chemMix)
     {
-        float fiftyMlFull = container.maxVolume / 2;
+        float fiftyMlFull = container.maxVolume;
         if (container.name.ToLower().Contains("graduatedcylinder")) //what is the object we are checking
         {
             //NOTE: CHEM_MIX IS THE MIXTURE OF CHEMICALS ADDED TO THE BEAKER, NOT THE TOTAL CHEMICAL MIXTURE. USE CONTAINER.GETCONTENTS()
