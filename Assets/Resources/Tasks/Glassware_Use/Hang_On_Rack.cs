@@ -20,6 +20,11 @@ public class Hang_On_Rack : TaskStep
         {
             FinishTaskStep();
         }
+
+        if(beakerempty && graduatedCylinderempty && flask45empty && flask55empty && flask65empty)
+        {
+            FinishTaskStep();
+        }
     }
     void OnEnable()
     {
@@ -36,6 +41,7 @@ public class Hang_On_Rack : TaskStep
         FinishTaskStep();
     }
 
+
     private void removeChem(ChemContainer container, ChemFluid chemMix)
     {
         //graduated /volumetricflaskwraplabel45ml /volumetricflaskwraplabel55ml /volumetricflaskwraplabel65ml
@@ -47,7 +53,7 @@ public class Hang_On_Rack : TaskStep
             foreach (string s in sepWholeContents)
             {
                 //if the object being poured contains the "compoundName" or "chemicalName" 
-                if (s.Contains("WATER") || s.Contains("H2O"))
+                if (s.Contains("WATER") || s.Contains("H2O") || s.Contains("SOAP") || s.Contains("Soap"))
                 {
                     string strAmnt = s.Split(' ')[1];
                     float amt;
@@ -70,7 +76,7 @@ public class Hang_On_Rack : TaskStep
             foreach (string s in sepWholeContents)
             {
                 //if the object being poured contains the "compoundName" or "chemicalName" 
-                if (s.Contains("WATER") || s.Contains("H2O"))
+                if (s.Contains("WATER") || s.Contains("H2O") || s.Contains("SOAP") || s.Contains("Soap"))
                 {
                     string strAmnt = s.Split(' ')[1];
                     float amt;
@@ -93,7 +99,8 @@ public class Hang_On_Rack : TaskStep
             foreach (string s in sepWholeContents)
             {
                 //if the object being poured contains the "compoundName" or "chemicalName" 
-                if (s.Contains("WATER") || s.Contains("H2O"))
+                if (s.Contains("WATER") || s.Contains("H2O") || s.Contains("SOAP") || s.Contains("Soap"))
+
                 {
                     string strAmnt = s.Split(' ')[1];
                     float amt;
@@ -116,7 +123,7 @@ public class Hang_On_Rack : TaskStep
             foreach (string s in sepWholeContents)
             {
                 //if the object being poured contains the "compoundName" or "chemicalName" 
-                if (s.Contains("WATER") || s.Contains("H2O"))
+                if (s.Contains("WATER") || s.Contains("H2O") || s.Contains("SOAP") || s.Contains("Soap"))
                 {
                     string strAmnt = s.Split(' ')[1];
                     float amt;
@@ -139,7 +146,7 @@ public class Hang_On_Rack : TaskStep
             foreach (string s in sepWholeContents)
             {
                 //if the object being poured contains the "compoundName" or "chemicalName" 
-                if (s.Contains("WATER") || s.Contains("H2O"))
+                if (s.Contains("WATER") || s.Contains("H2O") || s.Contains("SOAP") || s.Contains("Soap"))
                 {
                     string strAmnt = s.Split(' ')[1];
                     float amt;
