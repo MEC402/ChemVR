@@ -71,23 +71,23 @@ public class Glassware_Use_Overview : MonoBehaviour
                     /*11*/"Raise the hood sash to a working height\n\nUse the Hood Button to do this.",
                     /*12*/"Bring the graduated cylinder and 250mL beaker back to your hood and set them down inside it.",
                     /*13*/"Inspect the glassware inside the hood.\n\n Place all broken glass in the disposal bin.",
-                    /*14*/"Set up two volumetric pipettes. \n\nThe blue bulb should go on the 15mL pipette (larger one) \n\nThe red buld should go on the 10mL pipette (smaller one).",
+                    /*14*/"Set up two volumetric pipettes. \n\nThe blue bulb should go on the 15mL pipette (larger one) \n\nThe red bulb should go on the 10mL pipette (smaller one).",
                     //"Set up a volumetric pipette with a bulb top.\n\nDraw up water to more than 50mL\nPush excess water out until 50mL\nTouch excess drip to side of the glass\nWipe the tip with folded paper towel.\n\n\nSkip with A",
                     //"Use the pipette to transfer water into the 250mL Beaker",
                     /*14*/"Pour 50mL of DI water from the Graduated Cylinder into 250mL beaker.",
                     /*15*/"Mix copper sulfate and water with the glass stir rod.",
                     //"Mix copper sulfate and water with the glass stir rod and write down any chemical changes in your notebook.\n\n\nSkip with A",
-                    /*16*/"Line up 3 volumetric flasks.\n\nWith the blue 15mL pipette, use the (A) button or (X) button on your controller to fill each flask with 15mL of the Copper Sulfate & DI Water solution \n(found inside the 250mL beaker)",
-                    /*17*/"Then, using the red 10mL pipette, fill the flasks with 30mL, 40mL, 50mL water respectively.\n\n\nSkip with A", //25, 35 & 45 are not divisible by 10 or 15 --> we could change this to 10, 20 & 30ml to reduce repetition on this step
+                    /*16*/"With the blue 15mL pipette, use the (A) button or (X) button on your controller to fill each flask with 15mL of the Copper Sulfate & DI Water solution \n(found inside the 250mL beaker)",
+                    /*17*/"Then, using the red 10mL pipette, fill the flasks with 30mL, 40mL, & 50mL of DI water respectively.", //25, 35 & 45 are not divisible by 10 or 15 --> we could change this to 10, 20 & 30ml to reduce repetition on this step
                     ///*17*/"Fill flasks with 25mL, 35mL, 45mL water respectively and observe and record changes.\n\n\nSkip with A",
                     /*18*/"Time to clean up! Pre-rinse your glasses with tap water.\n\nYou will only need to clean the flasks, 250mL beaker, and graduated cylinder for this module.",
-                    /*19*/"Wash your glassware with soapy water to remove any residues.\n\n\nSkip with A",
-                    /*20*/"Scrub the inside of the glassware with a brush.\n\n\nSkip with A",
-                    /*21*/"Rinse the glassware with the DI bottle.\n\n\nSkip with A",
-                    /*22*/"Invert the glassware to allow excess water to drain.\n\n\nSkip with A",
+                    /*19*/"Wash your glassware with soapy water to remove any residues.",
+                    /*20*/"Scrub the inside of the glassware with a brush.",
+                    /*21*/"Rinse the glassware with the DI bottle.",
+                    /*22*/"Invert the glassware to allow excess water to drain.",
                     /*23*/"Return materials to their original places, and close the glass doors.\n\nThis will protect them from dust and contaminants.\n\n\nSkip with A",
                     /*24*/"Go to the trash to remove your gloves, and then wash your hands in the sink with soap.\n\n\nSkip with A",
-                    /*25*/"This concludes the glassware use module. Thank you for your time.\n\n(Y) Hides Popup\n(Hamburger Btn) Opens Menu"
+                    /*25*/"This concludes the glassware use module. Thank you for your time.\n\n(Y) Hides Popup\n(Hamburger Button) Opens Menu"
                 };
 
     // Updated to use WebGLText if isWebGL is true
