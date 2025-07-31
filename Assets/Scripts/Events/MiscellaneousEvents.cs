@@ -164,6 +164,10 @@ public class MiscellaneousEvents
     public event Action OnObjsBroughtToHood;
     public void ObjectsBroughtToHood() => OnObjsBroughtToHood?.Invoke();
 
+    public event Action OnObjsPutAway;
+    public void ObjsPutAway() => OnObjsPutAway?.Invoke();
+
+
 
 
     // Flask & Beaker related events

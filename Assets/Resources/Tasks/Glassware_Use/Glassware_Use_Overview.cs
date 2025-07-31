@@ -85,7 +85,7 @@ public class Glassware_Use_Overview : MonoBehaviour
                     /*20*/"Scrub the inside of the glassware with a brush.",
                     /*21*/"Rinse the glassware with the DI bottle.",
                     /*22*/"Invert the glassware to allow excess water to drain.",
-                    /*23*/"Return materials to their original places, and close the glass doors.\n\nThis will protect them from dust and contaminants.\n\n\nSkip with A",
+                    /*23*/"Return materials to their original places, and close the glass doors.\n\nThis will protect them from dust and contaminants.",
                     /*24*/"Go to the trash to remove your gloves, and then wash your hands in the sink with soap.\n\n\nSkip with A",
                     /*25*/"This concludes the glassware use module. Thank you for your time.\n\n(Y) Hides Popup\n(Hamburger Button) Opens Menu"
                 };
