@@ -29,12 +29,12 @@ public class Wash_With_Soap : TaskStep
     }
     void OnEnable()
     {
-        GameEventsManager.instance.inputEvents.onAButtonPressed += SkipTask;
+       // GameEventsManager.instance.inputEvents.onAButtonPressed += SkipTask;
         GameEventsManager.instance.chemistryEvents.onPourIn += addChem;
     }
     void OnDisable()
     {
-        GameEventsManager.instance.inputEvents.onAButtonPressed -= SkipTask;
+        //GameEventsManager.instance.inputEvents.onAButtonPressed -= SkipTask;
         GameEventsManager.instance.chemistryEvents.onPourIn -= addChem;
     }
 

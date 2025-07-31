@@ -34,7 +34,7 @@ public class Add_Water_To_Flasks : TaskStep
     }
     void OnDisable()
     {
-        GameEventsManager.instance.inputEvents.onAButtonPressed -= SkipTask;
+        //GameEventsManager.instance.inputEvents.onAButtonPressed -= SkipTask;
         //GameEventsManager.instance.chemistryEvents.onPourIn -= addChem;
     }
     private void SkipTask(InputAction.CallbackContext obj)
