@@ -325,6 +325,8 @@ public class ChemContainer : MonoBehaviour {
        return adjustedVolumes;
     }
 
+    public ChemFluid GetChemFluid() => chemFluid;
+
     public void SelectEnter(XRBaseInteractable interactable)
     {
         GameEventsManager.instance.interactableEvents.PlayerGrabInteractable(gameObject);

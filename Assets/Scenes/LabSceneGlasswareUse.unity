@@ -2514,7 +2514,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 97feaec7bffd85d43b49d4a6ebc97c88, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  iGD: {fileID: 0}
+  iGD: {fileID: 3810724431938316726, guid: 45fb3e6e1069f9e4dbcd292ec99a9a42, type: 3}
 --- !u!65 &454361088
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -2530,12 +2530,12 @@ BoxCollider:
     serializedVersion: 2
     m_Bits: 0
   m_LayerOverridePriority: 0
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 2, y: 1.9999993, z: 0.8692038}
-  m_Center: {x: 0, y: -1.0285352e-15, z: 0.119902946}
+  m_Size: {x: 2, y: 1.9999993, z: 0.7846613}
+  m_Center: {x: 0, y: 1.7419656e-17, z: 0.07763203}
 --- !u!1001 &454860491
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -23562,6 +23562,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: CrackedFlask45mL
       objectReference: {fileID: 0}
+    - target: {fileID: 1681217390004594250, guid: ac63ea73bb784fa469240decdff901c5, type: 3}
+      propertyPath: m_Layer
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 2026394310359825648, guid: ac63ea73bb784fa469240decdff901c5, type: 3}
       propertyPath: m_LocalPosition.x
       value: -4.9817
@@ -23602,6 +23606,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8904713178647146095, guid: ac63ea73bb784fa469240decdff901c5, type: 3}
+      propertyPath: m_Layer
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -23633,6 +23641,10 @@ PrefabInstance:
     - target: {fileID: 510224569214208915, guid: c907b6f1181de3c44bc409a14f78cd63, type: 3}
       propertyPath: m_Name
       value: volumetricFlaskWrapLabel45mL
+      objectReference: {fileID: 0}
+    - target: {fileID: 510224569214208915, guid: c907b6f1181de3c44bc409a14f78cd63, type: 3}
+      propertyPath: m_Layer
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 891569954007077161, guid: c907b6f1181de3c44bc409a14f78cd63, type: 3}
       propertyPath: m_LocalPosition.x
@@ -23676,6 +23688,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5073846390624421225, guid: c907b6f1181de3c44bc409a14f78cd63, type: 3}
       propertyPath: initialContents.Array.data[0].volume
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5547192854897572277, guid: c907b6f1181de3c44bc409a14f78cd63, type: 3}
+      propertyPath: m_Layer
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
@@ -23864,6 +23880,18 @@ PrefabInstance:
       value: volumetric_Pipette_Bulb_blue
       objectReference: {fileID: 0}
     - target: {fileID: 7535571793557434538, guid: 04ea7edd6c297164a8c83042d95b5cf4, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 1.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 7535571793557434538, guid: 04ea7edd6c297164a8c83042d95b5cf4, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 1.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 7535571793557434538, guid: 04ea7edd6c297164a8c83042d95b5cf4, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 1.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 7535571793557434538, guid: 04ea7edd6c297164a8c83042d95b5cf4, type: 3}
       propertyPath: m_LocalPosition.x
       value: -3.2054
       objectReference: {fileID: 0}
@@ -23902,6 +23930,10 @@ PrefabInstance:
     - target: {fileID: 7535571793557434538, guid: 04ea7edd6c297164a8c83042d95b5cf4, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 87.961
+      objectReference: {fileID: 0}
+    - target: {fileID: 7535571793557434538, guid: 04ea7edd6c297164a8c83042d95b5cf4, type: 3}
+      propertyPath: m_ConstrainProportionsScale
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
