@@ -9,7 +9,8 @@ public class GlassDisposal : MonoBehaviour
 
     public Inspect_Glassware_And_Dispose iGD;
 
-    private void CollisionEnter(Collision collision)
+ 
+    private void OnTriggerEnter(Collider collision)
     {
         if (collision.gameObject.CompareTag("CrackedGlass"))
         {

@@ -108,6 +108,7 @@ public class PipetteFunctions : MonoBehaviour
                 }
                 container.UpdateChem();
                 GameEventsManager.instance.chemistryEvents.PipetteDispense(this, container, currentFluids);
+                GameEventsManager.instance.chemistryEvents.PourIn(container, container.GetChemFluid());
                 canDispense = false; // Reset after dispensing
                 Debug.Log($"Dispensed {dispenseAmount} of {currentFluids} into container.");
                 internalFluid.gameObject.SetActive(false); // Hide the internal fluid after dispensing

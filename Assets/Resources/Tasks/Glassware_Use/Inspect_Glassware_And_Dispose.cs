@@ -33,8 +33,9 @@ public class Inspect_Glassware_And_Dispose : TaskStep
         //isWebGL = GameObject.Find("Glassware Use").GetComponent<Glassware_Use_Overview>().isWebGL;
 
         trashCan = GameObject.Find("glassDisposalTrash");
-        gD = trashCan.GetComponent<GlassDisposal>();
-        gD.iGD = this;
+        gD = trashCan.GetComponentInChildren<GlassDisposal>();
+        gD.iGD = this; // Set the reference to this task step in the GlassDisposal script.
+       
 
         GameEventsManager.instance.inputEvents.onAButtonPressed += SkipTask;
 
