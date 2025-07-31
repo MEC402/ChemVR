@@ -39,9 +39,10 @@ public class TriggerForPutAway : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (BeakerinCabinet && GraduatedCylinderinCabinet && flask45inCabinet && flask55inCabinet && flask65inCabinet )
+        if (BeakerinCabinet && GraduatedCylinderinCabinet && flask45inCabinet && flask55inCabinet && flask65inCabinet)
         {
             GameEventsManager.instance.miscEvents.ObjsPutAway();
+            Debug.Log("objs put away.");
         }
     }
 }
