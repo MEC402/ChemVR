@@ -33,7 +33,7 @@ public class Fill_Three_Flasks : TaskStep
         mixtureToMatch[0] = new Chem(ChemType.H2O, 15f * (50f / 65f));
         mixtureToMatch[1] = new Chem(ChemType.CuSO4, 15f * (15f / 65f));
         Debug.Log("Mixture to match: " + mixtureToMatch[0].type + " " + mixtureToMatch[0].volume + " and " + mixtureToMatch[1].type + " " + mixtureToMatch[1].volume);
-        
+
     }
     void OnDisable()
     {
@@ -69,7 +69,7 @@ public class Fill_Three_Flasks : TaskStep
             }
             if (check1 && check2)
             {
-                container1Filled = true;;
+                container1Filled = true;
             }
             check1 = false;
             check2 = false;
@@ -96,7 +96,7 @@ public class Fill_Three_Flasks : TaskStep
             {
                 container2Filled = true;
             }
-        check1 = false; 
+            check1 = false;
             check2 = false;
         }
         if (container.name.ToLower().Contains("label65ml")) //what is the object we are checking
