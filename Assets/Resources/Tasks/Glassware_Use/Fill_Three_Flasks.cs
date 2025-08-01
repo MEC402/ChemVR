@@ -69,7 +69,7 @@ public class Fill_Three_Flasks : TaskStep
             }
             if (check1 && check2)
             {
-                container1Filled = true;;
+                container1Filled = true;
             }
             check1 = false;
             check2 = false;
