@@ -44,6 +44,9 @@ public class MiscellaneousEvents
         }
     }
 
+    public event Action onHandsinWater;
+    public void HandsinWater() => onHandsinWater!.Invoke();
+
     // Burret related events
     public event Action<GameObject, GameObject> onBuretSnaptoHolder;
     public void BuretSnaptoHolder(GameObject buret, GameObject holder)
