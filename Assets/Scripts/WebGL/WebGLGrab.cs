@@ -90,7 +90,6 @@ public class WebGLGrab : MonoBehaviour
     {
         // Default icon if nothing is detected
         // playerIcon.sprite = defaultIcon;
-
         if (!mainCamera) return;
         if (!playerIcon.enabled) playerIcon.enabled = true;
 
@@ -235,13 +234,15 @@ public class WebGLGrab : MonoBehaviour
     private void ProcessInteractableObject(RaycastHit hit)
     {
         var hitObject = hit.collider.gameObject;
-
+        Debug.Log(hitObject);
         // Trigger the interactable object event
         GameEventsManager.instance.webGLEvents.InteractPressed(hitObject);
 
         // Keep these checks for not breaking older module
         if (hitObject.TryGetComponent(out WearGoggles wearGoggles))
+        {
             wearGoggles.WebPutOn();
+        }
         else if (hitObject.TryGetComponent(out WearCoat wearCoat))
             wearCoat.WebPutOn();
         else if (hitObject.TryGetComponent(out AddGloves addGloves))
