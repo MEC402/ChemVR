@@ -30,8 +30,8 @@ public class Fill_Three_Flasks : TaskStep
         GameEventsManager.instance.inputEvents.onAButtonPressed += SkipTask;
         GameEventsManager.instance.chemistryEvents.onPipetteDispense += addChem;
         mixtureToMatch = new Chem[2];
-        mixtureToMatch[0] = new Chem(ChemType.H2O, 15f * (50f / 65f));
-        mixtureToMatch[1] = new Chem(ChemType.CuSO4, 15f * (15f / 65f));
+        mixtureToMatch[0] = new Chem(ChemType.H2O, 13);
+        mixtureToMatch[1] = new Chem(ChemType.CuSO4, 5);
         Debug.Log("Mixture to match: " + mixtureToMatch[0].type + " " + mixtureToMatch[0].volume + " and " + mixtureToMatch[1].type + " " + mixtureToMatch[1].volume);
 
     }
@@ -53,7 +53,7 @@ public class Fill_Three_Flasks : TaskStep
             {
                 Chem currentChem = pipette.currentFluids.GetChemArray()[i];
 
-                if (currentChem.type == mixtureToMatch[0].type && currentChem.volume <= mixtureToMatch[0].volume && currentChem.volume > 10.0f)
+                if (currentChem.type == mixtureToMatch[0].type && currentChem.volume <= mixtureToMatch[0].volume && currentChem.volume > 9.0f)
                 {
 
                     check1 = true;
@@ -79,7 +79,7 @@ public class Fill_Three_Flasks : TaskStep
             for (int i = 0; i < pipette.currentFluids.GetChemArray().Length; i++)
             {
                 Chem currentChem = pipette.currentFluids.GetChemArray()[i];
-                if (currentChem.type == mixtureToMatch[0].type && currentChem.volume <= mixtureToMatch[0].volume && currentChem.volume > 10.0f)
+                if (currentChem.type == mixtureToMatch[0].type && currentChem.volume <= mixtureToMatch[0].volume && currentChem.volume > 9.0f)
                 {
                     check1 = true;
                 }
@@ -104,7 +104,7 @@ public class Fill_Three_Flasks : TaskStep
             for (int i = 0; i < pipette.currentFluids.GetChemArray().Length; i++)
             {
                 Chem currentChem = pipette.currentFluids.GetChemArray()[i];
-                if (currentChem.type == mixtureToMatch[0].type && currentChem.volume <= mixtureToMatch[0].volume && currentChem.volume > 10.0f)
+                if (currentChem.type == mixtureToMatch[0].type && currentChem.volume <= mixtureToMatch[0].volume && currentChem.volume > 9.0f)
                 {
                     check1 = true;
                 }
