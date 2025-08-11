@@ -17,16 +17,18 @@ public class Scoop_To_Boat : TaskStep
     void OnEnable()
     {
         /*GameEventsManager.instance.miscEvents.OnUpdateMaterialHeld += MaterialCheck;
+*/
 
-        GameEventsManager.instance.inputEvents.onAButtonPressed += SkipTask;*/
-        GameEventsManager.instance.chemistryEvents.onPourIn += addChem;
+   GameEventsManager.instance.inputEvents.onAButtonPressed += SkipTask;
+    GameEventsManager.instance.chemistryEvents.onPourIn += addChem;
     }
 
     void OnDisable()
     {
         /*GameEventsManager.instance.miscEvents.OnUpdateMaterialHeld -= MaterialCheck;
+*/
 
-        GameEventsManager.instance.inputEvents.onAButtonPressed -= SkipTask;*/
+        GameEventsManager.instance.inputEvents.onAButtonPressed -= SkipTask;
         GameEventsManager.instance.chemistryEvents.onPourIn -= addChem;
     }
     private void addChem(ChemContainer container, ChemFluid chemMix)
@@ -73,9 +75,10 @@ public class Scoop_To_Boat : TaskStep
            if (currentAmountOfSulfur >= neededAmountOfSulfur - 0.15f && currentAmountOfSulfur <= neededAmountOfSulfur + 0.15f)
                FinishTaskStep();
        }
+       */
 
        private void SkipTask(InputAction.CallbackContext obj)
        {
            FinishTaskStep();
-       }*/
+       }
 }

@@ -19,7 +19,7 @@ public class Clean_Scale : TaskStep
                 FinishTaskStep();
         };
 
-        //GameEventsManager.instance.inputEvents.onAButtonPressed += SkipTask;
+        GameEventsManager.instance.inputEvents.onAButtonPressed += SkipTask;
     }
 
     void OnDisable()
@@ -31,7 +31,7 @@ public class Clean_Scale : TaskStep
                 FinishTaskStep();
         };
 
-        //GameEventsManager.instance.inputEvents.onAButtonPressed -= SkipTask;
+        GameEventsManager.instance.inputEvents.onAButtonPressed -= SkipTask;
     }
 
     private void SkipTask(InputAction.CallbackContext context)

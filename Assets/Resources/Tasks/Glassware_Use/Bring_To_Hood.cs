@@ -21,12 +21,12 @@ public class Bring_To_Hood : TaskStep
     void OnEnable()
     {
         GameEventsManager.instance.miscEvents.OnObjsBroughtToHood += FinishTaskStep;
-        //GameEventsManager.instance.inputEvents.onAButtonPressed += SkipTask;
+        GameEventsManager.instance.inputEvents.onAButtonPressed += SkipTask;
     }
     void OnDisable()
     {
         GameEventsManager.instance.miscEvents.OnObjsBroughtToHood -= FinishTaskStep;
-        //GameEventsManager.instance.inputEvents.onAButtonPressed -= SkipTask;
+        GameEventsManager.instance.inputEvents.onAButtonPressed -= SkipTask;
     }
     private void SkipTask(InputAction.CallbackContext obj)
     {

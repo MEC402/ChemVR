@@ -13,9 +13,18 @@ public class Mix_With_Water : TaskStep
     void OnEnable()
     {
         GameEventsManager.instance.miscEvents.OnStirBeaker += FinishTaskStep; 
+      GameEventsManager.instance.inputEvents.onAButtonPressed += SkipTask;
+
     }
     void OnDisable()
     {
+      GameEventsManager.instance.inputEvents.onAButtonPressed -= SkipTask;
         GameEventsManager.instance.miscEvents.OnStirBeaker -= FinishTaskStep; 
     }
+
+   private void SkipTask(InputAction.CallbackContext obj)
+    {
+        FinishTaskStep();
+    }
+
 }
