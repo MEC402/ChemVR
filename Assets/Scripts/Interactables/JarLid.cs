@@ -1,3 +1,4 @@
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.XR.Interaction.Toolkit;
 
@@ -5,6 +6,11 @@ public class JarLid : MonoBehaviour
 {
     #region Variables
     [SerializeField] GameObject parentJar;
+
+    [SerializeField] Rigidbody jarRB;
+    [SerializeField] Rigidbody lidRB;
+
+    private FixedJoint joint;
 
     Quaternion initialRotation; //initial rotation of the lid
     Vector3 initialPos; //initial position of the lid
@@ -25,9 +31,11 @@ public class JarLid : MonoBehaviour
         initialRotation = transform.localRotation;
         //initialPos = transform.localPosition;
         initialPos = new Vector3(0.00f, 0.00f, 0.0292f);
-           // Vector3(0, 0, 0.03391998);
+        // Vector3(0, 0, 0.03391998);
 
         UsesGravity(false);
+        lidRB = this.gameObject.GetComponent<Rigidbody>();
+        
     }
 
     void OnEnable()
@@ -126,9 +134,9 @@ public class JarLid : MonoBehaviour
         if (TryGetComponent<Rigidbody>(out var rb))
             rb.useGravity = useGravity;
 
-       /* // Reset scale if it has changed
-        if (transform.localScale != new Vector3(5, 5, 5))
-            transform.localScale = new Vector3(5, 5, 5);*/
+        /* // Reset scale if it has changed
+         if (transform.localScale != new Vector3(5, 5, 5))
+             transform.localScale = new Vector3(5, 5, 5);*/
 
         if (!useGravity)
         {
@@ -140,13 +148,25 @@ public class JarLid : MonoBehaviour
 
             transform.SetLocalPositionAndRotation(initialPos, initialRotation);
 
+            joint = lidRB.gameObject.AddComponent<FixedJoint>();
+            joint.connectedBody = jarRB;
+
+
+
             // Freeze pos and rotation
-            rb.constraints = RigidbodyConstraints.FreezeAll;
+
         }
         else
         {
+            //rb.isKinematic = false;
             rb.constraints = RigidbodyConstraints.None;
             transform.SetParent(null);
+            if (joint != null)
+            {
+                Destroy(joint);
+                joint = null;
+            }
+         
         }
 
         // Trigger the jar closed event
