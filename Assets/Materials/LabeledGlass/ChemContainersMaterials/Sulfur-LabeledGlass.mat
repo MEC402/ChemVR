@@ -17,8 +17,8 @@ Material:
   m_InvalidKeywords: []
   m_LightmapFlags: 2
   m_EnableInstancingVariants: 0
-  m_DoubleSidedGI: 0
-  m_CustomRenderQueue: 3050
+  m_DoubleSidedGI: 1
+  m_CustomRenderQueue: 3003
   stringTagMap:
     RenderType: Transparent
   disabledShaderPasses:
@@ -33,10 +33,11 @@ Material:
         m_Offset: {x: 0.05, y: -0.45}
     m_Ints: []
     m_Floats:
+    - _Cull: 2
     - _DstBlend: 10
     - _QueueControl: 0
-    - _QueueOffset: 50
-    - _Scale: 3
+    - _QueueOffset: 3
+    - _Scale: 0
     - _Scale_2: 3
     m_Colors:
     - _XY1: {r: -1.8, g: -1.52, b: 0, a: 0}
