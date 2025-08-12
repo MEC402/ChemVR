@@ -30,7 +30,7 @@ public class Inspect_Glassware_And_Dispose : TaskStep
     #region Unity Methods
     void OnEnable()
     {
-        //isWebGL = GameObject.Find("Glassware Use").GetComponent<Glassware_Use_Overview>().isWebGL;
+        isWebGL = GameObject.Find("Glassware Use").GetComponent<Glassware_Use_Overview>().isWebGL;
 
         trashCan = GameObject.Find("glassDisposalTrash");
         gD = trashCan.GetComponentInChildren<GlassDisposal>();
@@ -122,6 +122,7 @@ public class Inspect_Glassware_And_Dispose : TaskStep
 
     public void GlasswareDisposed()
     {
+        //Debug.Log("disposed.");
         if (AllGlasswareInspected() && gD.IsObjectiveComplete())
         {
             Debug.Log("All glassware inspected and disposed.");
