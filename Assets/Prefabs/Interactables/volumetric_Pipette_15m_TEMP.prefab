@@ -102,7 +102,7 @@ CapsuleCollider:
   m_LayerOverridePriority: 0
   m_IsTrigger: 0
   m_ProvidesContacts: 0
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 2
   m_Radius: 0.50000036
   m_Height: 2.000001
@@ -124,6 +124,59 @@ MonoBehaviour:
   color: {r: 0, g: 0, b: 0, a: 0}
   remapBounds: {x: 0, y: 0}
   material: {fileID: 2100000, guid: 07a56c9202c7d9144be1d51b7c70d235, type: 2}
+--- !u!1 &8529766450172895420
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 539228975481607367}
+  - component: {fileID: 2678166000478814342}
+  m_Layer: 0
+  m_Name: BulbCollider
+  m_TagString: PipetteBulb
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 0
+--- !u!4 &539228975481607367
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8529766450172895420}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -0, y: 0, z: -0.1875}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 4576747704866574288}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!135 &2678166000478814342
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8529766450172895420}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Radius: 0.01
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &8589645638590015891
 GameObject:
   m_ObjectHideFlags: 0
@@ -138,7 +191,7 @@ GameObject:
   - component: {fileID: 228474283555178856}
   - component: {fileID: 2604446989000831710}
   m_Layer: 0
-  m_Name: Collider
+  m_Name: PipetteTipCollider
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -245,6 +298,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   internalFluid: {fileID: 6350758990787444843}
+  bulbCollider: {fileID: 8529766450172895420}
   isHeld: 0
   dispenseAmount: 15
   currentFluids:
@@ -364,6 +418,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: -8679921383154817045, guid: 05a84ca55a7c8ed4f8feb22a0b9a5b5d, type: 3}
       insertIndex: -1
       addedObject: {fileID: 2181400040624479955}
+    - targetCorrespondingSourceObject: {fileID: -8679921383154817045, guid: 05a84ca55a7c8ed4f8feb22a0b9a5b5d, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 539228975481607367}
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 05a84ca55a7c8ed4f8feb22a0b9a5b5d, type: 3}
       insertIndex: -1
@@ -374,6 +431,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 05a84ca55a7c8ed4f8feb22a0b9a5b5d, type: 3}
       insertIndex: -1
       addedObject: {fileID: 9099617103816078401}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 05a84ca55a7c8ed4f8feb22a0b9a5b5d, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 2860765740857111026}
   m_SourcePrefab: {fileID: 100100000, guid: 05a84ca55a7c8ed4f8feb22a0b9a5b5d, type: 3}
 --- !u!1 &3803306813619197290 stripped
 GameObject:
@@ -492,6 +552,18 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 2860765740857111026}
+        m_TargetAssemblyTypeName: PickupToggle, Assembly-CSharp
+        m_MethodName: ToggleCollider
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   m_SelectExited:
     m_PersistentCalls:
       m_Calls:
@@ -499,6 +571,18 @@ MonoBehaviour:
         m_TargetAssemblyTypeName: PipetteFunctions, Assembly-CSharp
         m_MethodName: OnReleased
         m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 2860765740857111026}
+        m_TargetAssemblyTypeName: PickupToggle, Assembly-CSharp
+        m_MethodName: ToggleCollider
+        m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -605,6 +689,19 @@ MonoBehaviour:
   m_StartingSingleGrabTransformers: []
   m_StartingMultipleGrabTransformers: []
   m_AddDefaultGrabTransformers: 1
+--- !u!114 &2860765740857111026
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3803306813619197290}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f0a8d9e55ca1f6b4d9f5767d36b6e9a4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  myCollider: {fileID: 8346729473609115396}
 --- !u!4 &4576747704866574288 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 05a84ca55a7c8ed4f8feb22a0b9a5b5d, type: 3}

@@ -9,6 +9,7 @@ public class PipetteFunctions : MonoBehaviour
     private bool isOverlapping = false;
     private GameObject currentContainer;
     [SerializeField]private ResizeFluid internalFluid;
+    [SerializeField] private GameObject bulbCollider;
     public bool isHeld = false;
 
     [SerializeField]private float dispenseAmount = 10f; // Amount to dispense per interaction
@@ -23,6 +24,7 @@ public class PipetteFunctions : MonoBehaviour
         isHeld = true;
         currentHand = DetermineGrabbingHand(args.interactorObject);
         EnableHandSpecificButtonListener();
+        bulbCollider.SetActive(true); // Enable the bulb collider when grabbed
     }
 
     public void OnReleased(SelectExitEventArgs args)
@@ -30,6 +32,7 @@ public class PipetteFunctions : MonoBehaviour
         isHeld = false;
         DisableButtonListeners();
         currentHand = HandType.None;
+        bulbCollider.SetActive(false); // Disable the bulb collider when released
     }
 
     private HandType DetermineGrabbingHand(IXRInteractor interactor)
