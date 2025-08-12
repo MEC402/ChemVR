@@ -49,6 +49,7 @@ public class ObjectRotationController : MonoBehaviour
 
                 objectToRotate.rotation = combinedRotation * objectToRotate.rotation;
             }
+//objectToRotate.localScale = new Vector3(objectToRotate.localScale.x, -objectToRotate.localScale.y, objectToRotate.localScale.z);
         }
         else
         {
