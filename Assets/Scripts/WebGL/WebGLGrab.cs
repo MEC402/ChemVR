@@ -98,6 +98,10 @@ public class WebGLGrab : MonoBehaviour
 
         if (Physics.SphereCast(centerRay, 0.01f, out RaycastHit hit, grabRange, ~0, QueryTriggerInteraction.Ignore))
         {
+         //Debug.Log("HIT");
+         //Debug.Log(hit.collider.gameObject.name);
+         //Debug.Log(hit.collider.gameObject.tag);
+         //Debug.Log("HIT2");
             if (interactableLayer == (interactableLayer | (1 << hit.collider.gameObject.layer)))
                 playerIcon.sprite = interactIcon;
             else if (holdableLayer == (holdableLayer | (1 << hit.collider.gameObject.layer)))

@@ -24,7 +24,7 @@ public class Inspect_Glassware : TaskStep
     #region Unity Methods
     void OnEnable()
     {
-        //isWebGL = GameObject.Find("Glassware Use").GetComponent<Glassware_Use_Overview>().isWebGL;
+        isWebGL = GameObject.Find("Glassware Use").GetComponent<Glassware_Use_Overview>().isWebGL;
 
         GameEventsManager.instance.inputEvents.onAButtonPressed += SkipTask;
 
