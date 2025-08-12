@@ -185,10 +185,6 @@ public class WebGLGrab : MonoBehaviour
         // Trigger the object released event
         GameEventsManager.instance.webGLEvents.ObjectReleased(heldObject.gameObject);
 
-        if (heldObject.TryGetComponent(out PickupToggle pT)) //Additional code for the collider toggle, currently only used for the pipette.
-        {
-            pT.ToggleCollider();
-        }
 
         heldObject = null;
         isHoldingObject = false;
@@ -236,10 +232,6 @@ public class WebGLGrab : MonoBehaviour
 
         playerIcon.sprite = closedIcon;
 
-        if (heldObject.TryGetComponent(out PickupToggle pT)) //Additional code for the collider toggle, currently only used for the pipette.
-        {
-            pT.ToggleCollider();
-        }
     }
 
     /// <summary>
