@@ -27,10 +27,18 @@ public class ObjectRotationController : MonoBehaviour
 
         if (inputScript.isRotating)
         {
-            inputScript.LookDisable();
+            inputScript.LookDisable(); //move the disables to a seperate check. if you hit r but it runs the rest of the code, it may not reenable the look/move. add an enable to the end of the R key on glassware rotation?
             inputScript.MoveDisable();
 
             Vector2 input = inputScript.rotationInput;
+
+            //write an if statement to check to see if WebGLInput  public bool isInteracting = true; if true && the obj has a chem container script, then rotate around X or Z axis
+            //WebGlGrab heldObject = hit.collider.transform; stores the game obj being held. can we use this to ref the collider?
+            //in WebGL Grab there is also bool isHoldingObject = false; incase the WebGLInput wont work.
+            //sink rotate on Y to 270
+
+
+
             if (input != Vector2.zero)
             {
                 float deltaTime = Time.deltaTime;
