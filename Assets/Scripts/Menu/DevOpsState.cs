@@ -5,7 +5,7 @@ using UnityEngine;
 public static class DevOpsState
 {
     // The devOps flag, default to false
-    private static bool devOps = false; //change this line for default on build
+    private static bool devOps = true; //change this line for default on build
 
     // Function to toggle the devOps boolean
     public static void ToggleDevOps()
@@ -19,4 +19,3 @@ public static class DevOpsState
         return devOps;
     }
 }
-
