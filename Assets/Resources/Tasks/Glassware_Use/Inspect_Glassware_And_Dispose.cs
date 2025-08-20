@@ -30,7 +30,8 @@ public class Inspect_Glassware_And_Dispose : TaskStep
     #region Unity Methods
     void OnEnable()
     {
-        isWebGL = GameObject.Find("Glassware Use").GetComponent<Glassware_Use_Overview>().isWebGL;
+        //This cursed line of code needs fixed it makes the whole script fail if not in WebGl mode.
+        //isWebGL = GameObject.Find("Glassware Use").GetComponent<Glassware_Use_Overview>().isWebGL;
 
         trashCan = GameObject.Find("glassDisposalTrash");
         gD = trashCan.GetComponentInChildren<GlassDisposal>();
