@@ -8,6 +8,8 @@ public class ObjectRotationController : MonoBehaviour
     [SerializeField] Camera playerCamera; // Reference to the camera for relative rotation
 
     [HideInInspector] public Transform objectToRotate;
+    [HideInInspector] public string objectToRotateName;
+    public Transform myLocalRotateObj;
 
     [Header("Rotation Settings")]
     [SerializeField] float rotationSpeed = 100f;
@@ -17,30 +19,85 @@ public class ObjectRotationController : MonoBehaviour
     private void Update()
     {
         HandleObjectRotation();
+        if (Input.GetKeyDown(KeyCode.T))
+        {
+            TRotation();
+        }
     }
     #endregion
 
     #region Custom Methods
+
+    public void ReceiveHeldObject(Transform obj)
+    {
+        myLocalRotateObj = obj;
+        Debug.Log("Got object: " + obj.name);
+        objectToRotateName = obj.name;
+        // now you can store it and rotate as needed
+    }
+
+    public void TRotation()
+    {
+        if (objectToRotateName.ToLower().Contains("beaker"))
+        /*        write an if statement to check to see if WebGLInput  public bool isInteracting = true; if true && the obj has a chem container script, then rotate around X or Z axis
+                WebGlGrab heldObject = hit.collider.transform; stores the game obj being held.can we use this to ref the collider?
+                in WebGL Grab there is also bool isHoldingObject = false; incase the WebGLInput wont work.
+                sink rotate on Y to 270 (add 90 to Y)
+                DI rotate on X to 0 from -90
+                flask/soap rotate on X to -90 from 0
+                Grad Cylinder X to -180 from -90
+                beaker z to 90 from 0
+                copper sulfate x to 0 from -90
+
+                add 90 to y : sink
+                add 90 to Z : beaker
+                substract 90 (add -90) to X : DI rotate, flask, grad cylinder, copper sulfate*/
+
+        {
+            Debug.Log("add 90 to z axis");
+
+            Vector3 rot = myLocalRotateObj.localEulerAngles;   // current rotation (x, y, z)
+            rot.z += 90f;                           // add to X (10° for example)
+            myLocalRotateObj.localEulerAngles = rot;           // apply it back
+
+        }
+        if (objectToRotateName.ToLower().Contains("flask") || objectToRotateName.ToLower().Contains("soap")
+             || objectToRotateName.ToLower().Contains("graduated") || objectToRotateName.ToLower().Contains("solid") || objectToRotateName.ToLower().Contains("di"))
+        {
+            Debug.Log("add -90 to x axis");
+
+            Vector3 rot = myLocalRotateObj.localEulerAngles;   // current rotation (x, y, z)
+            rot.x -= 90f;                           // add to X (10° for example)
+            myLocalRotateObj.localEulerAngles = rot;           // apply it back
+        }
+        if (objectToRotateName.ToLower().Contains("sink"))
+        {
+            Debug.Log("add 90 to y axis");
+
+            Vector3 rot = myLocalRotateObj.localEulerAngles;   // current rotation (x, y, z)
+            rot.y += 90f;                           // add to X (10° for example)
+            myLocalRotateObj.localEulerAngles = rot;           // apply it back
+        }
+    }
     private void HandleObjectRotation()
     {
         if (inputScript == null || objectToRotate == null || playerCamera == null) return;
 
         if (inputScript.isRotating)
         {
+            Debug.Log("Else completed when you hit R");
             inputScript.LookDisable(); //move the disables to a seperate check. if you hit r but it runs the rest of the code, it may not reenable the look/move. add an enable to the end of the R key on glassware rotation?
             inputScript.MoveDisable();
 
             Vector2 input = inputScript.rotationInput;
 
-            //write an if statement to check to see if WebGLInput  public bool isInteracting = true; if true && the obj has a chem container script, then rotate around X or Z axis
-            //WebGlGrab heldObject = hit.collider.transform; stores the game obj being held. can we use this to ref the collider?
-            //in WebGL Grab there is also bool isHoldingObject = false; incase the WebGLInput wont work.
-            //sink rotate on Y to 270
-
-
-
             if (input != Vector2.zero)
             {
+
+
+                Debug.Log("input != completed when you hit R");
+
+                //Debug.Log("Else completed when you hit R");
                 float deltaTime = Time.deltaTime;
                 float yaw = -input.x * rotationSpeed * deltaTime;
                 float pitch = input.y * rotationSpeed * deltaTime;
@@ -56,8 +113,9 @@ public class ObjectRotationController : MonoBehaviour
                 Quaternion combinedRotation = yawRotation * pitchRotation;
 
                 objectToRotate.rotation = combinedRotation * objectToRotate.rotation;
+
             }
-//objectToRotate.localScale = new Vector3(objectToRotate.localScale.x, -objectToRotate.localScale.y, objectToRotate.localScale.z);
+            //objectToRotate.localScale = new Vector3(objectToRotate.localScale.x, -objectToRotate.localScale.y, objectToRotate.localScale.z);
         }
         else
         {
