@@ -1,5 +1,104 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1 &411264579646006127
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 8794140345538916493}
+  - component: {fileID: 2704668707050237278}
+  - component: {fileID: 5544428053935149499}
+  m_Layer: 7
+  m_Name: Stir Accepter
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &8794140345538916493
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 411264579646006127}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 8257048799075891138}
+  m_Father: {fileID: 3476520802704965331}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!65 &2704668707050237278
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 411264579646006127}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 0.034035444, y: 0.08254337, z: 0.02946806}
+  m_Center: {x: 0.0017882586, y: -0.04915881, z: 0.0011036396}
+--- !u!114 &5544428053935149499
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 411264579646006127}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4fcf105941de3464ab9ee59661d519e4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  lockPoint: {fileID: 8257048799075891138}
+--- !u!1 &2244808986429375878
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 8257048799075891138}
+  m_Layer: 7
+  m_Name: Lock Position
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &8257048799075891138
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2244808986429375878}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 8794140345538916493}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &2702195022256954479
 GameObject:
   m_ObjectHideFlags: 0
@@ -11,7 +110,7 @@ GameObject:
   - component: {fileID: 4980409225234150054}
   - component: {fileID: 649904531185135151}
   - component: {fileID: 4878760918663267917}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Pour Point
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -112,8 +211,8 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0.1849, z: 0}
-  m_LocalScale: {x: 0.04, y: 0.0029017832, z: 0.04}
-  m_ConstrainProportionsScale: 1
+  m_LocalScale: {x: 0.07130027, y: 0.005172448, z: 0.07130027}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 3476520802704965331}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -200,7 +299,7 @@ GameObject:
   - component: {fileID: 8214462414089339728}
   - component: {fileID: 8307336632143051460}
   - component: {fileID: 1196528936952864954}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Hit Marker
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -336,6 +435,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Pour Effect Particle System
       objectReference: {fileID: 0}
+    - target: {fileID: 6774973484123949442, guid: 315fad10dc99f784f83a21b5f67d51e9, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -373,31 +476,31 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 03746b10e162d9142b9dc4c5271a5fb3, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -3.0866
+      value: -3.0811
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 03746b10e162d9142b9dc4c5271a5fb3, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.1769
+      value: 0.17078999
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 03746b10e162d9142b9dc4c5271a5fb3, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -1.2465
+      value: -1.2425
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 03746b10e162d9142b9dc4c5271a5fb3, type: 3}
       propertyPath: m_LocalRotation.w
-      value: 0.89176184
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 03746b10e162d9142b9dc4c5271a5fb3, type: 3}
       propertyPath: m_LocalRotation.x
-      value: -0
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 03746b10e162d9142b9dc4c5271a5fb3, type: 3}
       propertyPath: m_LocalRotation.y
-      value: 0.45250508
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 03746b10e162d9142b9dc4c5271a5fb3, type: 3}
       propertyPath: m_LocalRotation.z
-      value: -0
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 03746b10e162d9142b9dc4c5271a5fb3, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -405,7 +508,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 03746b10e162d9142b9dc4c5271a5fb3, type: 3}
       propertyPath: m_LocalEulerAnglesHint.y
-      value: 53.809
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 03746b10e162d9142b9dc4c5271a5fb3, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
@@ -419,17 +522,25 @@ PrefabInstance:
       propertyPath: m_Materials.Array.data[0]
       value: 
       objectReference: {fileID: 2100000, guid: e96a95ce81ec58544bdad0af03e0c747, type: 2}
+    - target: {fileID: -5568371526223589888, guid: 03746b10e162d9142b9dc4c5271a5fb3, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 03746b10e162d9142b9dc4c5271a5fb3, type: 3}
       propertyPath: m_Name
       value: volumetricFlaskWrapLabel65mL
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 03746b10e162d9142b9dc4c5271a5fb3, type: 3}
       propertyPath: m_Layer
-      value: 0
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 03746b10e162d9142b9dc4c5271a5fb3, type: 3}
       propertyPath: m_TagString
       value: Untagged
+      objectReference: {fileID: 0}
+    - target: {fileID: 6531578303558919645, guid: 03746b10e162d9142b9dc4c5271a5fb3, type: 3}
+      propertyPath: m_Layer
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 7136273361130827962, guid: 03746b10e162d9142b9dc4c5271a5fb3, type: 3}
       propertyPath: m_Materials.Array.data[0]
@@ -453,6 +564,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: -8679921383154817045, guid: 03746b10e162d9142b9dc4c5271a5fb3, type: 3}
       insertIndex: -1
       addedObject: {fileID: 2380943043233686398}
+    - targetCorrespondingSourceObject: {fileID: -8679921383154817045, guid: 03746b10e162d9142b9dc4c5271a5fb3, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 8794140345538916493}
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 03746b10e162d9142b9dc4c5271a5fb3, type: 3}
       insertIndex: -1

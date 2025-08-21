@@ -204,8 +204,10 @@ public class WebGLGrab : MonoBehaviour
     /// <param name="hit">The RaycastHit from the raycast.</param>
     private void ProcessHoldableObject(RaycastHit hit)
     {
+        //Transform heldObject = null;
         heldObject = hit.collider.transform;
         isHoldingObject = true;
+        objectRotationController.ReceiveHeldObject(heldObject); // returning the transform to ORC to find the name and perform rotations from there. Does this line need to go below the parent info for that stuff to run?
 
         if (heldObject.TryGetComponent<Rigidbody>(out var rb))
         {
@@ -262,6 +264,10 @@ public class WebGLGrab : MonoBehaviour
             doorOpen.ToggleOpen();
         else if (hitObject.TryGetComponent(out StopcockController stopcockController))
             StopCockAdjuster(stopcockController);
+        else if(hitObject.TryGetComponent(out ToggleSink toggleSink))
+            toggleSink.ToggleOpen();
+        else if (hitObject.TryGetComponent(out ToggleSinkR toggleSinkR))
+            toggleSinkR.ToggleOpen();
     }
 
     /// <summary>
