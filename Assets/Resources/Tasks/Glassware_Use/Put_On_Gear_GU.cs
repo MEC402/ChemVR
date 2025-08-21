@@ -22,7 +22,6 @@ public class Put_On_Gear_GU : TaskStep
         GameEventsManager.instance.miscEvents.onTakeOffRightGlove += RightGloveOff;
         GameEventsManager.instance.miscEvents.onTakeOffLeftGlove += LeftGloveOff;
 
-        GameEventsManager.instance.inputEvents.onAButtonPressed += SkipTask;
     }
     private void OnDisable()
     {
@@ -31,7 +30,6 @@ public class Put_On_Gear_GU : TaskStep
         GameEventsManager.instance.miscEvents.onTakeOffRightGlove -= RightGloveOff;
         GameEventsManager.instance.miscEvents.onTakeOffLeftGlove -= LeftGloveOff;
 
-        GameEventsManager.instance.inputEvents.onAButtonPressed -= SkipTask;
     }
 
     private void RightGloveOn()

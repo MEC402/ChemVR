@@ -38,7 +38,6 @@ public class Inspect_Glassware_And_Dispose : TaskStep
         gD.iGD = this; // Set the reference to this task step in the GlassDisposal script.
        
 
-        GameEventsManager.instance.inputEvents.onAButtonPressed += SkipTask;
 
         if (isWebGL)
             GameEventsManager.instance.webGLEvents.OnObjectGrabbed += WebGLInspectObject; // Subscribe to the WebGL event for object grabbing.
@@ -70,7 +69,6 @@ public class Inspect_Glassware_And_Dispose : TaskStep
 
     void OnDisable()
     {
-        GameEventsManager.instance.inputEvents.onAButtonPressed -= SkipTask;
 
         if (!isWebGL)
         {

@@ -11,12 +11,12 @@ public class Set_Up_Pipette : TaskStep
     }
     void OnEnable()
     {
-        GameEventsManager.instance.inputEvents.onAButtonPressed += SkipTask;
+        //GameEventsManager.instance.inputEvents.onAButtonPressed += SkipTask;
         GameEventsManager.instance.miscEvents.OnPippetConnectedFirst += FinishTaskStep;
     }
     void OnDisable()
     {
-        GameEventsManager.instance.inputEvents.onAButtonPressed -= SkipTask;
+        //GameEventsManager.instance.inputEvents.onAButtonPressed -= SkipTask;
         GameEventsManager.instance.miscEvents.OnPippetConnectedFirst -= FinishTaskStep;
     }
 

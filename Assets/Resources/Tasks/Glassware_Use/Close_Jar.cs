@@ -13,14 +13,14 @@ public class Close_Jar : TaskStep
     {
         GameEventsManager.instance.miscEvents.OnJarClosed += CloseJar;
 
-        GameEventsManager.instance.inputEvents.onAButtonPressed += SkipTask;
+        //GameEventsManager.instance.inputEvents.onAButtonPressed += SkipTask;
     }
 
     void OnDisable()
     {
         GameEventsManager.instance.miscEvents.OnJarClosed -= CloseJar;
 
-        GameEventsManager.instance.inputEvents.onAButtonPressed += SkipTask;
+        //GameEventsManager.instance.inputEvents.onAButtonPressed += SkipTask;
     }
 
     private void SkipTask(InputAction.CallbackContext context)

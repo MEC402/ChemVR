@@ -14,7 +14,6 @@ public class Pour_Into_Flask : TaskStep
 
             GameEventsManager.instance.miscEvents.OnTransferMaterialToGlass += FinishTaskStep;
 */
-            GameEventsManager.instance.inputEvents.onAButtonPressed += SkipTask;
 
         GameEventsManager.instance.chemistryEvents.onPourOut += removeChem;
     }
@@ -25,8 +24,6 @@ public class Pour_Into_Flask : TaskStep
 
         GameEventsManager.instance.miscEvents.OnTransferMaterialToGlass -= FinishTaskStep;
 */
-
-        GameEventsManager.instance.inputEvents.onAButtonPressed -= SkipTask;  
         GameEventsManager.instance.chemistryEvents.onPourOut -= removeChem;
     }
 

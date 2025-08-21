@@ -18,12 +18,10 @@ public class Put_Away : TaskStep
     }*/
     void OnEnable()
     {
-        GameEventsManager.instance.inputEvents.onAButtonPressed += SkipTask;
         GameEventsManager.instance.miscEvents.OnObjsPutAway += FinishTaskStep;
     }
     void OnDisable()
     {
-        GameEventsManager.instance.inputEvents.onAButtonPressed -= SkipTask;
         GameEventsManager.instance.miscEvents.OnObjsPutAway -= FinishTaskStep;
 
     }

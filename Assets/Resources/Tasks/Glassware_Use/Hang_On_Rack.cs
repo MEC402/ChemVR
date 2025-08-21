@@ -28,12 +28,10 @@ public class Hang_On_Rack : TaskStep
     }
     void OnEnable()
     {
-        GameEventsManager.instance.inputEvents.onAButtonPressed += SkipTask;
         GameEventsManager.instance.chemistryEvents.onPourOut += removeChem;
     }
     void OnDisable()
     {
-        GameEventsManager.instance.inputEvents.onAButtonPressed -= SkipTask;
         GameEventsManager.instance.chemistryEvents.onPourOut -= removeChem;
     }
     private void SkipTask(InputAction.CallbackContext obj)
