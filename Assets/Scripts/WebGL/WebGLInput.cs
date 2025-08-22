@@ -17,6 +17,8 @@ public class WebGLInput : MonoBehaviour
     [SerializeField] private InputActionReference pause;
     [SerializeField] private InputActionReference hideUI;
 
+    [SerializeField] private InputActionReference skipTask;
+
     public Vector2 movementInput;
     public Vector2 lookInput;
     public Vector2 rotationInput;
@@ -57,6 +59,9 @@ public class WebGLInput : MonoBehaviour
         pause.action.performed += ctx => PauseHandler(ctx);
 
         hideUI.action.performed += ctx => HideUIHandler(ctx);
+
+        skipTask.action.performed += ctx => SkipTaskHandler(ctx);
+        skipTask.action.performed += ctx => GameEventsManager.instance.inputEvents.WebGLSkipTask(ctx);
 
         MasterControlsEnable(); // Enable the player controls by default
     }
@@ -139,6 +144,11 @@ public class WebGLInput : MonoBehaviour
     {
         isHidingUI = !isHidingUI; // Toggle the UI visibility state
         instructionsText.SetActive(!isHidingUI); // Set the UI active based on the state
+    }
+
+    private void SkipTaskHandler(InputAction.CallbackContext ctx)
+    {
+        // Implement skip task functionality here if needed
     }
 
     #region Custom Methods

@@ -38,11 +38,11 @@ public class Wash_Hands : TaskStep
                 handsinwater = true;
             }
         };
-         //GameEventsManager.instance.inputEvents.onAButtonPressed += SkipTask;
+         GameEventsManager.instance.inputEvents.onWebGLSkipTask += SkipTask;
     }
     void OnDisable()
     {
-        //GameEventsManager.instance.inputEvents.onAButtonPressed -= SkipTask;
+        GameEventsManager.instance.inputEvents.onWebGLSkipTask -= SkipTask;
     }
     private void SkipTask(InputAction.CallbackContext obj)
     {

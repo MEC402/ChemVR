@@ -19,10 +19,12 @@ public class Lower_hood_sash : TaskStep
     void OnEnable()
     {
         GameEventsManager.instance.miscEvents.OnHoodSashHeightSet += FinishTaskStep;
+        GameEventsManager.instance.inputEvents.onWebGLSkipTask += SkipTask;
     }
     void OnDisable()
     {
         GameEventsManager.instance.miscEvents.OnHoodSashHeightSet -= FinishTaskStep;
+        GameEventsManager.instance.inputEvents.onWebGLSkipTask += SkipTask;
     }
     private void SkipTask(InputAction.CallbackContext obj)
     {

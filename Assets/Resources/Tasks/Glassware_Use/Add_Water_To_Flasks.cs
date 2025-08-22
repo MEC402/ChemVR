@@ -25,7 +25,7 @@ public class Add_Water_To_Flasks : TaskStep
     }
     void OnEnable()
     {
-        //GameEventsManager.instance.inputEvents.onAButtonPressed += SkipTask;
+        GameEventsManager.instance.inputEvents.onWebGLSkipTask += SkipTask;
         GameEventsManager.instance.chemistryEvents.onPourIn += addChem;
 
         mixtureMatch1 = new Chem(ChemType.H2O, 41f);
@@ -34,8 +34,8 @@ public class Add_Water_To_Flasks : TaskStep
     }
     void OnDisable()
     {
-        //GameEventsManager.instance.inputEvents.onAButtonPressed -= SkipTask;
-        //GameEventsManager.instance.chemistryEvents.onPourIn -= addChem;
+        GameEventsManager.instance.inputEvents.onWebGLSkipTask -= SkipTask;
+        GameEventsManager.instance.chemistryEvents.onPourIn -= addChem;
     }
     private void SkipTask(InputAction.CallbackContext obj)
     {

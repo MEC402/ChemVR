@@ -32,7 +32,7 @@ public class Inspect_Glassware_And_Dispose : TaskStep
     {
         //This cursed line of code needs fixed it makes the whole script fail if not in WebGl mode.
         //isWebGL = GameObject.Find("Glassware Use").GetComponent<Glassware_Use_Overview>().isWebGL;
-
+        GameEventsManager.instance.inputEvents.onWebGLSkipTask += SkipTask;
         trashCan = GameObject.Find("glassDisposalTrash");
         gD = trashCan.GetComponentInChildren<GlassDisposal>();
         gD.iGD = this; // Set the reference to this task step in the GlassDisposal script.
@@ -69,6 +69,7 @@ public class Inspect_Glassware_And_Dispose : TaskStep
 
     void OnDisable()
     {
+        GameEventsManager.instance.inputEvents.onWebGLSkipTask -= SkipTask;
 
         if (!isWebGL)
         {

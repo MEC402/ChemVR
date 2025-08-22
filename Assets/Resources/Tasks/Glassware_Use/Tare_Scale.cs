@@ -13,13 +13,13 @@ public class Tare_Scale : TaskStep
     void OnEnable()
     {
         GameEventsManager.instance.miscEvents.OnScaleTare += FinishTaskStep;
-        //GameEventsManager.instance.inputEvents.onAButtonPressed += SkipTask;
+        GameEventsManager.instance.inputEvents.onWebGLSkipTask += SkipTask;
     }
 
     void OnDisable()
     {
         GameEventsManager.instance.miscEvents.OnScaleTare -= FinishTaskStep;
-        //GameEventsManager.instance.inputEvents.onAButtonPressed -= SkipTask;
+        GameEventsManager.instance.inputEvents.onWebGLSkipTask -= SkipTask;
     }
 
     private void SkipTask(InputAction.CallbackContext obj)

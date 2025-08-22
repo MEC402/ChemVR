@@ -19,10 +19,12 @@ public class Put_Away : TaskStep
     void OnEnable()
     {
         GameEventsManager.instance.miscEvents.OnObjsPutAway += FinishTaskStep;
+        GameEventsManager.instance.inputEvents.onWebGLSkipTask += SkipTask;
     }
     void OnDisable()
     {
         GameEventsManager.instance.miscEvents.OnObjsPutAway -= FinishTaskStep;
+        GameEventsManager.instance.inputEvents.onWebGLSkipTask -= SkipTask;
 
     }
     private void SkipTask(InputAction.CallbackContext obj)

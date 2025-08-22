@@ -19,8 +19,9 @@ public class Scoop_To_Boat : TaskStep
         /*GameEventsManager.instance.miscEvents.OnUpdateMaterialHeld += MaterialCheck;
 */
 
-   //GameEventsManager.instance.inputEvents.onAButtonPressed += SkipTask;
-    GameEventsManager.instance.chemistryEvents.onPourIn += addChem;
+        //GameEventsManager.instance.inputEvents.onAButtonPressed += SkipTask;
+        GameEventsManager.instance.chemistryEvents.onPourIn += addChem;
+        GameEventsManager.instance.inputEvents.onWebGLSkipTask += SkipTask;
     }
 
     void OnDisable()
@@ -30,6 +31,7 @@ public class Scoop_To_Boat : TaskStep
 
         //GameEventsManager.instance.inputEvents.onAButtonPressed -= SkipTask;
         GameEventsManager.instance.chemistryEvents.onPourIn -= addChem;
+        GameEventsManager.instance.inputEvents.onWebGLSkipTask -= SkipTask;
     }
     private void addChem(ChemContainer container, ChemFluid chemMix)
     {

@@ -32,11 +32,13 @@ public class Rinse_With_DI : TaskStep
     {
         //GameEventsManager.instance.inputEvents.onAButtonPressed += SkipTask;
         GameEventsManager.instance.chemistryEvents.onPourIn += addChem;
+        GameEventsManager.instance.inputEvents.onWebGLSkipTask += SkipTask;
     }
     void OnDisable()
     {
         //GameEventsManager.instance.inputEvents.onAButtonPressed -= SkipTask;
         GameEventsManager.instance.chemistryEvents.onPourIn -= addChem;
+        GameEventsManager.instance.inputEvents.onWebGLSkipTask -= SkipTask;
     }
 
     private void addChem(ChemContainer container, ChemFluid chemMix)

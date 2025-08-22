@@ -18,12 +18,12 @@ public class Transfer_DI_Into_beaker : TaskStep
     }
     void OnEnable()
     {
-        //GameEventsManager.instance.inputEvents.onAButtonPressed += SkipTask;
+        GameEventsManager.instance.inputEvents.onWebGLSkipTask += SkipTask;
         GameEventsManager.instance.chemistryEvents.onPourIn += addChem;
     }
     void OnDisable()
     {
-       // GameEventsManager.instance.inputEvents.onAButtonPressed -= SkipTask;
+        GameEventsManager.instance.inputEvents.onWebGLSkipTask -= SkipTask;
         GameEventsManager.instance.chemistryEvents.onPourIn -= addChem;
     }
     private void SkipTask(InputAction.CallbackContext obj)

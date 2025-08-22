@@ -29,6 +29,8 @@ public class Inspect_Glassware : TaskStep
         //This cursed line of code needs fixed it makes the whole script fail if not in WebGl mode.
         //isWebGL = GameObject.Find("Glassware Use").GetComponent<Glassware_Use_Overview>().isWebGL;
 
+        GameEventsManager.instance.inputEvents.onWebGLSkipTask += SkipTask;
+
 
         if (isWebGL)
             GameEventsManager.instance.webGLEvents.OnObjectGrabbed += WebGLInspectObject; // Subscribe to the WebGL event for object grabbing.
@@ -60,6 +62,7 @@ public class Inspect_Glassware : TaskStep
 
     void OnDisable()
     {
+        GameEventsManager.instance.inputEvents.onWebGLSkipTask -= SkipTask;
 
         if (!isWebGL)
         {

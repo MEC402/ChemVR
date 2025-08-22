@@ -12,10 +12,12 @@ public class Retrieve_DI_Water : TaskStep
     void OnEnable()
     {
         GameEventsManager.instance.chemistryEvents.onPourIn += addChem;
+        GameEventsManager.instance.inputEvents.onWebGLSkipTask += SkipTask;
     }
     void OnDisable()
     {
         GameEventsManager.instance.chemistryEvents.onPourIn -= addChem;
+        GameEventsManager.instance.inputEvents.onWebGLSkipTask -= SkipTask;
     }
 
     private void addChem(ChemContainer container, ChemFluid chemMix)

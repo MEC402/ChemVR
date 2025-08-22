@@ -5,6 +5,7 @@ using UnityEngine;
 public class PickupToggle : MonoBehaviour
 {
     [SerializeField] private Collider myCollider;
+    
 
 
     // Start is called before the first frame update

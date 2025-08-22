@@ -16,6 +16,7 @@ public class Pour_Into_Flask : TaskStep
 */
 
         GameEventsManager.instance.chemistryEvents.onPourOut += removeChem;
+        GameEventsManager.instance.inputEvents.onWebGLSkipTask += SkipTask;
     }
 
     void OnDisable()
@@ -25,6 +26,7 @@ public class Pour_Into_Flask : TaskStep
         GameEventsManager.instance.miscEvents.OnTransferMaterialToGlass -= FinishTaskStep;
 */
         GameEventsManager.instance.chemistryEvents.onPourOut -= removeChem;
+        GameEventsManager.instance.inputEvents.onWebGLSkipTask -= SkipTask;
     }
 
     private void removeChem(ChemContainer container, ChemFluid chemMix)

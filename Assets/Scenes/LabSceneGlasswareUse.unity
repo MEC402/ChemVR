@@ -31230,8 +31230,34 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 4284266765922100329, guid: 5423b42623bcff34ea4b15440dcb8e3a, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 5283085371777416052}
   m_SourcePrefab: {fileID: 100100000, guid: 5423b42623bcff34ea4b15440dcb8e3a, type: 3}
+--- !u!1 &5283085371777416050 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4284266765922100329, guid: 5423b42623bcff34ea4b15440dcb8e3a, type: 3}
+  m_PrefabInstance: {fileID: 5283085371777416049}
+  m_PrefabAsset: {fileID: 0}
+--- !u!64 &5283085371777416051 stripped
+MeshCollider:
+  m_CorrespondingSourceObject: {fileID: 3010624854213548001, guid: 5423b42623bcff34ea4b15440dcb8e3a, type: 3}
+  m_PrefabInstance: {fileID: 5283085371777416049}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &5283085371777416052
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5283085371777416050}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f0a8d9e55ca1f6b4d9f5767d36b6e9a4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  myCollider: {fileID: 5283085371777416051}
 --- !u!64 &5663710343895132896
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -32082,6 +32108,7 @@ GameObject:
   - component: {fileID: 414731107423584829}
   - component: {fileID: 6199518438809842501}
   - component: {fileID: 6380819359427847878}
+  - component: {fileID: 8543677465859180372}
   m_Layer: 0
   m_Name: BeakerUp500mL_Glassware
   m_TagString: CanBoil
@@ -32355,6 +32382,19 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!114 &8543677465859180372
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7895303912237065862}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f0a8d9e55ca1f6b4d9f5767d36b6e9a4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  myCollider: {fileID: 6380819359427847878}
 --- !u!4 &8707595135785430254 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4396650387011474694, guid: 04c02b3395543a44f94798bbf23f57f0, type: 3}
