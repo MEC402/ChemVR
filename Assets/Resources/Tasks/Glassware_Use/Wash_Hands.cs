@@ -14,6 +14,8 @@ public class Wash_Hands : TaskStep
     private bool leftGloveOff = false;
     private bool rightGloveOff = false;
     private bool handsinwater = false;
+    private GameObject WashTrigger;
+    private WashHandsTrigger WHT;
     private void Update()
     {
         if (Keyboard.current.cKey.wasPressedThisFrame)
@@ -29,6 +31,16 @@ public class Wash_Hands : TaskStep
     }
     void OnEnable()
     {
+        WashTrigger = GameObject.Find("WashHandsTrigger");
+        WHT = WashTrigger.GetComponent<WashHandsTrigger>();
+
+        if (WHT != null)
+        {
+            WHT.ActivateWashHands();
+        }
+
+
+
         GameEventsManager.instance.miscEvents.onTakeOffLeftGlove += () => leftGloveOff = true;
         GameEventsManager.instance.miscEvents.onTakeOffRightGlove += () => rightGloveOff = true;
         GameEventsManager.instance.miscEvents.onHandsinWater += () =>

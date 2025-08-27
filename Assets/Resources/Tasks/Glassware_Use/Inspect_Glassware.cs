@@ -11,7 +11,7 @@ public class Inspect_Glassware : TaskStep
     // Array of glassware names to be inspected. These names should match the names of the GameObjects in the scene. If you add more glassware, add them to this array.
     private readonly string[] glasswareNames =
     {
-        "BeakerUp250mL_LargerText"    };
+        "BeakerUp250mL_largerText"    };
 
 
 
