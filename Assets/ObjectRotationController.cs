@@ -13,6 +13,7 @@ public class ObjectRotationController : MonoBehaviour
 
     [Header("Rotation Settings")]
     [SerializeField] float rotationSpeed = 100f;
+        static bool isFlip = false;
     #endregion
 
     #region Unity Methods
@@ -27,6 +28,11 @@ public class ObjectRotationController : MonoBehaviour
     #endregion
 
     #region Custom Methods
+     public static bool IsRunningOnWebGL()
+     {
+         return Application.platform == RuntimePlatform.WebGLPlayer;
+     }
+
 
     public void ReceiveHeldObject(Transform obj)
     {
@@ -36,8 +42,9 @@ public class ObjectRotationController : MonoBehaviour
         // now you can store it and rotate as needed
     }
 
-    public void TRotation()
+    public bool TRotation()
     {
+        bool aresult = false;
         if (objectToRotateName.ToLower().Contains("beaker"))
         /*        write an if statement to check to see if WebGLInput  public bool isInteracting = true; if true && the obj has a chem container script, then rotate around X or Z axis
                 WebGlGrab heldObject = hit.collider.transform; stores the game obj being held.can we use this to ref the collider?
@@ -59,16 +66,34 @@ public class ObjectRotationController : MonoBehaviour
             Vector3 rot = myLocalRotateObj.localEulerAngles;   // current rotation (x, y, z)
             rot.z += 90f;                           // add to X (10° for example)
             myLocalRotateObj.localEulerAngles = rot;           // apply it back
+	    aresult = true;
+	    return aresult;
 
         }
-        if (objectToRotateName.ToLower().Contains("flask") || objectToRotateName.ToLower().Contains("soap")
-             || objectToRotateName.ToLower().Contains("graduated") || objectToRotateName.ToLower().Contains("solid") || objectToRotateName.ToLower().Contains("di"))
+        if (objectToRotateName.ToLower().Contains("solid"))
+	{
+            Debug.Log("add -90 to x axis");
+
+            Vector3 rot = myLocalRotateObj.localEulerAngles;   // current rotation (x, y, z)
+            rot.x = -90f;                           // add to X (10° for example)
+            //rot.y = -90f;                           // add to X (10° for example)
+            rot.z = -90f;                           // add to X (10° for example)
+            myLocalRotateObj.localEulerAngles = rot;           // apply it back
+	    aresult = true;
+	    return aresult;
+        }
+
+        if (objectToRotateName.ToLower().Contains("flask")
+	     || objectToRotateName.ToLower().Contains("soap")
+             || objectToRotateName.ToLower().Contains("graduated")
+	     || objectToRotateName.ToLower().Contains("di"))
         {
             Debug.Log("add -90 to x axis");
 
             Vector3 rot = myLocalRotateObj.localEulerAngles;   // current rotation (x, y, z)
             rot.x -= 90f;                           // add to X (10° for example)
             myLocalRotateObj.localEulerAngles = rot;           // apply it back
+	    aresult = true;
         }
         if (objectToRotateName.ToLower().Contains("sink"))
         {
@@ -77,7 +102,9 @@ public class ObjectRotationController : MonoBehaviour
             Vector3 rot = myLocalRotateObj.localEulerAngles;   // current rotation (x, y, z)
             rot.y += 90f;                           // add to X (10° for example)
             myLocalRotateObj.localEulerAngles = rot;           // apply it back
+	    aresult = true;
         }
+	return aresult;
     }
     private void HandleObjectRotation()
     {
@@ -85,9 +112,24 @@ public class ObjectRotationController : MonoBehaviour
 
         if (inputScript.isRotating)
         {
+
             Debug.Log("Else completed when you hit R");
             inputScript.LookDisable(); //move the disables to a seperate check. if you hit r but it runs the rest of the code, it may not reenable the look/move. add an enable to the end of the R key on glassware rotation?
             inputScript.MoveDisable();
+
+	  // do specific rotations for specific objects
+          /*if ( IsRunningOnWebGL())
+	  {
+	    //if (!isFlip) 
+	    {
+              if (TRotation()) {
+	      isFlip = true;
+	      inputScript.isRotating = false;
+              return;
+	      }
+	    }
+	  }
+	  */
 
             Vector2 input = inputScript.rotationInput;
 
@@ -121,6 +163,7 @@ public class ObjectRotationController : MonoBehaviour
         {
             inputScript.LookEnable();
             inputScript.MoveEnable();
+	    isFlip = false;
         }
     }
     #endregion
