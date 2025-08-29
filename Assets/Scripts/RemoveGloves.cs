@@ -11,6 +11,9 @@ public class RemoveGloves : MonoBehaviour
     private bool leftIsTouching;
     private bool rightIsTouching;
 
+    private bool isWebGL = false;
+    private bool webGLIsTouching = false;
+
     [SerializeField] AudioSource trashSound;
 
     void Start()
@@ -22,10 +25,18 @@ public class RemoveGloves : MonoBehaviour
         if (rightHand != null)
             original = rightHand.GetComponent<SkinnedMeshRenderer>().material;
     }
+
+    public static bool IsRunningOnWebGL()
+     {
+         return Application.platform == RuntimePlatform.WebGLPlayer;
+     }
+
     private void OnEnable()
     {
         GameEventsManager.instance.inputEvents.onAButtonPressed += OnAPress;
         GameEventsManager.instance.inputEvents.onXButtonPressed += OnXPress;
+
+        isWebGL = IsRunningOnWebGL();
     }
     private void OnDisable()
     {
@@ -35,9 +46,15 @@ public class RemoveGloves : MonoBehaviour
 
     void OnAPress(InputAction.CallbackContext context)
     {
-        if (rightIsTouching && (rightHand.GetComponent<SkinnedMeshRenderer>().material.name.Contains(gloves.name)))
+        if (!isWebGL)
+            if (rightIsTouching && (rightHand.GetComponent<SkinnedMeshRenderer>().material.name.Contains(gloves.name)))
+            {
+                TakeOffRightGlove();
+            }
+        if (isWebGL)
         {
-            TakeOffRightGlove();
+            if (webGLIsTouching)
+            WebTakeOffGloves();
         }
     }
     void OnXPress(InputAction.CallbackContext context)
@@ -57,6 +74,10 @@ public class RemoveGloves : MonoBehaviour
         {
             leftIsTouching = true;
         }
+        else if (isWebGL && other.name.Contains("FP Player"))
+        {
+            webGLIsTouching = true;
+        }
     }
     private void OnTriggerExit(Collider other)
     {
@@ -67,6 +88,10 @@ public class RemoveGloves : MonoBehaviour
         else if (other.name.Contains("left") && other.name.Contains("hand"))
         {
             leftIsTouching = false;
+        }
+        else if (isWebGL && other.name.Contains("FP Player"))
+        {
+            webGLIsTouching = false;
         }
     }
     void TakeOffLeftGlove()

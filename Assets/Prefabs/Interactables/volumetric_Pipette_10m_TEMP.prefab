@@ -282,9 +282,9 @@ CapsuleCollider:
   m_Enabled: 1
   serializedVersion: 2
   m_Radius: 0.50000036
-  m_Height: 9.765746
+  m_Height: 10.965451
   m_Direction: 1
-  m_Center: {x: 0.000000051740145, y: -3.0362484, z: -0.00000010348027}
+  m_Center: {x: 0.000000051740145, y: -2.4363956, z: -0.00000010348027}
 --- !u!114 &1589293161374439849
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -300,6 +300,8 @@ MonoBehaviour:
   internalFluid: {fileID: 8040623111209058682}
   bulbCollider: {fileID: 696883127015694628}
   pT: {fileID: 0}
+  LockChemFluid: 0
+  lockDispenseAmount: 0
   isHeld: 0
   dispenseAmount: 10
   currentFluids:

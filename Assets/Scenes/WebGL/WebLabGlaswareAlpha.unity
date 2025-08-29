@@ -10558,8 +10558,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 2.5, y: 5.5, z: 2.5}
-  m_Center: {x: 0, y: 0.85, z: 0}
+  m_Size: {x: 2.845228, y: 5.5, z: 2.9363022}
+  m_Center: {x: 0.17261568, y: 0.84999985, z: 0.2181517}
 --- !u!54 &780681181
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -22556,6 +22556,10 @@ PrefabInstance:
       propertyPath: m_Layer
       value: 7
       objectReference: {fileID: 0}
+    - target: {fileID: 1589293161374439849, guid: 7947a213449242e489846ee624e68ad8, type: 3}
+      propertyPath: LockChemFluid
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 4903692508299364069, guid: 7947a213449242e489846ee624e68ad8, type: 3}
       propertyPath: m_LocalScale.x
       value: 1
@@ -32448,6 +32452,14 @@ PrefabInstance:
       propertyPath: m_Layer
       value: 7
       objectReference: {fileID: 0}
+    - target: {fileID: 2604446989000831710, guid: 8bbe37aa47aff7446807702afbfde228, type: 3}
+      propertyPath: LockChemFluid
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2604446989000831710, guid: 8bbe37aa47aff7446807702afbfde228, type: 3}
+      propertyPath: lockDispenseAmount
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 3803306813619197290, guid: 8bbe37aa47aff7446807702afbfde228, type: 3}
       propertyPath: m_Name
       value: volumetric_Pipette_15m_TEMP
@@ -33181,7 +33193,7 @@ MonoBehaviour:
   pourEffect: {fileID: 9197500561572301046}
   pourActivator: {fileID: 0}
   maxVolume: 550
-  currentVolume: 100
+  currentVolume: 0
   pourRate: 50
   pourAngle: 90
   flags:
@@ -33208,7 +33220,7 @@ MonoBehaviour:
   initialContents:
   - name: 
     type: 0
-    volume: 400
+    volume: 0
   chemFluid:
     totalVolume: 0
     chems:

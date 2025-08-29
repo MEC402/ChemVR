@@ -1,3 +1,4 @@
+using System.Runtime.CompilerServices;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
@@ -11,6 +12,8 @@ public class PipetteFunctions : MonoBehaviour
     [SerializeField] private ResizeFluid internalFluid;
     [SerializeField] private GameObject bulbCollider;
     [SerializeField] private PickupToggle pT;
+    [SerializeField] private bool LockChemFluid = false;
+    [SerializeField] private bool lockDispenseAmount = false;
     public bool isHeld = false;
 
     [SerializeField]private float dispenseAmount = 10f; // Amount to dispense per interaction
@@ -19,6 +22,7 @@ public class PipetteFunctions : MonoBehaviour
     // Hand tracking variables
     private enum HandType { None, Left, Right }
     private HandType currentHand = HandType.None;
+
 
     public void OnGrabbed(SelectEnterEventArgs args)
     {
@@ -34,7 +38,6 @@ public class PipetteFunctions : MonoBehaviour
             EnableHandSpecificButtonListener();
         }
         bulbCollider.SetActive(true); // Enable the bulb collider when grabbed
-        //pT.ToggleCollider(); // Disable pickup toggle when held
 
     }
 
@@ -44,7 +47,6 @@ public class PipetteFunctions : MonoBehaviour
         DisableButtonListeners();
         currentHand = HandType.None;
         bulbCollider.SetActive(false); // Disable the bulb collider when released
-        //pT.ToggleCollider(); // Enable pickup toggle when released
     }
 
     private HandType DetermineGrabbingHand(IXRInteractor interactor)
@@ -110,47 +112,195 @@ public class PipetteFunctions : MonoBehaviour
     }
 
     private void AbsorbAndDispense()
+    //This is the main function for controlling the pipette. It has been modified to include the LockChemFluid and lockDispenseAmount features.
+    //LockChemFluid makes it so the pipette can only be filled once, and then will only dispense that exact chemical mixture. May need to create some way to empty it in the future, but this can always be toggled off via the Serialized Field in the Unity inspector.
+    //LockDispenseAmount forces the pipette to only be able to fill a specific fluid and amount to any container it fills, resetting whatever mixture is actively in that container and replacing it with the pipette's. This is to prevent the users from overfilling
+    //the volumetric flasks in the Glassware Use Module. This feature can cause problems if the pipette is used on unintended containers, so if this becomes problematic, just deactivate the Serialized Field in the inspector.
     {
-        if (canDispense)
+        if (!lockDispenseAmount)
         {
-            if (isOverlapping)
+            if (!LockChemFluid)
             {
-                ChemContainer container = currentContainer.GetComponent<ChemContainer>();
-
-                for (int i = 0; i < currentFluids.GetChemArray().Length; i++)
+                if (canDispense)
                 {
-                    container.AddChem(currentFluids.GetChemArray()[i].type, currentFluids.GetChemArray()[i].volume);
-                }
-                container.UpdateChem();
-                GameEventsManager.instance.chemistryEvents.PipetteDispense(this, container, currentFluids);
-                GameEventsManager.instance.chemistryEvents.PourIn(container, container.GetChemFluid());
-                canDispense = false; // Reset after dispensing
-                Debug.Log($"Dispensed {dispenseAmount} of {currentFluids} into container.");
-                internalFluid.gameObject.SetActive(false); // Hide the internal fluid after dispensing
-            }
-            else
-            {
-                Debug.LogWarning("Cannot dispense: Not overlapping with a ChemContainer.");
-            }
-        }
-        else if (!canDispense)
-        {
-            if (isOverlapping)
-            {
-                ChemContainer container = currentContainer.GetComponent<ChemContainer>();
-                Chem[] activeChems = container.GetChemFluid(dispenseAmount);
-                currentFluids.AssignNewChems(activeChems); // Update currentFluid to the main chem type
-                canDispense = true; // Allow dispensing again
-                internalFluid.gameObject.SetActive(true); // Show the internal fluid when ready to dispense
-                Color chemColor = ChemistryManager.instance.GetColor(currentFluids);
-                internalFluid.SetColor(chemColor);
+                    if (isOverlapping)
+                    {
+                        ChemContainer container = currentContainer.GetComponent<ChemContainer>();
 
+                        for (int i = 0; i < currentFluids.GetChemArray().Length; i++)
+                        {
+                            container.AddChem(currentFluids.GetChemArray()[i].type, currentFluids.GetChemArray()[i].volume);
+                        }
+                        container.UpdateChem();
+                        GameEventsManager.instance.chemistryEvents.PipetteDispense(this, container, currentFluids);
+                        GameEventsManager.instance.chemistryEvents.PourIn(container, container.GetChemFluid());
+                        canDispense = false; // Reset after dispensing
+                        Debug.Log($"Dispensed {dispenseAmount} of {currentFluids} into container.");
+                        internalFluid.gameObject.SetActive(false); // Hide the internal fluid after dispensing
+                    }
+                    else
+                    {
+                        Debug.LogWarning("Cannot dispense: Not overlapping with a ChemContainer.");
+                    }
+                }
+                else if (!canDispense)
+                {
+                    if (isOverlapping)
+                    {
+                        ChemContainer container = currentContainer.GetComponent<ChemContainer>();
+                        Chem[] activeChems = container.GetChemFluid(dispenseAmount);
+                        currentFluids.AssignNewChems(activeChems); // Update currentFluid to the main chem type
+                        canDispense = true; // Allow dispensing again
+                        internalFluid.gameObject.SetActive(true); // Show the internal fluid when ready to dispense
+                        Color chemColor = ChemistryManager.instance.GetColor(currentFluids);
+                        internalFluid.SetColor(chemColor);
+
+                    }
+                    else
+                    {
+                        Debug.LogWarning("Cannot absorb: Not overlapping with a ChemContainer.");
+                    }
+                }
             }
-            else
+            if (LockChemFluid)
             {
-                Debug.LogWarning("Cannot absorb: Not overlapping with a ChemContainer.");
+                if (canDispense)
+                {
+                    if (isOverlapping)
+                    {
+                        ChemContainer container = currentContainer.GetComponent<ChemContainer>();
+
+                        for (int i = 0; i < currentFluids.GetChemArray().Length; i++)
+                        {
+                            container.AddChem(currentFluids.GetChemArray()[i].type, currentFluids.GetChemArray()[i].volume);
+                        }
+                        container.UpdateChem();
+                        GameEventsManager.instance.chemistryEvents.PipetteDispense(this, container, currentFluids);
+                        GameEventsManager.instance.chemistryEvents.PourIn(container, container.GetChemFluid());
+                        //This line is commented out for the Lock Chem feature, to force the pipette to always use the same chemical once it has been filled once.
+                        //canDispense = false;
+
+                        Debug.Log($"Dispensed {dispenseAmount} of {currentFluids} into container.");
+                        //Prevents the internal fluid object from hiding since this pipette will never be empty.
+                        //internalFluid.gameObject.SetActive(false); // Hide the internal fluid after dispensing
+                    }
+                    else
+                    {
+                        Debug.LogWarning("Cannot dispense: Not overlapping with a ChemContainer.");
+                    }
+                }
+                else if (!canDispense)
+                {
+                    if (isOverlapping)
+                    {
+                        ChemContainer container = currentContainer.GetComponent<ChemContainer>();
+                        Chem[] activeChems = container.GetChemFluid(dispenseAmount);
+                        currentFluids.AssignNewChems(activeChems); // Update currentFluid to the main chem type
+                        canDispense = true; // Allow dispensing again
+                        internalFluid.gameObject.SetActive(true); // Show the internal fluid when ready to dispense
+                        Color chemColor = ChemistryManager.instance.GetColor(currentFluids);
+                        internalFluid.SetColor(chemColor);
+
+                    }
+                    else
+                    {
+                        Debug.LogWarning("Cannot absorb: Not overlapping with a ChemContainer.");
+                    }
+                }
             }
         }
+        else if (lockDispenseAmount)
+        {
+            if (!LockChemFluid)
+            {
+                if (canDispense)
+                {
+                    if (isOverlapping)
+                    {
+                        ChemContainer container = currentContainer.GetComponent<ChemContainer>();
+                        container.EmptyChem(); //Additional line of code for specifically the lock dispense amount.
+                        for (int i = 0; i < currentFluids.GetChemArray().Length; i++)
+                        {
+                            container.AddChem(currentFluids.GetChemArray()[i].type, currentFluids.GetChemArray()[i].volume);
+                        }
+                        container.UpdateChem();
+                        GameEventsManager.instance.chemistryEvents.PipetteDispense(this, container, currentFluids);
+                        GameEventsManager.instance.chemistryEvents.PourIn(container, container.GetChemFluid());
+                        canDispense = false; // Reset after dispensing
+                        Debug.Log($"Dispensed {dispenseAmount} of {currentFluids} into container.");
+                        internalFluid.gameObject.SetActive(false); // Hide the internal fluid after dispensing
+                    }
+                    else
+                    {
+                        Debug.LogWarning("Cannot dispense: Not overlapping with a ChemContainer.");
+                    }
+                }
+                else if (!canDispense)
+                {
+                    if (isOverlapping)
+                    {
+                        ChemContainer container = currentContainer.GetComponent<ChemContainer>();
+                        Chem[] activeChems = container.GetChemFluid(dispenseAmount);
+                        currentFluids.AssignNewChems(activeChems); // Update currentFluid to the main chem type
+                        canDispense = true; // Allow dispensing again
+                        internalFluid.gameObject.SetActive(true); // Show the internal fluid when ready to dispense
+                        Color chemColor = ChemistryManager.instance.GetColor(currentFluids);
+                        internalFluid.SetColor(chemColor);
+
+                    }
+                    else
+                    {
+                        Debug.LogWarning("Cannot absorb: Not overlapping with a ChemContainer.");
+                    }
+                }
+            }
+            if (LockChemFluid)
+            {
+                if (canDispense)
+                {
+                    if (isOverlapping)
+                    {
+                        ChemContainer container = currentContainer.GetComponent<ChemContainer>();
+                        container.EmptyChem(); //Additional line of code for specifically the lock dispense amount.
+                        for (int i = 0; i < currentFluids.GetChemArray().Length; i++)
+                        {
+                            container.AddChem(currentFluids.GetChemArray()[i].type, currentFluids.GetChemArray()[i].volume);
+                        }
+                        container.UpdateChem();
+                        GameEventsManager.instance.chemistryEvents.PipetteDispense(this, container, currentFluids);
+                        GameEventsManager.instance.chemistryEvents.PourIn(container, container.GetChemFluid());
+                        //This line is commented out for the Lock Chem feature, to force the pipette to always use the same chemical once it has been filled once.
+                        //canDispense = false;
+
+                        Debug.Log($"Dispensed {dispenseAmount} of {currentFluids} into container.");
+                        //Prevents the internal fluid object from hiding since this pipette will never be empty.
+                        //internalFluid.gameObject.SetActive(false); // Hide the internal fluid after dispensing
+                    }
+                    else
+                    {
+                        Debug.LogWarning("Cannot dispense: Not overlapping with a ChemContainer.");
+                    }
+                }
+                else if (!canDispense)
+                {
+                    if (isOverlapping)
+                    {
+                        ChemContainer container = currentContainer.GetComponent<ChemContainer>();
+                        Chem[] activeChems = container.GetChemFluid(dispenseAmount);
+                        currentFluids.AssignNewChems(activeChems); // Update currentFluid to the main chem type
+                        canDispense = true; // Allow dispensing again
+                        internalFluid.gameObject.SetActive(true); // Show the internal fluid when ready to dispense
+                        Color chemColor = ChemistryManager.instance.GetColor(currentFluids);
+                        internalFluid.SetColor(chemColor);
+
+                    }
+                    else
+                    {
+                        Debug.LogWarning("Cannot absorb: Not overlapping with a ChemContainer.");
+                    }
+                }
+                }
+             }
     }
 
 
