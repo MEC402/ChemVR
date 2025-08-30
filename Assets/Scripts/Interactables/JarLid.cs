@@ -1,7 +1,8 @@
+using System.Runtime.CompilerServices;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.InputSystem;
 using UnityEngine.XR.Interaction.Toolkit;
-
 public class JarLid : MonoBehaviour
 {
     #region Variables
@@ -11,6 +12,8 @@ public class JarLid : MonoBehaviour
     [SerializeField] Rigidbody lidRB;
 
     private FixedJoint joint;
+
+    private bool isHeld = false;
 
     Quaternion initialRotation; //initial rotation of the lid
     Vector3 initialPos; //initial position of the lid
@@ -35,7 +38,7 @@ public class JarLid : MonoBehaviour
 
         UsesGravity(false);
         lidRB = this.gameObject.GetComponent<Rigidbody>();
-        
+
     }
 
     void OnEnable()
@@ -108,7 +111,12 @@ public class JarLid : MonoBehaviour
     private void WebGLGrab(GameObject grabbedObject)
     {
         if (grabbedObject == gameObject)
+        {
             UsesGravity(true);
+            isHeld = true;
+            GameEventsManager.instance.inputEvents.onAButtonPressed += ResetLid;
+        }
+
     }
 
     /// <summary>
@@ -120,7 +128,15 @@ public class JarLid : MonoBehaviour
         if (releasedObject == gameObject)
         {
             if (touching)
-                UsesGravity(false);
+            {
+                 UsesGravity(false);
+             }
+            else
+            {
+            UsesGravity(true);
+         }
+            isHeld = false;
+            GameEventsManager.instance.inputEvents.onAButtonPressed -= ResetLid;
         }
     }
 
@@ -166,11 +182,33 @@ public class JarLid : MonoBehaviour
                 Destroy(joint);
                 joint = null;
             }
-         
+
         }
 
         // Trigger the jar closed event
         GameEventsManager.instance.miscEvents.JarClosed(parentJar, !useGravity);
+    }
+    
+
+
+    public void ResetLid(InputAction.CallbackContext context)
+    {
+        if (isHeld)
+        {
+            GameObject player = GameObject.Find("FP Player");
+            if (player != null)
+            {
+                WebGLGrab webGrab = player.GetComponent<WebGLGrab>();
+                if (webGrab != null)
+                {
+                    webGrab.ForceReleaseObject();
+                    UsesGravity(false);
+                    isHeld = false;
+                    GameEventsManager.instance.inputEvents.onAButtonPressed -= ResetLid;
+                }
+            }
+
+        }
     }
     #endregion
 }

@@ -98,10 +98,10 @@ public class WebGLGrab : MonoBehaviour
 
         if (Physics.SphereCast(centerRay, 0.01f, out RaycastHit hit, grabRange, ~0, QueryTriggerInteraction.Ignore))
         {
-         //Debug.Log("HIT");
-         //Debug.Log(hit.collider.gameObject.name);
-         //Debug.Log(hit.collider.gameObject.tag);
-         //Debug.Log("HIT2");
+            //Debug.Log("HIT");
+            //Debug.Log(hit.collider.gameObject.name);
+            //Debug.Log(hit.collider.gameObject.tag);
+            //Debug.Log("HIT2");
             if (interactableLayer == (interactableLayer | (1 << hit.collider.gameObject.layer)))
                 playerIcon.sprite = interactIcon;
             else if (holdableLayer == (holdableLayer | (1 << hit.collider.gameObject.layer)))
@@ -193,7 +193,7 @@ public class WebGLGrab : MonoBehaviour
 
         // Update the icon
         playerIcon.sprite = defaultIcon;
-        
+
     }
     #endregion
 
@@ -264,7 +264,7 @@ public class WebGLGrab : MonoBehaviour
             doorOpen.ToggleOpen();
         else if (hitObject.TryGetComponent(out StopcockController stopcockController))
             StopCockAdjuster(stopcockController);
-        else if(hitObject.TryGetComponent(out ToggleSink toggleSink))
+        else if (hitObject.TryGetComponent(out ToggleSink toggleSink))
             toggleSink.ToggleOpen();
         else if (hitObject.TryGetComponent(out ToggleSinkR toggleSinkR))
             toggleSinkR.ToggleOpen();
@@ -289,6 +289,14 @@ public class WebGLGrab : MonoBehaviour
         if (!heldObject) return;
 
         heldObject.position = holdPoint.position;
+    }
+
+    public void ForceReleaseObject()
+    {
+        if (isHoldingObject && heldObject != null)
+        {
+            AttemptRelease();
+        }
     }
     #endregion
 }

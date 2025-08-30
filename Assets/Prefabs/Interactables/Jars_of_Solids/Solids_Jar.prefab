@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 6580914611374662918}
   - component: {fileID: 4858465392156199733}
   - component: {fileID: 1695499191362034283}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Pour Effect Particle System
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4841,7 +4841,7 @@ GameObject:
   - component: {fileID: 3588753279364949580}
   - component: {fileID: 1315477566949629726}
   - component: {fileID: 9157276413810939209}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Hit Marker
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4928,7 +4928,7 @@ GameObject:
   - component: {fileID: 6170272858016685185}
   - component: {fileID: 5691173183033184359}
   - component: {fileID: 406159447201076860}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Jar_Lid
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5228,7 +5228,7 @@ GameObject:
   - component: {fileID: 6543293219323299711}
   - component: {fileID: 4819265419344559067}
   - component: {fileID: 3434025472522446412}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Fluid
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5340,7 +5340,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7998285747741421719}
-  m_Layer: 0
+  - component: {fileID: 4644943304112580149}
+  - component: {fileID: 863681382165001087}
+  m_Layer: 7
   m_Name: Pour Point
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5362,6 +5364,56 @@ Transform:
   m_Children: []
   m_Father: {fileID: 1284147014877434368}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!33 &4644943304112580149
+MeshFilter:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6790679930249624212}
+  m_Mesh: {fileID: 10206, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!23 &863681382165001087
+MeshRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6790679930249624212}
+  m_Enabled: 0
+  m_CastShadows: 1
+  m_ReceiveShadows: 1
+  m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
+  m_MotionVectors: 1
+  m_LightProbeUsage: 1
+  m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 2
+  m_RayTraceProcedural: 0
+  m_RenderingLayerMask: 1
+  m_RendererPriority: 0
+  m_Materials:
+  - {fileID: -8309319643020345216, guid: 7ab6f3b0fd1a6ba41b2a47766c16613f, type: 3}
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
+  m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_StitchLightmapSeams: 1
+  m_SelectedEditorRenderState: 3
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 0
+  m_AdditionalVertexStreams: {fileID: 0}
 --- !u!1 &7394000373326122558
 GameObject:
   m_ObjectHideFlags: 0
@@ -5382,7 +5434,7 @@ GameObject:
   - component: {fileID: 3119696524408041309}
   - component: {fileID: 2768970955682943094}
   - component: {fileID: 3385457958391440598}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Solids_Jar
   m_TagString: CanBoil
   m_Icon: {fileID: 0}
@@ -5397,7 +5449,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7394000373326122558}
   serializedVersion: 2
-  m_LocalRotation: {x: -0.7071068, y: -0, z: -0, w: 0.7071068}
+  m_LocalRotation: {x: -0.7071068, y: 0, z: 0, w: 0.7071068}
   m_LocalPosition: {x: -1.714, y: 1.028, z: -1.071}
   m_LocalScale: {x: 5, y: 5, z: 5}
   m_ConstrainProportionsScale: 0
@@ -5438,7 +5490,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 2f7ec4624d8aafe47bbecdc425a713c5, type: 2}
+  - {fileID: 2100000, guid: e88d0da433d6caa418ef56517a07352e, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -5775,8 +5827,8 @@ MonoBehaviour:
   reInitialize: 0
   initialContents:
   - name: 
-    type: 6
-    volume: 0
+    type: 3
+    volume: 300
   chemFluid:
     totalVolume: 0
     chems:
@@ -5926,6 +5978,8 @@ GameObject:
   m_Component:
   - component: {fileID: 6382385957587496827}
   - component: {fileID: 8650850464946276173}
+  - component: {fileID: 7939216612400268431}
+  - component: {fileID: 1199755741656981981}
   m_Layer: 19
   m_Name: Opening
   m_TagString: Untagged
@@ -5969,4 +6023,54 @@ MeshCollider:
   serializedVersion: 5
   m_Convex: 1
   m_CookingOptions: 30
+  m_Mesh: {fileID: 10206, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!23 &7939216612400268431
+MeshRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8214813339315553915}
+  m_Enabled: 0
+  m_CastShadows: 1
+  m_ReceiveShadows: 1
+  m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
+  m_MotionVectors: 1
+  m_LightProbeUsage: 1
+  m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 2
+  m_RayTraceProcedural: 0
+  m_RenderingLayerMask: 1
+  m_RendererPriority: 0
+  m_Materials:
+  - {fileID: -8309319643020345216, guid: 7ab6f3b0fd1a6ba41b2a47766c16613f, type: 3}
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
+  m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_StitchLightmapSeams: 1
+  m_SelectedEditorRenderState: 3
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 0
+  m_AdditionalVertexStreams: {fileID: 0}
+--- !u!33 &1199755741656981981
+MeshFilter:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8214813339315553915}
   m_Mesh: {fileID: 10206, guid: 0000000000000000e000000000000000, type: 0}
