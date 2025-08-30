@@ -3,8 +3,15 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.XR.Interaction.Toolkit;
 
+
+
 public class Inspect_Glassware : TaskStep
 {
+    public static bool IsRunningOnWebGL()
+    {
+        return Application.platform == RuntimePlatform.WebGLPlayer;
+    }
+
     #region Variables
     List<GlasswareItem> glasswareItems = new List<GlasswareItem>(); // List to hold all glassware items in the scene.
 
@@ -28,6 +35,7 @@ public class Inspect_Glassware : TaskStep
     {
         //This cursed line of code needs fixed it makes the whole script fail if not in WebGl mode.
         //isWebGL = GameObject.Find("Glassware Use").GetComponent<Glassware_Use_Overview>().isWebGL;
+	isWebGL = IsRunningOnWebGL();
 
         GameEventsManager.instance.inputEvents.onWebGLSkipTask += SkipTask;
 

@@ -5,6 +5,12 @@ using UnityEngine.XR.Interaction.Toolkit;
 
 public class Inspect_Glassware_And_Dispose : TaskStep
 {
+    public static bool IsRunningOnWebGL()
+        {
+	        return Application.platform == RuntimePlatform.WebGLPlayer;
+		    }
+
+
     #region Variables
     List<GlasswareItem> glasswareItems = new List<GlasswareItem>(); // List to hold all glassware items in the scene.
 
@@ -31,7 +37,7 @@ public class Inspect_Glassware_And_Dispose : TaskStep
     void OnEnable()
     {
         //This cursed line of code needs fixed it makes the whole script fail if not in WebGl mode.
-        //isWebGL = GameObject.Find("Glassware Use").GetComponent<Glassware_Use_Overview>().isWebGL;
+        isWebGL = IsRunningOnWebGL();
         GameEventsManager.instance.inputEvents.onWebGLSkipTask += SkipTask;
         trashCan = GameObject.Find("glassDisposalTrash");
         gD = trashCan.GetComponentInChildren<GlassDisposal>();
