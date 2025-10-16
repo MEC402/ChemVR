@@ -24,13 +24,13 @@ public class AddGloves : MonoBehaviour
     }
     private void OnEnable()
     {
-        GameEventsManager.instance.inputEvents.onAButtonPressed += OnAPress;
-        GameEventsManager.instance.inputEvents.onXButtonPressed += OnXPress;
+        GameEventsManager.instance.inputEvents.onRTriggerPressed += OnAPress;
+        GameEventsManager.instance.inputEvents.onLTriggerPressed += OnXPress;
     }
     private void OnDisable()
     {
-        GameEventsManager.instance.inputEvents.onAButtonPressed -= OnAPress;
-        GameEventsManager.instance.inputEvents.onXButtonPressed -= OnXPress;
+        GameEventsManager.instance.inputEvents.onRTriggerPressed -= OnAPress;
+        GameEventsManager.instance.inputEvents.onLTriggerPressed -= OnXPress;
     }
 
     void OnAPress(InputAction.CallbackContext context)

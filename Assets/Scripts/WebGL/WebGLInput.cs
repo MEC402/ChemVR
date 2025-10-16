@@ -47,7 +47,7 @@ public class WebGLInput : MonoBehaviour
         interact.action.canceled += ctx => InteractCanceledHandler(ctx);
 
         use.action.performed += ctx => UseHandler(ctx);
-        use.action.performed += ctx => GameEventsManager.instance.inputEvents.AButtonPressed(ctx);
+        use.action.performed += ctx => GameEventsManager.instance.inputEvents.RTriggerPressed(ctx);
         use.action.canceled += ctx => UseCanceledHandler(ctx);
 
         rotate.action.performed += ctx => RotateHandler(ctx);

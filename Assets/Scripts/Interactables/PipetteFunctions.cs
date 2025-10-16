@@ -81,21 +81,21 @@ public class PipetteFunctions : MonoBehaviour
         switch (currentHand)
         {
             case HandType.Left:
-                GameEventsManager.instance.inputEvents.onXButtonPressed += OnXButtonPressed;
+                GameEventsManager.instance.inputEvents.onLTriggerPressed += onLTriggerPressed;
                 break;
             case HandType.Right:
-                GameEventsManager.instance.inputEvents.onAButtonPressed += OnAButtonPressed;
+                GameEventsManager.instance.inputEvents.onRTriggerPressed += onRTriggerPressed;
                 break;
         }
     }
 
     private void DisableButtonListeners()
     {
-        GameEventsManager.instance.inputEvents.onAButtonPressed -= OnAButtonPressed;
-        GameEventsManager.instance.inputEvents.onXButtonPressed -= OnXButtonPressed;
+        GameEventsManager.instance.inputEvents.onRTriggerPressed -= onRTriggerPressed;
+        GameEventsManager.instance.inputEvents.onLTriggerPressed -= onLTriggerPressed;
     }
 
-    private void OnAButtonPressed(InputAction.CallbackContext context)
+    private void onRTriggerPressed(InputAction.CallbackContext context)
     {
         if (isHeld && currentHand == HandType.Right)
         {
@@ -103,7 +103,7 @@ public class PipetteFunctions : MonoBehaviour
         }
     }
 
-    private void OnXButtonPressed(InputAction.CallbackContext context)
+    private void onLTriggerPressed(InputAction.CallbackContext context)
     {
         if (isHeld && currentHand == HandType.Left)
         {

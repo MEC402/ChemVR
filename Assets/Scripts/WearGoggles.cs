@@ -23,8 +23,8 @@ public class WearGoggles : MonoBehaviour
             rHandRen = rightHand.GetComponent<Renderer>();
 
         wearing = false;
-        GameEventsManager.instance.inputEvents.onAButtonPressed += OnAPress;
-        GameEventsManager.instance.inputEvents.onXButtonPressed += OnXPress;
+        GameEventsManager.instance.inputEvents.onRTriggerPressed += OnAPress;
+        GameEventsManager.instance.inputEvents.onLTriggerPressed += OnXPress;
     }
 
     private void OnXPress(InputAction.CallbackContext obj)

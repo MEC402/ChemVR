@@ -114,7 +114,7 @@ public class JarLid : MonoBehaviour
         {
             UsesGravity(true);
             isHeld = true;
-            GameEventsManager.instance.inputEvents.onAButtonPressed += ResetLid;
+            GameEventsManager.instance.inputEvents.onRTriggerPressed += ResetLid;
         }
 
     }
@@ -136,7 +136,7 @@ public class JarLid : MonoBehaviour
             UsesGravity(true);
          }
             isHeld = false;
-            GameEventsManager.instance.inputEvents.onAButtonPressed -= ResetLid;
+            GameEventsManager.instance.inputEvents.onRTriggerPressed -= ResetLid;
         }
     }
 
@@ -204,7 +204,7 @@ public class JarLid : MonoBehaviour
                     webGrab.ForceReleaseObject();
                     UsesGravity(false);
                     isHeld = false;
-                    GameEventsManager.instance.inputEvents.onAButtonPressed -= ResetLid;
+                    GameEventsManager.instance.inputEvents.onRTriggerPressed -= ResetLid;
                 }
             }
 
