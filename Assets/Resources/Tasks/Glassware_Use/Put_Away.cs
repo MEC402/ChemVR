@@ -9,20 +9,23 @@ public class Put_Away : TaskStep
     {
         throw new System.NotImplementedException();
     }
-    private void Update()
+    /*private void Update()
     {
         if (Keyboard.current.cKey.wasPressedThisFrame)
         {
             FinishTaskStep();
         }
-    }
+    }*/
     void OnEnable()
     {
-        GameEventsManager.instance.inputEvents.onAButtonPressed += SkipTask;
+        GameEventsManager.instance.miscEvents.OnObjsPutAway += FinishTaskStep;
+        GameEventsManager.instance.inputEvents.onWebGLSkipTask += SkipTask;
     }
     void OnDisable()
     {
-        GameEventsManager.instance.inputEvents.onAButtonPressed -= SkipTask;
+        GameEventsManager.instance.miscEvents.OnObjsPutAway -= FinishTaskStep;
+        GameEventsManager.instance.inputEvents.onWebGLSkipTask -= SkipTask;
+
     }
     private void SkipTask(InputAction.CallbackContext obj)
     {

@@ -18,11 +18,15 @@ public class Scrub_With_Brush : TaskStep
     }
     void OnEnable()
     {
-        GameEventsManager.instance.inputEvents.onAButtonPressed += SkipTask;
+        //GameEventsManager.instance.inputEvents.onAButtonPressed += SkipTask;
+        GameEventsManager.instance.miscEvents.OnScrubWithBrush += FinishTaskStep;
+        GameEventsManager.instance.inputEvents.onWebGLSkipTask += SkipTask;
     }
     void OnDisable()
     {
-        GameEventsManager.instance.inputEvents.onAButtonPressed -= SkipTask;
+        //GameEventsManager.instance.inputEvents.onAButtonPressed -= SkipTask;
+        GameEventsManager.instance.miscEvents.OnScrubWithBrush -= FinishTaskStep;
+        GameEventsManager.instance.inputEvents.onWebGLSkipTask -= SkipTask;
     }
     private void SkipTask(InputAction.CallbackContext obj)
     {

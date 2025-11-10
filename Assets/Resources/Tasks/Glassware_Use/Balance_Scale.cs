@@ -11,15 +11,13 @@ public class Balance_Scale : TaskStep
     void OnEnable()
     {
         GameEventsManager.instance.miscEvents.OnScalePowerOn += FinishTaskStep;
-
-        GameEventsManager.instance.inputEvents.onAButtonPressed += SkipTask;
+        GameEventsManager.instance.inputEvents.onWebGLSkipTask += SkipTask;
     }
 
     void OnDisable()
     {
         GameEventsManager.instance.miscEvents.OnScalePowerOn -= FinishTaskStep;
-
-        GameEventsManager.instance.inputEvents.onAButtonPressed -= SkipTask;
+        GameEventsManager.instance.inputEvents.onWebGLSkipTask += SkipTask;
     }
 
     private void SkipTask(InputAction.CallbackContext context)

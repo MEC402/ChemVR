@@ -24,10 +24,12 @@ public class PourActivator : MonoBehaviour
     }
 
     public void Activate() {
+        //Debug.Log("active called in activator script.");
         activated = true;
     }
 
     public void Deactivate() {
+       // Debug.Log("deactivate called in activator script.");
         activated = false;
     }
 

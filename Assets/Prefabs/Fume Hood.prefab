@@ -350,6 +350,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   doorOpenScript: {fileID: 8358255763897917910}
   isVR: 1
+  info: For functionality in VR, set the toggle isVR = true & make sure the 'left
+    hand model' --> Left Controller > Left Hand > Hand > hands:hands_geom > left
+    hand model & 'right hand model' right Controller > right Hand > Hand > hands:hands_geom
+    > right hand model have the Player tag
 --- !u!54 &886920000664685973
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -1569,6 +1573,7 @@ GameObject:
   - component: {fileID: 6746399176962195131}
   - component: {fileID: 7595488984101649971}
   - component: {fileID: 8359633939050018575}
+  - component: {fileID: 3514488291856929411}
   m_Layer: 0
   m_Name: mesa
   m_TagString: Untagged
@@ -1662,3 +1667,24 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 0.009609727, y: 0.017618468, z: 0.00027499808}
   m_Center: {x: -0.00014309003, y: -3.725309e-11, z: -0.007815482}
+--- !u!65 &3514488291856929411
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9167046379599138130}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 0.009609727, y: 0.017618468, z: 0.00094506575}
+  m_Center: {x: -0.00014308274, y: 0.000000007748604, z: -0.0074804923}

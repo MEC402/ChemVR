@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-public class InputEvents 
+public class InputEvents
 {
     public event Action<InputAction.CallbackContext> onXButtonPressed;
     public void XButtonPressed(InputAction.CallbackContext context)
@@ -12,7 +12,7 @@ public class InputEvents
         if (onXButtonPressed != null)
         {
             onXButtonPressed(context);
-        }        
+        }
     }
 
     public event Action<InputAction.CallbackContext> onYButtonPressed;
@@ -202,6 +202,15 @@ public class InputEvents
         if (onPauseButtonReleased != null)
         {
             onPauseButtonReleased(context);
+        }
+    }
+
+    public event Action<InputAction.CallbackContext> onWebGLSkipTask;
+    public void WebGLSkipTask(InputAction.CallbackContext context)
+    {
+        if (onWebGLSkipTask != null)
+        {
+            onWebGLSkipTask(context);
         }
     }
 }

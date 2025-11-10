@@ -5,27 +5,26 @@ using UnityEngine.InputSystem;
 
 public class Mix_With_Water : TaskStep
 {
+    private bool isWaterinBeaker = false;
     protected override void SetTaskStepState(string state)
     {
         throw new System.NotImplementedException();
     }
-    private void Update()
-    {
-        if (Keyboard.current.cKey.wasPressedThisFrame)
-        {
-            FinishTaskStep();
-        }
-    }
     void OnEnable()
     {
-        GameEventsManager.instance.inputEvents.onAButtonPressed += SkipTask;
+        GameEventsManager.instance.miscEvents.OnStirBeaker += FinishTaskStep; 
+        GameEventsManager.instance.inputEvents.onWebGLSkipTask += SkipTask;
+
     }
     void OnDisable()
     {
-        GameEventsManager.instance.inputEvents.onAButtonPressed -= SkipTask;
+        GameEventsManager.instance.miscEvents.OnStirBeaker -= FinishTaskStep; 
+        GameEventsManager.instance.inputEvents.onWebGLSkipTask -= SkipTask;
     }
-    private void SkipTask(InputAction.CallbackContext obj)
+
+   private void SkipTask(InputAction.CallbackContext obj)
     {
         FinishTaskStep();
     }
+
 }

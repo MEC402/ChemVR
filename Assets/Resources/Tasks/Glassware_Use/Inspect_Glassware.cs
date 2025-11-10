@@ -3,19 +3,24 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.XR.Interaction.Toolkit;
 
+
+
 public class Inspect_Glassware : TaskStep
 {
+    public static bool IsRunningOnWebGL()
+    {
+        return Application.platform == RuntimePlatform.WebGLPlayer;
+    }
+
     #region Variables
     List<GlasswareItem> glasswareItems = new List<GlasswareItem>(); // List to hold all glassware items in the scene.
 
     // Array of glassware names to be inspected. These names should match the names of the GameObjects in the scene. If you add more glassware, add them to this array.
     private readonly string[] glasswareNames =
     {
-        "volumetricFlaskWrapLabel250mL_1",
-        "volumetricFlaskWrapLabel250mL_2",
-        "volumetricFlaskWrapLabel250mL_3",
-        "BeakerUp500mL_Glassware"
-    };
+        "BeakerUp250mL_largerText"    };
+
+
 
     bool isWebGL = false;
     #endregion
@@ -28,9 +33,12 @@ public class Inspect_Glassware : TaskStep
     #region Unity Methods
     void OnEnable()
     {
-        isWebGL = GameObject.Find("Glassware Use").GetComponent<Glassware_Use_Overview>().isWebGL;
+        //This cursed line of code needs fixed it makes the whole script fail if not in WebGl mode.
+        //isWebGL = GameObject.Find("Glassware Use").GetComponent<Glassware_Use_Overview>().isWebGL;
+	isWebGL = IsRunningOnWebGL();
 
-        GameEventsManager.instance.inputEvents.onAButtonPressed += SkipTask;
+        GameEventsManager.instance.inputEvents.onWebGLSkipTask += SkipTask;
+
 
         if (isWebGL)
             GameEventsManager.instance.webGLEvents.OnObjectGrabbed += WebGLInspectObject; // Subscribe to the WebGL event for object grabbing.
@@ -62,7 +70,7 @@ public class Inspect_Glassware : TaskStep
 
     void OnDisable()
     {
-        GameEventsManager.instance.inputEvents.onAButtonPressed -= SkipTask;
+        GameEventsManager.instance.inputEvents.onWebGLSkipTask -= SkipTask;
 
         if (!isWebGL)
         {

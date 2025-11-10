@@ -12,6 +12,15 @@ public class ChemistryEvents
         }
     }
 
+    public event Action<PipetteFunctions, ChemContainer, ChemFluid> onPipetteDispense;
+    public void PipetteDispense(PipetteFunctions origin, ChemContainer container, ChemFluid portion)
+    {
+        if (onPipetteDispense != null)
+        {
+            onPipetteDispense(origin, container, portion);
+        }
+    }
+
     public event Action<ChemContainer, ChemFluid> onPourIn;
     public void PourIn(ChemContainer recipient, ChemFluid portion) {
         if (onPourIn != null) {

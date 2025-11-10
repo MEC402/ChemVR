@@ -313,12 +313,36 @@ public class ChemContainer : MonoBehaviour {
     {
         return chemFluid.ContentsToString();
     }
+    public Chem[] GetChemFluid(float pipetteVolume)
+    {
+        Chem[] currentChems = chemFluid.GetChemArray();
+        Chem[] adjustedVolumes = new Chem[currentChems.Length];
 
-    public void SelectEnter(XRBaseInteractable interactable) {
+        for (int i = 0; i < currentChems.Length; i++)
+        {
+            adjustedVolumes[i] = new Chem(currentChems[i].type, pipetteVolume * (currentChems[i].volume / chemFluid.totalVolume));
+        }
+       return adjustedVolumes;
+    }
+
+    public ChemFluid GetChemFluid() => chemFluid;
+
+    public void SelectEnter(XRBaseInteractable interactable)
+    {
         GameEventsManager.instance.interactableEvents.PlayerGrabInteractable(gameObject);
     }
 
     public void SelectExit(XRBaseInteractable interactable) {
         GameEventsManager.instance.interactableEvents.PlayerDropInteractable(gameObject);
     }
+
+    public void AddChem(ChemType type, float amount) => chemFluid.Add(type, amount);
+
+    public void UpdateChem()
+    {
+        currentVolume = chemFluid.totalVolume;
+        internalFluid.fill = (flags.infiniteFluid) ? 1 : currentVolume / maxVolume;
+    }
+    public void EmptyChem() => chemFluid.SetToEmpty();
+
 }

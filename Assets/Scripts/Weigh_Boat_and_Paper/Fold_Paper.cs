@@ -57,8 +57,8 @@ public class Fold_Paper : MonoBehaviour
         }
             if (!folded)
         {
-            GameEventsManager.instance.inputEvents.onAButtonPressed += FoldPaper;
-            GameEventsManager.instance.inputEvents.onXButtonPressed += FoldPaper;
+            GameEventsManager.instance.inputEvents.onRTriggerPressed += FoldPaper;
+            GameEventsManager.instance.inputEvents.onLTriggerPressed += FoldPaper;
         }
     }
 
@@ -66,15 +66,15 @@ public class Fold_Paper : MonoBehaviour
     {
         if (!folded)
         {
-            GameEventsManager.instance.inputEvents.onAButtonPressed -= FoldPaper;
-            GameEventsManager.instance.inputEvents.onXButtonPressed -= FoldPaper;
+            GameEventsManager.instance.inputEvents.onRTriggerPressed -= FoldPaper;
+            GameEventsManager.instance.inputEvents.onLTriggerPressed -= FoldPaper;
         }
     }
 
     private void FoldPaper(InputAction.CallbackContext obj)
     {
-        GameEventsManager.instance.inputEvents.onAButtonPressed -= FoldPaper;
-        GameEventsManager.instance.inputEvents.onXButtonPressed -= FoldPaper;
+        GameEventsManager.instance.inputEvents.onRTriggerPressed -= FoldPaper;
+        GameEventsManager.instance.inputEvents.onLTriggerPressed -= FoldPaper;
         folded = true;
 
         //Fold the paper

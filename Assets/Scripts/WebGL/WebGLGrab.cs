@@ -90,7 +90,6 @@ public class WebGLGrab : MonoBehaviour
     {
         // Default icon if nothing is detected
         // playerIcon.sprite = defaultIcon;
-
         if (!mainCamera) return;
         if (!playerIcon.enabled) playerIcon.enabled = true;
 
@@ -99,6 +98,10 @@ public class WebGLGrab : MonoBehaviour
 
         if (Physics.SphereCast(centerRay, 0.01f, out RaycastHit hit, grabRange, ~0, QueryTriggerInteraction.Ignore))
         {
+            //Debug.Log("HIT");
+            //Debug.Log(hit.collider.gameObject.name);
+            //Debug.Log(hit.collider.gameObject.tag);
+            //Debug.Log("HIT2");
             if (interactableLayer == (interactableLayer | (1 << hit.collider.gameObject.layer)))
                 playerIcon.sprite = interactIcon;
             else if (holdableLayer == (holdableLayer | (1 << hit.collider.gameObject.layer)))
@@ -182,6 +185,7 @@ public class WebGLGrab : MonoBehaviour
         // Trigger the object released event
         GameEventsManager.instance.webGLEvents.ObjectReleased(heldObject.gameObject);
 
+
         heldObject = null;
         isHoldingObject = false;
 
@@ -189,6 +193,7 @@ public class WebGLGrab : MonoBehaviour
 
         // Update the icon
         playerIcon.sprite = defaultIcon;
+
     }
     #endregion
 
@@ -199,8 +204,10 @@ public class WebGLGrab : MonoBehaviour
     /// <param name="hit">The RaycastHit from the raycast.</param>
     private void ProcessHoldableObject(RaycastHit hit)
     {
+        //Transform heldObject = null;
         heldObject = hit.collider.transform;
         isHoldingObject = true;
+        objectRotationController.ReceiveHeldObject(heldObject); // returning the transform to ORC to find the name and perform rotations from there. Does this line need to go below the parent info for that stuff to run?
 
         if (heldObject.TryGetComponent<Rigidbody>(out var rb))
         {
@@ -226,6 +233,7 @@ public class WebGLGrab : MonoBehaviour
         objectRotationController.objectToRotate = heldObject;
 
         playerIcon.sprite = closedIcon;
+
     }
 
     /// <summary>
@@ -235,13 +243,15 @@ public class WebGLGrab : MonoBehaviour
     private void ProcessInteractableObject(RaycastHit hit)
     {
         var hitObject = hit.collider.gameObject;
-
+        Debug.Log(hitObject);
         // Trigger the interactable object event
         GameEventsManager.instance.webGLEvents.InteractPressed(hitObject);
 
         // Keep these checks for not breaking older module
         if (hitObject.TryGetComponent(out WearGoggles wearGoggles))
+        {
             wearGoggles.WebPutOn();
+        }
         else if (hitObject.TryGetComponent(out WearCoat wearCoat))
             wearCoat.WebPutOn();
         else if (hitObject.TryGetComponent(out AddGloves addGloves))
@@ -254,6 +264,10 @@ public class WebGLGrab : MonoBehaviour
             doorOpen.ToggleOpen();
         else if (hitObject.TryGetComponent(out StopcockController stopcockController))
             StopCockAdjuster(stopcockController);
+        else if (hitObject.TryGetComponent(out ToggleSink toggleSink))
+            toggleSink.ToggleOpen();
+        else if (hitObject.TryGetComponent(out ToggleSinkR toggleSinkR))
+            toggleSinkR.ToggleOpen();
     }
 
     /// <summary>
@@ -275,6 +289,14 @@ public class WebGLGrab : MonoBehaviour
         if (!heldObject) return;
 
         heldObject.position = holdPoint.position;
+    }
+
+    public void ForceReleaseObject()
+    {
+        if (isHoldingObject && heldObject != null)
+        {
+            AttemptRelease();
+        }
     }
     #endregion
 }

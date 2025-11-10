@@ -71,16 +71,17 @@ public class SnapBulbToPipet : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.name.Contains("ipette") && !snap)
+        if (other.gameObject.CompareTag("PipetteBulb") && !snap)
         {
             pipet = other.gameObject;
             touching = true;
+            GameEventsManager.instance.miscEvents.PippetConnectedFirst();
         }
     }
 
     private void OnTriggerExit(Collider other)
     {
-        if (other.name.Contains("ipette"))
+        if (other.gameObject.CompareTag("PipetteBulb"))
         {
             touching = false;
             if (isGrabbed)

@@ -15,14 +15,14 @@ public class Change_Unit : TaskStep
     {
         GameEventsManager.instance.miscEvents.OnScaleModeChanged += CheckScaleMode;
 
-        GameEventsManager.instance.inputEvents.onAButtonPressed += SkipTask;
+        GameEventsManager.instance.inputEvents.onWebGLSkipTask += SkipTask;
     }
 
     void OnDisable()
     {
         GameEventsManager.instance.miscEvents.OnScaleModeChanged -= CheckScaleMode;
-
-        GameEventsManager.instance.inputEvents.onAButtonPressed += SkipTask;
+        GameEventsManager.instance.inputEvents.onWebGLSkipTask -= SkipTask;
+    
     }
 
     private void SkipTask(InputAction.CallbackContext context)

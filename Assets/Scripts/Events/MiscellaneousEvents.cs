@@ -44,6 +44,9 @@ public class MiscellaneousEvents
         }
     }
 
+    public event Action onHandsinWater;
+    public void HandsinWater() => onHandsinWater!.Invoke();
+
     // Burret related events
     public event Action<GameObject, GameObject> onBuretSnaptoHolder;
     public void BuretSnaptoHolder(GameObject buret, GameObject holder)
@@ -152,7 +155,23 @@ public class MiscellaneousEvents
     public event Action OnCleanScale;
     public void CleanScale() => OnCleanScale?.Invoke();
 
-    
+    public event Action OnPippetConnectedFirst;
+    public void PippetConnectedFirst() => OnPippetConnectedFirst?.Invoke();
+
+    public event Action OnPippetConnectedSecond;
+    public void PippetConnectedSecond() => OnPippetConnectedSecond?.Invoke();
+
+    public event Action OnHoodSashHeightSet;
+    public void HoodSashHeightSet() => OnHoodSashHeightSet?.Invoke();
+
+    public event Action OnObjsBroughtToHood;
+    public void ObjectsBroughtToHood() => OnObjsBroughtToHood?.Invoke();
+
+    public event Action OnObjsPutAway;
+    public void ObjsPutAway() => OnObjsPutAway?.Invoke();
+
+
+
 
     // Flask & Beaker related events
     public event Action<bool> OnEnableFlaskTrigger;
@@ -163,6 +182,16 @@ public class MiscellaneousEvents
 
     public event Action OnStirBeaker;
     public void StirBeaker() => OnStirBeaker?.Invoke(); //see StirWithStirRod.cs under scripts folder
+
+    public event Action OnScrubWithBrush;
+    public void ScrubWithBrush() => OnScrubWithBrush?.Invoke();
+
+    //HotPlate Related Events
+    public event Action OnBeakerOnHotPlate;
+    public void BeakerOnHotPlate() => OnBeakerOnHotPlate?.Invoke();
+
+    public event Action OnBeakerToLevelThree;
+    public void BeakerToLevelThree() => OnBeakerToLevelThree?.Invoke();
 
     //Scale Related Events
     #region Scale Events
@@ -193,7 +222,7 @@ public class MiscellaneousEvents
     public event Action<bool> OnPaperInBoat; //see Put_Paper_on_Boat.cs on "weight_paper_small/medium"
     public void PaperInBoat(bool inBoat) => OnPaperInBoat?.Invoke(inBoat);
 
-    
+
 
     #endregion
 

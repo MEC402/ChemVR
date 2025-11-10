@@ -18,7 +18,7 @@ public class Add_WeighBoat : TaskStep
         GameEventsManager.instance.miscEvents.OnPaperInBoat += SetPaperInBoat;
         GameEventsManager.instance.miscEvents.OnObjectOnScale += CheckFinishTaskStep;
 
-        GameEventsManager.instance.inputEvents.onAButtonPressed += SkipTask;
+        GameEventsManager.instance.inputEvents.onWebGLSkipTask += SkipTask;
     }
 
     private void SkipTask(InputAction.CallbackContext context)
@@ -31,7 +31,7 @@ public class Add_WeighBoat : TaskStep
         GameEventsManager.instance.miscEvents.OnPaperInBoat -= SetPaperInBoat;
         GameEventsManager.instance.miscEvents.OnObjectOnScale -= CheckFinishTaskStep;
 
-        GameEventsManager.instance.inputEvents.onAButtonPressed -= SkipTask;
+        GameEventsManager.instance.inputEvents.onWebGLSkipTask -= SkipTask;
     }
 
     /// <summary>

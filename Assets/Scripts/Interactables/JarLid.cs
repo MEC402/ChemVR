@@ -1,10 +1,19 @@
+using System.Runtime.CompilerServices;
+using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.InputSystem;
 using UnityEngine.XR.Interaction.Toolkit;
-
 public class JarLid : MonoBehaviour
 {
     #region Variables
     [SerializeField] GameObject parentJar;
+
+    [SerializeField] Rigidbody jarRB;
+    [SerializeField] Rigidbody lidRB;
+
+    private FixedJoint joint;
+
+    private bool isHeld = false;
 
     Quaternion initialRotation; //initial rotation of the lid
     Vector3 initialPos; //initial position of the lid
@@ -25,9 +34,11 @@ public class JarLid : MonoBehaviour
         initialRotation = transform.localRotation;
         //initialPos = transform.localPosition;
         initialPos = new Vector3(0.00f, 0.00f, 0.0292f);
-           // Vector3(0, 0, 0.03391998);
+        // Vector3(0, 0, 0.03391998);
 
         UsesGravity(false);
+        lidRB = this.gameObject.GetComponent<Rigidbody>();
+
     }
 
     void OnEnable()
@@ -100,7 +111,12 @@ public class JarLid : MonoBehaviour
     private void WebGLGrab(GameObject grabbedObject)
     {
         if (grabbedObject == gameObject)
+        {
             UsesGravity(true);
+            isHeld = true;
+            GameEventsManager.instance.inputEvents.onRTriggerPressed += ResetLid;
+        }
+
     }
 
     /// <summary>
@@ -112,7 +128,15 @@ public class JarLid : MonoBehaviour
         if (releasedObject == gameObject)
         {
             if (touching)
-                UsesGravity(false);
+            {
+                 UsesGravity(false);
+             }
+            else
+            {
+            UsesGravity(true);
+         }
+            isHeld = false;
+            GameEventsManager.instance.inputEvents.onRTriggerPressed -= ResetLid;
         }
     }
 
@@ -126,9 +150,9 @@ public class JarLid : MonoBehaviour
         if (TryGetComponent<Rigidbody>(out var rb))
             rb.useGravity = useGravity;
 
-       /* // Reset scale if it has changed
-        if (transform.localScale != new Vector3(5, 5, 5))
-            transform.localScale = new Vector3(5, 5, 5);*/
+        /* // Reset scale if it has changed
+         if (transform.localScale != new Vector3(5, 5, 5))
+             transform.localScale = new Vector3(5, 5, 5);*/
 
         if (!useGravity)
         {
@@ -140,17 +164,51 @@ public class JarLid : MonoBehaviour
 
             transform.SetLocalPositionAndRotation(initialPos, initialRotation);
 
+            joint = lidRB.gameObject.AddComponent<FixedJoint>();
+            joint.connectedBody = jarRB;
+
+
+
             // Freeze pos and rotation
-            rb.constraints = RigidbodyConstraints.FreezeAll;
+
         }
         else
         {
+            //rb.isKinematic = false;
             rb.constraints = RigidbodyConstraints.None;
             transform.SetParent(null);
+            if (joint != null)
+            {
+                Destroy(joint);
+                joint = null;
+            }
+
         }
 
         // Trigger the jar closed event
         GameEventsManager.instance.miscEvents.JarClosed(parentJar, !useGravity);
+    }
+    
+
+
+    public void ResetLid(InputAction.CallbackContext context)
+    {
+        if (isHeld)
+        {
+            GameObject player = GameObject.Find("FP Player");
+            if (player != null)
+            {
+                WebGLGrab webGrab = player.GetComponent<WebGLGrab>();
+                if (webGrab != null)
+                {
+                    webGrab.ForceReleaseObject();
+                    UsesGravity(false);
+                    isHeld = false;
+                    GameEventsManager.instance.inputEvents.onRTriggerPressed -= ResetLid;
+                }
+            }
+
+        }
     }
     #endregion
 }
