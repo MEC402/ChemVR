@@ -15,7 +15,7 @@ public class SnapBulbToPipet : MonoBehaviour
     private GameObject pipet; //the pipet gameobject
 
     // ADDED FOR TESTING
-    Vector3 OGbulbTranslation = new Vector3(0, 0, -0.22f);
+    Vector3 OGbulbTranslation = new Vector3(0, 0, -0.025f);
 
     private void Update()
     {
@@ -96,11 +96,13 @@ public class SnapBulbToPipet : MonoBehaviour
     }
     private void OnGrab(SelectEnterEventArgs arg0)
     {
+        myRb.constraints = RigidbodyConstraints.None;
         isGrabbed = true;
         LetGo();
     }
     private void OnRelease(SelectExitEventArgs arg0)
     {
+        myRb.constraints = RigidbodyConstraints.FreezeRotation;
         isGrabbed = false;
         if (touching)
         {
@@ -112,4 +114,6 @@ public class SnapBulbToPipet : MonoBehaviour
             LetGo();
         }
     }
+
+
 }
