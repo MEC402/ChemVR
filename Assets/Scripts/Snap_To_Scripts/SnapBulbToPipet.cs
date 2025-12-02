@@ -12,7 +12,7 @@ public class SnapBulbToPipet : MonoBehaviour
     private bool touching; //is this collider touching a pipet collieder?
     private bool snap; //is this bulb gameObject attached to a pipet?
     private bool isGrabbed; //is the bulb grabbed? (so pipet doesn't detach unless intentional)
-    private GameObject pipet; //the pipet gameobject
+    [SerializeField] private GameObject pipet; //the pipet gameobject
 
     // ADDED FOR TESTING
     Vector3 OGbulbTranslation = new Vector3(0, 0, -0.025f);
@@ -60,7 +60,6 @@ public class SnapBulbToPipet : MonoBehaviour
     private void LetGo()
     {
         snap = false;
-        pipet = null;
         myRb.useGravity = true;
     }
     private void OnDisable()
