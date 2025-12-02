@@ -12,6 +12,7 @@ public class WearGoggles : MonoBehaviour
     private Renderer lHandRen;
     private Renderer rHandRen;
     static private bool wearing;
+    private bool isOverlapping;
 
     void Start()
     {
@@ -29,7 +30,7 @@ public class WearGoggles : MonoBehaviour
 
     private void OnXPress(InputAction.CallbackContext obj)
     {
-        if (IsTouching(lHandRen))
+        if (IsTouching(lHandRen) || isOverlapping)
         {
             PutOn();
         }
@@ -37,7 +38,7 @@ public class WearGoggles : MonoBehaviour
 
     private void OnAPress(InputAction.CallbackContext obj)
     {
-        if (IsTouching(rHandRen))
+        if (IsTouching(rHandRen) || isOverlapping)
         {
             PutOn();
         }
@@ -71,6 +72,11 @@ public class WearGoggles : MonoBehaviour
     static public bool IsWearing()
     {
         return wearing;
+    }
+
+    public void SetOverlapping(bool state)
+    {
+        isOverlapping = state;
     }
 
 

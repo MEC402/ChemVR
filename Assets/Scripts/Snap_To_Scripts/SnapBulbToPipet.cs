@@ -12,10 +12,10 @@ public class SnapBulbToPipet : MonoBehaviour
     private bool touching; //is this collider touching a pipet collieder?
     private bool snap; //is this bulb gameObject attached to a pipet?
     private bool isGrabbed; //is the bulb grabbed? (so pipet doesn't detach unless intentional)
-    private GameObject pipet; //the pipet gameobject
+    [SerializeField] private GameObject pipet; //the pipet gameobject
 
     // ADDED FOR TESTING
-    Vector3 OGbulbTranslation = new Vector3(0, 0, -0.22f);
+    Vector3 OGbulbTranslation = new Vector3(0, 0, -0.025f);
 
     private void Update()
     {
@@ -60,7 +60,6 @@ public class SnapBulbToPipet : MonoBehaviour
     private void LetGo()
     {
         snap = false;
-        pipet = null;
         myRb.useGravity = true;
     }
     private void OnDisable()
@@ -96,11 +95,13 @@ public class SnapBulbToPipet : MonoBehaviour
     }
     private void OnGrab(SelectEnterEventArgs arg0)
     {
+        myRb.constraints = RigidbodyConstraints.None;
         isGrabbed = true;
         LetGo();
     }
     private void OnRelease(SelectExitEventArgs arg0)
     {
+        myRb.constraints = RigidbodyConstraints.FreezeRotation;
         isGrabbed = false;
         if (touching)
         {
@@ -112,4 +113,6 @@ public class SnapBulbToPipet : MonoBehaviour
             LetGo();
         }
     }
+
+
 }

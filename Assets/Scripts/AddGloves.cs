@@ -14,6 +14,10 @@ public class AddGloves : MonoBehaviour
     private bool leftIsTouching;
     private bool rightIsTouching;
 
+    private enum HandType { None, Left, Right }
+    private HandType currentHand = HandType.None;
+
+
     void Start()
     {
         // Get and store the original material
@@ -89,5 +93,70 @@ public class AddGloves : MonoBehaviour
     {
         GameEventsManager.instance.miscEvents.PutOnLeftGlove();
         GameEventsManager.instance.miscEvents.PutOnRightGlove();
+    }
+
+
+
+
+        public void GetRayOverlap(HoverEnterEventArgs args)
+    {
+        if (args.interactorObject != null)
+        {
+            currentHand = DetermineGrabbingHand(args.interactorObject);
+        }
+        switch (currentHand)
+        {
+            case HandType.Left:
+                leftIsTouching = true;
+                break;
+            case HandType.Right:
+                rightIsTouching = true;
+                break; 
+        }
+    }
+    public void ResetRayOverlap(HoverExitEventArgs args)
+    {
+        if (args.interactorObject != null)
+        {
+            currentHand = DetermineGrabbingHand(args.interactorObject);
+        }
+        switch (currentHand)
+        {
+            case HandType.Left:
+                leftIsTouching = false;
+                break;
+            case HandType.Right:
+                rightIsTouching = false;
+                break; 
+        }
+        currentHand = HandType.None;
+    }
+
+
+        private HandType DetermineGrabbingHand(IXRInteractor interactor)
+    {
+        var controllerTransform = interactor.transform;
+
+        // Check transform hierarchy for left/right indicators
+        Transform current = controllerTransform;
+        while (current != null)
+        {
+            string name = current.name.ToLower();
+            if (name.Contains("left")) return HandType.Left;
+            if (name.Contains("right")) return HandType.Right;
+            current = current.parent;
+        }
+
+        // Check XRController component for handedness
+        var xrController = controllerTransform.GetComponentInParent<XRController>();
+        if (xrController != null)
+        {
+            var controllerNode = xrController.controllerNode;
+            if (controllerNode == UnityEngine.XR.XRNode.LeftHand) return HandType.Left;
+            if (controllerNode == UnityEngine.XR.XRNode.RightHand) return HandType.Right;
+        }
+
+        // Default to right hand
+        return HandType.Right;
     }
 }
