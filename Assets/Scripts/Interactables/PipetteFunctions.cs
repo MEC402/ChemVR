@@ -1,4 +1,5 @@
-
+using System.Runtime.CompilerServices;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.XR.Interaction.Toolkit;
@@ -9,8 +10,8 @@ public class PipetteFunctions : MonoBehaviour
     private bool isOverlapping = false;
     private GameObject currentContainer;
     [SerializeField] private ResizeFluid internalFluid;
-    [SerializeField] private GameObject bulbColliderObject;
-    private Collider bulbCollider;
+    [SerializeField] private GameObject bulbCollider;
+    [SerializeField] private PickupToggle pT;
     [SerializeField] private bool LockChemFluid = false;
     [SerializeField] private bool lockDispenseAmount = false;
     public bool isHeld = false;
@@ -22,10 +23,6 @@ public class PipetteFunctions : MonoBehaviour
     private enum HandType { None, Left, Right }
     private HandType currentHand = HandType.None;
 
-    private void Start()
-    {
-        bulbCollider = bulbColliderObject.GetComponent<SphereCollider>();
-    }
 
     public void OnGrabbed(SelectEnterEventArgs args)
     {
@@ -40,7 +37,7 @@ public class PipetteFunctions : MonoBehaviour
             currentHand = HandType.Right; // Default to right hand if interactor is null
             EnableHandSpecificButtonListener();
         }
-        bulbCollider.enabled = true; // Enable the bulb collider when grabbed
+        bulbCollider.SetActive(true); // Enable the bulb collider when grabbed
 
     }
 
@@ -49,7 +46,7 @@ public class PipetteFunctions : MonoBehaviour
         isHeld = false;
         DisableButtonListeners();
         currentHand = HandType.None;
-        bulbCollider.enabled = false; // Disable the bulb collider when released
+        bulbCollider.SetActive(false); // Disable the bulb collider when released
     }
 
     private HandType DetermineGrabbingHand(IXRInteractor interactor)

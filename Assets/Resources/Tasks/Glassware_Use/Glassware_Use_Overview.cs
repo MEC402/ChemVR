@@ -59,7 +59,7 @@ public class Glassware_Use_Overview : MonoBehaviour
     //replace the prefab's script with the one you want it to have
     //drag the prefab into the task step Prefabs array where the new step you added is
 
-    static string[] text = {/*0*/"Welcome!\nBefore we begin the lab, you need to put on your lab gear.\n\nYou should be wearing closed toed shoes and have your hair tied back.\n\nFind gloves, goggles, and a lab coat and put them on with the right or left triggers.",
+    static string[] text = {/*0*/"Welcome!\nBefore we begin the lab, you need to put on your lab gear.\n\nYou should be wearing closed toed shoes and have your hair tied back.\n\nFind gloves, goggles, and a lab coat and put them on with (X/A).",
                     //"For this lab, you will need to bring the required materials to a table in the blue zone, with tables labelled B:\nNote: Inspect all glassware for cracks or chips.\n\nStart with:\n3 250mL Volumetric Flasks.\n\n\nSkip with A", //disabled task step 2 (add to TaskInfoSO block and uncomment to undo)
                     //"Next bring:\n1 100mL Graduated Cylinder\n1 Glass Stir Rod\n1 10mL Volumetric Pipette\n to the table.\n\n\nSkip with A", //disabled task step 3 (add to TaskInfoSO block and uncomment to undo)
                     //"Finally you will need:\nSmall Weigh Boat With Paper\nCopper Sulfate\nPaper Towels\n\n\nSkip with A", //disabled task step 4 (add to TaskInfoSO block and uncomment to undo)
@@ -83,7 +83,7 @@ public class Glassware_Use_Overview : MonoBehaviour
                     /*14*/"Pour 50mL of DI water from the Graduated Cylinder into 250mL beaker.",
                     /*15*/"Mix copper sulfate and water with the glass stir rod.",
                     //"Mix copper sulfate and water with the glass stir rod and write down any chemical changes in your notebook.\n\n\nSkip with A",
-                    /*16*/"With the blue 15mL pipette, use the right trigger or left trigger on your controllers to fill each flask with 15mL of the Copper Sulfate & DI Water solution \n(found inside the 250mL beaker)",
+                    /*16*/"With the blue 15mL pipette, use the (A) button or (X) button on your controller to fill each flask with 15mL of the Copper Sulfate & DI Water solution \n(found inside the 250mL beaker)",
                     /*17*/"Then, using the red 10mL pipette, add to the flasks with 30mL, 40mL, & 50mL of DI water respectively.", //25, 35 & 45 are not divisible by 10 or 15 --> we could change this to 10, 20 & 30ml to reduce repetition on this step
                     ///*17*/"Fill flasks with 25mL, 35mL, 45mL water respectively and observe and record changes.\n\n\nSkip with A",
                     /*18*/"Time to clean up! Pre-rinse your glasses with tap water.\n\nYou will only need to clean the flasks, 250mL beaker, and graduated cylinder for this module.  \n\nIf the water doesn't fill the glassware, try turning the sink on more.",
