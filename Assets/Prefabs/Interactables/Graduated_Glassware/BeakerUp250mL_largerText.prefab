@@ -384,7 +384,7 @@ GameObject:
   - component: {fileID: 851044892459858773}
   - component: {fileID: 7255133138401768498}
   - component: {fileID: 2950506577674399145}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: BeakerUp250mL_largerText
   m_TagString: CanBoil
   m_Icon: {fileID: 0}
@@ -880,7 +880,7 @@ MeshCollider:
     m_Bits: 0
   m_ExcludeLayers:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 524416
   m_LayerOverridePriority: 0
   m_IsTrigger: 0
   m_ProvidesContacts: 0
@@ -902,6 +902,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   myCollider: {fileID: 7255133138401768498}
+  myRigidbody: {fileID: 0}
 --- !u!1 &8515411652611563606
 GameObject:
   m_ObjectHideFlags: 0
