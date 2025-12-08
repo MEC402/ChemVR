@@ -13,8 +13,6 @@ public class WearCoat : MonoBehaviour
     private Renderer rHandRen;
     static private bool wearing;
 
-    private bool isOverlapping;
-
     void Start()
     {
         itemRen = itemToWear.GetComponent<Renderer>();
@@ -55,8 +53,6 @@ public class WearCoat : MonoBehaviour
     {
         if (handRen == null)
             return false;
-        if (isOverlapping == true)
-            return true;
 
         // Check if the bounds of the renderers intersect
         return handRen.bounds.Intersects(itemRen.bounds);
@@ -81,11 +77,6 @@ public class WearCoat : MonoBehaviour
     static public bool IsWearing()
     {
         return wearing;
-    }
-
-    public void SetOverlap(bool state)
-    {
-        isOverlapping = state;
     }
 
 
