@@ -1,10 +1,13 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class PickupToggle : MonoBehaviour
 {
     [SerializeField] private Collider myCollider;
+    [SerializeField] private Rigidbody myRigidbody;
+    private bool rotationLocked = true;
     
 
 
@@ -33,7 +36,28 @@ public class PickupToggle : MonoBehaviour
         }
         else
         {
-            Debug.LogWarning("Cannot toggle collider because it is not assigned.");
+            Debug.LogWarning("Cannot toggle collider because it has not been assigned to script.");
+        }
+    }
+
+    public void ToggleZRotation()
+    {
+        if(myRigidbody != null)
+        {
+            if(rotationLocked == true)
+            {
+                myRigidbody.constraints = RigidbodyConstraints.None;
+                rotationLocked = false;
+            }
+            else if(rotationLocked == false)
+            {
+                myRigidbody.constraints = RigidbodyConstraints.FreezeRotationZ;
+                rotationLocked = true;
+            }
+        }
+        else
+        {
+            Debug.LogWarning("Cannot toggle rigidbody constraints because rigidbody has not been assigned to script.");
         }
     }
 }
