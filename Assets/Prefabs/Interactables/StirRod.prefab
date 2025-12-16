@@ -139,7 +139,7 @@ Rigidbody:
   m_UseGravity: 1
   m_IsKinematic: 0
   m_Interpolate: 0
-  m_Constraints: 0
+  m_Constraints: 112
   m_CollisionDetection: 0
 --- !u!114 &9125245550828305587
 MonoBehaviour:
@@ -194,7 +194,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 5576914443091573965}
         m_TargetAssemblyTypeName: PickupToggle, Assembly-CSharp
-        m_MethodName: ToggleZRotation
+        m_MethodName: ToggleRotation
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -209,7 +209,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 5576914443091573965}
         m_TargetAssemblyTypeName: PickupToggle, Assembly-CSharp
-        m_MethodName: ToggleZRotation
+        m_MethodName: ToggleRotation
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -352,7 +352,7 @@ MeshCollider:
     m_Bits: 0
   m_ExcludeLayers:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 524416
   m_LayerOverridePriority: 0
   m_IsTrigger: 1
   m_ProvidesContacts: 0
