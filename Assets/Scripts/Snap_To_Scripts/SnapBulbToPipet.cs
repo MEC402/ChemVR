@@ -15,7 +15,7 @@ public class SnapBulbToPipet : MonoBehaviour
     private GameObject pipet; //the pipet gameobject
 
     // ADDED FOR TESTING
-    Vector3 OGbulbTranslation = new Vector3(0, 0, -0.22f);
+    Vector3 OGbulbTranslation = new Vector3(0, 0, -0.001f);
 
     private void Update()
     {
