@@ -5,10 +5,10 @@ using UnityEngine.SceneManagement;
 public class TutorialSceneController : MonoBehaviour
 {
     [Header("Scene Flow")]
-    [SerializeField] private string nextSceneName = "LabSceneGlasswareUse_Zack";
+    [SerializeField] private string nextSceneName = "LabSceneGlasswareUse";
 
     [Header("Input Settings")]
-    [SerializeField] private float holdDuration = 2.0f; // Seconds to hold X or A
+    [SerializeField] private float holdDuration = 4.0f; // Seconds to hold X or A
 
     private bool isLoading = false;
     private float holdTimer = 0f;
