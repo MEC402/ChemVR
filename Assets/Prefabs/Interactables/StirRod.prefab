@@ -18,7 +18,7 @@ GameObject:
   - component: {fileID: 1526008330819131327}
   - component: {fileID: 8372198159341868181}
   - component: {fileID: 5576914443091573965}
-  - component: {fileID: 4152497519206757235}
+  - component: {fileID: 8890549991808527070}
   m_Layer: 7
   m_Name: StirRod
   m_TagString: Untagged
@@ -36,7 +36,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0.7071068, z: 0, w: 0.7071068}
   m_LocalPosition: {x: -2.117, y: 1.032438, z: -4.135}
-  m_LocalScale: {x: 0.49999997, y: 0.49999994, z: 10.499997}
+  m_LocalScale: {x: 0.49999994, y: 0.49999994, z: 10.499996}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
@@ -334,7 +334,7 @@ MeshCollider:
   m_LayerOverridePriority: 0
   m_IsTrigger: 0
   m_ProvidesContacts: 0
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 5
   m_Convex: 1
   m_CookingOptions: 30
@@ -385,10 +385,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f0a8d9e55ca1f6b4d9f5767d36b6e9a4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  myCollider: {fileID: 8686539712676550100}
+  myCollider: {fileID: 8890549991808527070}
   myRigidbody: {fileID: 4930721420073537942}
---- !u!64 &4152497519206757235
-MeshCollider:
+--- !u!136 &8890549991808527070
+CapsuleCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -402,10 +402,11 @@ MeshCollider:
     serializedVersion: 2
     m_Bits: 0
   m_LayerOverridePriority: 0
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_ProvidesContacts: 0
   m_Enabled: 1
-  serializedVersion: 5
-  m_Convex: 1
-  m_CookingOptions: 30
-  m_Mesh: {fileID: 2534964839176971238, guid: c67fc8e8c98b8184d8aa3a5008919ea2, type: 3}
+  serializedVersion: 2
+  m_Radius: 0.02
+  m_Height: 0.0207872
+  m_Direction: 2
+  m_Center: {x: 0, y: 0, z: -0.000068392095}
