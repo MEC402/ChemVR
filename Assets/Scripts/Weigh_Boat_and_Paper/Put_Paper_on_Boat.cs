@@ -1,7 +1,6 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
-using System.Diagnostics;
 using UnityEngine;
 using UnityEngine.XR.Interaction.Toolkit;
 
@@ -179,7 +178,7 @@ public class Put_Paper_on_Boat : MonoBehaviour
     {
         isGrabbed = false;
 
-        if (touching && !boat.name.Contains("large"))
+        if (touching && boat != null && !boat.name.Contains("large"))
         {
             snap = true;
             myRb.useGravity = false;
@@ -202,7 +201,10 @@ public class Put_Paper_on_Boat : MonoBehaviour
         else
         {
             LetGo();
-            UnityEngine.Debug.Log("boat name contains: " + boat.name);
+            if (boat != null)
+            {
+                Debug.Log("boat name contains: " + boat.name);
+            }
         }
     }
 

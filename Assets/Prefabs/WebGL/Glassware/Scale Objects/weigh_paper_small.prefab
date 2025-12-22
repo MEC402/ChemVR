@@ -61,7 +61,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: b8b1a5631ade5a84d886653a2f5f0269, type: 2}
+  - {fileID: 2100000, guid: 29d15b7d88267534fb0cfc45dbdd378a, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -91,9 +91,13 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: -8832807579713828583, guid: 31d42892f5dc0ae4585cd0528f9a582f, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 31d42892f5dc0ae4585cd0528f9a582f, type: 3}
       propertyPath: m_LocalScale.x
-      value: 1.7500002
+      value: 1.7500005
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 31d42892f5dc0ae4585cd0528f9a582f, type: 3}
       propertyPath: m_LocalScale.y
@@ -101,19 +105,19 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 31d42892f5dc0ae4585cd0528f9a582f, type: 3}
       propertyPath: m_LocalScale.z
-      value: 1.7500002
+      value: 1.7500005
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 31d42892f5dc0ae4585cd0528f9a582f, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0.2707
+      value: -1.6069
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 31d42892f5dc0ae4585cd0528f9a582f, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.0040283203
+      value: 1.0413
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 31d42892f5dc0ae4585cd0528f9a582f, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0.2159
+      value: 6.3026
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 31d42892f5dc0ae4585cd0528f9a582f, type: 3}
       propertyPath: m_LocalRotation.w
@@ -475,14 +479,14 @@ BoxCollider:
     m_Bits: 0
   m_ExcludeLayers:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 524416
   m_LayerOverridePriority: 0
   m_IsTrigger: 0
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 0.035, y: 0.0025, z: 0.035}
-  m_Center: {x: 0, y: 0.00125, z: 0}
+  m_Size: {x: 0.03658634, y: 0.0018119675, z: 0.036346525}
+  m_Center: {x: -0.00052608526, y: 0.0009059294, z: 0.0002575495}
 --- !u!65 &398590004356560129
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -500,10 +504,10 @@ BoxCollider:
   m_LayerOverridePriority: 0
   m_IsTrigger: 1
   m_ProvidesContacts: 0
-  m_Enabled: 0
+  m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 0.05, y: 0.03, z: 0.05}
-  m_Center: {x: 0, y: 0, z: 0}
+  m_Size: {x: 0.050000004, y: 0.007000343, z: 0.050000004}
+  m_Center: {x: 0, y: -0.0034998308, z: 0}
 --- !u!114 &9148778541835421499
 MonoBehaviour:
   m_ObjectHideFlags: 0

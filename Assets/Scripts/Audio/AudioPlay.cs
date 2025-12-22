@@ -14,9 +14,9 @@ public class AudioPlay : MonoBehaviour
         GameEventsManager.instance.miscEvents.onPrinterSlap += PlaySlapSound;
         AudioEventManager.OnDrinkSound += PlayDrinkSound;
 
-        AudioEventManager.OnGoggleSound += () => goggleAudio.Play();
-        AudioEventManager.OnGloveSound += () => gloveAudio.Play();
-        AudioEventManager.OnLabCoatSound += () => labCoatAudio.Play();
+        AudioEventManager.OnGoggleSound += PlayGoggleSound;
+        AudioEventManager.OnGloveSound += PlayGloveSound;
+        AudioEventManager.OnLabCoatSound += PlayCoatSound;
     }
 
     private void OnDisable()
@@ -24,9 +24,9 @@ public class AudioPlay : MonoBehaviour
         GameEventsManager.instance.miscEvents.onPrinterSlap -= PlaySlapSound;
         AudioEventManager.OnDrinkSound -= PlayDrinkSound;
 
-        AudioEventManager.OnGoggleSound -= () => goggleAudio.Play();
-        AudioEventManager.OnGloveSound -= () => gloveAudio.Play();
-        AudioEventManager.OnLabCoatSound -= () => labCoatAudio.Play();
+        AudioEventManager.OnGoggleSound -= PlayGoggleSound;
+        AudioEventManager.OnGloveSound -= PlayGloveSound;
+        AudioEventManager.OnLabCoatSound -= PlayCoatSound;
     }
     #endregion
 
@@ -53,6 +53,26 @@ public class AudioPlay : MonoBehaviour
         drinkAudio.pitch = Random.Range(0.9f, 1.1f); // Randomize pitch to make it sound more natural
 
         drinkAudio.Play();
+    }
+
+    private void PlayGoggleSound()
+    {
+        if (goggleAudio == null)
+            return;
+        goggleAudio.Play();
+    }
+
+    private void PlayGloveSound()
+    {
+        if (gloveAudio == null)
+            return;
+        gloveAudio.Play();
+    }
+    private void PlayCoatSound()
+    {
+        if (labCoatAudio == null)
+            return;
+        labCoatAudio.Play();
     }
     #endregion
 }
