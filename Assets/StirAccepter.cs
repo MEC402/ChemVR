@@ -5,44 +5,24 @@ using UnityEngine;
 public class StirAccepter : MonoBehaviour
 {
     #region Variables
-    private GameObject insertedObject = null;
-    private Rigidbody insertedRigidbody = null;
-
-    [SerializeField] private Transform lockPoint;
+    [SerializeField] private bool isStirTarget;
+    [SerializeField] private string stirName;
 
     #endregion
     #region Unity Methods
 
-    private void OnTriggerEnter(Collider other)
+    public bool TryStirTarget(string stirName)
     {
-        if (other.CompareTag("StirTool") && insertedObject == null)
+        if(isStirTarget)
         {
-            Debug.Log("Object inserted into the stir accepter.");
-            insertedObject = other.gameObject.transform.parent != null ? other.transform.parent.gameObject : other.gameObject;
-            insertedRigidbody = insertedObject.GetComponentInParent<Rigidbody>();
-            if (insertedRigidbody != null)
+           if(stirName == this.stirName)
             {
-                insertedRigidbody.isKinematic = true;
-                insertedRigidbody.MovePosition(transform.position);
-                insertedRigidbody.constraints = RigidbodyConstraints.FreezePositionY;
-            }
+                return true;
+            } 
+            else
+                return false;
         }
-    }
-    
-    private void OnTriggerExit(Collider other)
-    {
-        if (other.CompareTag("StirTool") && insertedObject != null)
-        {
-            Debug.Log("Object removed from the stir accepter.");
-            if (insertedRigidbody != null)
-            {
-                insertedRigidbody.isKinematic = false;
-                insertedRigidbody.constraints = RigidbodyConstraints.None;
-
-            }
-            insertedObject = null;
-            insertedRigidbody = null;
-        }
+        return false;
     }
 
     #endregion
