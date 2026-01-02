@@ -83,6 +83,74 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!1 &1012393505559357620
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 970881306565836899}
+  - component: {fileID: 6441301679346190036}
+  - component: {fileID: 5670448404707343468}
+  m_Layer: 0
+  m_Name: StirAccepter
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &970881306565836899
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1012393505559357620}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 2138822513038278896}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!65 &6441301679346190036
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1012393505559357620}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 524288
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 0.009164613, y: 0.01, z: 0.009634813}
+  m_Center: {x: 0.0000644719, y: 0, z: 0.000048080772}
+--- !u!114 &5670448404707343468
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1012393505559357620}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4fcf105941de3464ab9ee59661d519e4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isStirTarget: 1
+  stirName: copperBeaker
 --- !u!1 &1386739876239788677
 GameObject:
   m_ObjectHideFlags: 0
@@ -383,7 +451,7 @@ GameObject:
   - component: {fileID: 7151855694486591890}
   - component: {fileID: 851044892459858773}
   - component: {fileID: 7255133138401768498}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: BeakerUp250mL_largerText
   m_TagString: CanBoil
   m_Icon: {fileID: 0}
@@ -409,6 +477,7 @@ Transform:
   - {fileID: 7227021118829557239}
   - {fileID: 3492359189056254085}
   - {fileID: 2726625437314370246}
+  - {fileID: 970881306565836899}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!33 &3552076829398466489
@@ -855,7 +924,7 @@ MeshCollider:
     m_Bits: 0
   m_ExcludeLayers:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 524416
   m_LayerOverridePriority: 0
   m_IsTrigger: 0
   m_ProvidesContacts: 0

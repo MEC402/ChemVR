@@ -89,7 +89,13 @@ public class Inspect_Glassware : TaskStep
     /// <summary>
     /// Handles inspection in VR when the glassware is grabbed.
     /// </summary>
-    private void OnInspect(SelectEnterEventArgs arg0) => MarkObjectAsInspected(arg0.interactableObject.transform.gameObject);
+    private void OnInspect(SelectEnterEventArgs arg0)
+    {
+        if(arg0 != null)
+        {
+           MarkObjectAsInspected(arg0.interactableObject.transform.gameObject); 
+        }
+    }
 
     /// <summary>
     /// Manually called for WebGL interactions when the player "grabs" an object.
