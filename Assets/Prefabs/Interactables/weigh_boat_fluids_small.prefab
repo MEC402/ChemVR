@@ -103,7 +103,7 @@ GameObject:
   - component: {fileID: 3325269258672723849}
   - component: {fileID: 3075463001949349295}
   - component: {fileID: 4970931759564837264}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: weigh_boat_fluids_small
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -198,7 +198,7 @@ MonoBehaviour:
   opening: {fileID: 2830901172974704670}
   pourEffect: {fileID: 6565907972382080472}
   pourActivator: {fileID: 0}
-  maxVolume: 30
+  maxVolume: 15
   currentVolume: 0
   pourRate: 5
   pourAngle: -90
@@ -258,7 +258,7 @@ MeshCollider:
     m_Bits: 0
   m_ExcludeLayers:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 128
   m_LayerOverridePriority: 0
   m_IsTrigger: 0
   m_ProvidesContacts: 0
@@ -286,7 +286,7 @@ Rigidbody:
     m_Bits: 0
   m_ExcludeLayers:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 128
   m_ImplicitCom: 1
   m_ImplicitTensor: 1
   m_UseGravity: 1
