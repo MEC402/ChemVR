@@ -694,6 +694,11 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 3153273518318136711, guid: 6b5cf6e4b45600848b0abd0e1c8701d5, type: 3}
   m_PrefabInstance: {fileID: 110503850}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &112263975 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 696883127015694628, guid: 7947a213449242e489846ee624e68ad8, type: 3}
+  m_PrefabInstance: {fileID: 1640855743}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &121552396
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -21316,6 +21321,11 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 3272293269906984387, guid: a7bc9e785c16ed84493ff9ca254a1fa2, type: 3}
   m_PrefabInstance: {fileID: 1275550565}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1293997374 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8529766450172895420, guid: 8bbe37aa47aff7446807702afbfde228, type: 3}
+  m_PrefabInstance: {fileID: 6156545573058460258}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1313809638
 GameObject:
   m_ObjectHideFlags: 0
@@ -30430,6 +30440,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1427779196}
     m_Modifications:
+    - target: {fileID: 172686651797481956, guid: 3798847565d7cdc4da903b9d64751e26, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 1665577224680876261, guid: 3798847565d7cdc4da903b9d64751e26, type: 3}
       propertyPath: m_LocalPosition.x
       value: -3.2185
@@ -30474,6 +30488,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: volumetric_Pipette_Bulb
       objectReference: {fileID: 0}
+    - target: {fileID: 4079826330363224277, guid: 3798847565d7cdc4da903b9d64751e26, type: 3}
+      propertyPath: pipetteCollider
+      value: 
+      objectReference: {fileID: 112263975}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -38780,6 +38798,14 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1427779196}
     m_Modifications:
+    - target: {fileID: 3410839966454289420, guid: 04ea7edd6c297164a8c83042d95b5cf4, type: 3}
+      propertyPath: pipetteCollider
+      value: 
+      objectReference: {fileID: 1293997374}
+    - target: {fileID: 5638977877701030818, guid: 04ea7edd6c297164a8c83042d95b5cf4, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 7194617169395706384, guid: 04ea7edd6c297164a8c83042d95b5cf4, type: 3}
       propertyPath: m_Name
       value: volumetric_Pipette_Bulb_blue
