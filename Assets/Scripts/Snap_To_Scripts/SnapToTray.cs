@@ -7,10 +7,13 @@ public class SnapToTray : MonoBehaviour
 {
     private XRGrabInteractable grabInteractable; //XRGrabInteractable of attached gameObject
     private Rigidbody myRb; //Rigidbody of attached gameObject
-    private bool touching; //is this collider touching a pipet collieder?
-    private bool snap; //is this bulb gameObject attached to a pipet?
-    private bool isGrabbed; //is the bulb grabbed? (so pipet doesn't detach unless intentional)
-    private GameObject pipet; //the pipet gameobject
+    private bool touching; //is this collider touching a tray collieder?
+    private bool snap; //is this bulb gameObject attached to a tray?
+    private bool isGrabbed; //is the bulb grabbed? (so tray doesn't detach unless intentional)
+    private GameObject tray; //the tray gameobject
+    private int snapPointIndex = -1; //the index of the snap point on the tray
+    private GameObject TrayPoint;
+    private Vector3 Offset = new Vector3(0f, 0f, 0f);
 
     // ADDED FOR TESTING
     Vector3 OGbulbTranslation = new Vector3(0, 0, -0.001f);
@@ -19,7 +22,7 @@ public class SnapToTray : MonoBehaviour
     {
         if (snap)
         {
-            SetPositionToPipet();
+            SetPositionToTray(Offset);
         }
     }
 
@@ -45,20 +48,20 @@ public class SnapToTray : MonoBehaviour
         grabInteractable.selectEntered.AddListener(OnGrab);
         grabInteractable.selectExited.AddListener(OnRelease);
     }
-    private void SetPositionToPipet()
+    private void SetPositionToTray(Vector3 offsetPOS)
     {
         // ADDED FOR TESTING
         Quaternion additionalRotation = Quaternion.Euler(0, 0, 0);
 
-        //Move the bulb to the burret
-        Quaternion newRotation = pipet.transform.rotation * additionalRotation;
-        this.transform.SetPositionAndRotation(pipet.transform.position, newRotation);
+        //Move the me to the tray
+        Quaternion newRotation = tray.transform.rotation * additionalRotation;
+        this.transform.SetPositionAndRotation(tray.transform.position + offsetPOS, newRotation);
         this.transform.Translate(OGbulbTranslation);
     }
     private void LetGo()
     {
         snap = false;
-        pipet = null;
+        tray = null;
         myRb.useGravity = true;
     }
     private void OnDisable()
@@ -71,9 +74,9 @@ public class SnapToTray : MonoBehaviour
     {
         if (other.gameObject.CompareTag("TrayCollider") && !snap)
         {
-            pipet = other.gameObject;
             touching = true;
-            GameEventsManager.instance.miscEvents.PippetConnectedFirst();
+            TrayPoint = other.gameObject;
+
         }
     }
 
@@ -88,14 +91,25 @@ public class SnapToTray : MonoBehaviour
             }
             else if (snap)
             {
-                SetPositionToPipet();
+                SetPositionToTray(Offset);
             }
         }
     }
     private void OnGrab(SelectEnterEventArgs arg0)
     {
         isGrabbed = true;
-        LetGo();
+        if (touching)
+        {
+            if (TrayPoint.TryGetComponent<TraySnap>(out TraySnap traySnap))
+            { traySnap.RemoveMe(snapPointIndex); }
+            snapPointIndex = -1;
+            LetGo();
+        }
+        else
+        {
+            LetGo();
+        }
+
     }
     private void OnRelease(SelectExitEventArgs arg0)
     {
@@ -104,10 +118,18 @@ public class SnapToTray : MonoBehaviour
         {
             snap = true;
             myRb.useGravity = false;
+            if (TrayPoint.TryGetComponent<TraySnap>(out TraySnap traySnap))
+            { traySnap.AddMe(this); }
         }
         else
         {
             LetGo();
         }
+    }
+
+    public void SetObject(GameObject theObject, int Index)
+    {
+        tray = theObject;
+        snapPointIndex = Index;
     }
 }
