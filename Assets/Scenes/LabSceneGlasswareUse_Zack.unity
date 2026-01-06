@@ -30468,10 +30468,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1427779196}
     m_Modifications:
-    - target: {fileID: 172686651797481956, guid: 3798847565d7cdc4da903b9d64751e26, type: 3}
-      propertyPath: m_Enabled
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 1665577224680876261, guid: 3798847565d7cdc4da903b9d64751e26, type: 3}
       propertyPath: m_LocalPosition.x
       value: -3.2185
@@ -30515,6 +30511,10 @@ PrefabInstance:
     - target: {fileID: 2041961343252558431, guid: 3798847565d7cdc4da903b9d64751e26, type: 3}
       propertyPath: m_Name
       value: volumetric_Pipette_Bulb
+      objectReference: {fileID: 0}
+    - target: {fileID: 2041961343252558431, guid: 3798847565d7cdc4da903b9d64751e26, type: 3}
+      propertyPath: m_Layer
+      value: 12
       objectReference: {fileID: 0}
     - target: {fileID: 4079826330363224277, guid: 3798847565d7cdc4da903b9d64751e26, type: 3}
       propertyPath: pipetteCollider
@@ -38830,13 +38830,13 @@ PrefabInstance:
       propertyPath: pipetteCollider
       value: 
       objectReference: {fileID: 1293997374}
-    - target: {fileID: 5638977877701030818, guid: 04ea7edd6c297164a8c83042d95b5cf4, type: 3}
-      propertyPath: m_Enabled
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 7194617169395706384, guid: 04ea7edd6c297164a8c83042d95b5cf4, type: 3}
       propertyPath: m_Name
       value: volumetric_Pipette_Bulb_blue
+      objectReference: {fileID: 0}
+    - target: {fileID: 7194617169395706384, guid: 04ea7edd6c297164a8c83042d95b5cf4, type: 3}
+      propertyPath: m_Layer
+      value: 12
       objectReference: {fileID: 0}
     - target: {fileID: 7535571793557434538, guid: 04ea7edd6c297164a8c83042d95b5cf4, type: 3}
       propertyPath: m_LocalPosition.x

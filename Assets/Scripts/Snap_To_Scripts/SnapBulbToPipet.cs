@@ -10,11 +10,11 @@ public class SnapBulbToPipet : MonoBehaviour
 {
     private XRGrabInteractable grabInteractable; //XRGrabInteractable of attached gameObject
     private Rigidbody myRb; //Rigidbody of attached gameObject
-    private bool touching; //is this collider touching a pipet collieder?
-    private bool snap; //is this bulb gameObject attached to a pipet?
-    private bool isGrabbed; //is the bulb grabbed? (so pipet doesn't detach unless intentional)
+    private bool touching; //is this collider touching a pipette collieder?
+    private bool snap; //is this bulb gameObject attached to a pipette?
+    private bool isGrabbed; //is the bulb grabbed? (so pipette doesn't detach unless intentional)
     private bool isHeld = false; //is the bulb held via WebGL grab?
-    [SerializeField] private GameObject pipetteCollider; //the matching pipet object
+    [SerializeField] private GameObject pipetteCollider; //the matching pipete object
 
     // ADDED FOR TESTING
     Vector3 OGbulbTranslation = new Vector3(0, 0, -0.001f);
@@ -94,8 +94,6 @@ public class SnapBulbToPipet : MonoBehaviour
     {
         if (other.gameObject.CompareTag("PipetteBulb") && !snap)
         {
-            // remember which pipette we're touching so we can snap to it
-            //pipetteCollider = other.gameObject;
             touching = true;
             GameEventsManager.instance.miscEvents.PippetConnectedFirst();
         }
@@ -120,8 +118,6 @@ public class SnapBulbToPipet : MonoBehaviour
     {
         isGrabbed = true;
         LetGo();
-        if (GameEventsManager.instance != null && GameEventsManager.instance.inputEvents != null)
-            GameEventsManager.instance.inputEvents.onRTriggerPressed += ForceSnapToPipette;
     }
     private void OnRelease(SelectExitEventArgs arg0)
     {
@@ -135,15 +131,9 @@ public class SnapBulbToPipet : MonoBehaviour
         {
             LetGo();
         }
-
-        // Unsubscribe input listeners to avoid leaks
-        if (GameEventsManager.instance != null && GameEventsManager.instance.inputEvents != null)
-        {
-            GameEventsManager.instance.inputEvents.onRTriggerPressed -= AttachBulb;
-        }
     }
 
-    // WebGL handlers to mirror VR grab/release behavior (used by WebGL build handlers)
+    // WebGL Grab Handlers, these allow for pressing the F key to attach the bulbs, instead of holding the two objects like you do in VR.
     private void WebGLGrab(GameObject grabbedObject)
     {
         if (grabbedObject == gameObject)
@@ -177,13 +167,6 @@ public class SnapBulbToPipet : MonoBehaviour
                 GameEventsManager.instance.inputEvents.onRTriggerPressed -= AttachBulb;
             }
         }
-    }
-
-    private void ForceSnapToPipette(InputAction.CallbackContext context)
-    {
-        isGrabbed = false;
-        snap = true;
-        myRb.useGravity = false;
     }
 
     public void AttachBulb(InputAction.CallbackContext context)
