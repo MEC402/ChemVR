@@ -184,6 +184,7 @@ public class SnapBulbToPipet : MonoBehaviour
                     isGrabbed = false;
                     snap = true;
                     myRb.useGravity = false;
+                    GameEventsManager.instance.miscEvents.PippetConnectedFirst();
                     if (GameEventsManager.instance != null && GameEventsManager.instance.inputEvents != null)
                         GameEventsManager.instance.inputEvents.onRTriggerPressed -= AttachBulb;
                 }
