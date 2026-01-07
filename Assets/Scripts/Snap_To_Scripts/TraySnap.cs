@@ -24,7 +24,7 @@ public class TraySnap : MonoBehaviour
         }
         if (!pointTaken)
         {
-            Debug.Log("No available snap points on tray!");
+            obj.LetGo();
         }
     }
 

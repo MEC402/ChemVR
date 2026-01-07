@@ -58,7 +58,7 @@ public class SnapToTray : MonoBehaviour
         this.transform.SetPositionAndRotation(tray.transform.position + offsetPOS, newRotation);
         this.transform.Translate(OGbulbTranslation);
     }
-    private void LetGo()
+    public void LetGo()
     {
         snap = false;
         tray = null;
