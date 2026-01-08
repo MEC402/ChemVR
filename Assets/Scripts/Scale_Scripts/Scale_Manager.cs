@@ -14,12 +14,15 @@ public class Scale_Manager : MonoBehaviour
 
     private bool power = false;
 
+    [SerializeField] private GameObject boatLocation, weighBoatObject;
+
     void OnEnable()
     {
         GameEventsManager.instance.miscEvents.OnScalePowerOn += pressOn;
         GameEventsManager.instance.miscEvents.OnScalePowerOff += pressOff;
         GameEventsManager.instance.miscEvents.OnScaleMode += pressMode;
         GameEventsManager.instance.miscEvents.OnScaleTare += pressTare;
+        GameEventsManager.instance.miscEvents.OnSetBoatToScale += pressBoatToScale;
     }
 
     void OnDisable()
@@ -28,6 +31,7 @@ public class Scale_Manager : MonoBehaviour
         GameEventsManager.instance.miscEvents.OnScalePowerOff -= pressOff;
         GameEventsManager.instance.miscEvents.OnScaleMode -= pressMode;
         GameEventsManager.instance.miscEvents.OnScaleTare -= pressTare;
+        GameEventsManager.instance.miscEvents.OnSetBoatToScale -= pressBoatToScale;
     }
 
     // Update is called once per frame
@@ -142,5 +146,13 @@ public class Scale_Manager : MonoBehaviour
     public void pressTare()
     {
         taredMassInGrams = currentMassInGrams;
+    }
+
+    public void pressBoatToScale()
+    {
+        if (weighBoatObject != null && boatLocation != null)
+        {
+            weighBoatObject.transform.position = boatLocation.transform.position;
+        }
     }
 }

@@ -222,6 +222,9 @@ public class MiscellaneousEvents
     public event Action<bool> OnPaperInBoat; //see Put_Paper_on_Boat.cs on "weight_paper_small/medium"
     public void PaperInBoat(bool inBoat) => OnPaperInBoat?.Invoke(inBoat);
 
+    public event Action OnSetBoatToScale;
+    public void BoatToScale() => OnSetBoatToScale?.Invoke();
+
 
 
     #endregion
