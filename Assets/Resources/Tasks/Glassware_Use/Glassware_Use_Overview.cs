@@ -70,7 +70,7 @@ public class Glassware_Use_Overview : MonoBehaviour
                     /*4*/"Set the scale units to grams by pressing the mode button on the front of the scale.",
                     /*5*/"Press the tare button on the front of the scale to reset the weight to zero.",
                     /*6*/"Take the lid off the Copper Sulfate jar.  Pour 1.500g copper sulfate from the jar into the weigh boat.\n\nRotate the jar upside down to pour.",
-                    /*7*/"Pick up the Jar Lid and press the F key to put the lid back on the jar.",
+                    /*7*/"Pick up the Jar Lid and put the lid back on the jar.",
                     /*8*/"Pour the contents of the weigh paper boat into the 250mL beaker.",
                     /*9*/"Turn off the balance and clean it with a brush.  It can take multiple clicks to turn off the balance.",
                     /*10*/"Using the DI water bottle, \nfill the graduated cylinder \nuntil the meniscus is at 50mL.  Pouring will stop when full.",
@@ -95,7 +95,7 @@ public class Glassware_Use_Overview : MonoBehaviour
                     /*21*/"Empty the glassware into the sink.\n\nFill the glassware with the DI bottle.",
                     /*22*/"Invert the glassware to allow excess water to drain.",
                     /*23*/"Return materials to the cabinet on your right, and close the glass doors.\n\nThis will protect them from dust and contaminants.",
-                    /*24*/"Go to the trash to remove your gloves with the F key\n\n Then wash your hands in the sink.",
+                    /*24*/"Go to the trash to remove your gloves.\n\n Then wash your hands in the sink.",
                     /*25*/"This concludes the glassware use module. Thank you for your time.\n\n(Y) Hides Popup\n(Hamburger Button) Opens Menu"
                 };
 

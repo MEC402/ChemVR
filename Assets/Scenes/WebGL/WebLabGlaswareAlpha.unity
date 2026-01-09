@@ -1138,7 +1138,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8736029262737174645, guid: 58e3fb546064ff94b8e79b8a7f2db54e, type: 3}
       propertyPath: m_LocalScale.x
-      value: -0.013919536
+      value: -0.020749852
       objectReference: {fileID: 0}
     - target: {fileID: 8736029262737174645, guid: 58e3fb546064ff94b8e79b8a7f2db54e, type: 3}
       propertyPath: m_LocalScale.y
@@ -1146,7 +1146,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8736029262737174645, guid: 58e3fb546064ff94b8e79b8a7f2db54e, type: 3}
       propertyPath: m_LocalScale.z
-      value: 0.06399774
+      value: 0.04526368
+      objectReference: {fileID: 0}
+    - target: {fileID: 8736029262737174645, guid: 58e3fb546064ff94b8e79b8a7f2db54e, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0.0046
+      objectReference: {fileID: 0}
+    - target: {fileID: 8736029262737174645, guid: 58e3fb546064ff94b8e79b8a7f2db54e, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8736029262737174645, guid: 58e3fb546064ff94b8e79b8a7f2db54e, type: 3}
       propertyPath: m_ConstrainProportionsScale
@@ -1564,12 +1572,12 @@ MonoBehaviour:
   m_margin: {x: 0, y: 0, z: 0, w: 0}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
-  _SortingLayer: 0
-  _SortingLayerID: 0
-  _SortingOrder: 0
   m_hasFontAssetChanged: 0
   m_renderer: {fileID: 233287777}
   m_maskType: 0
+  _SortingLayer: 0
+  _SortingLayerID: 0
+  _SortingOrder: 0
 --- !u!23 &233287777
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -10972,12 +10980,12 @@ MonoBehaviour:
   m_margin: {x: 0, y: 0, z: 0, w: 0}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
-  _SortingLayer: 0
-  _SortingLayerID: 0
-  _SortingOrder: 0
   m_hasFontAssetChanged: 0
   m_renderer: {fileID: 814190013}
   m_maskType: 0
+  _SortingLayer: 0
+  _SortingLayerID: 0
+  _SortingOrder: 0
 --- !u!23 &814190013
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -12837,12 +12845,12 @@ MonoBehaviour:
   m_margin: {x: 0, y: 0, z: 0, w: 0}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
-  _SortingLayer: 0
-  _SortingLayerID: 0
-  _SortingOrder: 0
   m_hasFontAssetChanged: 0
   m_renderer: {fileID: 984107145}
   m_maskType: 0
+  _SortingLayer: 0
+  _SortingLayerID: 0
+  _SortingOrder: 0
 --- !u!23 &984107145
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -22075,12 +22083,12 @@ MonoBehaviour:
   m_margin: {x: 0, y: 0, z: 0, w: 0}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
-  _SortingLayer: 0
-  _SortingLayerID: 0
-  _SortingOrder: 0
   m_hasFontAssetChanged: 0
   m_renderer: {fileID: 1548713608}
   m_maskType: 0
+  _SortingLayer: 0
+  _SortingLayerID: 0
+  _SortingOrder: 0
 --- !u!23 &1548713608
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -31305,15 +31313,19 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8617751825056941151, guid: c907b6f1181de3c44bc409a14f78cd63, type: 3}
       propertyPath: m_LocalScale.x
-      value: 0.32582498
+      value: 0.26107067
+      objectReference: {fileID: 0}
+    - target: {fileID: 8617751825056941151, guid: c907b6f1181de3c44bc409a14f78cd63, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 0.0023482502
       objectReference: {fileID: 0}
     - target: {fileID: 8617751825056941151, guid: c907b6f1181de3c44bc409a14f78cd63, type: 3}
       propertyPath: m_LocalScale.z
-      value: 0.24902336
+      value: 0.22871803
       objectReference: {fileID: 0}
     - target: {fileID: 8617751825056941151, guid: c907b6f1181de3c44bc409a14f78cd63, type: 3}
       propertyPath: m_ConstrainProportionsScale
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -32306,17 +32318,25 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1427779196}
     m_Modifications:
+    - target: {fileID: 357624555510956480, guid: 5423b42623bcff34ea4b15440dcb8e3a, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 2380943043233686398, guid: 5423b42623bcff34ea4b15440dcb8e3a, type: 3}
       propertyPath: m_LocalScale.x
-      value: 0.33901784
+      value: 0.1382143
+      objectReference: {fileID: 0}
+    - target: {fileID: 2380943043233686398, guid: 5423b42623bcff34ea4b15440dcb8e3a, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 0.0052973977
       objectReference: {fileID: 0}
     - target: {fileID: 2380943043233686398, guid: 5423b42623bcff34ea4b15440dcb8e3a, type: 3}
       propertyPath: m_LocalScale.z
-      value: 0.24182367
+      value: 0.14012659
       objectReference: {fileID: 0}
     - target: {fileID: 2380943043233686398, guid: 5423b42623bcff34ea4b15440dcb8e3a, type: 3}
       propertyPath: m_ConstrainProportionsScale
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3476520802704965331, guid: 5423b42623bcff34ea4b15440dcb8e3a, type: 3}
       propertyPath: m_LocalPosition.x
@@ -32894,11 +32914,19 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1819049046965846342, guid: 4b64ae6a0b9092045af85fb412427f6e, type: 3}
       propertyPath: m_LocalScale.x
-      value: 0.37884152
+      value: 0.22433229
+      objectReference: {fileID: 0}
+    - target: {fileID: 1819049046965846342, guid: 4b64ae6a0b9092045af85fb412427f6e, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 0.0039238622
       objectReference: {fileID: 0}
     - target: {fileID: 1819049046965846342, guid: 4b64ae6a0b9092045af85fb412427f6e, type: 3}
       propertyPath: m_LocalScale.z
-      value: 0.161154
+      value: 0.20323132
+      objectReference: {fileID: 0}
+    - target: {fileID: 1819049046965846342, guid: 4b64ae6a0b9092045af85fb412427f6e, type: 3}
+      propertyPath: m_ConstrainProportionsScale
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2003649962859256285, guid: 4b64ae6a0b9092045af85fb412427f6e, type: 3}
       propertyPath: m_Layer
@@ -32971,6 +32999,10 @@ PrefabInstance:
     - target: {fileID: 5596812200682013009, guid: 4b64ae6a0b9092045af85fb412427f6e, type: 3}
       propertyPath: m_Layer
       value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 7300257300760148341, guid: 4b64ae6a0b9092045af85fb412427f6e, type: 3}
+      propertyPath: m_Enabled
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8346187447922553344, guid: 4b64ae6a0b9092045af85fb412427f6e, type: 3}
       propertyPath: m_Layer
