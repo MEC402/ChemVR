@@ -71,9 +71,9 @@ public class Tutorial_Overview : MonoBehaviour
 
     string[] text = {"Welcome to the Tutorial.\n\nYou will be guided through experiments with these pop ups.\n\nPop ups can be hidden and opened with the button (Y).\n\nPractice hiding this pop up by pressing (Y) twice.",
                     "Look around the room by turning your head.\n\nTeleport by pushing either joystick forward and releasing it when the circle is where you want to go.\n\nLook around until you see a highlighted area, and teleport into it.",
-                    "The lower buttons on either controller, (A) and (X), are used to interact with items.\n\nYou should see a glove box on a table near you. Reach inside with each hand and use (A) and (X) to put on gloves.",
+                    "The buttons beneath your index fingers (trigger buttons) used to interact with items.\n\nYou should see a glove box on a table near you. Reach inside with each hand and use the left and right triggers to put on the gloves.",
                     "Great!\n\nNear the gloves, you should see a folded lab coat and a box of goggles.\n\nUsing the same method, put these on.",
-                    "You can use grips on the back of your controllers can be used to grab items.\n\nYou should see a few flasks on one of the tables near you.\n\nTeleport to the table and pick up one of the flasks.",
+                    "The buttons beneath your middle fingers (grip buttons) are used to pick up items.\n\nYou should see a few flasks on one of the tables near you.\n\nTeleport to the table and pick up one of the flasks.",
                     "Well done!\n\nYou can also pour solutions between containers.\n\nTilt a flask over the beaker and pour into it.",
                     "Nice!\n\nThe hamburger button opens and closes the help menu.\nPress it at any time to see the button configurations, or for access to the main menu.\n\nTry opening and closing it by pressing the button twice.",
                     "This completes the tutorial.\n\nFeel free to explore the room and get familiar with the lab.\nWhen you are done, you can either:\n\nPress and hold (A) or (X) to move on to the first module\n\nUse the hamburger button to navigate to the main menu.",

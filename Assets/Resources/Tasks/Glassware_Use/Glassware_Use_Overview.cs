@@ -77,7 +77,7 @@ public class Glassware_Use_Overview : MonoBehaviour
                     /*11*/"Raise the hood sash to a working height\n\nUse the Hood Button to do this.",
                     /*12*/"Bring the graduated cylinder and 250mL beaker back to your hood and set them down inside it.",
                     /*13*/"Inspect the glassware inside the hood.\n\n Place all broken glass in the disposal bin.",
-                    /*14*/"Set up two volumetric pipettes. \n\nThe blue bulb should go on the 15mL pipette (larger one) \n\nThe red bulb should go on the 10mL pipette (smaller one).\n\nPick up a Bulb and press F to connect it.",
+                    /*14*/"Set up two volumetric pipettes. \n\nThe blue bulb should go on the 15mL pipette (larger one) \n\nThe red bulb should go on the 10mL pipette (smaller one).",
                     //"Set up a volumetric pipette with a bulb top.\n\nDraw up water to more than 50mL\nPush excess water out until 50mL\nTouch excess drip to side of the glass\nWipe the tip with folded paper towel.\n\n\nSkip with A",
 
 
