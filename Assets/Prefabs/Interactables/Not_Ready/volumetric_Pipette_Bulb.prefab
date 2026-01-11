@@ -104,7 +104,7 @@ MeshCollider:
     m_Bits: 0
   m_ExcludeLayers:
     serializedVersion: 2
-    m_Bits: 528512
+    m_Bits: 524416
   m_LayerOverridePriority: 0
   m_IsTrigger: 0
   m_ProvidesContacts: 0
@@ -132,7 +132,7 @@ Rigidbody:
     m_Bits: 0
   m_ExcludeLayers:
     serializedVersion: 2
-    m_Bits: 528512
+    m_Bits: 524416
   m_ImplicitCom: 1
   m_ImplicitTensor: 1
   m_UseGravity: 1
@@ -328,6 +328,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1f7d467b999df924abd51d2b859a244c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  pipetteCollider: {fileID: 0}
 --- !u!64 &172686651797481956
 MeshCollider:
   m_ObjectHideFlags: 0

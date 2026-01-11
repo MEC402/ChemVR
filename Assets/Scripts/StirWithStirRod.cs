@@ -12,8 +12,9 @@ public class StirWithStirRod : MonoBehaviour
     [SerializeField] private string stirName;
     void OnTriggerEnter(Collider other)
     {
-        if (other.name.Contains("StirAccepter"))
+        if (other.gameObject.CompareTag("StirTool"))
         {
+            Debug.Log("Has Stir Name");
             if(other.TryGetComponent<StirAccepter>(out StirAccepter stirAccepter))
             {
                 if(stirAccepter.TryStirTarget(stirName))
@@ -21,6 +22,10 @@ public class StirWithStirRod : MonoBehaviour
                     GameEventsManager.instance.miscEvents.StirBeaker();
                 }
             }
+        }
+        else
+        {
+            Debug.Log("Did not collide with stir rod.");
         }
     }
 }
