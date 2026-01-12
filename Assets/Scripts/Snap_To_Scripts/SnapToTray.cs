@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.XR.Interaction.Toolkit;
 public class SnapToTray : MonoBehaviour
@@ -13,7 +14,9 @@ public class SnapToTray : MonoBehaviour
     private GameObject tray; //the tray gameobject
     private int snapPointIndex = -1; //the index of the snap point on the tray
     private GameObject TrayPoint;
-    private Vector3 Offset = new Vector3(0f, 0f, 0f);
+    [SerializeField] private Vector3 Offset = new Vector3(0f, 0f, 0f);
+
+    [SerializeField] private float rotationOffset = 0f;
 
     // ADDED FOR TESTING
     Vector3 OGbulbTranslation = new Vector3(0, 0, -0.001f);
@@ -23,6 +26,7 @@ public class SnapToTray : MonoBehaviour
         if (snap)
         {
             SetPositionToTray(Offset);
+            this.GameObject().transform.Rotate(rotationOffset, 0, 0);
         }
     }
 
