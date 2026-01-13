@@ -11,7 +11,6 @@ public class PipetteFunctions : MonoBehaviour
     private GameObject currentContainer;
     [SerializeField] private ResizeFluid internalFluid;
     [SerializeField] private GameObject bulbCollider;
-    [SerializeField] private PickupToggle pT;
     [SerializeField] private bool LockChemFluid = false;
     [SerializeField] private bool lockDispenseAmount = false;
     public bool isHeld = false;

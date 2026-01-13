@@ -40,7 +40,7 @@ public class PickupToggle : MonoBehaviour
         }
     }
 
-    public void ToggleZRotation()
+    public void ToggleRotation()
     {
         if(myRigidbody != null)
         {
@@ -51,7 +51,7 @@ public class PickupToggle : MonoBehaviour
             }
             else if(rotationLocked == false)
             {
-                myRigidbody.constraints = RigidbodyConstraints.FreezeRotationZ;
+                myRigidbody.constraints = RigidbodyConstraints.FreezeRotation;
                 rotationLocked = true;
             }
         }
