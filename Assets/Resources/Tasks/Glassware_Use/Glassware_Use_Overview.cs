@@ -128,7 +128,7 @@ public class Glassware_Use_Overview : MonoBehaviour
                     /*16*/"With the blue 15mL pipette, rotate the pipette to be horizontal to be able to pull fluid.  Use the F key to fill each flask with 15mL of the Copper Sulfate & DI Water solution \n(found inside the 250mL beaker)",
                     /*17*/"Then, using the red 10mL pipette, add to the flasks with 30mL, 40mL, & 50mL of DI water respectively.", //25, 35 & 45 are not divisible by 10 or 15 --> we could change this to 10, 20 & 30ml to reduce repetition on this step
                     ///*17*/"Fill flasks with 25mL, 35mL, 45mL water respectively and observe and record changes.\n\n\nSkip with A",
-                    /*18*/"Time to clean up! Take the glassware to the sink and pour them out.\nTurn on the sink by clicking on the red button.  Then fill the glassware with sink water.\n\nYou will only need to clean the flasks, 250mL beaker, and graduated cylinder for this module.",
+                    /*18*/"Time to clean up! Put the glassware onto the brown tray opposite the hood.\n\nTake the full tray to the sink and empty out the glassware.\n\nTurn on the sink by clicking on the red button.  Then fill the glassware with sink water.\n\nYou will only need to clean the flasks, 250mL beaker, and graduated cylinder for this module.",
                     /*19*/"Empty the glassware into the sink.\n\n Fill your glassware with soap to remove any residues.",
                     /*20*/"Scrub the inside of the glassware with a brush.\n\nJust tap the glassware with the brush.",
                     /*21*/"Empty the glassware into the sink.\n\nFill the glassware with the DI bottle.",
