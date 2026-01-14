@@ -93,7 +93,7 @@ public class Glassware_Use_Overview : MonoBehaviour
                     /*19*/"Empty the glassware into the sink.\n\n Fill your glassware with soap to remove any residues.",
                     /*20*/"Scrub the inside of the glassware with a brush.\n\nJust tap the glassware with the brush.",
                     /*21*/"Empty the glassware into the sink.\n\nFill the glassware with the DI bottle.",
-                    /*22*/"Invert the glassware to allow excess water to drain.",
+                    /*22*/"Empty the glassware into the sink.",
                     /*23*/"Return materials to the cabinet on your right, and close the glass doors.\n\nThis will protect them from dust and contaminants.",
                     /*24*/"Go to the trash to remove your gloves.\n\n Then wash your hands in the sink.",
                     /*25*/"This concludes the glassware use module. Thank you for your time.\n\n(Y) Hides Popup\n(Hamburger Button) Opens Menu"
@@ -132,7 +132,7 @@ public class Glassware_Use_Overview : MonoBehaviour
                     /*19*/"Empty the glassware into the sink.\n\n Fill your glassware with soap to remove any residues.",
                     /*20*/"Scrub the inside of the glassware with a brush.\n\nJust tap the glassware with the brush.",
                     /*21*/"Empty the glassware into the sink.\n\nFill the glassware with the DI bottle.",
-                    /*22*/"Invert the glassware to allow excess water to drain.",
+                    /*22*/"Empty the glassware into the sink.",
                     /*23*/"Return materials to the cabinet on your right, and close the glass doors.\n\nThis will protect them from dust and contaminants.",
                     /*24*/"Go to the trash to remove your gloves with the F key\n\n Then wash your hands in the sink.",
                     /*25*/"This concludes the glassware use module. Thank you for your time.\n\n"
