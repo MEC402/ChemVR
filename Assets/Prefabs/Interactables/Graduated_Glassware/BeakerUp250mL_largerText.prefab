@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 2726625437314370246}
   - component: {fileID: 8378726784066383569}
   - component: {fileID: 3516348188144735278}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Pour Point
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -83,6 +83,74 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!1 &1012393505559357620
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 970881306565836899}
+  - component: {fileID: 6441301679346190036}
+  - component: {fileID: 5670448404707343468}
+  m_Layer: 0
+  m_Name: StirAccepter
+  m_TagString: StirTool
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &970881306565836899
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1012393505559357620}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 2138822513038278896}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!65 &6441301679346190036
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1012393505559357620}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 524288
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 0.009164613, y: 0.01, z: 0.009634813}
+  m_Center: {x: 0.0000644719, y: 0, z: 0.000048080772}
+--- !u!114 &5670448404707343468
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1012393505559357620}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4fcf105941de3464ab9ee59661d519e4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isStirTarget: 1
+  stirName: copperBeaker
 --- !u!1 &1386739876239788677
 GameObject:
   m_ObjectHideFlags: 0
@@ -94,7 +162,7 @@ GameObject:
   - component: {fileID: 7227021118829557239}
   - component: {fileID: 3046807043381754226}
   - component: {fileID: 5176253614037225852}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Text.001 (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -109,13 +177,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1386739876239788677}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: -0.0010499954, z: 0.011159897}
+  m_LocalRotation: {x: 0, y: -1, z: 0, w: 0}
+  m_LocalPosition: {x: -0.0024209023, y: -0.0010499954, z: -0.01079}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 2138822513038278896}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: -180, z: 0}
 --- !u!33 &3046807043381754226
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -179,7 +247,7 @@ GameObject:
   - component: {fileID: 6885009485111449431}
   - component: {fileID: 4622377021781699011}
   - component: {fileID: 951527391093364224}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Fluid
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -265,7 +333,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   fill: 0
   color: {r: 0, g: 0, b: 0, a: 0}
-  remapBounds: {x: -0.04, y: 0.0257}
+  remapBounds: {x: -0.03, y: 0.022}
   material: {fileID: 0}
 --- !u!114 &951527391093364224
 MonoBehaviour:
@@ -293,7 +361,7 @@ GameObject:
   - component: {fileID: 5473208240774500703}
   - component: {fileID: 3721656301806152784}
   - component: {fileID: 6578180736719902360}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Text.001
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -308,13 +376,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5664969741827595400}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.00043, y: -0.00172, z: 0.01116}
+  m_LocalRotation: {x: 0, y: -1, z: 0, w: 0}
+  m_LocalPosition: {x: -0.002842466, y: -0.0017199914, z: -0.01089}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 2138822513038278896}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: -180, z: 0}
 --- !u!33 &3721656301806152784
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -383,7 +451,7 @@ GameObject:
   - component: {fileID: 7151855694486591890}
   - component: {fileID: 851044892459858773}
   - component: {fileID: 7255133138401768498}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: BeakerUp250mL_largerText
   m_TagString: CanBoil
   m_Icon: {fileID: 0}
@@ -400,7 +468,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -1.898, y: 1.066, z: -3.7701}
-  m_LocalScale: {x: 3.5, y: 3.5, z: 3.5}
+  m_LocalScale: {x: 3, y: 3, z: 3}
   m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 8736029262737174645}
@@ -409,6 +477,7 @@ Transform:
   - {fileID: 7227021118829557239}
   - {fileID: 3492359189056254085}
   - {fileID: 2726625437314370246}
+  - {fileID: 970881306565836899}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!33 &3552076829398466489
@@ -550,7 +619,7 @@ Rigidbody:
     m_Bits: 0
   m_ExcludeLayers:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 524416
   m_ImplicitCom: 1
   m_ImplicitTensor: 1
   m_UseGravity: 1
@@ -855,7 +924,7 @@ MeshCollider:
     m_Bits: 0
   m_ExcludeLayers:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 528512
   m_LayerOverridePriority: 0
   m_IsTrigger: 0
   m_ProvidesContacts: 0
@@ -1033,6 +1102,10 @@ PrefabInstance:
     - target: {fileID: 6774973484123949442, guid: 315fad10dc99f784f83a21b5f67d51e9, type: 3}
       propertyPath: m_Name
       value: Pour Effect Particle System
+      objectReference: {fileID: 0}
+    - target: {fileID: 6774973484123949442, guid: 315fad10dc99f784f83a21b5f67d51e9, type: 3}
+      propertyPath: m_Layer
+      value: 7
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
