@@ -269,27 +269,27 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: -8679921383154817045, guid: 1926880ed0a06114d940c1fc610bba0f, type: 3}
       propertyPath: m_LocalScale.x
-      value: 3
+      value: 3.8919
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 1926880ed0a06114d940c1fc610bba0f, type: 3}
       propertyPath: m_LocalScale.y
-      value: 3
+      value: 3.8919
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 1926880ed0a06114d940c1fc610bba0f, type: 3}
       propertyPath: m_LocalScale.z
-      value: 3
+      value: 3.8919
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 1926880ed0a06114d940c1fc610bba0f, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -1.261
+      value: -2.3649
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 1926880ed0a06114d940c1fc610bba0f, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 1.0518404
+      value: 1.0367
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 1926880ed0a06114d940c1fc610bba0f, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 5.8761764
+      value: 4.7766266
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 1926880ed0a06114d940c1fc610bba0f, type: 3}
       propertyPath: m_LocalRotation.w
@@ -369,6 +369,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 1926880ed0a06114d940c1fc610bba0f, type: 3}
       insertIndex: -1
       addedObject: {fileID: 632172376191765413}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 1926880ed0a06114d940c1fc610bba0f, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 379915305723681750}
   m_SourcePrefab: {fileID: 100100000, guid: 1926880ed0a06114d940c1fc610bba0f, type: 3}
 --- !u!1 &7260196784962744215 stripped
 GameObject:
@@ -528,13 +531,13 @@ MonoBehaviour:
       m_Calls: []
   m_AttachTransform: {fileID: 0}
   m_SecondaryAttachTransform: {fileID: 0}
-  m_UseDynamicAttach: 0
+  m_UseDynamicAttach: 1
   m_MatchAttachPosition: 1
   m_MatchAttachRotation: 1
   m_SnapToColliderVolume: 1
   m_ReinitializeDynamicAttachEverySingleGrab: 1
   m_AttachEaseInTime: 0.15
-  m_MovementType: 2
+  m_MovementType: 1
   m_VelocityDamping: 1
   m_VelocityScale: 1
   m_AngularVelocityDamping: 1
@@ -576,6 +579,29 @@ MonoBehaviour:
   m_StartingSingleGrabTransformers: []
   m_StartingMultipleGrabTransformers: []
   m_AddDefaultGrabTransformers: 1
+--- !u!114 &379915305723681750
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7260196784962744215}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d0a1302d0d134fa8a2a5b3bf4aec3c20, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_PermittedDisplacementAxes: 7
+  m_ConstrainedAxisDisplacementMode: 1
+  m_TwoHandedRotationMode: 1
+  m_AllowOneHandedScaling: 1
+  m_AllowTwoHandedScaling: 0
+  m_OneHandedScaleSpeed: 0.5
+  m_ThresholdMoveRatioForScale: 0.05
+  m_ClampScaling: 1
+  m_MinimumScaleRatio: 0.25
+  m_MaximumScaleRatio: 2
+  m_ScaleMultiplier: 0.25
 --- !u!4 &8037436797532468525 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 1926880ed0a06114d940c1fc610bba0f, type: 3}
