@@ -2,8 +2,10 @@ using UnityEngine;
 
 public class BUTTON_COLLIDER_TESTING_SCRIPT : MonoBehaviour
 {
-    public enum button { on, off, mode, tare };
+    public enum button { on, off, mode, tare, weighBoat };
     public button whichButton;
+    
+    
     
 
     void OnEnable()
@@ -34,6 +36,9 @@ public class BUTTON_COLLIDER_TESTING_SCRIPT : MonoBehaviour
             case button.tare:
                 GameEventsManager.instance.miscEvents.ScaleTare();
                 break;
+            case button.weighBoat:
+                GameEventsManager.instance.miscEvents.BoatToScale();
+                break;
         }
     }
 
@@ -42,4 +47,5 @@ public class BUTTON_COLLIDER_TESTING_SCRIPT : MonoBehaviour
         if (obj == gameObject)
             ButtonPress();
     }
+
 }

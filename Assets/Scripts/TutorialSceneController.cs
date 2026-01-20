@@ -5,10 +5,10 @@ using UnityEngine.SceneManagement;
 public class TutorialSceneController : MonoBehaviour
 {
     [Header("Scene Flow")]
-    [SerializeField] private string nextSceneName = "LabSceneGlasswareUse_Zack";
+    [SerializeField] private string nextSceneName = "LabSceneGlasswareUse";
 
     [Header("Input Settings")]
-    [SerializeField] private float holdDuration = 2.0f; // Seconds to hold X or A
+    [SerializeField] private float holdDuration = 4.0f; // Seconds to hold X or A
 
     private bool isLoading = false;
     private float holdTimer = 0f;
@@ -40,21 +40,27 @@ public class TutorialSceneController : MonoBehaviour
     // Called internally once player has held X/A long enough
     private void OnTutorialComplete()
     {
-        if (!isLoading && !string.IsNullOrEmpty(nextSceneName))
+        if (isLoading)
+            return;
+
+        int currentIndex = SceneManager.GetActiveScene().buildIndex;
+        int nextIndex = currentIndex + 1;
+
+        // Guard against stepping past the last scene in build settings
+        if (nextIndex >= SceneManager.sceneCountInBuildSettings)
         {
-            StartCoroutine(LoadSceneAsync(nextSceneName));
+            Debug.LogWarning($"No next scene in build settings after index {currentIndex}.");
+            return;
         }
-        else if (string.IsNullOrEmpty(nextSceneName))
-        {
-            Debug.LogError("Next scene name is not set on TutorialSceneController!");
-        }
+
+        StartCoroutine(LoadSceneAsync(nextIndex));
     }
 
-    IEnumerator LoadSceneAsync(string sceneName)
+    IEnumerator LoadSceneAsync(int sceneIndex)
     {
         isLoading = true;
 
-        AsyncOperation asyncLoad = SceneManager.LoadSceneAsync(sceneName);
+        AsyncOperation asyncLoad = SceneManager.LoadSceneAsync(sceneIndex);
 
         // Wait until the asynchronous scene fully loads
         while (!asyncLoad.isDone)

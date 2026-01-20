@@ -69,7 +69,7 @@ public class WearCoat : MonoBehaviour
 
     private void PutOn()
     {
-        AudioEventManager.LabCoatSound();
+        //AudioEventManager.LabCoatSound();
         wearing = true;
         itemToWear.SetActive(false);
     }
