@@ -23,6 +23,16 @@ public class TaskEvents
         }
     }
 
+    public event Action<string> onRestartTask;
+
+    public void RestartTask(string id)
+    {
+        if (onRestartTask != null)
+        {
+            onRestartTask(id);
+        }
+    }
+
     public event Action<string> onAbandonTask;
     public void AbandonTask(string id)
     {
