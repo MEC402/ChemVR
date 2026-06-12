@@ -15461,6 +15461,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 6596616887460890600, guid: f24a81713202509439bf886d7000d75e, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1314776726}
+    - targetCorrespondingSourceObject: {fileID: 6596616887460890600, guid: f24a81713202509439bf886d7000d75e, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1314776727}
   m_SourcePrefab: {fileID: 100100000, guid: f24a81713202509439bf886d7000d75e, type: 3}
 --- !u!1 &1314776712 stripped
 GameObject:
@@ -15524,9 +15527,24 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 78544365bced57f478f5125e681741eb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  ModuleFolderName: GlasswareUseWeb
   sceneName: WebLabGlassware
   taskStepIndex: 0
   checkpoint: {fileID: 0}
+--- !u!114 &1314776727
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1314776712}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c822197f95380884aba413a7a8dff454, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  taskInfoObjectID: Glassware_Use_Task
+  CheckpointContainer: {fileID: 11400000, guid: 7eba872586e7ce848bf6c1d74b937e72, type: 2}
 --- !u!1 &1318440018
 GameObject:
   m_ObjectHideFlags: 0

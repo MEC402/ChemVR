@@ -182,6 +182,13 @@ public class TaskManager : MonoBehaviour
         return idToTaskMap;
     }
 
+    //Added to return just the task index in order to make checkpoint system work properly.
+    public int GetCurrentStepIndex(string id)
+    {
+        Task task = GetTaskById(id);
+        return task != null ? task.getStep() : -1;
+    }
+
     private Task GetTaskById(string id)
     {
         Task task = taskMap[id];

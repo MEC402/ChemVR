@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [CreateAssetMenu(menuName = "ScriptableObjects/Task Checkpoint")]
-public class TaskCheckpoint : ScriptableObject
+public class TaskCheckpointSO : ScriptableObject
 {
     public string sceneForCheckpoint;
     public int checkpointStep;

@@ -11,11 +11,16 @@ using UnityEditor;
 public class CheckpointRecorder : MonoBehaviour
 {
     private List<GameObject> trackedObjects = new();
+    private string objectSavePath = "Assets/Scripts/ResetTaskSystem/CheckpointObjects/";
+    [HeaderAttribute("Write the EXACT name of the end folder to save the objects to, under 'ResetTaskSystem/CheckpointObjects/'")]
+    [Space]
+    [SerializeField] private string ModuleFolderName;
+    private string path;
 
     [SerializeField] private string sceneName;
     [SerializeField] private int taskStepIndex = 0;
 
-    public TaskCheckpoint checkpoint;
+    public TaskCheckpointSO checkpoint;
     // Start is called before the first frame update
     private void Start()
     {
@@ -26,7 +31,9 @@ public class CheckpointRecorder : MonoBehaviour
             trackedObjects.Add(interactable.gameObject);
         }
         Debug.Log(trackedObjects.Count);
- 
+
+        //Assemble path to save objects to (only did this to make it easier to change in the inspector)
+        path = objectSavePath + ModuleFolderName + "/";
     }
 
 
@@ -40,14 +47,8 @@ public class CheckpointRecorder : MonoBehaviour
 
     public void CaptureCheckpoint()
     {
-        if (checkpoint != null)
-            checkpoint.objectStates.Clear();
-        else
-        {
-            checkpoint = ScriptableObject.CreateInstance<TaskCheckpoint>();
-            checkpoint.sceneForCheckpoint = sceneName;
-        }
         taskStepIndex++;
+        TaskCheckpointSO checkpoint = ScriptableObject.CreateInstance<TaskCheckpointSO>();
         checkpoint.checkpointStep = taskStepIndex;
         checkpoint.checkpointName = sceneName + "Checkpoint" + "-" + taskStepIndex;
 
@@ -70,17 +71,17 @@ public class CheckpointRecorder : MonoBehaviour
             checkpoint.objectStates.Add(capturedState);
         }
 
-        foreach(ObjectState state in checkpoint.objectStates)
+        foreach (ObjectState state in checkpoint.objectStates)
         {
             Debug.Log("Object name: " + state.objectName);
         }
         Debug.Log(checkpoint.sceneForCheckpoint);
         Debug.Log(checkpoint.checkpointStep);
 
-        #if UNITY_EDITOR
-        AssetDatabase.CreateAsset(checkpoint, "Assets/Scripts/ResetTaskSystem/CheckpointObjects/GlasswareUseVR/" + checkpoint.checkpointName + ".asset");
+#if UNITY_EDITOR
+        AssetDatabase.CreateAsset(checkpoint, path + checkpoint.checkpointName + ".asset");
         AssetDatabase.SaveAssets();
-        #endif
+#endif
 
     }
 

@@ -1,0 +1,110 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f55563b65d41bb94495b1fb8c4dda651, type: 3}
+  m_Name: WebLabGlasswareCheckpoint-1
+  m_EditorClassIdentifier: 
+  sceneForCheckpoint: 
+  checkpointStep: 1
+  checkpointName: WebLabGlasswareCheckpoint-1
+  objectStates:
+  - objectName: GraduatedCylinderMesh_Fluid
+    position: {x: -1.9490013, y: 1.130636, z: 6.021003}
+    rotation: {x: -0.49999073, y: -0.49999657, z: -0.50000334, w: 0.50000936}
+    velocity: {x: 0, y: 0, z: 0}
+    angularVelocity: {x: 0, y: 0, z: 0}
+    isPipette: 0
+    isChemContainer: 0
+    currentFluid:
+      totalVolume: 0
+      chems:
+      - name: WATER
+        type: 0
+        volume: 0
+      - name: HYDROCHLORIC_ACID
+        type: 1
+        volume: 0
+      - name: NaOH
+        type: 2
+        volume: 0
+      - name: COPPER_SULFATE
+        type: 3
+        volume: 0
+      - name: GLUCOSE
+        type: 4
+        volume: 0
+      - name: SOLID_SUGAR
+        type: 5
+        volume: 0
+      - name: SOLIDCrCl3
+        type: 6
+        volume: 0
+      - name: H2O2
+        type: 7
+        volume: 0
+      - name: CHROMIUM_III_CHLORIDE
+        type: 8
+        volume: 0
+      - name: ChemMix
+        type: 9
+        volume: 0
+      - name: ChemMix2
+        type: 10
+        volume: 0
+      - name: Soap
+        type: 11
+        volume: 0
+  - objectName: DI_Water_New_Two
+    position: {x: -2.1928334, y: 1.0837886, z: 6.0600405}
+    rotation: {x: -0.49920407, y: 0.5004904, z: 0.4995047, w: 0.500799}
+    velocity: {x: 0, y: 0, z: 0}
+    angularVelocity: {x: 0, y: 0, z: 0}
+    isPipette: 0
+    isChemContainer: 0
+    currentFluid:
+      totalVolume: 0
+      chems:
+      - name: WATER
+        type: 0
+        volume: 0
+      - name: HYDROCHLORIC_ACID
+        type: 1
+        volume: 0
+      - name: NaOH
+        type: 2
+        volume: 0
+      - name: COPPER_SULFATE
+        type: 3
+        volume: 0
+      - name: GLUCOSE
+        type: 4
+        volume: 0
+      - name: SOLID_SUGAR
+        type: 5
+        volume: 0
+      - name: SOLIDCrCl3
+        type: 6
+        volume: 0
+      - name: H2O2
+        type: 7
+        volume: 0
+      - name: CHROMIUM_III_CHLORIDE
+        type: 8
+        volume: 0
+      - name: ChemMix
+        type: 9
+        volume: 0
+      - name: ChemMix2
+        type: 10
+        volume: 0
+      - name: Soap
+        type: 11
+        volume: 0
