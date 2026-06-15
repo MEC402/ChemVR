@@ -78,7 +78,15 @@ public class ResetTaskManager : MonoBehaviour
                     rb.velocity = resetState.velocity;
                     rb.angularVelocity = resetState.angularVelocity;
 
-                    //Still need to add the logic for resetting the chemFluid info, but we're gonna make sure the position reset works first.
+                    //If object being reset happens to be chem container, continue, also still do TryGetComponent anyway cause we don't want errors, just in case.
+                    if(resetState.isChemContainer)
+                    {
+                        if (trackedObject.TryGetComponent<ChemContainer>(out ChemContainer chemContainer))
+                        {
+                            chemContainer.SetChem(resetState.currentFluid);
+                            chemContainer.UpdateChem();
+                        }
+                    }
                     //Debug.Log(trackedObject.gameObject.name + " has been reset to last step.");
                 }
                 else

@@ -302,6 +302,18 @@ public class PipetteFunctions : MonoBehaviour
     }
 
 
+    //Used to reset pipettes during checkpoint reset.
+    private void ResetPipette()
+    {
+        if(canDispense)
+        {
+            currentFluids.SetToEmpty();
+            internalFluid.gameObject.SetActive(false);
+            canDispense = false;
+        }
+    }
+
+
 
 
     private void OnTriggerEnter(Collider other)

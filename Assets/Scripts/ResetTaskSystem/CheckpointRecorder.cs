@@ -58,17 +58,43 @@ public class CheckpointRecorder : MonoBehaviour
         {
             Rigidbody rb = capturedObject.gameObject.GetComponent<Rigidbody>();
 
-            ObjectState capturedState = new ObjectState
+            if (capturedObject.TryGetComponent<ChemContainer>(out ChemContainer capturedContainer))
             {
-                objectName = capturedObject.gameObject.name,
-                position = capturedObject.transform.position,
-                rotation = capturedObject.transform.rotation,
+                ChemFluid fluidToCapture = capturedContainer.GetChemFluid();
 
-                velocity = rb ? rb.velocity : Vector3.zero,
-                angularVelocity = rb ? rb.angularVelocity : Vector3.zero
-            };
+                ObjectState capturedState = new ObjectState
+                {
+                    objectName = capturedObject.gameObject.name,
+                    position = capturedObject.transform.position,
+                    rotation = capturedObject.transform.rotation,
 
-            checkpoint.objectStates.Add(capturedState);
+                    velocity = rb ? rb.velocity : Vector3.zero,
+                    angularVelocity = rb ? rb.angularVelocity : Vector3.zero,
+
+                    isChemContainer = true,
+                    currentFluid = fluidToCapture 
+                };
+
+                checkpoint.objectStates.Add(capturedState);
+            }
+            else
+            {
+                ObjectState capturedState = new ObjectState
+                {
+                    objectName = capturedObject.gameObject.name,
+                    position = capturedObject.transform.position,
+                    rotation = capturedObject.transform.rotation,
+
+                    velocity = rb ? rb.velocity : Vector3.zero,
+                    angularVelocity = rb ? rb.angularVelocity : Vector3.zero,
+
+                    isChemContainer = false
+                };
+
+                checkpoint.objectStates.Add(capturedState);
+
+            }
+
         }
 
         foreach (ObjectState state in checkpoint.objectStates)
