@@ -18,7 +18,7 @@ public class SnapBulbToPipet : MonoBehaviour
 
     // ADDED FOR TESTING
     Vector3 OGbulbTranslation = new Vector3(0, 0, -0.001f);
-
+    
     private void Update()
     {
         if (snap)
@@ -56,6 +56,7 @@ public class SnapBulbToPipet : MonoBehaviour
             GameEventsManager.instance.webGLEvents.OnObjectReleased += WebGLRelease;
         }
     }
+    
     private void SetPositionToPipet()
     {
         // ADDED FOR TESTING
@@ -191,5 +192,11 @@ public class SnapBulbToPipet : MonoBehaviour
             }
 
         }
+    }
+
+
+    public bool GetSnap()
+    {
+        return snap;
     }
 }

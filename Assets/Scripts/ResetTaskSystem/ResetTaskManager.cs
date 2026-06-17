@@ -2,11 +2,14 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.XR.Interaction.Toolkit;
 
 public class ResetTaskManager : MonoBehaviour
 {
 
     public static ResetTaskManager instance { get; private set; }
+
+    public event EventHandler onResetCalled;
     private TaskManager taskManager;
     private List<GameObject> trackedObjects = new();
 
@@ -42,7 +45,7 @@ public class ResetTaskManager : MonoBehaviour
 
     //Placeholder Update, until I can properly bind resetting task to more UI involved stuff and XR inputs. Just for testing.
     private void Update()
-    {   
+    {
         if (Input.GetKeyDown(KeyCode.K))
         {
             ResetCurrentTask();
@@ -51,40 +54,75 @@ public class ResetTaskManager : MonoBehaviour
 
     public void ResetCurrentTask()
     {
+        onResetCalled?.Invoke(this, EventArgs.Empty);
         //First, get the current task step of the module.
         int currentTaskNumber = taskManager.GetCurrentStepIndex(taskInfoObjectID);
         //Then, get the corresponding checkpoint to that step.
         TaskCheckpointSO currentCheckpoint = CheckpointContainer.GetCheckpoint(currentTaskNumber);
         //Then, get all the saved object states within that checkpoint
         List<ObjectState> statesToRestore = new List<ObjectState>();
-        foreach(ObjectState storedState in currentCheckpoint.objectStates)
+        foreach (ObjectState storedState in currentCheckpoint.objectStates)
         {
             statesToRestore.Add(storedState);
             Debug.Log("Added state for " + storedState.objectName);
         }
         //Finally, sort through all states and all tracked objects and match up their data.
-        foreach(GameObject trackedObject in trackedObjects)
+        foreach (GameObject trackedObject in trackedObjects)
         {
-            Debug.Log("Object to reset: " + trackedObject.gameObject.name);
-            foreach(ObjectState resetState in statesToRestore)
+            //Debug.Log("Object to reset: " + trackedObject.gameObject.name);
+            foreach (ObjectState resetState in statesToRestore)
             {
-                if(resetState.objectName == trackedObject.gameObject.name)
+                if (resetState.objectName == trackedObject.gameObject.name) //For each object and each state, check if object matches state's saved name.
                 {
-                    //Stored position data
-                    trackedObject.transform.position = resetState.position;
-                    trackedObject.transform.rotation = resetState.rotation;
-                    //Stored velocity data (by all means this should ALWAYS be 0, just forcing all the objects into resting positions upon reset)
-                    Rigidbody rb = trackedObject.GetComponent<Rigidbody>();
-                    rb.velocity = resetState.velocity;
-                    rb.angularVelocity = resetState.angularVelocity;
-
-                    //If object being reset happens to be chem container, continue, also still do TryGetComponent anyway cause we don't want errors, just in case.
-                    if(resetState.isChemContainer)
+                    //Check if object is ChemContainer FIRST, because we want to reset chems, but not always positions. This would get skipped if done last.
+                    if (resetState.isChemContainer)
                     {
                         if (trackedObject.TryGetComponent<ChemContainer>(out ChemContainer chemContainer))
                         {
                             chemContainer.SetChem(resetState.currentFluid);
                             chemContainer.UpdateChem();
+                        }
+                    }
+
+                    if (trackedObject.gameObject.TryGetComponent<XRGrabInteractable>(out XRGrabInteractable grab)) //Check if Object is currently being held, if so, don't reset the position.
+                    {
+                        if (grab != null && grab.isSelected)
+                        {
+                            continue;
+                        } //Do nothing. If the object is held, we don't want to try and move it out of the user's hands.
+                        else
+                        {
+                            if (resetState.isPipetteBulb) //Check saved state if pipette bulb (could skip this step, but I feel like checking a bool every loop is better than TryGetComponent every loop, in terms of load.)
+                            {
+                                if (trackedObject.gameObject.TryGetComponent<SnapBulbToPipet>(out SnapBulbToPipet bulbScript)) //Make sure object even has the component
+                                {
+                                    if (bulbScript.GetSnap())//Is the bulb currently attached to a pipette?
+                                    {
+                                        //Do nothing. The bulb is snapped to a pipette and will move with it. 
+                                        //(This might be a problem, if the bulb starts clipping into stuff again. May need to force bulb to detatch on reset.)   
+                                    }
+                                    else
+                                    {   //If not attached, do all the normal stuff.
+                                        //Stored position data
+                                        trackedObject.transform.position = resetState.position;
+                                        trackedObject.transform.rotation = resetState.rotation;
+                                        //Stored velocity data (by all means this should ALWAYS be 0, just forcing all the objects into resting positions upon reset)
+                                        Rigidbody rb = trackedObject.GetComponent<Rigidbody>();
+                                        rb.velocity = resetState.velocity;
+                                        rb.angularVelocity = resetState.angularVelocity;
+                                    }
+                                }
+                            }
+                            else
+                            {
+                                //Stored position data
+                                trackedObject.transform.position = resetState.position;
+                                trackedObject.transform.rotation = resetState.rotation;
+                                //Stored velocity data (by all means this should ALWAYS be 0, just forcing all the objects into resting positions upon reset)
+                                Rigidbody rb = trackedObject.GetComponent<Rigidbody>();
+                                rb.velocity = resetState.velocity;
+                                rb.angularVelocity = resetState.angularVelocity;
+                            }
                         }
                     }
                     //Debug.Log(trackedObject.gameObject.name + " has been reset to last step.");
