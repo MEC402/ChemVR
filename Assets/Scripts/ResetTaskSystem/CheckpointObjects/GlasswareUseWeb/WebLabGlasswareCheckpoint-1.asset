@@ -16,12 +16,150 @@ MonoBehaviour:
   checkpointStep: 1
   checkpointName: WebLabGlasswareCheckpoint-1
   objectStates:
-  - objectName: DI_Water_New_Two
-    position: {x: -2.1929276, y: 1.0837853, z: 6.0597987}
-    rotation: {x: -0.5004603, y: 0.5012038, z: 0.4988902, w: 0.4994425}
+  - objectName: volumetric_Pipette_10m_TEMP
+    position: {x: -4.9368334, y: 1.1231093, z: 5.4923325}
+    rotation: {x: -0.5843777, y: 0.39638174, z: -0.5893632, w: 0.39247325}
     velocity: {x: 0, y: 0, z: 0}
     angularVelocity: {x: 0, y: 0, z: 0}
-    isPipette: 0
+    isPipetteBulb: 0
+    isChemContainer: 0
+    currentFluid:
+      totalVolume: 0
+      chems:
+      - name: WATER
+        type: 0
+        volume: 0
+      - name: HYDROCHLORIC_ACID
+        type: 1
+        volume: 0
+      - name: NaOH
+        type: 2
+        volume: 0
+      - name: COPPER_SULFATE
+        type: 3
+        volume: 0
+      - name: GLUCOSE
+        type: 4
+        volume: 0
+      - name: SOLID_SUGAR
+        type: 5
+        volume: 0
+      - name: SOLIDCrCl3
+        type: 6
+        volume: 0
+      - name: H2O2
+        type: 7
+        volume: 0
+      - name: CHROMIUM_III_CHLORIDE
+        type: 8
+        volume: 0
+      - name: ChemMix
+        type: 9
+        volume: 0
+      - name: ChemMix2
+        type: 10
+        volume: 0
+      - name: Soap
+        type: 11
+        volume: 0
+  - objectName: GraduatedCylinderMesh_Fluid
+    position: {x: -1.9490012, y: 1.130636, z: 6.021003}
+    rotation: {x: -0.4999907, y: -0.49999675, z: -0.5000036, w: 0.50000906}
+    velocity: {x: 0, y: 0, z: 0}
+    angularVelocity: {x: 0, y: 0, z: 0}
+    isPipetteBulb: 0
+    isChemContainer: 1
+    currentFluid:
+      totalVolume: 0
+      chems:
+      - name: WATER
+        type: 0
+        volume: 0
+      - name: HYDROCHLORIC_ACID
+        type: 1
+        volume: 0
+      - name: NaOH
+        type: 2
+        volume: 0
+      - name: COPPER_SULFATE
+        type: 3
+        volume: 0
+      - name: GLUCOSE
+        type: 4
+        volume: 0
+      - name: SOLID_SUGAR
+        type: 5
+        volume: 0
+      - name: SOLIDCrCl3
+        type: 6
+        volume: 0
+      - name: H2O2
+        type: 7
+        volume: 0
+      - name: CHROMIUM_III_CHLORIDE
+        type: 8
+        volume: 0
+      - name: ChemMix
+        type: 9
+        volume: 0
+      - name: ChemMix2
+        type: 10
+        volume: 0
+      - name: Soap
+        type: 11
+        volume: 0
+  - objectName: volumetric_Pipette_Bulb
+    position: {x: -5.0508013, y: 1.1701431, z: 5.6085997}
+    rotation: {x: -0.5088153, y: 0.49102664, z: 0.49102664, w: 0.5088153}
+    velocity: {x: 0, y: 0, z: 0}
+    angularVelocity: {x: 0, y: 0, z: 0}
+    isPipetteBulb: 0
+    isChemContainer: 0
+    currentFluid:
+      totalVolume: 0
+      chems:
+      - name: WATER
+        type: 0
+        volume: 0
+      - name: HYDROCHLORIC_ACID
+        type: 1
+        volume: 0
+      - name: NaOH
+        type: 2
+        volume: 0
+      - name: COPPER_SULFATE
+        type: 3
+        volume: 0
+      - name: GLUCOSE
+        type: 4
+        volume: 0
+      - name: SOLID_SUGAR
+        type: 5
+        volume: 0
+      - name: SOLIDCrCl3
+        type: 6
+        volume: 0
+      - name: H2O2
+        type: 7
+        volume: 0
+      - name: CHROMIUM_III_CHLORIDE
+        type: 8
+        volume: 0
+      - name: ChemMix
+        type: 9
+        volume: 0
+      - name: ChemMix2
+        type: 10
+        volume: 0
+      - name: Soap
+        type: 11
+        volume: 0
+  - objectName: DI_Water_New_Two
+    position: {x: -2.1929321, y: 1.0837413, z: 6.0600452}
+    rotation: {x: -0.49958643, y: 0.5000618, z: 0.4998862, w: 0.5004652}
+    velocity: {x: 0, y: 0, z: 0}
+    angularVelocity: {x: 0, y: 0, z: 0}
+    isPipetteBulb: 0
     isChemContainer: 1
     currentFluid:
       totalVolume: 300
@@ -62,13 +200,59 @@ MonoBehaviour:
       - name: Soap
         type: 11
         volume: 0
-  - objectName: GraduatedCylinderMesh_Fluid
-    position: {x: -2.451308, y: 1.1306475, z: 6.2140694}
-    rotation: {x: -0.6494008, y: -0.27990583, z: -0.27953067, w: 0.64945674}
+  - objectName: volumetric_Pipette_15m_TEMP
+    position: {x: -4.9489098, y: 1.123718, z: 5.4206777}
+    rotation: {x: -0.53689563, y: 0.46083134, z: -0.5390084, w: 0.45699844}
     velocity: {x: 0, y: 0, z: 0}
     angularVelocity: {x: 0, y: 0, z: 0}
-    isPipette: 0
-    isChemContainer: 1
+    isPipetteBulb: 0
+    isChemContainer: 0
+    currentFluid:
+      totalVolume: 0
+      chems:
+      - name: WATER
+        type: 0
+        volume: 0
+      - name: HYDROCHLORIC_ACID
+        type: 1
+        volume: 0
+      - name: NaOH
+        type: 2
+        volume: 0
+      - name: COPPER_SULFATE
+        type: 3
+        volume: 0
+      - name: GLUCOSE
+        type: 4
+        volume: 0
+      - name: SOLID_SUGAR
+        type: 5
+        volume: 0
+      - name: SOLIDCrCl3
+        type: 6
+        volume: 0
+      - name: H2O2
+        type: 7
+        volume: 0
+      - name: CHROMIUM_III_CHLORIDE
+        type: 8
+        volume: 0
+      - name: ChemMix
+        type: 9
+        volume: 0
+      - name: ChemMix2
+        type: 10
+        volume: 0
+      - name: Soap
+        type: 11
+        volume: 0
+  - objectName: volumetric_Pipette_Bulb_blue
+    position: {x: -5.05, y: 1.170143, z: 5.31}
+    rotation: {x: -0.5088152, y: 0.49102658, z: 0.49102658, w: 0.5088152}
+    velocity: {x: 0, y: 0, z: 0}
+    angularVelocity: {x: 0, y: 0, z: 0}
+    isPipetteBulb: 0
+    isChemContainer: 0
     currentFluid:
       totalVolume: 0
       chems:
