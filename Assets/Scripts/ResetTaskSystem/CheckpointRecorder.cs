@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.XR.Interaction.Toolkit;
+using UnityEngine.InputSystem;
+
 
 #if UNITY_EDITOR
 using UnityEditor;
@@ -10,6 +12,8 @@ using UnityEditor;
 
 public class CheckpointRecorder : MonoBehaviour
 {
+    [HeaderAttribute("Toggle this bool on to allow recording. Turn off when not in use.")]
+    [SerializeField] private bool allowCheckpointRecording = false;
     private List<GameObject> trackedObjects = new();
     private string objectSavePath = "Assets/Scripts/ResetTaskSystem/CheckpointObjects/";
     [HeaderAttribute("Write the EXACT name of the end folder to save the objects to, under 'ResetTaskSystem/CheckpointObjects/'")]
@@ -20,7 +24,7 @@ public class CheckpointRecorder : MonoBehaviour
     [SerializeField] private string sceneName;
     [SerializeField] private int taskStepIndex = 0;
 
-    public TaskCheckpointSO checkpoint;
+    private TaskCheckpointSO checkpoint;
     // Start is called before the first frame update
     private void Start()
     {
@@ -36,14 +40,26 @@ public class CheckpointRecorder : MonoBehaviour
         path = objectSavePath + ModuleFolderName + "/";
     }
 
-
-    private void Update()
+    private void OnEnable()
     {
-        if (Input.GetKeyDown(KeyCode.J))
+        if (allowCheckpointRecording)
+            GameEventsManager.instance.inputEvents.onRThumbstickClicked += BeginCaptureCheckpoint;
+    }
+    private void OnDisable()
+    {
+        if (allowCheckpointRecording)
+            GameEventsManager.instance.inputEvents.onRThumbstickClicked -= BeginCaptureCheckpoint;
+    }
+
+
+//Works for webGL if can't figure out how to bind a key to the thumbstick buttons
+/*     private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.J) )
         {
             CaptureCheckpoint();
         }
-    }
+    } */
 
     public void CaptureCheckpoint()
     {
@@ -109,6 +125,11 @@ public class CheckpointRecorder : MonoBehaviour
         AssetDatabase.SaveAssets();
 #endif
 
+    }
+
+    private void BeginCaptureCheckpoint(InputAction.CallbackContext context)
+    {
+        CaptureCheckpoint();
     }
 
 

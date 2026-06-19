@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem;
 using UnityEngine.XR.Interaction.Toolkit;
 
 public class ResetTaskManager : MonoBehaviour
@@ -43,14 +44,24 @@ public class ResetTaskManager : MonoBehaviour
         }
     }
 
-    //Placeholder Update, until I can properly bind resetting task to more UI involved stuff and XR inputs. Just for testing.
-    private void Update()
+    private void OnEnable()
+    {
+       GameEventsManager.instance.inputEvents.onLThumbstickClicked += BeginResetTask;
+    }
+    private void OnDisable()
+    {
+        GameEventsManager.instance.inputEvents.onLThumbstickClicked -= BeginResetTask;
+    }
+    
+
+    //Placeholder Update, works for webGL if cannot bind keys to XR thumbstick.
+     private void Update()
     {
         if (Input.GetKeyDown(KeyCode.K))
         {
             ResetCurrentTask();
         }
-    }
+    } 
 
     public void ResetCurrentTask()
     {
@@ -133,6 +144,12 @@ public class ResetTaskManager : MonoBehaviour
         }
         //Debug.Log("All objects should be restored!");
 
+    }
+
+    //Might need to add more to this for some sort of UI popup that says "confirm?" or something like that so it can't be done on accident.
+    private void BeginResetTask(InputAction.CallbackContext context)
+    {
+        ResetCurrentTask();
     }
 
 
