@@ -12,6 +12,8 @@ public class ResetTaskManager : MonoBehaviour
 
     public event EventHandler onResetCalled;
     private TaskManager taskManager;
+    private ResetTaskMenuComponent resetTaskMenuUI;
+    private bool resetUiOpen;
     private List<GameObject> trackedObjects = new();
 
     [HeaderAttribute("Write the EXACT ID that is written on the TaskInfoSO object for the given module.")]
@@ -35,6 +37,8 @@ public class ResetTaskManager : MonoBehaviour
     {
         //Get a reference to the task manager so we can reference the task step index.
         taskManager = FindAnyObjectByType<TaskManager>();
+        resetTaskMenuUI = FindAnyObjectByType<ResetTaskMenuComponent>();
+        resetTaskMenuUI.gameObject.SetActive(false);
 
         //Find list of all tracked objects in the module to reference later.
         TrackedObject[] allTrackedObjects = FindObjectsByType<TrackedObject>(FindObjectsSortMode.None);
@@ -47,21 +51,24 @@ public class ResetTaskManager : MonoBehaviour
     private void OnEnable()
     {
        GameEventsManager.instance.inputEvents.onLThumbstickClicked += BeginResetTask;
+       GameEventsManager.instance.inputEvents.onRThumbstickClicked += ConfirmResetTask;
+
     }
     private void OnDisable()
     {
         GameEventsManager.instance.inputEvents.onLThumbstickClicked -= BeginResetTask;
+        GameEventsManager.instance.inputEvents.onRThumbstickClicked -= ConfirmResetTask;
     }
     
 
     //Placeholder Update, works for webGL if cannot bind keys to XR thumbstick.
-     private void Update()
+ /*     private void Update()
     {
         if (Input.GetKeyDown(KeyCode.K))
         {
             ResetCurrentTask();
         }
-    } 
+    }  */
 
     public void ResetCurrentTask()
     {
@@ -149,7 +156,26 @@ public class ResetTaskManager : MonoBehaviour
     //Might need to add more to this for some sort of UI popup that says "confirm?" or something like that so it can't be done on accident.
     private void BeginResetTask(InputAction.CallbackContext context)
     {
-        ResetCurrentTask();
+        if(!resetUiOpen)
+        {
+            resetUiOpen = true;
+            resetTaskMenuUI.gameObject.SetActive(true);
+        }
+        else if(resetUiOpen)
+        {
+            resetUiOpen = false;
+            resetTaskMenuUI.gameObject.SetActive(false);
+        }
+    }
+
+    private void ConfirmResetTask(InputAction.CallbackContext context)
+    {
+        if(resetUiOpen)
+        {
+            ResetCurrentTask();
+            resetUiOpen = false;
+            resetTaskMenuUI.gameObject.SetActive(false);
+        }
     }
 
 
