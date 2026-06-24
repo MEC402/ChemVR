@@ -43,12 +43,12 @@ public class CheckpointRecorder : MonoBehaviour
     private void OnEnable()
     {
         if (allowCheckpointRecording)
-            GameEventsManager.instance.inputEvents.onRThumbstickClicked += BeginCaptureCheckpoint;
+            GameEventsManager.instance.inputEvents.onXButtonPressed += BeginCaptureCheckpoint;
     }
     private void OnDisable()
     {
         if (allowCheckpointRecording)
-            GameEventsManager.instance.inputEvents.onRThumbstickClicked -= BeginCaptureCheckpoint;
+            GameEventsManager.instance.inputEvents.onXButtonPressed -= BeginCaptureCheckpoint;
     }
 
 

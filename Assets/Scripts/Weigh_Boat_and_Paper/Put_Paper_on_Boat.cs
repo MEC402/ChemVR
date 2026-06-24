@@ -208,6 +208,12 @@ public class Put_Paper_on_Boat : MonoBehaviour
         }
     }
 
+
+    public bool GetHasSnapped()
+    {
+        return hasSnapped;
+    }
+
     #region WebGL Interactions
     /// <summary>
     /// Manually called for WebGL interactions when the player "grabs" an object.

@@ -451,6 +451,7 @@ GameObject:
   - component: {fileID: 7151855694486591890}
   - component: {fileID: 851044892459858773}
   - component: {fileID: 7255133138401768498}
+  - component: {fileID: 528752993305983654}
   m_Layer: 12
   m_Name: BeakerUp250mL_largerText
   m_TagString: CanBoil
@@ -933,6 +934,20 @@ MeshCollider:
   m_Convex: 1
   m_CookingOptions: 30
   m_Mesh: {fileID: -8581252681578477751, guid: 2c1db9ee25418b8418b90e1a88ebc560, type: 3}
+--- !u!114 &528752993305983654
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7314264408401364945}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 810d1272b052a2544aac739f5b3d1316, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Offset: {x: 0, y: 0.05, z: 0}
+  rotationOffset: 0
 --- !u!1 &8515411652611563606
 GameObject:
   m_ObjectHideFlags: 0

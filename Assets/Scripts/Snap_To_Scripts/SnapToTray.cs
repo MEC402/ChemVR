@@ -9,8 +9,8 @@ public class SnapToTray : MonoBehaviour
     private XRGrabInteractable grabInteractable; //XRGrabInteractable of attached gameObject
     private Rigidbody myRb; //Rigidbody of attached gameObject
     private bool touching; //is this collider touching a tray collieder?
-    private bool snap; //is this bulb gameObject attached to a tray?
-    private bool isGrabbed; //is the bulb grabbed? (so tray doesn't detach unless intentional)
+    private bool snap; //is this gameObject attached to a tray?
+    private bool isGrabbed; //is the object grabbed? (so tray doesn't detach unless intentional)
     private GameObject tray; //the tray gameobject
     private int snapPointIndex = -1; //the index of the snap point on the tray
     private GameObject TrayPoint;
@@ -135,5 +135,10 @@ public class SnapToTray : MonoBehaviour
     {
         tray = theObject;
         snapPointIndex = Index;
+    }
+
+    public bool GetIsSnapped()
+    {
+        return snap;
     }
 }

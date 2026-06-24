@@ -50,8 +50,8 @@ public class ResetTaskManager : MonoBehaviour
 
     private void OnEnable()
     {
-       GameEventsManager.instance.inputEvents.onLThumbstickClicked += BeginResetTask;
-       GameEventsManager.instance.inputEvents.onRThumbstickClicked += ConfirmResetTask;
+        GameEventsManager.instance.inputEvents.onLThumbstickClicked += BeginResetTask;
+        GameEventsManager.instance.inputEvents.onRThumbstickClicked += ConfirmResetTask;
 
     }
     private void OnDisable()
@@ -59,16 +59,16 @@ public class ResetTaskManager : MonoBehaviour
         GameEventsManager.instance.inputEvents.onLThumbstickClicked -= BeginResetTask;
         GameEventsManager.instance.inputEvents.onRThumbstickClicked -= ConfirmResetTask;
     }
-    
+
 
     //Placeholder Update, works for webGL if cannot bind keys to XR thumbstick.
- /*     private void Update()
-    {
-        if (Input.GetKeyDown(KeyCode.K))
-        {
-            ResetCurrentTask();
-        }
-    }  */
+    /*     private void Update()
+       {
+           if (Input.GetKeyDown(KeyCode.K))
+           {
+               ResetCurrentTask();
+           }
+       }  */
 
     public void ResetCurrentTask()
     {
@@ -110,28 +110,60 @@ public class ResetTaskManager : MonoBehaviour
                         } //Do nothing. If the object is held, we don't want to try and move it out of the user's hands.
                         else
                         {
-                            if (resetState.isPipetteBulb) //Check saved state if pipette bulb (could skip this step, but I feel like checking a bool every loop is better than TryGetComponent every loop, in terms of load.)
+                            if (trackedObject.gameObject.TryGetComponent<SnapBulbToPipet>(out SnapBulbToPipet bulbScript)) //Make sure object even has the component
                             {
-                                if (trackedObject.gameObject.TryGetComponent<SnapBulbToPipet>(out SnapBulbToPipet bulbScript)) //Make sure object even has the component
+                                if (bulbScript.GetSnap())//Is the bulb currently attached to a pipette?
                                 {
-                                    if (bulbScript.GetSnap())//Is the bulb currently attached to a pipette?
-                                    {
-                                        //Do nothing. The bulb is snapped to a pipette and will move with it. 
-                                        //(This might be a problem, if the bulb starts clipping into stuff again. May need to force bulb to detatch on reset.)   
-                                    }
-                                    else
-                                    {   //If not attached, do all the normal stuff.
-                                        //Stored position data
-                                        trackedObject.transform.position = resetState.position;
-                                        trackedObject.transform.rotation = resetState.rotation;
-                                        //Stored velocity data (by all means this should ALWAYS be 0, just forcing all the objects into resting positions upon reset)
-                                        Rigidbody rb = trackedObject.GetComponent<Rigidbody>();
-                                        rb.velocity = resetState.velocity;
-                                        rb.angularVelocity = resetState.angularVelocity;
-                                    }
+                                    //Do nothing. The bulb is snapped to a pipette and will move with it. 
+                                    //(This might be a problem, if the bulb starts clipping into stuff again. May need to force bulb to detatch on reset.)   
+                                }
+                                else
+                                {   //If not attached, do all the normal stuff.
+                                    //Stored position data
+                                    trackedObject.transform.position = resetState.position;
+                                    trackedObject.transform.rotation = resetState.rotation;
+                                    //Stored velocity data (by all means this should ALWAYS be 0, just forcing all the objects into resting positions upon reset)
+                                    Rigidbody rb = trackedObject.GetComponent<Rigidbody>();
+                                    rb.velocity = resetState.velocity;
+                                    rb.angularVelocity = resetState.angularVelocity;
                                 }
                             }
-                            else
+                            else if (trackedObject.gameObject.TryGetComponent<Put_Paper_on_Boat>(out Put_Paper_on_Boat paperScript))
+                            {
+                                if (paperScript.GetHasSnapped())
+                                {
+                                    //Again, like the bulbs, do nothing. The object is nested in something else 
+                                }
+                                else
+                                {
+                                    //Stored position data
+                                    trackedObject.transform.position = resetState.position;
+                                    trackedObject.transform.rotation = resetState.rotation;
+                                    //Stored velocity data (by all means this should ALWAYS be 0, just forcing all the objects into resting positions upon reset)
+                                    Rigidbody rb = trackedObject.GetComponent<Rigidbody>();
+                                    rb.velocity = resetState.velocity;
+                                    rb.angularVelocity = resetState.angularVelocity;
+                                }
+                            }
+                            else if (trackedObject.TryGetComponent<SnapToTray>(out SnapToTray trayScript))
+                            {
+                                if (trayScript.GetIsSnapped())
+                                {
+                                    //Once more, do nothing. Objects that can be attached to the carrying tray don't need to be reset if they're currently attached to the tray.
+                                    //In the very rare case that the tray is lost inside the lab with objects on top of it...resetting the tray would bring both back anyway.
+                                }
+                                else
+                                {//Once more, normal reset stuff if not.
+                                 //Stored position data
+                                    trackedObject.transform.position = resetState.position;
+                                    trackedObject.transform.rotation = resetState.rotation;
+                                    //Stored velocity data (by all means this should ALWAYS be 0, just forcing all the objects into resting positions upon reset)
+                                    Rigidbody rb = trackedObject.GetComponent<Rigidbody>();
+                                    rb.velocity = resetState.velocity;
+                                    rb.angularVelocity = resetState.angularVelocity;
+                                }
+                            }
+                            else //If none of the above things apply to the given object, just reset.
                             {
                                 //Stored position data
                                 trackedObject.transform.position = resetState.position;
@@ -156,12 +188,12 @@ public class ResetTaskManager : MonoBehaviour
     //Might need to add more to this for some sort of UI popup that says "confirm?" or something like that so it can't be done on accident.
     private void BeginResetTask(InputAction.CallbackContext context)
     {
-        if(!resetUiOpen)
+        if (!resetUiOpen)
         {
             resetUiOpen = true;
             resetTaskMenuUI.gameObject.SetActive(true);
         }
-        else if(resetUiOpen)
+        else if (resetUiOpen)
         {
             resetUiOpen = false;
             resetTaskMenuUI.gameObject.SetActive(false);
@@ -170,7 +202,7 @@ public class ResetTaskManager : MonoBehaviour
 
     private void ConfirmResetTask(InputAction.CallbackContext context)
     {
-        if(resetUiOpen)
+        if (resetUiOpen)
         {
             ResetCurrentTask();
             resetUiOpen = false;

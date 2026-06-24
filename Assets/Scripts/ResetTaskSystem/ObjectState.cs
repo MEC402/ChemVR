@@ -10,7 +10,6 @@ public class ObjectState
     public Vector3 velocity;
     public Vector3 angularVelocity;
 
-    public bool isPipetteBulb;
     public bool isChemContainer;
     public ChemFluid currentFluid;
 }
