@@ -1,0 +1,1278 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f55563b65d41bb94495b1fb8c4dda651, type: 3}
+  m_Name: VRGlasswareUseCheckpoint-26
+  m_EditorClassIdentifier: 
+  sceneForCheckpoint: 
+  checkpointStep: 26
+  checkpointName: VRGlasswareUseCheckpoint-26
+  objectStates:
+  - objectName: volumetric_Pipette_15m_TEMP
+    position: {x: -4.900291, y: 1.1277655, z: 5.3125505}
+    rotation: {x: 0.31591636, y: 0.5768703, z: 0.3574294, w: 0.66306996}
+    velocity: {x: 0, y: 0, z: 0}
+    angularVelocity: {x: 0, y: 0, z: 0}
+    isChemContainer: 0
+    currentFluid:
+      totalVolume: 0
+      chems:
+      - name: WATER
+        type: 0
+        volume: 0
+      - name: HYDROCHLORIC_ACID
+        type: 1
+        volume: 0
+      - name: NaOH
+        type: 2
+        volume: 0
+      - name: COPPER_SULFATE
+        type: 3
+        volume: 0
+      - name: GLUCOSE
+        type: 4
+        volume: 0
+      - name: SOLID_SUGAR
+        type: 5
+        volume: 0
+      - name: SOLIDCrCl3
+        type: 6
+        volume: 0
+      - name: H2O2
+        type: 7
+        volume: 0
+      - name: CHROMIUM_III_CHLORIDE
+        type: 8
+        volume: 0
+      - name: ChemMix
+        type: 9
+        volume: 0
+      - name: ChemMix2
+        type: 10
+        volume: 0
+      - name: Soap
+        type: 11
+        volume: 0
+  - objectName: volumetric_Pipette_Bulb
+    position: {x: -5.086866, y: 1.1283445, z: 5.4785104}
+    rotation: {x: 0.34500906, y: 0.6352983, z: 0.32574785, w: 0.60930544}
+    velocity: {x: -0.00000015262695, y: 0.00000022715685, z: -0.020842958}
+    angularVelocity: {x: 0, y: 0, z: 0}
+    isChemContainer: 0
+    currentFluid:
+      totalVolume: 0
+      chems:
+      - name: WATER
+        type: 0
+        volume: 0
+      - name: HYDROCHLORIC_ACID
+        type: 1
+        volume: 0
+      - name: NaOH
+        type: 2
+        volume: 0
+      - name: COPPER_SULFATE
+        type: 3
+        volume: 0
+      - name: GLUCOSE
+        type: 4
+        volume: 0
+      - name: SOLID_SUGAR
+        type: 5
+        volume: 0
+      - name: SOLIDCrCl3
+        type: 6
+        volume: 0
+      - name: H2O2
+        type: 7
+        volume: 0
+      - name: CHROMIUM_III_CHLORIDE
+        type: 8
+        volume: 0
+      - name: ChemMix
+        type: 9
+        volume: 0
+      - name: ChemMix2
+        type: 10
+        volume: 0
+      - name: Soap
+        type: 11
+        volume: 0
+  - objectName: tray
+    position: {x: -9.969585, y: 0.9851513, z: 14.119761}
+    rotation: {x: -0.7065059, y: -0.014502748, z: -0.016914237, w: 0.7073564}
+    velocity: {x: 0, y: 0, z: 0}
+    angularVelocity: {x: 0, y: 0, z: 0}
+    isChemContainer: 0
+    currentFluid:
+      totalVolume: 0
+      chems:
+      - name: WATER
+        type: 0
+        volume: 0
+      - name: HYDROCHLORIC_ACID
+        type: 1
+        volume: 0
+      - name: NaOH
+        type: 2
+        volume: 0
+      - name: COPPER_SULFATE
+        type: 3
+        volume: 0
+      - name: GLUCOSE
+        type: 4
+        volume: 0
+      - name: SOLID_SUGAR
+        type: 5
+        volume: 0
+      - name: SOLIDCrCl3
+        type: 6
+        volume: 0
+      - name: H2O2
+        type: 7
+        volume: 0
+      - name: CHROMIUM_III_CHLORIDE
+        type: 8
+        volume: 0
+      - name: ChemMix
+        type: 9
+        volume: 0
+      - name: ChemMix2
+        type: 10
+        volume: 0
+      - name: Soap
+        type: 11
+        volume: 0
+  - objectName: DI_Water_New_Two (1)
+    position: {x: -9.84444, y: 1.0461046, z: 15.27245}
+    rotation: {x: -0.70169973, y: 0.07537357, z: 0.07626521, w: 0.70435786}
+    velocity: {x: 0, y: 0, z: 0}
+    angularVelocity: {x: 0, y: 0, z: 0}
+    isChemContainer: 1
+    currentFluid:
+      totalVolume: 300
+      chems:
+      - name: WATER
+        type: 0
+        volume: 300
+      - name: HYDROCHLORIC_ACID
+        type: 1
+        volume: 0
+      - name: NaOH
+        type: 2
+        volume: 0
+      - name: COPPER_SULFATE
+        type: 3
+        volume: 0
+      - name: GLUCOSE
+        type: 4
+        volume: 0
+      - name: SOLID_SUGAR
+        type: 5
+        volume: 0
+      - name: SOLIDCrCl3
+        type: 6
+        volume: 0
+      - name: H2O2
+        type: 7
+        volume: 0
+      - name: CHROMIUM_III_CHLORIDE
+        type: 8
+        volume: 0
+      - name: ChemMix
+        type: 9
+        volume: 0
+      - name: ChemMix2
+        type: 10
+        volume: 0
+      - name: Soap
+        type: 11
+        volume: 0
+  - objectName: volumetric_Pipette_10m_TEMP
+    position: {x: -4.9000597, y: 1.1270385, z: 5.4701}
+    rotation: {x: 0.34500906, y: 0.6352983, z: 0.32574785, w: 0.60930544}
+    velocity: {x: 0, y: 0, z: 0}
+    angularVelocity: {x: 0, y: 0, z: 0}
+    isChemContainer: 0
+    currentFluid:
+      totalVolume: 0
+      chems:
+      - name: WATER
+        type: 0
+        volume: 0
+      - name: HYDROCHLORIC_ACID
+        type: 1
+        volume: 0
+      - name: NaOH
+        type: 2
+        volume: 0
+      - name: COPPER_SULFATE
+        type: 3
+        volume: 0
+      - name: GLUCOSE
+        type: 4
+        volume: 0
+      - name: SOLID_SUGAR
+        type: 5
+        volume: 0
+      - name: SOLIDCrCl3
+        type: 6
+        volume: 0
+      - name: H2O2
+        type: 7
+        volume: 0
+      - name: CHROMIUM_III_CHLORIDE
+        type: 8
+        volume: 0
+      - name: ChemMix
+        type: 9
+        volume: 0
+      - name: ChemMix2
+        type: 10
+        volume: 0
+      - name: Soap
+        type: 11
+        volume: 0
+  - objectName: volumetricFlaskWrapLabel45mL
+    position: {x: -9.958231, y: 1.0499256, z: 16.460499}
+    rotation: {x: 0.0016597382, y: 0.22316524, z: 0.0038012024, w: 0.97477186}
+    velocity: {x: 0, y: 0, z: 0}
+    angularVelocity: {x: 0, y: 0, z: 0}
+    isChemContainer: 1
+    currentFluid:
+      totalVolume: 0
+      chems:
+      - name: WATER
+        type: 0
+        volume: 0
+      - name: HYDROCHLORIC_ACID
+        type: 1
+        volume: 0
+      - name: NaOH
+        type: 2
+        volume: 0
+      - name: COPPER_SULFATE
+        type: 3
+        volume: 0
+      - name: GLUCOSE
+        type: 4
+        volume: 0
+      - name: SOLID_SUGAR
+        type: 5
+        volume: 0
+      - name: SOLIDCrCl3
+        type: 6
+        volume: 0
+      - name: H2O2
+        type: 7
+        volume: 0
+      - name: CHROMIUM_III_CHLORIDE
+        type: 8
+        volume: 0
+      - name: ChemMix
+        type: 9
+        volume: 0
+      - name: ChemMix2
+        type: 10
+        volume: 0
+      - name: Soap
+        type: 11
+        volume: 0
+  - objectName: weigh_boat_fluids_small
+    position: {x: -1.5599872, y: 1.035892, z: 6.1347995}
+    rotation: {x: -0.65988666, y: 0.2540841, z: 0.25409964, w: 0.6598669}
+    velocity: {x: 0, y: 0, z: 0}
+    angularVelocity: {x: 0, y: 0, z: 0}
+    isChemContainer: 1
+    currentFluid:
+      totalVolume: 0
+      chems:
+      - name: WATER
+        type: 0
+        volume: 0
+      - name: HYDROCHLORIC_ACID
+        type: 1
+        volume: 0
+      - name: NaOH
+        type: 2
+        volume: 0
+      - name: COPPER_SULFATE
+        type: 3
+        volume: 0
+      - name: GLUCOSE
+        type: 4
+        volume: 0
+      - name: SOLID_SUGAR
+        type: 5
+        volume: 0
+      - name: SOLIDCrCl3
+        type: 6
+        volume: 0
+      - name: H2O2
+        type: 7
+        volume: 0
+      - name: CHROMIUM_III_CHLORIDE
+        type: 8
+        volume: 0
+      - name: ChemMix
+        type: 9
+        volume: 0
+      - name: ChemMix2
+        type: 10
+        volume: 0
+      - name: Soap
+        type: 11
+        volume: 0
+  - objectName: volumetricFlaskWrapLabel55mL_inspect
+    position: {x: 2.484867, y: 1.0924463, z: 8.753102}
+    rotation: {x: 0.0026954527, y: 0.000059007456, z: -0.001364786, w: 0.9999954}
+    velocity: {x: 0, y: 0, z: 0}
+    angularVelocity: {x: 0, y: 0, z: 0}
+    isChemContainer: 1
+    currentFluid:
+      totalVolume: 0
+      chems:
+      - name: WATER
+        type: 0
+        volume: 0
+      - name: HYDROCHLORIC_ACID
+        type: 1
+        volume: 0
+      - name: NaOH
+        type: 2
+        volume: 0
+      - name: COPPER_SULFATE
+        type: 3
+        volume: 0
+      - name: GLUCOSE
+        type: 4
+        volume: 0
+      - name: SOLID_SUGAR
+        type: 5
+        volume: 0
+      - name: SOLIDCrCl3
+        type: 6
+        volume: 0
+      - name: H2O2
+        type: 7
+        volume: 0
+      - name: CHROMIUM_III_CHLORIDE
+        type: 8
+        volume: 0
+      - name: ChemMix
+        type: 9
+        volume: 0
+      - name: ChemMix2
+        type: 10
+        volume: 0
+      - name: Soap
+        type: 11
+        volume: 0
+  - objectName: StirRod
+    position: {x: -4.757061, y: 1.1323695, z: 4.661475}
+    rotation: {x: 0.006171025, y: 0.68758535, z: -0.012576465, w: 0.7259685}
+    velocity: {x: 0, y: 0, z: 0}
+    angularVelocity: {x: 0, y: 0, z: 0}
+    isChemContainer: 0
+    currentFluid:
+      totalVolume: 0
+      chems:
+      - name: WATER
+        type: 0
+        volume: 0
+      - name: HYDROCHLORIC_ACID
+        type: 1
+        volume: 0
+      - name: NaOH
+        type: 2
+        volume: 0
+      - name: COPPER_SULFATE
+        type: 3
+        volume: 0
+      - name: GLUCOSE
+        type: 4
+        volume: 0
+      - name: SOLID_SUGAR
+        type: 5
+        volume: 0
+      - name: SOLIDCrCl3
+        type: 6
+        volume: 0
+      - name: H2O2
+        type: 7
+        volume: 0
+      - name: CHROMIUM_III_CHLORIDE
+        type: 8
+        volume: 0
+      - name: ChemMix
+        type: 9
+        volume: 0
+      - name: ChemMix2
+        type: 10
+        volume: 0
+      - name: Soap
+        type: 11
+        volume: 0
+  - objectName: BeakerUp250mL_largerText
+    position: {x: -10.105745, y: 1.0228156, z: 16.714209}
+    rotation: {x: 0.000005373482, y: 0.98987246, z: 0.00043301447, w: -0.14195928}
+    velocity: {x: 0, y: 0, z: 0}
+    angularVelocity: {x: 0, y: 0, z: 0}
+    isChemContainer: 1
+    currentFluid:
+      totalVolume: 0
+      chems:
+      - name: WATER
+        type: 0
+        volume: 0
+      - name: HYDROCHLORIC_ACID
+        type: 1
+        volume: 0
+      - name: NaOH
+        type: 2
+        volume: 0
+      - name: COPPER_SULFATE
+        type: 3
+        volume: 0
+      - name: GLUCOSE
+        type: 4
+        volume: 0
+      - name: SOLID_SUGAR
+        type: 5
+        volume: 0
+      - name: SOLIDCrCl3
+        type: 6
+        volume: 0
+      - name: H2O2
+        type: 7
+        volume: 0
+      - name: CHROMIUM_III_CHLORIDE
+        type: 8
+        volume: 0
+      - name: ChemMix
+        type: 9
+        volume: 0
+      - name: ChemMix2
+        type: 10
+        volume: 0
+      - name: Soap
+        type: 11
+        volume: 0
+  - objectName: Balance Brush
+    position: {x: -1.4293087, y: 1.0351979, z: 6.204778}
+    rotation: {x: -0.5649379, y: 0.8248236, z: -0.012778639, w: 0.01865096}
+    velocity: {x: 0, y: 0, z: 0}
+    angularVelocity: {x: 0, y: 0, z: 0}
+    isChemContainer: 0
+    currentFluid:
+      totalVolume: 0
+      chems:
+      - name: WATER
+        type: 0
+        volume: 0
+      - name: HYDROCHLORIC_ACID
+        type: 1
+        volume: 0
+      - name: NaOH
+        type: 2
+        volume: 0
+      - name: COPPER_SULFATE
+        type: 3
+        volume: 0
+      - name: GLUCOSE
+        type: 4
+        volume: 0
+      - name: SOLID_SUGAR
+        type: 5
+        volume: 0
+      - name: SOLIDCrCl3
+        type: 6
+        volume: 0
+      - name: H2O2
+        type: 7
+        volume: 0
+      - name: CHROMIUM_III_CHLORIDE
+        type: 8
+        volume: 0
+      - name: ChemMix
+        type: 9
+        volume: 0
+      - name: ChemMix2
+        type: 10
+        volume: 0
+      - name: Soap
+        type: 11
+        volume: 0
+  - objectName: volumetricFlaskWrapLabel65mL_inspect
+    position: {x: 2.6018853, y: 1.0974168, z: 8.756264}
+    rotation: {x: -0.0020199427, y: -0.00036609086, z: 0.0014352825, w: 0.9999969}
+    velocity: {x: 0, y: 0, z: 0}
+    angularVelocity: {x: 0, y: 0, z: 0}
+    isChemContainer: 1
+    currentFluid:
+      totalVolume: 0
+      chems:
+      - name: WATER
+        type: 0
+        volume: 0
+      - name: HYDROCHLORIC_ACID
+        type: 1
+        volume: 0
+      - name: NaOH
+        type: 2
+        volume: 0
+      - name: COPPER_SULFATE
+        type: 3
+        volume: 0
+      - name: GLUCOSE
+        type: 4
+        volume: 0
+      - name: SOLID_SUGAR
+        type: 5
+        volume: 0
+      - name: SOLIDCrCl3
+        type: 6
+        volume: 0
+      - name: H2O2
+        type: 7
+        volume: 0
+      - name: CHROMIUM_III_CHLORIDE
+        type: 8
+        volume: 0
+      - name: ChemMix
+        type: 9
+        volume: 0
+      - name: ChemMix2
+        type: 10
+        volume: 0
+      - name: Soap
+        type: 11
+        volume: 0
+  - objectName: DI_Water_New_Two
+    position: {x: -2.0626621, y: 1.0877744, z: 6.0770216}
+    rotation: {x: -0.6656106, y: 0.23582841, z: 0.23580039, w: 0.66764194}
+    velocity: {x: 0, y: 0, z: 0}
+    angularVelocity: {x: 0, y: 0, z: 0}
+    isChemContainer: 1
+    currentFluid:
+      totalVolume: 300
+      chems:
+      - name: WATER
+        type: 0
+        volume: 300
+      - name: HYDROCHLORIC_ACID
+        type: 1
+        volume: 0
+      - name: NaOH
+        type: 2
+        volume: 0
+      - name: COPPER_SULFATE
+        type: 3
+        volume: 0
+      - name: GLUCOSE
+        type: 4
+        volume: 0
+      - name: SOLID_SUGAR
+        type: 5
+        volume: 0
+      - name: SOLIDCrCl3
+        type: 6
+        volume: 0
+      - name: H2O2
+        type: 7
+        volume: 0
+      - name: CHROMIUM_III_CHLORIDE
+        type: 8
+        volume: 0
+      - name: ChemMix
+        type: 9
+        volume: 0
+      - name: ChemMix2
+        type: 10
+        volume: 0
+      - name: Soap
+        type: 11
+        volume: 0
+  - objectName: soapBottle
+    position: {x: -10.08769, y: 1.0413646, z: 14.928361}
+    rotation: {x: -0.00032050884, y: 0.082812116, z: 0.0010228893, w: 0.99656457}
+    velocity: {x: 0, y: 0, z: 0}
+    angularVelocity: {x: 0, y: 0, z: 0}
+    isChemContainer: 1
+    currentFluid:
+      totalVolume: 300
+      chems:
+      - name: WATER
+        type: 0
+        volume: 0
+      - name: HYDROCHLORIC_ACID
+        type: 1
+        volume: 0
+      - name: NaOH
+        type: 2
+        volume: 0
+      - name: COPPER_SULFATE
+        type: 3
+        volume: 0
+      - name: GLUCOSE
+        type: 4
+        volume: 0
+      - name: SOLID_SUGAR
+        type: 5
+        volume: 0
+      - name: SOLIDCrCl3
+        type: 6
+        volume: 0
+      - name: H2O2
+        type: 7
+        volume: 0
+      - name: CHROMIUM_III_CHLORIDE
+        type: 8
+        volume: 0
+      - name: ChemMix
+        type: 9
+        volume: 0
+      - name: ChemMix2
+        type: 10
+        volume: 0
+      - name: Soap
+        type: 11
+        volume: 300
+  - objectName: brushv8
+    position: {x: -9.835375, y: 0.9946496, z: 15.030175}
+    rotation: {x: -0.32017538, y: -0.6333863, z: 0.3013158, w: 0.6368032}
+    velocity: {x: 0, y: 0, z: 0}
+    angularVelocity: {x: 0, y: 0, z: 0}
+    isChemContainer: 0
+    currentFluid:
+      totalVolume: 0
+      chems:
+      - name: WATER
+        type: 0
+        volume: 0
+      - name: HYDROCHLORIC_ACID
+        type: 1
+        volume: 0
+      - name: NaOH
+        type: 2
+        volume: 0
+      - name: COPPER_SULFATE
+        type: 3
+        volume: 0
+      - name: GLUCOSE
+        type: 4
+        volume: 0
+      - name: SOLID_SUGAR
+        type: 5
+        volume: 0
+      - name: SOLIDCrCl3
+        type: 6
+        volume: 0
+      - name: H2O2
+        type: 7
+        volume: 0
+      - name: CHROMIUM_III_CHLORIDE
+        type: 8
+        volume: 0
+      - name: ChemMix
+        type: 9
+        volume: 0
+      - name: ChemMix2
+        type: 10
+        volume: 0
+      - name: Soap
+        type: 11
+        volume: 0
+  - objectName: Jar_Lid
+    position: {x: -1.8173634, y: 1.1737018, z: 6.1247587}
+    rotation: {x: -0.5496396, y: -0.44428486, z: -0.4447276, w: 0.55020434}
+    velocity: {x: 0, y: 0, z: 0}
+    angularVelocity: {x: 0, y: 0, z: 0}
+    isChemContainer: 0
+    currentFluid:
+      totalVolume: 0
+      chems:
+      - name: WATER
+        type: 0
+        volume: 0
+      - name: HYDROCHLORIC_ACID
+        type: 1
+        volume: 0
+      - name: NaOH
+        type: 2
+        volume: 0
+      - name: COPPER_SULFATE
+        type: 3
+        volume: 0
+      - name: GLUCOSE
+        type: 4
+        volume: 0
+      - name: SOLID_SUGAR
+        type: 5
+        volume: 0
+      - name: SOLIDCrCl3
+        type: 6
+        volume: 0
+      - name: H2O2
+        type: 7
+        volume: 0
+      - name: CHROMIUM_III_CHLORIDE
+        type: 8
+        volume: 0
+      - name: ChemMix
+        type: 9
+        volume: 0
+      - name: ChemMix2
+        type: 10
+        volume: 0
+      - name: Soap
+        type: 11
+        volume: 0
+  - objectName: volumetric_Pipette_Bulb_blue
+    position: {x: -5.1056437, y: 1.1291268, z: 5.284606}
+    rotation: {x: 0.31591636, y: 0.5768703, z: 0.3574294, w: 0.66306996}
+    velocity: {x: 0.082933575, y: 0.020502457, z: 0.009588728}
+    angularVelocity: {x: 0, y: 0, z: 0}
+    isChemContainer: 0
+    currentFluid:
+      totalVolume: 0
+      chems:
+      - name: WATER
+        type: 0
+        volume: 0
+      - name: HYDROCHLORIC_ACID
+        type: 1
+        volume: 0
+      - name: NaOH
+        type: 2
+        volume: 0
+      - name: COPPER_SULFATE
+        type: 3
+        volume: 0
+      - name: GLUCOSE
+        type: 4
+        volume: 0
+      - name: SOLID_SUGAR
+        type: 5
+        volume: 0
+      - name: SOLIDCrCl3
+        type: 6
+        volume: 0
+      - name: H2O2
+        type: 7
+        volume: 0
+      - name: CHROMIUM_III_CHLORIDE
+        type: 8
+        volume: 0
+      - name: ChemMix
+        type: 9
+        volume: 0
+      - name: ChemMix2
+        type: 10
+        volume: 0
+      - name: Soap
+        type: 11
+        volume: 0
+  - objectName: StirRod_inspect
+    position: {x: 1.7695858, y: 1.0376984, z: 8.80705}
+    rotation: {x: -0, y: -0, z: -0, w: 1}
+    velocity: {x: 0, y: 0, z: 0}
+    angularVelocity: {x: 0, y: 0, z: 0}
+    isChemContainer: 0
+    currentFluid:
+      totalVolume: 0
+      chems:
+      - name: WATER
+        type: 0
+        volume: 0
+      - name: HYDROCHLORIC_ACID
+        type: 1
+        volume: 0
+      - name: NaOH
+        type: 2
+        volume: 0
+      - name: COPPER_SULFATE
+        type: 3
+        volume: 0
+      - name: GLUCOSE
+        type: 4
+        volume: 0
+      - name: SOLID_SUGAR
+        type: 5
+        volume: 0
+      - name: SOLIDCrCl3
+        type: 6
+        volume: 0
+      - name: H2O2
+        type: 7
+        volume: 0
+      - name: CHROMIUM_III_CHLORIDE
+        type: 8
+        volume: 0
+      - name: ChemMix
+        type: 9
+        volume: 0
+      - name: ChemMix2
+        type: 10
+        volume: 0
+      - name: Soap
+        type: 11
+        volume: 0
+  - objectName: GraduatedCylinderMesh_Fluid
+    position: {x: -9.991076, y: 1.097132, z: 16.75767}
+    rotation: {x: -0.44894654, y: 0.5460315, z: 0.54748744, w: 0.4478328}
+    velocity: {x: 0, y: 0, z: 0}
+    angularVelocity: {x: 0, y: 0, z: 0}
+    isChemContainer: 1
+    currentFluid:
+      totalVolume: 0
+      chems:
+      - name: WATER
+        type: 0
+        volume: 0
+      - name: HYDROCHLORIC_ACID
+        type: 1
+        volume: 0
+      - name: NaOH
+        type: 2
+        volume: 0
+      - name: COPPER_SULFATE
+        type: 3
+        volume: 0
+      - name: GLUCOSE
+        type: 4
+        volume: 0
+      - name: SOLID_SUGAR
+        type: 5
+        volume: 0
+      - name: SOLIDCrCl3
+        type: 6
+        volume: 0
+      - name: H2O2
+        type: 7
+        volume: 0
+      - name: CHROMIUM_III_CHLORIDE
+        type: 8
+        volume: 0
+      - name: ChemMix
+        type: 9
+        volume: 0
+      - name: ChemMix2
+        type: 10
+        volume: 0
+      - name: Soap
+        type: 11
+        volume: 0
+  - objectName: volumetricFlaskWrapLabel45mL_inspect
+    position: {x: 2.3665166, y: 1.0874319, z: 8.754145}
+    rotation: {x: 0.00075158075, y: -0.000011503867, z: 0.00057991646, w: 0.9999996}
+    velocity: {x: 0, y: 0, z: 0}
+    angularVelocity: {x: 0, y: 0, z: 0}
+    isChemContainer: 1
+    currentFluid:
+      totalVolume: 0
+      chems:
+      - name: WATER
+        type: 0
+        volume: 0
+      - name: HYDROCHLORIC_ACID
+        type: 1
+        volume: 0
+      - name: NaOH
+        type: 2
+        volume: 0
+      - name: COPPER_SULFATE
+        type: 3
+        volume: 0
+      - name: GLUCOSE
+        type: 4
+        volume: 0
+      - name: SOLID_SUGAR
+        type: 5
+        volume: 0
+      - name: SOLIDCrCl3
+        type: 6
+        volume: 0
+      - name: H2O2
+        type: 7
+        volume: 0
+      - name: CHROMIUM_III_CHLORIDE
+        type: 8
+        volume: 0
+      - name: ChemMix
+        type: 9
+        volume: 0
+      - name: ChemMix2
+        type: 10
+        volume: 0
+      - name: Soap
+        type: 11
+        volume: 0
+  - objectName: volumetric_Pipette_15m_TEMP_inspect
+    position: {x: 1.6922835, y: 1.0357517, z: 8.940117}
+    rotation: {x: 0.0041802237, y: -0.0007605626, z: -0.23145296, w: 0.97283685}
+    velocity: {x: 0, y: 0, z: 0}
+    angularVelocity: {x: 0, y: 0, z: 0}
+    isChemContainer: 0
+    currentFluid:
+      totalVolume: 0
+      chems:
+      - name: WATER
+        type: 0
+        volume: 0
+      - name: HYDROCHLORIC_ACID
+        type: 1
+        volume: 0
+      - name: NaOH
+        type: 2
+        volume: 0
+      - name: COPPER_SULFATE
+        type: 3
+        volume: 0
+      - name: GLUCOSE
+        type: 4
+        volume: 0
+      - name: SOLID_SUGAR
+        type: 5
+        volume: 0
+      - name: SOLIDCrCl3
+        type: 6
+        volume: 0
+      - name: H2O2
+        type: 7
+        volume: 0
+      - name: CHROMIUM_III_CHLORIDE
+        type: 8
+        volume: 0
+      - name: ChemMix
+        type: 9
+        volume: 0
+      - name: ChemMix2
+        type: 10
+        volume: 0
+      - name: Soap
+        type: 11
+        volume: 0
+  - objectName: volumetricFlaskWrapLabel55mL
+    position: {x: -10.005377, y: 1.0549308, z: 16.555756}
+    rotation: {x: -0.0027713473, y: 0.9809185, z: -0.00024251378, w: -0.19439931}
+    velocity: {x: 0, y: 0, z: 0}
+    angularVelocity: {x: 0, y: 0, z: 0}
+    isChemContainer: 1
+    currentFluid:
+      totalVolume: 0
+      chems:
+      - name: WATER
+        type: 0
+        volume: 0
+      - name: HYDROCHLORIC_ACID
+        type: 1
+        volume: 0
+      - name: NaOH
+        type: 2
+        volume: 0
+      - name: COPPER_SULFATE
+        type: 3
+        volume: 0
+      - name: GLUCOSE
+        type: 4
+        volume: 0
+      - name: SOLID_SUGAR
+        type: 5
+        volume: 0
+      - name: SOLIDCrCl3
+        type: 6
+        volume: 0
+      - name: H2O2
+        type: 7
+        volume: 0
+      - name: CHROMIUM_III_CHLORIDE
+        type: 8
+        volume: 0
+      - name: ChemMix
+        type: 9
+        volume: 0
+      - name: ChemMix2
+        type: 10
+        volume: 0
+      - name: Soap
+        type: 11
+        volume: 0
+  - objectName: DI_Water_New_inspect
+    position: {x: 1.8903941, y: 1.0877435, z: 8.769178}
+    rotation: {x: -0.6906796, y: 0.15073289, z: 0.14963123, w: 0.6912683}
+    velocity: {x: 0, y: 0, z: 0}
+    angularVelocity: {x: 0, y: 0, z: 0}
+    isChemContainer: 1
+    currentFluid:
+      totalVolume: 300
+      chems:
+      - name: WATER
+        type: 0
+        volume: 300
+      - name: HYDROCHLORIC_ACID
+        type: 1
+        volume: 0
+      - name: NaOH
+        type: 2
+        volume: 0
+      - name: COPPER_SULFATE
+        type: 3
+        volume: 0
+      - name: GLUCOSE
+        type: 4
+        volume: 0
+      - name: SOLID_SUGAR
+        type: 5
+        volume: 0
+      - name: SOLIDCrCl3
+        type: 6
+        volume: 0
+      - name: H2O2
+        type: 7
+        volume: 0
+      - name: CHROMIUM_III_CHLORIDE
+        type: 8
+        volume: 0
+      - name: ChemMix
+        type: 9
+        volume: 0
+      - name: ChemMix2
+        type: 10
+        volume: 0
+      - name: Soap
+        type: 11
+        volume: 0
+  - objectName: GraduatedCylinderMesh_Fluid_inspect
+    position: {x: 2.2455897, y: 1.1346378, z: 8.783041}
+    rotation: {x: -0.5000228, y: -0.5000131, z: -0.4999864, w: 0.49997777}
+    velocity: {x: 0, y: 0, z: 0}
+    angularVelocity: {x: 0, y: 0, z: 0}
+    isChemContainer: 1
+    currentFluid:
+      totalVolume: 0
+      chems:
+      - name: WATER
+        type: 0
+        volume: 0
+      - name: HYDROCHLORIC_ACID
+        type: 1
+        volume: 0
+      - name: NaOH
+        type: 2
+        volume: 0
+      - name: COPPER_SULFATE
+        type: 3
+        volume: 0
+      - name: GLUCOSE
+        type: 4
+        volume: 0
+      - name: SOLID_SUGAR
+        type: 5
+        volume: 0
+      - name: SOLIDCrCl3
+        type: 6
+        volume: 0
+      - name: H2O2
+        type: 7
+        volume: 0
+      - name: CHROMIUM_III_CHLORIDE
+        type: 8
+        volume: 0
+      - name: ChemMix
+        type: 9
+        volume: 0
+      - name: ChemMix2
+        type: 10
+        volume: 0
+      - name: Soap
+        type: 11
+        volume: 0
+  - objectName: weigh_paper_small
+    position: {x: -1.5599871, y: 1.0318921, z: 6.1347995}
+    rotation: {x: -0.000009775162, y: 0.049018502, z: 0.000014767051, w: 0.99879795}
+    velocity: {x: 0, y: 0, z: 0}
+    angularVelocity: {x: 0, y: 0, z: 0}
+    isChemContainer: 0
+    currentFluid:
+      totalVolume: 0
+      chems:
+      - name: WATER
+        type: 0
+        volume: 0
+      - name: HYDROCHLORIC_ACID
+        type: 1
+        volume: 0
+      - name: NaOH
+        type: 2
+        volume: 0
+      - name: COPPER_SULFATE
+        type: 3
+        volume: 0
+      - name: GLUCOSE
+        type: 4
+        volume: 0
+      - name: SOLID_SUGAR
+        type: 5
+        volume: 0
+      - name: SOLIDCrCl3
+        type: 6
+        volume: 0
+      - name: H2O2
+        type: 7
+        volume: 0
+      - name: CHROMIUM_III_CHLORIDE
+        type: 8
+        volume: 0
+      - name: ChemMix
+        type: 9
+        volume: 0
+      - name: ChemMix2
+        type: 10
+        volume: 0
+      - name: Soap
+        type: 11
+        volume: 0
+  - objectName: volumetricFlaskWrapLabel65mL
+    position: {x: -9.977805, y: 1.0599161, z: 16.322475}
+    rotation: {x: 0.00094720325, y: 0.46590227, z: -0.0027669107, w: 0.88483137}
+    velocity: {x: 0, y: 0, z: 0}
+    angularVelocity: {x: 0, y: 0, z: 0}
+    isChemContainer: 1
+    currentFluid:
+      totalVolume: 0
+      chems:
+      - name: WATER
+        type: 0
+        volume: 0
+      - name: HYDROCHLORIC_ACID
+        type: 1
+        volume: 0
+      - name: NaOH
+        type: 2
+        volume: 0
+      - name: COPPER_SULFATE
+        type: 3
+        volume: 0
+      - name: GLUCOSE
+        type: 4
+        volume: 0
+      - name: SOLID_SUGAR
+        type: 5
+        volume: 0
+      - name: SOLIDCrCl3
+        type: 6
+        volume: 0
+      - name: H2O2
+        type: 7
+        volume: 0
+      - name: CHROMIUM_III_CHLORIDE
+        type: 8
+        volume: 0
+      - name: ChemMix
+        type: 9
+        volume: 0
+      - name: ChemMix2
+        type: 10
+        volume: 0
+      - name: Soap
+        type: 11
+        volume: 0
+  - objectName: volumetric_Pipette_10m_TEMP_inspect
+    position: {x: 1.6155262, y: 1.0350747, z: 8.886102}
+    rotation: {x: 0.0038183057, y: -0.00026212374, z: -0.41011697, w: 0.912025}
+    velocity: {x: 0, y: 0, z: 0}
+    angularVelocity: {x: 0, y: 0, z: 0}
+    isChemContainer: 0
+    currentFluid:
+      totalVolume: 0
+      chems:
+      - name: WATER
+        type: 0
+        volume: 0
+      - name: HYDROCHLORIC_ACID
+        type: 1
+        volume: 0
+      - name: NaOH
+        type: 2
+        volume: 0
+      - name: COPPER_SULFATE
+        type: 3
+        volume: 0
+      - name: GLUCOSE
+        type: 4
+        volume: 0
+      - name: SOLID_SUGAR
+        type: 5
+        volume: 0
+      - name: SOLIDCrCl3
+        type: 6
+        volume: 0
+      - name: H2O2
+        type: 7
+        volume: 0
+      - name: CHROMIUM_III_CHLORIDE
+        type: 8
+        volume: 0
+      - name: ChemMix
+        type: 9
+        volume: 0
+      - name: ChemMix2
+        type: 10
+        volume: 0
+      - name: Soap
+        type: 11
+        volume: 0
+  - objectName: Solids_Jar
+    position: {x: -1.8173603, y: 1.0277009, z: 6.12461}
+    rotation: {x: -0.5497044, y: -0.44432756, z: -0.44469, w: 0.5501355}
+    velocity: {x: 0, y: 0, z: 0}
+    angularVelocity: {x: 0, y: 0, z: 0}
+    isChemContainer: 1
+    currentFluid:
+      totalVolume: 285
+      chems:
+      - name: WATER
+        type: 0
+        volume: 0
+      - name: HYDROCHLORIC_ACID
+        type: 1
+        volume: 0
+      - name: NaOH
+        type: 2
+        volume: 0
+      - name: COPPER_SULFATE
+        type: 3
+        volume: 285
+      - name: GLUCOSE
+        type: 4
+        volume: 0
+      - name: SOLID_SUGAR
+        type: 5
+        volume: 0
+      - name: SOLIDCrCl3
+        type: 6
+        volume: 0
+      - name: H2O2
+        type: 7
+        volume: 0
+      - name: CHROMIUM_III_CHLORIDE
+        type: 8
+        volume: 0
+      - name: ChemMix
+        type: 9
+        volume: 0
+      - name: ChemMix2
+        type: 10
+        volume: 0
+      - name: Soap
+        type: 11
+        volume: 0

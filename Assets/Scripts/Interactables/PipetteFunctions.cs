@@ -25,11 +25,16 @@ public class PipetteFunctions : MonoBehaviour
     //Adding and removing task reset event listener.
     private void OnEnable()
     {
-        ResetTaskManager.instance.onResetCalled += ResetPipette;
+        
     }
     private void OnDisable()
     {
         ResetTaskManager.instance.onResetCalled -= ResetPipette;
+    }
+
+    private void Start()
+    {
+        ResetTaskManager.instance.onResetCalled += ResetPipette;
     }
 
 

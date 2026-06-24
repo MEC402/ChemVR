@@ -5501,6 +5501,7 @@ GameObject:
   - component: {fileID: 7177692478336066402}
   - component: {fileID: 5540695482475881928}
   - component: {fileID: 3084917215215722561}
+  - component: {fileID: 6444813978573039333}
   m_Layer: 7
   m_Name: GraduatedCylinderMesh_Fluid
   m_TagString: Untagged
@@ -5995,6 +5996,18 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Offset: {x: 0, y: 0.09, z: 0}
   rotationOffset: -90
+--- !u!114 &6444813978573039333
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6875643855629123237}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0b2ae48a83146e14b97dccfb20e5c074, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &8403257856588800311
 GameObject:
   m_ObjectHideFlags: 0

@@ -22,7 +22,7 @@ public class CheckpointRecorder : MonoBehaviour
     private string path;
 
     [SerializeField] private string sceneName;
-    [SerializeField] private int taskStepIndex = 0;
+    [SerializeField] private int taskStepIndex = 1;
 
     private TaskCheckpointSO checkpoint;
     // Start is called before the first frame update
@@ -43,27 +43,34 @@ public class CheckpointRecorder : MonoBehaviour
     private void OnEnable()
     {
         if (allowCheckpointRecording)
+        {
             GameEventsManager.instance.inputEvents.onXButtonPressed += BeginCaptureCheckpoint;
+            GameEventsManager.instance.taskEvents.onAdvanceTask += MatchStepIndex;
+        }
+
+
     }
     private void OnDisable()
     {
         if (allowCheckpointRecording)
+        {
             GameEventsManager.instance.inputEvents.onXButtonPressed -= BeginCaptureCheckpoint;
+            GameEventsManager.instance.taskEvents.onAdvanceTask -= MatchStepIndex;
+        }
     }
 
 
-//Works for webGL if can't figure out how to bind a key to the thumbstick buttons
-/*     private void Update()
-    {
-        if (Input.GetKeyDown(KeyCode.J) )
+    //Works for webGL if can't figure out how to bind a key to the thumbstick buttons
+    /*     private void Update()
         {
-            CaptureCheckpoint();
-        }
-    } */
+            if (Input.GetKeyDown(KeyCode.J) )
+            {
+                CaptureCheckpoint();
+            }
+        } */
 
     public void CaptureCheckpoint()
     {
-        taskStepIndex++;
         TaskCheckpointSO checkpoint = ScriptableObject.CreateInstance<TaskCheckpointSO>();
         checkpoint.checkpointStep = taskStepIndex;
         checkpoint.checkpointName = sceneName + "Checkpoint" + "-" + taskStepIndex;
@@ -88,7 +95,7 @@ public class CheckpointRecorder : MonoBehaviour
                     angularVelocity = rb ? rb.angularVelocity : Vector3.zero,
 
                     isChemContainer = true,
-                    currentFluid = fluidToCapture 
+                    currentFluid = fluidToCapture
                 };
 
                 checkpoint.objectStates.Add(capturedState);
@@ -113,12 +120,12 @@ public class CheckpointRecorder : MonoBehaviour
 
         }
 
-        foreach (ObjectState state in checkpoint.objectStates)
+ /*        foreach (ObjectState state in checkpoint.objectStates)
         {
             Debug.Log("Object name: " + state.objectName);
         }
         Debug.Log(checkpoint.sceneForCheckpoint);
-        Debug.Log(checkpoint.checkpointStep);
+        Debug.Log(checkpoint.checkpointStep); */
 
 #if UNITY_EDITOR
         AssetDatabase.CreateAsset(checkpoint, path + checkpoint.checkpointName + ".asset");
@@ -130,6 +137,12 @@ public class CheckpointRecorder : MonoBehaviour
     private void BeginCaptureCheckpoint(InputAction.CallbackContext context)
     {
         CaptureCheckpoint();
+    }
+
+    private void MatchStepIndex(string noNeed)
+    {
+        taskStepIndex++;
+        Debug.Log(taskStepIndex);
     }
 
 
