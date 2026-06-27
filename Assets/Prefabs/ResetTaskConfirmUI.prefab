@@ -415,6 +415,7 @@ GameObject:
   - component: {fileID: 662086781661379666}
   - component: {fileID: 5717025504945287938}
   - component: {fileID: 1335122980208454568}
+  - component: {fileID: 4321981707368546435}
   m_Layer: 3
   m_Name: ResetTaskConfirmUI
   m_TagString: Untagged
@@ -431,7 +432,7 @@ RectTransform:
   m_GameObject: {fileID: 6179966430869576145}
   m_LocalRotation: {x: 0, y: 0.7071068, z: 0, w: 0.7071068}
   m_LocalPosition: {x: 0, y: 0, z: 0.534}
-  m_LocalScale: {x: 0.00125, y: 0.00125, z: 0.00125}
+  m_LocalScale: {x: 0.0012500002, y: 0.00125, z: 0.0012500002}
   m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 4959030186299849708}
@@ -485,6 +486,18 @@ MonoBehaviour:
   m_BlockingMask:
     serializedVersion: 2
     m_Bits: 4294967295
+--- !u!114 &4321981707368546435
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6179966430869576145}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4e20c58407d00ba448f9b11552861e6a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &6747902348518275152
 GameObject:
   m_ObjectHideFlags: 0
