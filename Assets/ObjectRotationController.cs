@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.XR.Interaction.Toolkit.AffordanceSystem.Receiver.Primitives;
 
 public class ObjectRotationController : MonoBehaviour
 {
@@ -10,10 +11,11 @@ public class ObjectRotationController : MonoBehaviour
     [HideInInspector] public Transform objectToRotate;
     [HideInInspector] public string objectToRotateName;
     public Transform myLocalRotateObj;
+    public TrackedObject currentlyTrackedObject = null;
 
     [Header("Rotation Settings")]
     [SerializeField] float rotationSpeed = 100f;
-        static bool isFlip = false;
+    static bool isFlip = false;
     #endregion
 
     #region Unity Methods
@@ -22,16 +24,20 @@ public class ObjectRotationController : MonoBehaviour
         HandleObjectRotation();
         if (Input.GetKeyDown(KeyCode.T))
         {
-            TRotation();
+            if (currentlyTrackedObject != null)
+                TrackedObjectRotation();
+            else
+                TRotation();
+
         }
     }
     #endregion
 
     #region Custom Methods
-     public static bool IsRunningOnWebGL()
-     {
-         return Application.platform == RuntimePlatform.WebGLPlayer;
-     }
+    public static bool IsRunningOnWebGL()
+    {
+        return Application.platform == RuntimePlatform.WebGLPlayer;
+    }
 
 
     public void ReceiveHeldObject(Transform obj)
@@ -40,6 +46,13 @@ public class ObjectRotationController : MonoBehaviour
         Debug.Log("Got object: " + obj.name);
         objectToRotateName = obj.name;
         // now you can store it and rotate as needed
+        if (obj.TryGetComponent<TrackedObject>(out TrackedObject objectToTrackComponent))
+        {
+            currentlyTrackedObject = objectToTrackComponent;
+        }
+        else
+            currentlyTrackedObject = null;
+
     }
 
     public bool TRotation()
@@ -63,48 +76,101 @@ public class ObjectRotationController : MonoBehaviour
         {
             Debug.Log("add 90 to z axis");
 
-            Vector3 rot = myLocalRotateObj.localEulerAngles;   // current rotation (x, y, z)
-            rot.z += 90f;                           // add to X (10° for example)
-            myLocalRotateObj.localEulerAngles = rot;           // apply it back
-	    aresult = true;
-	    return aresult;
+            /*             Vector3 rot = myLocalRotateObj.localEulerAngles;   // current rotation (x, y, z)
+                        rot.z += 90f;                           // add to X (10ï¿½ for example)
+                        myLocalRotateObj.localEulerAngles = rot;           // apply it back */
+            myLocalRotateObj.localRotation = Quaternion.Euler(90f, 0f, 0f);
+            aresult = true;
+            return aresult;
 
         }
         if (objectToRotateName.ToLower().Contains("solid"))
-	{
-            Debug.Log("add -90 to x axis");
-
-            Vector3 rot = myLocalRotateObj.localEulerAngles;   // current rotation (x, y, z)
-            rot.x = -90f;                           // add to X (10° for example)
-            //rot.y = -90f;                           // add to X (10° for example)
-            rot.z = -90f;                           // add to X (10° for example)
-            myLocalRotateObj.localEulerAngles = rot;           // apply it back
-	    aresult = true;
-	    return aresult;
-        }
-
-        if (objectToRotateName.ToLower().Contains("flask")
-	     || objectToRotateName.ToLower().Contains("soap")
-             || objectToRotateName.ToLower().Contains("graduated")
-	     || objectToRotateName.ToLower().Contains("di"))
         {
             Debug.Log("add -90 to x axis");
 
-            Vector3 rot = myLocalRotateObj.localEulerAngles;   // current rotation (x, y, z)
-            rot.x -= 90f;                           // add to X (10° for example)
-            myLocalRotateObj.localEulerAngles = rot;           // apply it back
-	    aresult = true;
+            /*             Vector3 rot = myLocalRotateObj.localEulerAngles;   // current rotation (x, y, z)
+                        rot.x = -90f;                           // add to X (10ï¿½ for example)
+                        //rot.y = -90f;                           // add to X (10ï¿½ for example)
+                        rot.z = -90f;                           // add to X (10ï¿½ for example)
+                        myLocalRotateObj.localEulerAngles = rot;           // apply it back */
+            myLocalRotateObj.localRotation = Quaternion.Euler(-180f, 0f, 0f);
+            aresult = true;
+            return aresult;
         }
-        if (objectToRotateName.ToLower().Contains("sink"))
+
+        if (objectToRotateName.ToLower().Contains("flask")
+         || objectToRotateName.ToLower().Contains("soap")
+             || objectToRotateName.ToLower().Contains("graduated")
+         || objectToRotateName.ToLower().Contains("di"))
+        {
+            Debug.Log("add -90 to x axis");
+
+            /*             Vector3 rot = myLocalRotateObj.localEulerAngles;   // current rotation (x, y, z)
+                        rot.x -= 90f;                           // add to X (10ï¿½ for example)
+                        myLocalRotateObj.localEulerAngles = rot;           // apply it back */
+            myLocalRotateObj.localRotation = Quaternion.Euler(-180f, 0f, 0f);
+            aresult = true;
+        }
+        if (objectToRotateName.ToLower().Contains("sink")) //This kinda does nothing because you don't grab the sink handles in Web anymore you just click on them so I have not adjusted it. -Zack
         {
             Debug.Log("add 90 to y axis");
 
             Vector3 rot = myLocalRotateObj.localEulerAngles;   // current rotation (x, y, z)
-            rot.y += 90f;                           // add to X (10° for example)
+            rot.y += 90f;                           // add to X (10ï¿½ for example)
             myLocalRotateObj.localEulerAngles = rot;           // apply it back
-	    aresult = true;
+            aresult = true;
         }
-	return aresult;
+        return aresult;
+    }
+
+    public bool TrackedObjectRotation()
+    {
+        bool tResult = false;
+        if (currentlyTrackedObject != null)
+        {
+            if (!currentlyTrackedObject.GetIsRotated())
+            {
+                if (objectToRotateName.ToLower().Contains("beaker") ||
+            objectToRotateName.ToLower().Contains("sink"))
+                {
+                    Debug.Log("Set rotation to (90, 0, 0)");
+
+                    myLocalRotateObj.localEulerAngles = new Vector3(90f, 0f, 0f);
+                    tResult = true;
+                }
+
+                if (objectToRotateName.ToLower().Contains("solid") ||
+                    objectToRotateName.ToLower().Contains("flask") ||
+                    objectToRotateName.ToLower().Contains("soap") ||
+                    objectToRotateName.ToLower().Contains("graduated") ||
+                    objectToRotateName.ToLower().Contains("di"))
+                {
+                    Debug.Log("Set rotation to (-180, 0, 0)");
+
+                    myLocalRotateObj.localEulerAngles = new Vector3(180f, -180f, 0f);
+                    tResult = true;
+                }
+                if(objectToRotateName.ToLower().Contains("boat"))
+                {
+                    Debug.Log("Set rotation to (0, 180, 35)");
+
+                    myLocalRotateObj.localEulerAngles = new Vector3(0f, 180f, 35f);
+                }
+                currentlyTrackedObject.ToggleRotation();
+            }
+            else if (currentlyTrackedObject.GetIsRotated())
+            {
+                Debug.Log("Set object back to original rotation.");
+
+                Vector3 resetAngles = currentlyTrackedObject.GetDefaultRotation();
+                myLocalRotateObj.localEulerAngles = new Vector3 (resetAngles.x, resetAngles.y,resetAngles.z);
+                currentlyTrackedObject.ToggleRotation();
+            }
+        }
+
+
+
+        return tResult;
     }
     private void HandleObjectRotation()
     {
@@ -117,19 +183,19 @@ public class ObjectRotationController : MonoBehaviour
             inputScript.LookDisable(); //move the disables to a seperate check. if you hit r but it runs the rest of the code, it may not reenable the look/move. add an enable to the end of the R key on glassware rotation?
             inputScript.MoveDisable();
 
-	  // do specific rotations for specific objects
-          /*if ( IsRunningOnWebGL())
-	  {
-	    //if (!isFlip) 
-	    {
-              if (TRotation()) {
-	      isFlip = true;
-	      inputScript.isRotating = false;
-              return;
-	      }
-	    }
-	  }
-	  */
+            // do specific rotations for specific objects
+            /*if ( IsRunningOnWebGL())
+        {
+          //if (!isFlip) 
+          {
+                if (TRotation()) {
+            isFlip = true;
+            inputScript.isRotating = false;
+                return;
+            }
+          }
+        }
+        */
 
             Vector2 input = inputScript.rotationInput;
 
@@ -163,7 +229,7 @@ public class ObjectRotationController : MonoBehaviour
         {
             inputScript.LookEnable();
             inputScript.MoveEnable();
-	    isFlip = false;
+            isFlip = false;
         }
     }
     #endregion

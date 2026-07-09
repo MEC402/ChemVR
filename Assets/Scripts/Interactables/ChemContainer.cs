@@ -346,4 +346,9 @@ public class ChemContainer : MonoBehaviour {
     public void EmptyChem() => chemFluid.SetToEmpty();
     public void SetChem(ChemFluid setChem) => chemFluid.AssignNewChemFluid(setChem);
 
+    public float GetPourAngle()
+    {
+        return pourAngle;
+    }
+
 }
