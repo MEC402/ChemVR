@@ -38,7 +38,6 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.3130029, g: 0.5501603, b: 0.8220557, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -1130,10 +1129,6 @@ PrefabInstance:
       propertyPath: m_Radius
       value: 0.005
       objectReference: {fileID: 0}
-    - target: {fileID: 5184044784141713713, guid: 2840c82334889af40a9a17eda5a4e086, type: 3}
-      propertyPath: m_AnchoredPosition.y
-      value: 33
-      objectReference: {fileID: 0}
     - target: {fileID: 5698647888273232823, guid: 2840c82334889af40a9a17eda5a4e086, type: 3}
       propertyPath: m_AnchorMax.x
       value: 0
@@ -1185,22 +1180,6 @@ PrefabInstance:
     - target: {fileID: 5895851817834150758, guid: 2840c82334889af40a9a17eda5a4e086, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5909518647444693726, guid: 2840c82334889af40a9a17eda5a4e086, type: 3}
-      propertyPath: m_text
-      value: 'WASD - Move
-
-        Mouse - Turn
-
-        Left Click / E - Interact
-
-        R
-        + Mouse - Rotate Object
-
-        T - Auto-Rotate Object
-
-        K - Reset
-        Current Step'
       objectReference: {fileID: 0}
     - target: {fileID: 7830490660192005937, guid: 2840c82334889af40a9a17eda5a4e086, type: 3}
       propertyPath: m_CullingMask.m_Bits
