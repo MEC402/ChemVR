@@ -1211,11 +1211,8 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: 2808185265761532808, guid: 2840c82334889af40a9a17eda5a4e086, type: 3}
-      insertIndex: -1
+      insertIndex: 3
       addedObject: {fileID: 222394902}
-    - targetCorrespondingSourceObject: {fileID: 2808185265761532808, guid: 2840c82334889af40a9a17eda5a4e086, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 222394906}
   m_SourcePrefab: {fileID: 100100000, guid: 2840c82334889af40a9a17eda5a4e086, type: 3}
 --- !u!4 &222394898 stripped
 Transform:
@@ -1264,21 +1261,6 @@ MonoBehaviour:
   touchTracker: {fileID: 0}
   ghText: {fileID: 222394899}
   isWebGLText: 1
-  taskPreper: {fileID: 222394901}
---- !u!114 &222394906
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 222394900}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 567986ab65fc08743b843ac8ee366070, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  guText: {fileID: 222394899}
-  isWebGL: 1
   taskPreper: {fileID: 222394901}
 --- !u!1 &225615250
 GameObject:

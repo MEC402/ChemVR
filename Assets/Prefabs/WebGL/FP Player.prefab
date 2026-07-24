@@ -1954,6 +1954,7 @@ GameObject:
   - component: {fileID: 8271074691435331410}
   - component: {fileID: 8811674004054418444}
   - component: {fileID: 4195615394857810562}
+  - component: {fileID: 3805678587264059957}
   - component: {fileID: 7440093594182120078}
   m_Layer: 3
   m_Name: Glassware Use
@@ -2006,6 +2007,21 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   myGameObject: {fileID: 1486427000333884807}
+--- !u!114 &3805678587264059957
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2808185265761532808}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 567986ab65fc08743b843ac8ee366070, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  guText: {fileID: 6036986959334857914}
+  isWebGL: 1
+  taskPreper: {fileID: 4195615394857810562}
 --- !u!114 &7440093594182120078
 MonoBehaviour:
   m_ObjectHideFlags: 0
