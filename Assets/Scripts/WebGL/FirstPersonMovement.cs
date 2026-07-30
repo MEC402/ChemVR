@@ -23,6 +23,10 @@ public class FirstPersonMovement : MonoBehaviour
     private void Start()
     {
         rb = GetComponent<Rigidbody>();
+
+        rotation.x = transform.eulerAngles.y;
+        rotationSmooth = rotation;
+
         Cursor.lockState = CursorLockMode.Locked; // Lock cursor at start
         Cursor.visible = false; // Hide cursor at start
     }
