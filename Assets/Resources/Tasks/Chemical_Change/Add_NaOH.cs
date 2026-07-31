@@ -15,11 +15,13 @@ public class Add_NaOH : TaskStep
         //GameEventsManager.instance.miscEvents.SetHint(null);
 
         GameEventsManager.instance.chemistryEvents.onPourIn += addChem;
+        GameEventsManager.instance.inputEvents.onWebGLSkipTask += SkipTask;
     }
 
     void OnDisable()
     {
         GameEventsManager.instance.chemistryEvents.onPourIn -= addChem;
+        GameEventsManager.instance.inputEvents.onWebGLSkipTask -= SkipTask;
     }
 
     private void addChem(ChemContainer container, ChemFluid chemMix)
@@ -47,6 +49,11 @@ public class Add_NaOH : TaskStep
                 }
             }
         }
+    }
+
+    private void SkipTask(InputAction.CallbackContext obj)
+    {
+        FinishTaskStep();
     }
 
 }

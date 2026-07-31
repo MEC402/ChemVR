@@ -1,4 +1,4 @@
-using Unity.VisualScripting;
+using UnityEngine.InputSystem;
 using UnityEngine;
 
 public class Configure_Balance : TaskStep
@@ -12,11 +12,13 @@ public class Configure_Balance : TaskStep
     void OnEnable()
     {
         GameEventsManager.instance.miscEvents.OnScaleModeChanged += CheckScaleMode;
+        GameEventsManager.instance.inputEvents.onWebGLSkipTask += SkipTask;
     }
 
     void OnDisable()
     {
         GameEventsManager.instance.miscEvents.OnScaleModeChanged -= CheckScaleMode;
+        GameEventsManager.instance.inputEvents.onWebGLSkipTask -= SkipTask;
     }
 
     private void CheckScaleMode(string mode)
@@ -27,5 +29,10 @@ public class Configure_Balance : TaskStep
             Debug.Log("after: " + mode);
             FinishTaskStep();
         }
+    }
+
+    private void SkipTask(InputAction.CallbackContext obj)
+    {
+        FinishTaskStep();
     }
 }

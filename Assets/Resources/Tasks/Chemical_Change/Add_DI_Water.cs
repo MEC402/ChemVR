@@ -16,11 +16,13 @@ public class Add_DI_Water : TaskStep
         //GameEventsManager.instance.miscEvents.SetHint(null);
 
         GameEventsManager.instance.chemistryEvents.onPourIn += addChem;
+        GameEventsManager.instance.inputEvents.onWebGLSkipTask += SkipTask;
     }
 
     void OnDisable()
     {
         GameEventsManager.instance.chemistryEvents.onPourIn -= addChem;
+        GameEventsManager.instance.inputEvents.onWebGLSkipTask -= SkipTask;
     }
 
     private void addChem(ChemContainer container, ChemFluid chemMix)
@@ -48,6 +50,11 @@ public class Add_DI_Water : TaskStep
                 }
             }
         }
+    }
+
+    private void SkipTask(InputAction.CallbackContext obj)
+    {
+        FinishTaskStep();
     }
 
 }
