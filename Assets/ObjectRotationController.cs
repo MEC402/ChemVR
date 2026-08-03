@@ -135,28 +135,32 @@ public class ObjectRotationController : MonoBehaviour
                 {
                     Debug.Log("Set rotation to (90, 0, 0)");
 
-                    myLocalRotateObj.localEulerAngles = new Vector3(90f, 0f, 0f);
+                    myLocalRotateObj.localEulerAngles = new Vector3(0f, -30f, 100f);
                     tResult = true;
                 }
 
                 if (objectToRotateName.ToLower().Contains("solid") ||
                     objectToRotateName.ToLower().Contains("flask") ||
                     objectToRotateName.ToLower().Contains("soap") ||
-                    objectToRotateName.ToLower().Contains("graduated") ||
-                    objectToRotateName.ToLower().Contains("di"))
+                    objectToRotateName.ToLower().Contains("graduated"))
                 {
                     Debug.Log("Set rotation to (-180, 0, 0)");
 
-                    myLocalRotateObj.localEulerAngles = new Vector3(180f, -180f, 0f);
+                    myLocalRotateObj.localEulerAngles = new Vector3(50f, 210f, -120f);
                     tResult = true;
                 }
-                if(objectToRotateName.ToLower().Contains("boat"))
+                if (objectToRotateName.ToLower().Contains("di"))
+                {
+                    myLocalRotateObj.localEulerAngles = new Vector3(0f, -50f, 6f);
+                    tResult = true;
+                }
+                if (objectToRotateName.ToLower().Contains("boat"))
                 {
                     Debug.Log("Set rotation to (0, 180, 35)");
 
-                    myLocalRotateObj.localEulerAngles = new Vector3(0f, 180f, 35f);
+                    myLocalRotateObj.localEulerAngles = new Vector3(0f, 115f, 35f);
                 }
-                if(objectToRotateName.ToLower().Contains("pipette") && !objectToRotateName.ToLower().Contains("bulb"))//The following logic needs to happen ONLY for the pipettes, and NOT the pipette bulbs.
+                if (objectToRotateName.ToLower().Contains("pipette") && !objectToRotateName.ToLower().Contains("bulb"))//The following logic needs to happen ONLY for the pipettes, and NOT the pipette bulbs.
                 {
                     Debug.Log("Rotating Pipette");
                     myLocalRotateObj.localEulerAngles = new Vector3(5f, -23f, 0f);
@@ -168,7 +172,7 @@ public class ObjectRotationController : MonoBehaviour
                 Debug.Log("Set object back to original rotation.");
 
                 Vector3 resetAngles = currentlyTrackedObject.GetDefaultRotation();
-                myLocalRotateObj.localEulerAngles = new Vector3 (resetAngles.x, resetAngles.y,resetAngles.z);
+                myLocalRotateObj.localEulerAngles = new Vector3(resetAngles.x, resetAngles.y, resetAngles.z);
                 currentlyTrackedObject.ToggleRotation();
             }
         }
