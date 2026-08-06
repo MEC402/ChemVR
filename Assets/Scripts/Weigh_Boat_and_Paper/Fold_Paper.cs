@@ -15,6 +15,8 @@ public class Fold_Paper : MonoBehaviour
     public MeshRenderer foldedPaperRenderer;
     public MeshCollider halfFoldedPaperCollider;
     public MeshRenderer halfFoldedPaperRenderer;
+
+    private bool FoldOnEnter;
     private void Start()
     {
         folded = false;
@@ -46,6 +48,7 @@ public class Fold_Paper : MonoBehaviour
         //Add listeners
         grabInteractable.selectEntered.AddListener(OnGrab);
         grabInteractable.selectExited.AddListener(OnRelease);
+
     }
 
     private void OnGrab(SelectEnterEventArgs arg0)
@@ -55,7 +58,7 @@ public class Fold_Paper : MonoBehaviour
             folded = true;
             Debug.Log("Folded " + folded);
         }
-            if (!folded)
+        if (!folded)
         {
             GameEventsManager.instance.inputEvents.onRTriggerPressed += FoldPaper;
             GameEventsManager.instance.inputEvents.onLTriggerPressed += FoldPaper;
@@ -78,11 +81,12 @@ public class Fold_Paper : MonoBehaviour
         folded = true;
 
         //Fold the paper
-        if(flatPaperRenderer.enabled)
+        if (flatPaperRenderer.enabled)
         {
             flatPaperRenderer.enabled = false;
             flatPaperCollider.enabled = false;
-        } else if (foldedPaperRenderer.enabled)
+        }
+        else if (foldedPaperRenderer.enabled)
         {
             foldedPaperRenderer.enabled = false;
             foldedPaperCollider.enabled = false;
@@ -90,5 +94,28 @@ public class Fold_Paper : MonoBehaviour
 
         halfFoldedPaperRenderer.enabled = true;
         halfFoldedPaperCollider.enabled = true;
+    }
+
+    private void FoldOnStart() //I had set this up for the weigh boat prefab that spawns with a paper in it but did not realize that this was the wrong script. Leaving these code here in case I need it for something else.
+    {
+        if (FoldOnEnter)
+        {
+            folded = true;
+
+            //Fold the paper
+            if (flatPaperRenderer.enabled)
+            {
+                flatPaperRenderer.enabled = false;
+                flatPaperCollider.enabled = false;
+            }
+            else if (foldedPaperRenderer.enabled)
+            {
+                foldedPaperRenderer.enabled = false;
+                foldedPaperCollider.enabled = false;
+            }
+
+            halfFoldedPaperRenderer.enabled = true;
+            halfFoldedPaperCollider.enabled = true;
+        }
     }
 }

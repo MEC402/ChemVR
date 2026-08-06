@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.XR.Interaction.Toolkit;
 
@@ -26,6 +27,10 @@ public class Put_Paper_on_Boat : MonoBehaviour
     private MeshRenderer foldedPaperRenderer;
     private MeshCollider halfFoldedPaperCollider;
     private MeshRenderer halfFoldedPaperRenderer;
+    [SerializeField] private bool SnapOnEnter;
+    [SerializeField] private GameObject boatToSnap;
+    [SerializeField] private bool SpawnPrefabBoat;
+    [SerializeField] private GameObject paperBoatPrefab;
 
     [HideInInspector] public bool isInBoat = false; //is the paper in the boat?
 
@@ -86,6 +91,12 @@ public class Put_Paper_on_Boat : MonoBehaviour
         // WebGL Listeners
         GameEventsManager.instance.webGLEvents.OnObjectGrabbed += OnWebGLGrab;
         GameEventsManager.instance.webGLEvents.OnObjectReleased += OnWebGLRelease;
+
+
+        if (SnapOnEnter) //Unique case added for spawning in prefab of weigh boat that already has the paper snapped to it, with different collision layers.
+        {
+            FoldOnStart();
+        }
     }
 
     private void OnDisable()
@@ -148,24 +159,24 @@ public class Put_Paper_on_Boat : MonoBehaviour
         }
         else
         {
-           // UnityEngine.Debug.Log("Other.name.contains: " + other.name);
+            // UnityEngine.Debug.Log("Other.name.contains: " + other.name);
         }
     }
 
     private void OnTriggerExit(Collider other)
     {
-       /* if (other.name.Contains("boat"))
-        {
-            touching = false;
+        /* if (other.name.Contains("boat"))
+         {
+             touching = false;
 
-            GameEventsManager.instance.miscEvents.PaperInBoat(false);
+             GameEventsManager.instance.miscEvents.PaperInBoat(false);
 
-            if (isGrabbed)
-                LetGo();
-            else if (snap)
-                SetPositionToBoat();
-        }*/
-       //i didnt think you could remove the paper from the boat--i think this is causing issues with the task completion
+             if (isGrabbed)
+                 LetGo();
+             else if (snap)
+                 SetPositionToBoat();
+         }*/
+        //i didnt think you could remove the paper from the boat--i think this is causing issues with the task completion
     }
 
     private void OnGrab(SelectEnterEventArgs arg0)
@@ -196,6 +207,12 @@ public class Put_Paper_on_Boat : MonoBehaviour
                 }
                 foldedPaperCollider.enabled = true;
                 foldedPaperRenderer.enabled = true;
+
+                isInBoat = true;
+            }
+            if (SpawnPrefabBoat && boat != null) //Added case for if we want the paper to instead spawn the prefab of the weigh boat with different collisions, then delete itself.
+            {
+                SpawnReplacementBoat();
             }
         }
         else
@@ -207,6 +224,62 @@ public class Put_Paper_on_Boat : MonoBehaviour
             }
         }
     }
+
+    private void FoldOnStart()
+    {
+        boat = boatToSnap;
+        myRb.useGravity = false;
+        if (foldedPaperCollider.enabled == false)
+        {
+            if (flatPaperCollider.enabled == true)
+            {
+                flatPaperCollider.enabled = false;
+                flatPaperRenderer.enabled = false;
+            }
+            else if (halfFoldedPaperCollider.enabled == true)
+            {
+                halfFoldedPaperCollider.enabled = false;
+                halfFoldedPaperRenderer.enabled = false;
+            }
+            foldedPaperCollider.enabled = true;
+            foldedPaperRenderer.enabled = true;
+
+            isInBoat = true;
+        }
+
+        if (boat.name.Contains("mall"))
+            OGfunnelTranslation = new Vector3(0, riseAmount, 0);
+        else if (boat.name.Contains("edium"))
+            OGfunnelTranslation = new Vector3(0, 2 * riseAmount, 0);
+        else if (boat.name.Contains("arge"))
+            OGfunnelTranslation = new Vector3(0, 3 * riseAmount, 0);
+
+        snap = true;
+    }
+
+    private void SpawnReplacementBoat() //Disables the colliders of the objects, spawns the replacements, then deletes the originals.
+    {
+        if (paperBoatPrefab != null)
+        {
+            if (boat.TryGetComponent<Collider>(out Collider boatCollider))
+            {
+                boatCollider.enabled = false;
+            }
+            if (gameObject.TryGetComponent<Collider>(out Collider paperCollider))
+            {
+                paperCollider.enabled = false;
+            }
+            Instantiate(paperBoatPrefab, boat.transform.position, boat.transform.rotation);
+            Destroy(boat);
+            Destroy(gameObject);
+            return;
+        }
+        else
+        {
+            Debug.LogWarning("paperBoatPrefab is not assigned.");
+        }
+    }
+
 
 
     public bool GetHasSnapped()
@@ -269,6 +342,10 @@ public class Put_Paper_on_Boat : MonoBehaviour
                 foldedPaperRenderer.enabled = true;
 
                 isInBoat = true; // Set the paper as being in the boat
+            }
+            if (SpawnPrefabBoat && boat != null)
+            {
+                SpawnReplacementBoat();
             }
         }
         else
