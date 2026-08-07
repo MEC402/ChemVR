@@ -1,5 +1,5 @@
+using System;
 using System.Runtime.CompilerServices;
-using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.XR.Interaction.Toolkit;
@@ -21,6 +21,21 @@ public class PipetteFunctions : MonoBehaviour
     // Hand tracking variables
     private enum HandType { None, Left, Right }
     private HandType currentHand = HandType.None;
+
+    //Adding and removing task reset event listener.
+    private void OnEnable()
+    {
+        
+    }
+    private void OnDisable()
+    {
+        ResetTaskManager.instance.onResetCalled -= ResetPipette;
+    }
+
+    private void Start()
+    {
+        ResetTaskManager.instance.onResetCalled += ResetPipette;
+    }
 
 
     public void OnGrabbed(SelectEnterEventArgs args)
@@ -300,6 +315,18 @@ public class PipetteFunctions : MonoBehaviour
                 }
                 }
              }
+    }
+
+
+    //Used to reset pipettes during checkpoint reset. Assigned to the onResetCalled event from the Reset Task Manager.
+    private void ResetPipette(object sender, EventArgs e)
+    {
+        if(canDispense)
+        {
+            currentFluids.SetToEmpty();
+            internalFluid.gameObject.SetActive(false);
+            canDispense = false;
+        }
     }
 
 

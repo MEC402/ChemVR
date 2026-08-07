@@ -14,11 +14,13 @@ public class Transfer_H2O2 : TaskStep
         //GameEventsManager.instance.miscEvents.SetHint(null);
 
         GameEventsManager.instance.chemistryEvents.onPourIn += addChem;
+        GameEventsManager.instance.inputEvents.onWebGLSkipTask += SkipTask;
     }
 
     void OnDisable()
     {
         GameEventsManager.instance.chemistryEvents.onPourIn -= addChem;
+        GameEventsManager.instance.inputEvents.onWebGLSkipTask -= SkipTask;
     }
 
     private void addChem(ChemContainer container, ChemFluid chemMix)
@@ -46,5 +48,10 @@ public class Transfer_H2O2 : TaskStep
                 }
             }
         }
+    }
+
+    private void SkipTask(InputAction.CallbackContext obj)
+    {
+        FinishTaskStep();
     }
 }

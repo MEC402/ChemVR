@@ -19,6 +19,10 @@ public class WebGLInput : MonoBehaviour
 
     [SerializeField] private InputActionReference skipTask;
 
+        //The following InputActionReferences are needed to map the reset task functions into WebGL from the XR inputs.
+    [SerializeField] private InputActionReference resetTask;
+    [SerializeField] private InputActionReference confirmReset;
+
     public Vector2 movementInput;
     public Vector2 lookInput;
     public Vector2 rotationInput;
@@ -62,6 +66,12 @@ public class WebGLInput : MonoBehaviour
 
         skipTask.action.performed += ctx => SkipTaskHandler(ctx);
         skipTask.action.performed += ctx => GameEventsManager.instance.inputEvents.WebGLSkipTask(ctx);
+
+        resetTask.action.performed += ctx => ResetTaskHandler(ctx);
+        resetTask.action.performed += ctx => GameEventsManager.instance.inputEvents.LThumbstickClicked(ctx);
+
+        confirmReset.action.performed += ctx => ConfirmResetHandler(ctx);
+        confirmReset.action.performed += ctx => GameEventsManager.instance.inputEvents.RThumbstickClicked(ctx);
 
         MasterControlsEnable(); // Enable the player controls by default
     }
@@ -149,6 +159,15 @@ public class WebGLInput : MonoBehaviour
     private void SkipTaskHandler(InputAction.CallbackContext ctx)
     {
         // Implement skip task functionality here if needed
+    }
+
+    private void ResetTaskHandler(InputAction.CallbackContext ctx)
+    {
+        //Don't really need to put anything here because it's all handled inside of the ResetTaskManager.
+    }
+    private void ConfirmResetHandler(InputAction.CallbackContext ctx)
+    {
+        //Same goes for this one.
     }
 
     #region Custom Methods

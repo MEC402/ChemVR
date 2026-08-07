@@ -344,5 +344,11 @@ public class ChemContainer : MonoBehaviour {
         internalFluid.fill = (flags.infiniteFluid) ? 1 : currentVolume / maxVolume;
     }
     public void EmptyChem() => chemFluid.SetToEmpty();
+    public void SetChem(ChemFluid setChem) => chemFluid.AssignNewChemFluid(setChem);
+
+    public float GetPourAngle()
+    {
+        return pourAngle;
+    }
 
 }

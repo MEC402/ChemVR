@@ -23,10 +23,12 @@ public class Weigh_Sugar : TaskStep
     void OnEnable()
     {
         GameEventsManager.instance.chemistryEvents.onPourIn += addChem;
+        GameEventsManager.instance.inputEvents.onWebGLSkipTask += SkipTask;
     }
     void OnDisable()
     {
         GameEventsManager.instance.chemistryEvents.onPourIn -= addChem;
+        GameEventsManager.instance.inputEvents.onWebGLSkipTask -= SkipTask;
     }
     private void Update()
     {
@@ -78,6 +80,11 @@ public class Weigh_Sugar : TaskStep
             //Debug.Log("myWeight is not yet 2" + myWeight);
 
         }
+    }
+
+    private void SkipTask(InputAction.CallbackContext obj)
+    {
+        FinishTaskStep();
     }
     //pour fluid onto weigh boat
     //check that scale weight is at 2g

@@ -22,6 +22,8 @@ public class Put_On_Gear_CC : TaskStep
         GameEventsManager.instance.miscEvents.onPutOnLeftGlove += LeftGloveOn;
         GameEventsManager.instance.miscEvents.onTakeOffRightGlove += RightGloveOff;
         GameEventsManager.instance.miscEvents.onTakeOffLeftGlove += LeftGloveOff;
+
+        GameEventsManager.instance.inputEvents.onWebGLSkipTask += SkipTask;
     }
     private void OnDisable()
     {
@@ -29,6 +31,8 @@ public class Put_On_Gear_CC : TaskStep
         GameEventsManager.instance.miscEvents.onPutOnLeftGlove -= LeftGloveOn;
         GameEventsManager.instance.miscEvents.onTakeOffRightGlove -= RightGloveOff;
         GameEventsManager.instance.miscEvents.onTakeOffLeftGlove -= LeftGloveOff;
+
+        GameEventsManager.instance.inputEvents.onWebGLSkipTask -= SkipTask;
     }
 
     private void RightGloveOn()
@@ -58,6 +62,11 @@ public class Put_On_Gear_CC : TaskStep
         {
             FinishTaskStep();
         }
+    }
+
+    private void SkipTask(InputAction.CallbackContext obj)
+    {
+        FinishTaskStep();
     }
 
 }

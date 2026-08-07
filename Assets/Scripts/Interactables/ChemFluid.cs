@@ -199,4 +199,12 @@ public class ChemFluid
         UpdateVolume();
     }
 
+    //Called during the checkpoint reset to force containers to their recorded values.
+    public void AssignNewChemFluid(ChemFluid newChemFluid)
+    {
+        SetToEmpty();
+        Chem[] chemsToAdd = newChemFluid.GetChemArray();
+        AssignNewChems(chemsToAdd);
+    }
+
 }

@@ -85,6 +85,24 @@
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": false
+                },
+                {
+                    "name": "ResetTask",
+                    "type": "Button",
+                    "id": "0644e5b1-25bd-453f-b1da-dae5d3de6d2f",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "ConfirmReset",
+                    "type": "Button",
+                    "id": "094f6cdb-633e-45c9-82f7-bd36ca2e1b39",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
                 }
             ],
             "bindings": [
@@ -239,6 +257,28 @@
                     "processors": "",
                     "groups": "",
                     "action": "SkipTask",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "60156196-2a12-4e4e-a886-8147f2d410ed",
+                    "path": "<Keyboard>/k",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "ResetTask",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "65e94090-80c8-4267-8e7e-5be9974a6e49",
+                    "path": "<Keyboard>/enter",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "ConfirmReset",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }
