@@ -27,10 +27,12 @@ public class Put_Paper_on_Boat : MonoBehaviour
     private MeshRenderer foldedPaperRenderer;
     private MeshCollider halfFoldedPaperCollider;
     private MeshRenderer halfFoldedPaperRenderer;
-    [SerializeField] private bool SnapOnEnter;
+
+    [SerializeField] private bool SnapOnEnter; //These were also used for the spawning of a new prefab, but they could still be of use elsewhere, just don't toggle them on unless you want the
+                                                    //boat to start with the paper already in it.
     [SerializeField] private GameObject boatToSnap;
-    [SerializeField] private bool SpawnPrefabBoat;
-    [SerializeField] private GameObject paperBoatPrefab;
+    private bool SpawnPrefabBoat; //These two variables are for spawning new weigh boats. Was a bad idea cause it breaks the reset system. Do not use.
+    private GameObject paperBoatPrefab;
 
     [HideInInspector] public bool isInBoat = false; //is the paper in the boat?
 
@@ -120,6 +122,10 @@ public class Put_Paper_on_Boat : MonoBehaviour
         transform.SetPositionAndRotation(boat.transform.position, newRotation);
         transform.Translate(OGfunnelTranslation);
         transform.localRotation *= Quaternion.Euler(0, r, 0);
+
+        //Set layers of both objects to holdable so that they no longer collide with the jar or beaker after being placed.
+        this.gameObject.layer = LayerMask.NameToLayer("Holdable");
+        boat.layer = LayerMask.NameToLayer("Holdable");
 
         //Set the paper to be a child of the boat
         transform.parent = boat.transform;

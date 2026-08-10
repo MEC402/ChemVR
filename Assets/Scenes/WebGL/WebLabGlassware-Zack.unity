@@ -1924,12 +1924,12 @@ MonoBehaviour:
   m_margin: {x: 0, y: 0, z: 0, w: 0}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
-  m_hasFontAssetChanged: 0
-  m_renderer: {fileID: 233287777}
-  m_maskType: 0
   _SortingLayer: 0
   _SortingLayerID: 0
   _SortingOrder: 0
+  m_hasFontAssetChanged: 0
+  m_renderer: {fileID: 233287777}
+  m_maskType: 0
 --- !u!23 &233287777
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -12903,12 +12903,12 @@ MonoBehaviour:
   m_margin: {x: 0, y: 0, z: 0, w: 0}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
-  m_hasFontAssetChanged: 0
-  m_renderer: {fileID: 814190013}
-  m_maskType: 0
   _SortingLayer: 0
   _SortingLayerID: 0
   _SortingOrder: 0
+  m_hasFontAssetChanged: 0
+  m_renderer: {fileID: 814190013}
+  m_maskType: 0
 --- !u!23 &814190013
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -15414,12 +15414,12 @@ MonoBehaviour:
   m_margin: {x: 0, y: 0, z: 0, w: 0}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
-  m_hasFontAssetChanged: 0
-  m_renderer: {fileID: 984107145}
-  m_maskType: 0
   _SortingLayer: 0
   _SortingLayerID: 0
   _SortingOrder: 0
+  m_hasFontAssetChanged: 0
+  m_renderer: {fileID: 984107145}
+  m_maskType: 0
 --- !u!23 &984107145
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -21545,7 +21545,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2288576904194011308, guid: 5e4f1e38e2919e4498f924d21b0b16a2, type: 3}
       propertyPath: SpawnPrefabBoat
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2288576904194011308, guid: 5e4f1e38e2919e4498f924d21b0b16a2, type: 3}
       propertyPath: paperBoatPrefab
@@ -24901,6 +24901,12 @@ MonoBehaviour:
   currentVolume: 100
   pourRate: 50
   pourAngle: 90
+  pourCastRadius: 0.06
+  pourCastMask:
+    serializedVersion: 2
+    m_Bits: 0
+  pourCastMaxDistance: 1.5
+  aimGuideTiltFraction: 0.5
   flags:
     pouringUsesActivator: 0
     infiniteFluid: 0
@@ -31021,12 +31027,12 @@ MonoBehaviour:
   m_margin: {x: 0, y: 0, z: 0, w: 0}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
-  m_hasFontAssetChanged: 0
-  m_renderer: {fileID: 1548713608}
-  m_maskType: 0
   _SortingLayer: 0
   _SortingLayerID: 0
   _SortingOrder: 0
+  m_hasFontAssetChanged: 0
+  m_renderer: {fileID: 1548713608}
+  m_maskType: 0
 --- !u!23 &1548713608
 MeshRenderer:
   m_ObjectHideFlags: 0
