@@ -86,7 +86,7 @@ public class PourAimGuide : MonoBehaviour
         }
 
         float width = (matchCastRadius && container != null)
-            ? container.pourCastRadius * 2f
+            ? container.pourCastRadius * 1f
             : lineWidth;
 
         Color color = hasTarget ? validColor : invalidColor;
