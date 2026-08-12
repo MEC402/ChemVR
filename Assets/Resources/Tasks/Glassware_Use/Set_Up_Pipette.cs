@@ -5,6 +5,10 @@ using UnityEngine.InputSystem;
 
 public class Set_Up_Pipette : TaskStep
 {
+    private bool pipetteOneSetup = false;
+    private bool pipetteTwoSetup = false;
+
+
     protected override void SetTaskStepState(string state)
     {
         throw new System.NotImplementedException();
@@ -12,13 +16,13 @@ public class Set_Up_Pipette : TaskStep
     void OnEnable()
     {
         //GameEventsManager.instance.inputEvents.onAButtonPressed += SkipTask;
-        GameEventsManager.instance.miscEvents.OnPippetConnectedFirst += FinishTaskStep;
+        GameEventsManager.instance.miscEvents.OnPippetConnectedFirst += OnAttachBulb;
         GameEventsManager.instance.inputEvents.onWebGLSkipTask += SkipTask;
     }
     void OnDisable()
     {
         //GameEventsManager.instance.inputEvents.onAButtonPressed -= SkipTask;
-        GameEventsManager.instance.miscEvents.OnPippetConnectedFirst -= FinishTaskStep;
+        GameEventsManager.instance.miscEvents.OnPippetConnectedFirst -= OnAttachBulb;
         GameEventsManager.instance.inputEvents.onWebGLSkipTask -= SkipTask;
     }
 
@@ -26,5 +30,25 @@ public class Set_Up_Pipette : TaskStep
     {
         FinishTaskStep();
     }
+
+    private void OnAttachBulb()
+    {
+        if(!pipetteOneSetup && !pipetteTwoSetup)
+        {
+            pipetteOneSetup = true;
+            return;
+        }
+        else if (pipetteOneSetup && !pipetteTwoSetup)
+        {
+            pipetteTwoSetup = true;
+            FinishTaskStep();
+            return;
+        }
+        else if (pipetteOneSetup && pipetteTwoSetup)
+        {
+            FinishTaskStep();
+        }
+    }
+
 
 }

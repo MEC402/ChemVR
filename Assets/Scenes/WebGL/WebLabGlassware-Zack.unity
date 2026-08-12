@@ -1241,6 +1241,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 379915305723681750, guid: b9a4af8454e290b47a56f921b7c5c077, type: 3}
+      propertyPath: m_PermittedDisplacementAxes
+      value: -1
+      objectReference: {fileID: 0}
     - target: {fileID: 7260196784962744215, guid: b9a4af8454e290b47a56f921b7c5c077, type: 3}
       propertyPath: m_Name
       value: tray
@@ -1549,6 +1553,10 @@ PrefabInstance:
       propertyPath: moveSpeed
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 1820059194413642969, guid: 2840c82334889af40a9a17eda5a4e086, type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 250
+      objectReference: {fileID: 0}
     - target: {fileID: 2970452536724098622, guid: 2840c82334889af40a9a17eda5a4e086, type: 3}
       propertyPath: playerIcon
       value: 
@@ -1584,6 +1592,10 @@ PrefabInstance:
     - target: {fileID: 5110384608906661021, guid: 2840c82334889af40a9a17eda5a4e086, type: 3}
       propertyPath: m_Radius
       value: 0.005
+      objectReference: {fileID: 0}
+    - target: {fileID: 5184044784141713713, guid: 2840c82334889af40a9a17eda5a4e086, type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 150
       objectReference: {fileID: 0}
     - target: {fileID: 5698647888273232823, guid: 2840c82334889af40a9a17eda5a4e086, type: 3}
       propertyPath: m_AnchorMax.x
@@ -1636,6 +1648,34 @@ PrefabInstance:
     - target: {fileID: 5895851817834150758, guid: 2840c82334889af40a9a17eda5a4e086, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5909518647444693726, guid: 2840c82334889af40a9a17eda5a4e086, type: 3}
+      propertyPath: m_text
+      value: 'WASD - Move Forward/Back & Left/Right
+
+        Mouse - Turn
+
+        Left
+        Click / E - Interact
+
+        R + Mouse - Rotate Object
+
+        T - Auto-Rotate
+        Object
+
+        K - Reset Current Step
+
+        If you ever get stuck, try
+        using the reset button. This will reset all the objects to your last completed
+        step.'
+      objectReference: {fileID: 0}
+    - target: {fileID: 5909518647444693726, guid: 2840c82334889af40a9a17eda5a4e086, type: 3}
+      propertyPath: m_fontSize
+      value: 18
+      objectReference: {fileID: 0}
+    - target: {fileID: 5909518647444693726, guid: 2840c82334889af40a9a17eda5a4e086, type: 3}
+      propertyPath: m_fontSizeMin
+      value: 18
       objectReference: {fileID: 0}
     - target: {fileID: 7830490660192005937, guid: 2840c82334889af40a9a17eda5a4e086, type: 3}
       propertyPath: m_CullingMask.m_Bits
@@ -2191,6 +2231,10 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: 6d1fc4033f6678a4b8b6e9685764c2e3, type: 3}
       propertyPath: m_Name
       value: labcoat
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 6d1fc4033f6678a4b8b6e9685764c2e3, type: 3}
+      propertyPath: m_Layer
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 1210245178583620099, guid: 6d1fc4033f6678a4b8b6e9685764c2e3, type: 3}
       propertyPath: m_LocalPosition.x
@@ -14933,7 +14977,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 348086616345286513, guid: a96cb4137dd0361459a78cdb6019d45c, type: 3}
       propertyPath: m_Layer
-      value: 7
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 3643411230988887394, guid: a96cb4137dd0361459a78cdb6019d45c, type: 3}
       propertyPath: m_LocalScale.x
@@ -22624,11 +22668,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 3272293269906984387, guid: a7bc9e785c16ed84493ff9ca254a1fa2, type: 3}
   m_PrefabInstance: {fileID: 1198473738}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &1201883143 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 5596812200682013009, guid: 4b64ae6a0b9092045af85fb412427f6e, type: 3}
-  m_PrefabInstance: {fileID: 6910808258742692326}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1204867933
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -25099,11 +25138,6 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5515e2c6c4ab7db4dacebf425c2486d4, type: 3}
---- !u!1 &1435136053 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 510224569214208915, guid: c907b6f1181de3c44bc409a14f78cd63, type: 3}
-  m_PrefabInstance: {fileID: 3126523229360175798}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1435497923
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -31318,20 +31352,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 891569954007077161, guid: c907b6f1181de3c44bc409a14f78cd63, type: 3}
   m_PrefabInstance: {fileID: 3126523229360175798}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &1579046340
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1435136053}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 810d1272b052a2544aac739f5b3d1316, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Offset: {x: 0, y: 0.04, z: 0}
-  rotationOffset: 0
 --- !u!1001 &1579667346
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -31477,6 +31497,10 @@ PrefabInstance:
     - target: {fileID: 7183900744386680617, guid: ade4ddaea2d5fa440a2bf80bf9545f44, type: 3}
       propertyPath: m_Name
       value: goggles
+      objectReference: {fileID: 0}
+    - target: {fileID: 7183900744386680617, guid: ade4ddaea2d5fa440a2bf80bf9545f44, type: 3}
+      propertyPath: m_Layer
+      value: 8
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -33195,20 +33219,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 3476520802704965331, guid: 5423b42623bcff34ea4b15440dcb8e3a, type: 3}
   m_PrefabInstance: {fileID: 5283085371777416049}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &1788468609
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1679494406}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 810d1272b052a2544aac739f5b3d1316, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Offset: {x: 0, y: 0.05, z: 0}
-  rotationOffset: 0
 --- !u!114 &1788468620
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -33644,20 +33654,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 5107099189562121195, guid: 4b64ae6a0b9092045af85fb412427f6e, type: 3}
   m_PrefabInstance: {fileID: 6910808258742692326}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &1886642838
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1201883143}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 810d1272b052a2544aac739f5b3d1316, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Offset: {x: 0, y: 0.05, z: 0}
-  rotationOffset: 0
 --- !u!1 &1895335067
 GameObject:
   m_ObjectHideFlags: 0
@@ -40968,10 +40964,7 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 510224569214208915, guid: c907b6f1181de3c44bc409a14f78cd63, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 1579046340}
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c907b6f1181de3c44bc409a14f78cd63, type: 3}
 --- !u!23 &3176379479538024949
 MeshRenderer:
@@ -42029,9 +42022,6 @@ PrefabInstance:
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: 4284266765922100329, guid: 5423b42623bcff34ea4b15440dcb8e3a, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 1788468609}
-    - targetCorrespondingSourceObject: {fileID: 4284266765922100329, guid: 5423b42623bcff34ea4b15440dcb8e3a, type: 3}
-      insertIndex: -1
       addedObject: {fileID: 1788468620}
   m_SourcePrefab: {fileID: 100100000, guid: 5423b42623bcff34ea4b15440dcb8e3a, type: 3}
 --- !u!64 &5663710343895132896
@@ -42656,10 +42646,7 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 5596812200682013009, guid: 4b64ae6a0b9092045af85fb412427f6e, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 1886642838}
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4b64ae6a0b9092045af85fb412427f6e, type: 3}
 --- !u!199 &7079726675636424777
 ParticleSystemRenderer:
