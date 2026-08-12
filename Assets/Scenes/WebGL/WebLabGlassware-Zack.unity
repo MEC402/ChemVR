@@ -1549,6 +1549,10 @@ PrefabInstance:
       propertyPath: moveSpeed
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 1820059194413642969, guid: 2840c82334889af40a9a17eda5a4e086, type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 250
+      objectReference: {fileID: 0}
     - target: {fileID: 2970452536724098622, guid: 2840c82334889af40a9a17eda5a4e086, type: 3}
       propertyPath: playerIcon
       value: 
@@ -1584,6 +1588,10 @@ PrefabInstance:
     - target: {fileID: 5110384608906661021, guid: 2840c82334889af40a9a17eda5a4e086, type: 3}
       propertyPath: m_Radius
       value: 0.005
+      objectReference: {fileID: 0}
+    - target: {fileID: 5184044784141713713, guid: 2840c82334889af40a9a17eda5a4e086, type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 150
       objectReference: {fileID: 0}
     - target: {fileID: 5698647888273232823, guid: 2840c82334889af40a9a17eda5a4e086, type: 3}
       propertyPath: m_AnchorMax.x
@@ -1636,6 +1644,34 @@ PrefabInstance:
     - target: {fileID: 5895851817834150758, guid: 2840c82334889af40a9a17eda5a4e086, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5909518647444693726, guid: 2840c82334889af40a9a17eda5a4e086, type: 3}
+      propertyPath: m_text
+      value: 'WASD - Move Forward/Back & Left/Right
+
+        Mouse - Turn
+
+        Left
+        Click / E - Interact
+
+        R + Mouse - Rotate Object
+
+        T - Auto-Rotate
+        Object
+
+        K - Reset Current Step
+
+        If you ever get stuck, try
+        using the reset button. This will reset all the objects to your last completed
+        step.'
+      objectReference: {fileID: 0}
+    - target: {fileID: 5909518647444693726, guid: 2840c82334889af40a9a17eda5a4e086, type: 3}
+      propertyPath: m_fontSize
+      value: 18
+      objectReference: {fileID: 0}
+    - target: {fileID: 5909518647444693726, guid: 2840c82334889af40a9a17eda5a4e086, type: 3}
+      propertyPath: m_fontSizeMin
+      value: 18
       objectReference: {fileID: 0}
     - target: {fileID: 7830490660192005937, guid: 2840c82334889af40a9a17eda5a4e086, type: 3}
       propertyPath: m_CullingMask.m_Bits
@@ -2191,6 +2227,10 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: 6d1fc4033f6678a4b8b6e9685764c2e3, type: 3}
       propertyPath: m_Name
       value: labcoat
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 6d1fc4033f6678a4b8b6e9685764c2e3, type: 3}
+      propertyPath: m_Layer
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 1210245178583620099, guid: 6d1fc4033f6678a4b8b6e9685764c2e3, type: 3}
       propertyPath: m_LocalPosition.x
@@ -14933,7 +14973,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 348086616345286513, guid: a96cb4137dd0361459a78cdb6019d45c, type: 3}
       propertyPath: m_Layer
-      value: 7
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 3643411230988887394, guid: a96cb4137dd0361459a78cdb6019d45c, type: 3}
       propertyPath: m_LocalScale.x
@@ -31477,6 +31517,10 @@ PrefabInstance:
     - target: {fileID: 7183900744386680617, guid: ade4ddaea2d5fa440a2bf80bf9545f44, type: 3}
       propertyPath: m_Name
       value: goggles
+      objectReference: {fileID: 0}
+    - target: {fileID: 7183900744386680617, guid: ade4ddaea2d5fa440a2bf80bf9545f44, type: 3}
+      propertyPath: m_Layer
+      value: 8
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
