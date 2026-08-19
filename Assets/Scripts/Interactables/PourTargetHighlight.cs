@@ -2,11 +2,15 @@ using System.Collections.Generic;
 using UnityEngine;
 
 /// <summary>
-/// Lights up a container while another container is aimed at it.
+/// Lights up an object while something is aimed at it.
 ///
-/// Driven by ChemContainer's pour targeting, so it turns on exactly when a pour would land here
-/// - it is an indicator of the real test, not a proximity guess. Attach to any object with a
-/// ChemContainer; no other wiring is needed.
+/// Driven by ChemContainer's pour targeting and by PipetteFunctions' aim feedback, so it turns on
+/// exactly when the interaction would land here - it is an indicator of the real test, not a
+/// proximity guess. Attach to any object with a ChemContainer; no other wiring is needed, and
+/// PipetteFunctions adds one on demand where it is missing.
+///
+/// More than one system can want the same object lit at once, so requests are tracked per caller:
+/// a caller switching its own request off never steals a glow another caller still wants.
 /// </summary>
 public class PourTargetHighlight : MonoBehaviour
 {
@@ -23,6 +27,12 @@ public class PourTargetHighlight : MonoBehaviour
     private Color[] originalEmission;
     private bool[] originalEmissionEnabled;
     private bool highlighted;
+
+    // Parallel lists of who wants this lit and in what colour. Kept in request order so the most
+    // recent request wins the colour; both are only ever a handful of entries long.
+    private readonly List<UnityEngine.Object> requesters = new List<UnityEngine.Object>();
+    private readonly List<Color> requestedColors = new List<Color>();
+    private Color appliedColor;
 
     void Awake()
     {
@@ -59,12 +69,64 @@ public class PourTargetHighlight : MonoBehaviour
     }
 
     /// <summary>
-    /// Turns the highlight on or off. Cheap to call repeatedly - repeats are ignored.
+    /// Turns the highlight on or off in this component's own colour.
+    /// Cheap to call repeatedly - repeats are ignored.
     /// </summary>
     public void SetHighlighted(bool on)
     {
-        if (highlighted == on || instancedMaterials == null) return;
+        SetHighlighted(this, on, highlightColor);
+    }
+
+    /// <summary>
+    /// Turns the highlight on or off on behalf of one caller, in the colour that caller wants.
+    /// The object stays lit while any caller still wants it lit. Cheap to call every frame.
+    /// </summary>
+    /// <param name="source">Whoever is asking. Each caller's request is tracked separately.</param>
+    /// <param name="on">Whether this caller wants the object lit.</param>
+    /// <param name="color">Emission colour to use. Values above 1 read as a stronger glow.</param>
+    public void SetHighlighted(UnityEngine.Object source, bool on, Color color)
+    {
+        if (source == null) source = this;
+
+        // A caller destroyed while it still wanted the glow would otherwise keep it on forever.
+        for (int i = requesters.Count - 1; i >= 0; i--)
+        {
+            if (requesters[i] == null)
+            {
+                requesters.RemoveAt(i);
+                requestedColors.RemoveAt(i);
+            }
+        }
+
+        int index = requesters.IndexOf(source);
+        if (on)
+        {
+            if (index < 0)
+            {
+                requesters.Add(source);
+                requestedColors.Add(color);
+            }
+            else
+            {
+                requestedColors[index] = color;
+            }
+        }
+        else if (index >= 0)
+        {
+            requesters.RemoveAt(index);
+            requestedColors.RemoveAt(index);
+        }
+
+        bool wanted = requesters.Count > 0;
+        Apply(wanted, wanted ? requestedColors[requestedColors.Count - 1] : appliedColor);
+    }
+
+    private void Apply(bool on, Color color)
+    {
+        if (instancedMaterials == null) return;
+        if (highlighted == on && (!on || appliedColor == color)) return;
         highlighted = on;
+        appliedColor = color;
 
         for (int i = 0; i < instancedMaterials.Length; i++)
         {
@@ -75,7 +137,7 @@ public class PourTargetHighlight : MonoBehaviour
             {
                 m.EnableKeyword("_EMISSION");
                 m.globalIlluminationFlags = MaterialGlobalIlluminationFlags.RealtimeEmissive;
-                m.SetColor(EmissionColor, highlightColor);
+                m.SetColor(EmissionColor, color);
             }
             else
             {

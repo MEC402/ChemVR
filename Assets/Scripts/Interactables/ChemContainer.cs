@@ -422,15 +422,17 @@ public class ChemContainer : MonoBehaviour {
             : null;
 
         if (next == litTarget) return;
-        if (litTarget != null) litTarget.SetHighlighted(false);
+        // Requests are made in this container's name so that dropping ours never cancels a glow
+        // another container - or a pipette lined up on the same target - still wants.
+        if (litTarget != null) litTarget.SetHighlighted(this, false, litTarget.highlightColor);
         litTarget = next;
-        if (litTarget != null) litTarget.SetHighlighted(true);
+        if (litTarget != null) litTarget.SetHighlighted(this, true, litTarget.highlightColor);
     }
 
     private void OnDisable() {
         // Do not leave a target glowing if this container is disabled or destroyed mid-pour.
         if (litTarget != null) {
-            litTarget.SetHighlighted(false);
+            litTarget.SetHighlighted(this, false, litTarget.highlightColor);
             litTarget = null;
         }
         if (aimGuide != null) {
