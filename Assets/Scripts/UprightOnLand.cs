@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.XR.Interaction.Toolkit;
+using UnityEngine.XR.Interaction.Toolkit.Interactables;
 
 /// <summary>
 /// Stands an object back up after it is dropped. Once the rigidbody has come to rest
@@ -42,7 +43,7 @@ public class UprightOnLand : MonoBehaviour
     [SerializeField] private bool keepBottomHeight = true;
 
     private Rigidbody myRb;
-    private UnityEngine.XR.Interaction.Toolkit.Interactables.XRGrabInteractable grabInteractable;
+    private XRGrabInteractable grabInteractable;
     private SnapToTray snapToTray;
     private Collider[] myColliders;
 
@@ -67,7 +68,7 @@ public class UprightOnLand : MonoBehaviour
 
     private void OnEnable()
     {
-        grabInteractable = GetComponent<UnityEngine.XR.Interaction.Toolkit.Interactables.XRGrabInteractable>();
+        grabInteractable = GetComponent<XRGrabInteractable>();
         if (grabInteractable != null)
         {
             grabInteractable.selectEntered.AddListener(OnGrab);

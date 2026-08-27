@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.XR.Interaction.Toolkit.Interactables;
 
 
 /// <summary>
@@ -21,9 +22,9 @@ public class UprightOnLandInstaller : MonoBehaviour
     private void Start()
     {
         int added = 0;
-        UnityEngine.XR.Interaction.Toolkit.Interactables.XRGrabInteractable[] grabbables = FindObjectsByType<UnityEngine.XR.Interaction.Toolkit.Interactables.XRGrabInteractable>(FindObjectsSortMode.None);
+        XRGrabInteractable[] grabbables = FindObjectsByType<XRGrabInteractable>(FindObjectsSortMode.None);
 
-        foreach (UnityEngine.XR.Interaction.Toolkit.Interactables.XRGrabInteractable grabbable in grabbables)
+        foreach (XRGrabInteractable grabbable in grabbables)
         {
             GameObject target = grabbable.gameObject;
 
