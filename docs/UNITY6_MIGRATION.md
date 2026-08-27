@@ -1,163 +1,162 @@
 # ChemVR — Unity 2022.3 → Unity 6.3 LTS migration
 
 **Branch:** `unity6-migration` (off `zack-GlasswareTesting`)
-**Target editor:** `6000.3.9f1` (Unity 6.3 LTS, supported through Dec 2027)
-**Status:** offline prep complete and verified. The editor upgrade itself is still to do.
+**Editor:** `6000.3.9f1` (Unity 6.3 LTS, supported through Dec 2027)
+**Status:** migration complete — project compiles, scenes load, no Safe Mode.
 
-`main` and `zack-GlasswareTesting` are untouched and still open cleanly in
-2022.3.62f3. Nothing here is visible to the rest of the team until this branch
-is merged.
+`main` and `zack-GlasswareTesting` are untouched and still open in 2022.3.62f3.
 
 ---
 
-## Why this migration is low-risk
+## Outcome
 
-The codebase turned out to be unusually clean for a Unity 6 jump:
+| | 2022.3 | Unity 6.3 |
+|---|---|---|
+| URP | 14.0.12 | **17.3.0** |
+| XR Interaction Toolkit | 2.6.5 | **3.3.1** |
+| XR Hands | 1.4.0 | **1.7.3** |
+| TextMeshPro | `com.unity.textmeshpro` 3.0.7 | **bundled `com.unity.ugui` 2.0.0** |
+| Timeline / Visual Scripting / collab-proxy | 1.7.7 / 1.9.4 / 2.7.1 | 1.8.10 / 1.9.9 / 2.11.3 |
+| Removed | AR Foundation, ARCore, mock-hmd, iet-framework | — |
 
-- **No custom `ScriptableRendererFeature` or `ScriptableRenderPass`** — this is
-  normally the single biggest URP 14 → 17 breakage, because Unity 6 makes Render
-  Graph the default. We have none, so there is nothing to port.
-- **No `WWW`, `UnityWebRequest`, or `Graphics.Blit`** anywhere.
-- **One** deprecated API across 229 scripts (`FindObjectsOfType`), which is a
-  warning in Unity 6, not an error.
-- Only 3 Shader Graphs and 4 handwritten shaders. Shader Graph self-upgrades;
-  `VRTemplateAssets/Shaders/FauxBlurURP.shader` is the one to eyeball, since it
-  `#include`s URP paths directly.
+### The XRI surprise
+
+We deliberately pinned XRI at **2.6.5** to isolate the editor upgrade from an API
+refactor. **Unity's upgrader overrode that pin and resolved 3.3.1 anyway.** Plan
+adjusted: we took XRI 3 in the same pass.
+
+It was cheaper than feared. Every type still exists in 3.3.1 — they only moved
+out of the root namespace:
+
+| Types | New namespace |
+|---|---|
+| `XRGrabInteractable`, `XRBaseInteractable`, `XRSimpleInteractable`, `IXRSelectInteractable` | `.Interactables` |
+| `XRRayInteractor`, `XRDirectInteractor`, `XRBaseInteractor`, `IXRInteractor`, `IXRSelectInteractor`, `XRInteractionGroup`, `IXRGroupMember` | `.Interactors` |
+| `XRInteractorLineVisual` | `.Interactors.Visuals` |
+| `XRPokeFilter` | `.Filtering` |
+
+So 45 of the 46 compile errors were missing `using` directives. Unity's API
+Updater "fixed" them by expanding every reference to an inline fully-qualified
+name; we replaced that with short names plus a `using`, across 27 files.
+
+**One genuine API break**, in `DialRotator.GrabbedBy` — `selectingInteractor`
+was removed in XRI 3:
+
+```csharp
+interactor = GetComponent<XRGrabInteractable>().GetOldestInteractorSelecting() as XRBaseInteractor;
+```
+
+(the cast is required because that call returns `IXRSelectInteractor`).
+
+### Why this was low-risk
+
+The pre-flight survey found no custom `ScriptableRendererFeature` or
+`ScriptableRenderPass` — normally the worst URP 14 → 17 breakage, since Unity 6
+makes Render Graph the default. Also no `WWW`, no `UnityWebRequest`, no
+`Graphics.Blit`, and one deprecated API across 229 scripts.
 
 ---
 
-## What has already been done (committed on this branch)
+## Commits
 
 | Commit | Change |
 |---|---|
-| `4d614ad1` | Removed `com.unity.xr.arcore` + `com.unity.xr.arfoundation` and their orphaned loader/settings assets |
-| `5336a518` | Bumped XRI → 2.6.5, Cinemachine → 2.10.7, XR Management → 4.7.0, Oculus → 4.5.5, Linux toolchain → 2.0.11 |
+| `4d614ad1` | Removed `xr.arcore` + `xr.arfoundation` (entirely unused) and their orphaned assets |
+| `5336a518` | Bumped the packages valid on both 2022.3 and Unity 6 |
 | `75860f04` | Regenerated `packages-lock.json` |
-| `fb73a80b` | Removed `com.unity.learn.iet-framework` and the stock VR template tutorial |
-| `1adc9c0d` | Removed `com.unity.xr.mock-hmd` 1.4.0-preview.2 and its orphaned loader/settings assets |
+| `fb73a80b` | Removed `learn.iet-framework` + the stock VR template tutorial |
+| `1adc9c0d` | Removed `xr.mock-hmd` 1.4.0-preview.2 |
+| `e0ca758e` | **XRI 3.3.1 namespace + API migration** (27 files) |
+| `8b870cb3` | URP 17 material re-serialization (148 files) |
+| `2a94ba4a` | Unity 6 / URP 17 project settings upgrade |
+| `afc56a0c` | Unity 6 TMP Essential Resources import |
 
-**AR Foundation was entirely unused** — no C# references, no scene or prefab
-references, and its ARCore loader was never assigned to any build target's
-loader list (only the Oculus loader is). AR Foundation 5.2 has no Unity 6
-compatible version, so deleting it removed the migration's largest blocker for
-free.
-
-Every step above was verified with a headless `-batchmode` run against
-2022.3.62f3: exit code 0, zero compile errors, zero package resolution errors.
+Steps before the editor upgrade were each verified by a headless 2022.3
+`-batchmode` run (exit 0, no compile or resolution errors).
 
 ---
 
-## Step 1 — Install the editor (needs you; requires the Hub UI + your licence)
+## Post-upgrade verification
 
-`6000.3.9f1` currently exists in the Hub as an **empty 0 GB folder** — it is
-registered but not actually installed. Install it with these modules, to match
-what 2022.3.62f3 has today:
+**Missing-script audit.** Every `m_Script` GUID referenced across all scenes and
+prefabs (300 distinct) was checked against every `.meta` in `Assets/` and
+`Library/PackageCache/` (16,087 known GUIDs).
 
-- **Android Build Support** (+ OpenJDK, + Android SDK & NDK Tools) — for Quest
-- **WebGL Build Support** — for the WebGL lab scenes
-- **Windows Build Support (IL2CPP)**
-- *(optional)* Linux Build Support — only if anyone still uses the
-  `toolchain.win-x86_64-linux-x86_64` package
+**All XRI component GUIDs resolve** — XRI kept them stable across 2 → 3:
 
-Roughly 25 GB. `6000.4.3f1` **is** fully installed with the right modules, but
-6.4 is a "Supported Update", not LTS, and is already past end-of-life — not
-somewhere to land a multi-year project.
+| Component | Scene references |
+|---|---|
+| `XRGrabInteractable` | 279 |
+| `XRSimpleInteractable` | 30 |
+| `XRRayInteractor` | 28 |
+| `XRInteractorLineVisual` | 14 |
+| `XRDirectInteractor` / `XRInteractionManager` | 3 each |
 
-## Step 2 — Back up, then open
+TextMeshPro GUIDs also resolve — the TMP import changed **zero** GUIDs, so all
+font and material references survived.
 
-```bash
-git status   # must be clean; you are on unity6-migration
-```
+22 GUIDs do not resolve, and **none are migration-caused**:
 
-In the Hub, open the project **explicitly with 6000.3.9f1** (Hub → project row →
-editor-version dropdown). Accept the upgrade prompt.
-
-Expect a long one-time reimport — this project has ~30 scenes plus large model
-and texture packs. Leave it alone until it settles.
-
-> Do **not** open the project in `6000.4.3f1` first "just to peek". Unity
-> re-serialises assets on upgrade, and opening a 6.4-serialised project back in
-> 6.3 is a downgrade Unity does not support.
-
-## Step 3 — Let Unity move the packages it owns
-
-On first open Unity rewrites these itself; no manual manifest editing:
-
-- `com.unity.render-pipelines.universal` 14.0.12 → 17.x (editor-bundled)
-- `com.unity.textmeshpro` 3.0.7 → **removed**, replaced by bundled
-  `com.unity.ugui` 2.0.0. The `TMPro` namespace is unchanged, so the 14 scripts
-  using it keep compiling.
-- `com.unity.timeline`, `com.unity.visualscripting`, `com.unity.collab-proxy`
-
-## Step 4 — Bump the packages that needed Unity 6 first
-
-Only after the project is open and compiling in 6.3:
-
-| Package | From | To | Note |
-|---|---|---|---|
-| `com.unity.xr.hands` | 1.4.0 | 1.9.0 | requires `unity=6000.0` |
-
-XR Hands ships its HandVisualizer sample **into `Assets/`**, and ours is still
-the v1.3.0 copy at `Assets/Samples/XR Hands/1.3.0/`. After bumping, re-import
-the sample from Package Manager → XR Hands → Samples, then delete the old 1.3.0
-folder. `Assets/Scripts` has one `IXRHandProcessor` implementation to re-check.
-
-## Step 5 — Verify
-
-- All ~30 scenes open without missing-script (`Mono Script`) warnings
-- The 3 Shader Graphs still compile; check `FauxBlurURP.shader` visually
-- Quest build (Android/IL2CPP) — the Oculus loader is the only XR loader
-  assigned to any platform
-- One WebGL lab scene builds
-- Grab / socket / poke interactions still work — XRI stayed on 2.6.5, so this
-  should be unchanged, but it is the highest-value thing to smoke-test
+- **11** — your own scripts deleted long ago; `git log -S` traces them to the
+  initial commit and the 2022 LTS migration
+- **10** — old Oculus Integration / Interaction SDK (`_pointable`,
+  `_planeSurface`, `_transferOnSecondSelection`, `m_allowOffhandGrab`). That
+  package was stripped from `Assets/Oculus` long ago — 0 `.cs` files remain
+- **1** — in `Assets/Samples/XR Hands/1.3.0/HandVisualizer.unity`, a demo scene
+  that is not shipped
 
 ---
 
-## Deliberately deferred
+## Still outstanding
 
-- **XRI 2.6.5 → 3.6.0.** XRI 3 renames namespaces, removes `XRController`
-  entirely (we have 16 uses across 2 files) and splits the interactor classes.
-  That is a real refactor across 37 files *plus* rewiring every prefab and scene
-  component reference. Keeping XRI at 2.6.5 — which still resolves on Unity 6 —
-  isolates the editor upgrade so any breakage is unambiguously the editor's
-  fault, not XRI's. Do XRI 3 as its own branch afterwards.
-- **`com.unity.connect.share`.** Deprecated and unreferenced in C#, but
-  `webgl_sharing` holds a live Unity Play project GUID, so it is deliberately
-  kept. Drop it if it errors on Unity 6.
-(`com.unity.xr.mock-hmd` was on this list and has since been removed — see the
-commit table above.)
+1. **Rebake lighting.** Unity 6 changed the lightmap format, so
+   `LightingData` assets are incompatible. Affects scenes with baked lightmaps
+   (`Scenes/LabScene/Materials/Lightmap-*`). Scenes render with realtime/ambient
+   until rebaked — Window → Rendering → Lighting → Generate Lighting.
+2. **Stale samples.** `Assets/Samples/XR Interaction Toolkit/2.4.3/` and
+   `2.5.2/`, and `XR Hands/1.3.0/`, are sample code from the old package
+   versions. Deliberately **not** deleted — VR template scenes reference the
+   Starter Assets prefabs, so deleting breaks scene references. Re-import from
+   Package Manager and repoint references if you want them current.
+3. **Build verification.** Quest (Android/IL2CPP) and one WebGL lab scene.
+   Oculus is the only XR loader assigned to any platform.
+4. **XRI deprecation warnings.** The Affordance System
+   (`Vector3TweenableVariable`), `ContinuousTurnProviderBase`, and
+   `hideControllerOnSelect` are obsolete-but-working in XRI 3. Non-blocking;
+   worth a follow-up branch.
+5. **`com.unity.connect.share`.** Deprecated, unreferenced in C#, but
+   `webgl_sharing` holds a live Unity Play project GUID, so it was kept.
 
 ## Rollback
 
-Every step is a separate commit, and no other branch was touched:
+Every step is a separate commit and no other branch was touched:
 
 ```bash
 git checkout zack-GlasswareTesting
 ```
 
-Then reopen with 2022.3.62f3. Delete `Library/` if the editor is confused by the
-Unity 6 artefacts left in it.
+Then reopen with 2022.3.62f3, deleting `Library/` if the editor is confused by
+Unity 6 artefacts.
 
 ---
 
-## The point of all this: Unity MCP
+## Unity MCP
 
-Two options once we are on 6.3.
+`com.unity.ai.assistant` 2.18.0-pre.2 has been added to the manifest. This is
+the package that actually required Unity 6 — the reason for this migration.
 
-**Unity's official MCP** — this is the one that actually required Unity 6:
+In the editor:
 
-1. Install `com.unity.ai.assistant` (use `2.18.0-pre.2`; the 2.x line needs
-   `6000.0.60f1` or later, which 6.3.9 satisfies)
-2. Edit → Project Settings → AI → Unity MCP; confirm Unity Bridge shows a green
-   **Running**
-3. Under Integrations, find Claude Desktop → **Configure**
-4. Start Claude Desktop; Unity shows a "Pending Connection" notice → **Accept**
-5. Test with the `Unity_ReadConsole` tool
+1. Edit → Project Settings → **AI → Unity MCP**; confirm the Unity Bridge shows
+   a green **Running**. (Unity will ask you to accept its AI terms — that is an
+   account-level agreement, so it is yours to accept, not something I can do.)
+2. Under **Integrations**, find Claude Desktop → **Configure**
+3. Start Claude Desktop. Unity shows a **Pending Connection** notice → **Accept**
+4. Verify Claude Desktop lists Unity tools such as `Unity_ReadConsole`
 
-**[CoplayDev/unity-mcp](https://github.com/CoplayDev/unity-mcp)** — third-party,
-supports Unity 2021.3 → 6.x, so it would have worked on 2022.3 as well. Needs
-Python 3.10+ via `uv`. Package Manager → Add package from git URL:
+**Alternative — [CoplayDev/unity-mcp](https://github.com/CoplayDev/unity-mcp).**
+Third-party, supports Unity 2021.3 → 6.x, needs Python 3.10+ via `uv`. Package
+Manager → Add package from git URL:
 
 ```
 https://github.com/CoplayDev/unity-mcp.git?path=/MCPForUnity#main
