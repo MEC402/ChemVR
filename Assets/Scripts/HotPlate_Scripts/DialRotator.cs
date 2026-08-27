@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.XR.Interaction.Toolkit;
 using TMPro;
+using UnityEngine.XR.Interaction.Toolkit.Interactables;
+using UnityEngine.XR.Interaction.Toolkit.Interactors;
 
 public class DialRotator : MonoBehaviour
 {
@@ -43,8 +45,7 @@ public class DialRotator : MonoBehaviour
 
     private void GrabbedBy(SelectEnterEventArgs arg0)
     {
-        //interactor = GetComponent<XRGrabInteractable>().interactorsSelecting;
-        interactor = GetComponent<XRGrabInteractable>().selectingInteractor;
+        interactor = GetComponent<XRGrabInteractable>().GetOldestInteractorSelecting() as XRBaseInteractor;
         interactor.GetComponent<XRDirectInteractor>().hideControllerOnSelect = true;
 
         shouldGetHandRotation = true;

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine.XR.Interaction.Toolkit;
 using UnityEngine;
 using System;
+using UnityEngine.XR.Interaction.Toolkit.Interactables;
 
 public class Spawn_Paper_Towels : XRBaseInteractable
 {

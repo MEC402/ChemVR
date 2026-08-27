@@ -2,6 +2,7 @@ using System.Runtime.CompilerServices;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.XR.Interaction.Toolkit;
+using UnityEngine.XR.Interaction.Toolkit.Interactables;
 public class JarLid : MonoBehaviour
 {
     #region Variables
@@ -158,7 +159,7 @@ public class JarLid : MonoBehaviour
             // Reset the parent object
             transform.SetParent(parentJar.transform);
 
-            rb.velocity = Vector3.zero;
+            rb.linearVelocity = Vector3.zero;
             rb.angularVelocity = Vector3.zero;
 
             transform.SetLocalPositionAndRotation(initialPos, initialRotation);

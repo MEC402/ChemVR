@@ -3,7 +3,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
-using UnityEngine.XR.Interaction.Toolkit;
+using UnityEngine.XR.Interaction.Toolkit.Interactables;
+
 
 public class ResetTaskManager : MonoBehaviour
 {
@@ -124,7 +125,7 @@ public class ResetTaskManager : MonoBehaviour
                                     trackedObject.transform.rotation = resetState.rotation;
                                     //Stored velocity data (by all means this should ALWAYS be 0, just forcing all the objects into resting positions upon reset)
                                     Rigidbody rb = trackedObject.GetComponent<Rigidbody>();
-                                    rb.velocity = resetState.velocity;
+                                    rb.linearVelocity = resetState.velocity;
                                     rb.angularVelocity = resetState.angularVelocity;
                                 }
                             }
@@ -141,7 +142,7 @@ public class ResetTaskManager : MonoBehaviour
                                     trackedObject.transform.rotation = resetState.rotation;
                                     //Stored velocity data (by all means this should ALWAYS be 0, just forcing all the objects into resting positions upon reset)
                                     Rigidbody rb = trackedObject.GetComponent<Rigidbody>();
-                                    rb.velocity = resetState.velocity;
+                                    rb.linearVelocity = resetState.velocity;
                                     rb.angularVelocity = resetState.angularVelocity;
                                 }
                             }
@@ -159,7 +160,7 @@ public class ResetTaskManager : MonoBehaviour
                                     trackedObject.transform.rotation = resetState.rotation;
                                     //Stored velocity data (by all means this should ALWAYS be 0, just forcing all the objects into resting positions upon reset)
                                     Rigidbody rb = trackedObject.GetComponent<Rigidbody>();
-                                    rb.velocity = resetState.velocity;
+                                    rb.linearVelocity = resetState.velocity;
                                     rb.angularVelocity = resetState.angularVelocity;
                                 }
                             }
@@ -170,7 +171,7 @@ public class ResetTaskManager : MonoBehaviour
                                 trackedObject.transform.rotation = resetState.rotation;
                                 //Stored velocity data (by all means this should ALWAYS be 0, just forcing all the objects into resting positions upon reset)
                                 Rigidbody rb = trackedObject.GetComponent<Rigidbody>();
-                                rb.velocity = resetState.velocity;
+                                rb.linearVelocity = resetState.velocity;
                                 rb.angularVelocity = resetState.angularVelocity;
                             }
                         }

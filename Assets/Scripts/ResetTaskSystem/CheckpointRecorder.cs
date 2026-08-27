@@ -91,7 +91,7 @@ public class CheckpointRecorder : MonoBehaviour
                     position = capturedObject.transform.position,
                     rotation = capturedObject.transform.rotation,
 
-                    velocity = rb ? rb.velocity : Vector3.zero,
+                    velocity = rb ? rb.linearVelocity : Vector3.zero,
                     angularVelocity = rb ? rb.angularVelocity : Vector3.zero,
 
                     isChemContainer = true,
@@ -108,7 +108,7 @@ public class CheckpointRecorder : MonoBehaviour
                     position = capturedObject.transform.position,
                     rotation = capturedObject.transform.rotation,
 
-                    velocity = rb ? rb.velocity : Vector3.zero,
+                    velocity = rb ? rb.linearVelocity : Vector3.zero,
                     angularVelocity = rb ? rb.angularVelocity : Vector3.zero,
 
                     isChemContainer = false

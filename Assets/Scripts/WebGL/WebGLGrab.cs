@@ -1,6 +1,7 @@
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.XR.Interaction.Toolkit;
+using UnityEngine.XR.Interaction.Toolkit.Interactables;
 
 public class WebGLGrab : MonoBehaviour
 {
@@ -214,7 +215,7 @@ public class WebGLGrab : MonoBehaviour
         {
             // Disable any object rotation/force
             rb.angularVelocity = Vector3.zero;
-            rb.velocity = Vector3.zero;
+            rb.linearVelocity = Vector3.zero;
 
             rb.isKinematic = true; // Disable physics while holding
         }
