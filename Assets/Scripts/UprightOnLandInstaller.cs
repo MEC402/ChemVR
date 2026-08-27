@@ -1,6 +1,6 @@
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.XR.Interaction.Toolkit;
+
 
 /// <summary>
 /// Drop one of these in a scene to give every grabbable object an <see cref="UprightOnLand"/>
@@ -21,9 +21,9 @@ public class UprightOnLandInstaller : MonoBehaviour
     private void Start()
     {
         int added = 0;
-        XRGrabInteractable[] grabbables = FindObjectsByType<XRGrabInteractable>(FindObjectsSortMode.None);
+        UnityEngine.XR.Interaction.Toolkit.Interactables.XRGrabInteractable[] grabbables = FindObjectsByType<UnityEngine.XR.Interaction.Toolkit.Interactables.XRGrabInteractable>(FindObjectsSortMode.None);
 
-        foreach (XRGrabInteractable grabbable in grabbables)
+        foreach (UnityEngine.XR.Interaction.Toolkit.Interactables.XRGrabInteractable grabbable in grabbables)
         {
             GameObject target = grabbable.gameObject;
 

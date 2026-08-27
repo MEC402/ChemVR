@@ -42,7 +42,7 @@ public class UprightOnLand : MonoBehaviour
     [SerializeField] private bool keepBottomHeight = true;
 
     private Rigidbody myRb;
-    private XRGrabInteractable grabInteractable;
+    private UnityEngine.XR.Interaction.Toolkit.Interactables.XRGrabInteractable grabInteractable;
     private SnapToTray snapToTray;
     private Collider[] myColliders;
 
@@ -67,7 +67,7 @@ public class UprightOnLand : MonoBehaviour
 
     private void OnEnable()
     {
-        grabInteractable = GetComponent<XRGrabInteractable>();
+        grabInteractable = GetComponent<UnityEngine.XR.Interaction.Toolkit.Interactables.XRGrabInteractable>();
         if (grabInteractable != null)
         {
             grabInteractable.selectEntered.AddListener(OnGrab);
@@ -110,7 +110,7 @@ public class UprightOnLand : MonoBehaviour
         if (snapToTray != null && snapToTray.GetIsSnapped()) { slowTimer = 0f; return; }
 
         bool landed = contactCount > 0 &&
-                      myRb.velocity.magnitude < settleSpeed &&
+                      myRb.linearVelocity.magnitude < settleSpeed &&
                       myRb.angularVelocity.magnitude < settleAngularSpeed;
 
         if (!landed) { slowTimer = 0f; return; }
@@ -133,7 +133,7 @@ public class UprightOnLand : MonoBehaviour
         righting = true;
 
         bool wasKinematic = myRb.isKinematic;
-        myRb.velocity = Vector3.zero;
+        myRb.linearVelocity = Vector3.zero;
         myRb.angularVelocity = Vector3.zero;
         myRb.isKinematic = true;
 
@@ -154,7 +154,7 @@ public class UprightOnLand : MonoBehaviour
         if (keepBottomHeight) HoldBottomAt(bottomY);
 
         myRb.isKinematic = wasKinematic;
-        myRb.velocity = Vector3.zero;
+        myRb.linearVelocity = Vector3.zero;
         myRb.angularVelocity = Vector3.zero;
 
         righting = false;
