@@ -70,6 +70,16 @@ makes Render Graph the default. Also no `WWW`, no `UnityWebRequest`, no
 | `8b870cb3` | URP 17 material re-serialization (148 files) |
 | `2a94ba4a` | Unity 6 / URP 17 project settings upgrade |
 | `afc56a0c` | Unity 6 TMP Essential Resources import |
+| `114fb62e` | Added `com.unity.ai.assistant` for Unity MCP |
+| `6c8a4e4d` | Merge `zack-GlasswareTesting` into the migration branch |
+| `148d0b96` | Merge `stevec_dev` into the migration branch |
+| `c663512c` | Tidied XRI names in the two scripts those merges brought in |
+| `fa289320` | Reverted `8e3e0702` — see the render-queue trap below |
+
+Both team merges were verified: the migration survived them (`ProjectVersion`
+still 6000.3.9f1, URP 17.3.0, XRI 3.3.1), and the merged code compiles — all of
+`UprightOnLand`, `UprightOnLandInstaller`, `PourTargetHighlight`, `PlayerReach`
+and `ChemContainer` resolve inside `Assembly-CSharp`.
 
 Steps before the editor upgrade were each verified by a headless 2022.3
 `-batchmode` run (exit 0, no compile or resolution errors).
@@ -107,6 +117,57 @@ font and material references survived.
 
 ---
 
+## ⚠ Trap: URP 17 keeps reverting the fluid render queues
+
+**If you are about to commit a change to `ChemSolids.mat` or `SoapFluid.mat`,
+read this first.**
+
+steve's `23d40db6 "fluids change"` consists of exactly two edits and nothing
+else — deliberately moving these two materials from the Transparent queue down
+to Geometry to fix sorting:
+
+```
+ChemSolids.mat   m_CustomRenderQueue  3001 -> 2001
+SoapFluid.mat    m_CustomRenderQueue  2992 -> 1992
+```
+
+**URP 17 re-derives the queue from the Shader Graph's transparent surface type
+and silently pushes both back to 3001 / 2992.** It does this repeatedly — it
+happened on first open, and again after a single play-mode cycle. It shows up
+in `git status` looking like harmless re-serialization.
+
+It is not harmless. Committing it reverts steve's fix. That mistake was already
+made once in `8e3e0702` and undone in `fa289320`.
+
+**The committed values are steve's (2001 / 1992). If Unity dirties these two
+files with 3001 / 2992, discard it:**
+
+```bash
+git checkout -- Assets/Materials/ChemSolids.mat Assets/Materials/SoapFluid.mat
+```
+
+There is no material-level fix — the override does not survive reimport. Nor is
+it a simple Shader Graph fix: `ChemFluid` uses the *same* `Chem Fluid Shader`
+and is **correctly** at 3001, which is presumably why steve overrode
+per-material rather than changing the graph. A durable fix means either a
+separate shader variant for the solids, or setting the queue from `ResizeFluid`
+at runtime. That is a call for whoever owns the fluid rendering.
+
+## A note on fluid colours in the editor
+
+Fluids look **magenta in the Scene View and blue at runtime**. This is expected,
+not a bug and not a migration regression.
+
+`ChemSolids.mat` has an authored `_SideColor` of `(0.49, 0, 0.49)` — magenta —
+which is only a placeholder. The real colour is applied at runtime:
+`ChemContainer` calls `ChemistryManager.GetColor(...)` and `ResizeFluid` pushes
+it to `_SideColor` in `Start()`/`Update()`, neither of which runs in edit mode.
+
+Verified in play mode: `Solids_Jar/Fluid` reports `RGBA(0.00, 0.00, 1.00, 1.00)`
+— exactly the `Color.blue` that `ChemistryManager.cs:46` defines for
+`COPPER_SULFATE`. `ChemSolids.mat` is byte-identical before and after the
+migration.
+
 ## Still outstanding
 
 1. **Rebake lighting.** Unity 6 changed the lightmap format, so
@@ -126,6 +187,17 @@ font and material references survived.
    worth a follow-up branch.
 5. **`com.unity.connect.share`.** Deprecated, unreferenced in C#, but
    `webgl_sharing` holds a live Unity Play project GUID, so it was kept.
+6. **NaN fluid colours (pre-existing, not from this migration).**
+   `ChemistryManager.cs:85` divides by `chemFluid.totalVolume` with no guard, so
+   an empty container gives `0/0` → NaN, which reaches the material and
+   `psmain.startColor` (`ChemContainer.cs:234`). Confirmed in play mode:
+   `weigh_boat_fluids_small/Fluid` and `CrackedFlask45mL/Fluid` both report
+   `RGBA(NaN, NaN, NaN, NaN)`. Harmless today since it only affects empty
+   containers, but a NaN colour in a blend or particle system is undefined.
+   `git log` shows the line was introduced in `993bfb4b` and **never** had a
+   guard, and `ChemistryManager.cs` is byte-identical to the pre-migration
+   version. Fix is `if (chemFluid.totalVolume <= 0f) return chemColor;` — do it
+   on its own branch, not here.
 
 ## Rollback
 
