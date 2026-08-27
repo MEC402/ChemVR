@@ -130,12 +130,17 @@ public class ObjectRotationController : MonoBehaviour
         {
             if (!currentlyTrackedObject.GetIsRotated())
             {
-                if (objectToRotateName.ToLower().Contains("beaker") ||
-            objectToRotateName.ToLower().Contains("sink"))
+                if (objectToRotateName.ToLower().Contains("sink"))
                 {
                     Debug.Log("Set rotation to (90, 0, 0)");
 
                     myLocalRotateObj.localEulerAngles = new Vector3(0f, -30f, 100f);
+                    tResult = true;
+                }
+                if (objectToRotateName.ToLower().Contains("beaker"))
+                {
+
+                    myLocalRotateObj.localEulerAngles = new Vector3(0f, -40f, 120f);
                     tResult = true;
                 }
 
