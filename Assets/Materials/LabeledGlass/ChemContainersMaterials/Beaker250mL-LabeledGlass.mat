@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d0353a89b1f911e48b9e16bdc9f2e058, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  version: 7
+  version: 10
 --- !u!21 &2100000
 Material:
   serializedVersion: 8
@@ -27,7 +27,8 @@ Material:
   m_ValidKeywords:
   - _ALPHAPREMULTIPLY_ON
   - _SURFACE_TYPE_TRANSPARENT
-  m_InvalidKeywords: []
+  m_InvalidKeywords:
+  - _EMISSION
   m_LightmapFlags: 2
   m_EnableInstancingVariants: 0
   m_DoubleSidedGI: 0
@@ -36,6 +37,7 @@ Material:
     RenderType: Transparent
   disabledShaderPasses:
   - DepthOnly
+  - MOTIONVECTORS
   m_LockedProperties: 
   m_SavedProperties:
     serializedVersion: 3
@@ -70,6 +72,7 @@ Material:
     - _CrackScale: 0
     - _Cull: 2
     - _DstBlend: 10
+    - _DstBlendAlpha: 10
     - _HasCrack: 0
     - _QueueControl: 0
     - _QueueOffset: 50
@@ -79,8 +82,10 @@ Material:
     - _Scale: 2.05
     - _Scale_2: 1
     - _SrcBlend: 1
+    - _SrcBlendAlpha: 1
     - _Surface: 1
     - _WorkflowMode: 1
+    - _XRMotionVectorsPass: 1
     - _ZTest: 4
     - _ZWrite: 0
     - _ZWriteControl: 0
@@ -91,3 +96,4 @@ Material:
     - _XY1: {r: -0.17, g: -0.72, b: 0, a: 0}
     - _XY2: {r: -0.07, g: 1.06, b: 0, a: 0}
   m_BuildTextureStacks: []
+  m_AllowLocking: 1
