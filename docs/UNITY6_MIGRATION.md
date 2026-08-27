@@ -34,6 +34,7 @@ The codebase turned out to be unusually clean for a Unity 6 jump:
 | `5336a518` | Bumped XRI → 2.6.5, Cinemachine → 2.10.7, XR Management → 4.7.0, Oculus → 4.5.5, Linux toolchain → 2.0.11 |
 | `75860f04` | Regenerated `packages-lock.json` |
 | `fb73a80b` | Removed `com.unity.learn.iet-framework` and the stock VR template tutorial |
+| *(below)* | Removed `com.unity.xr.mock-hmd` 1.4.0-preview.2 and its orphaned loader/settings assets |
 
 **AR Foundation was entirely unused** — no C# references, no scene or prefab
 references, and its ARCore loader was never assigned to any build target's
@@ -124,9 +125,8 @@ folder. `Assets/Scripts` has one `IXRHandProcessor` implementation to re-check.
 - **`com.unity.connect.share`.** Deprecated and unreferenced in C#, but
   `webgl_sharing` holds a live Unity Play project GUID, so it is deliberately
   kept. Drop it if it errors on Unity 6.
-- **`com.unity.xr.mock-hmd` 1.4.0-preview.2.** A preview package whose loader,
-  like ARCore's, is not assigned to any build target. Probably dead weight, but
-  left alone to keep this migration's blast radius small.
+(`com.unity.xr.mock-hmd` was on this list and has since been removed — see the
+commit table above.)
 
 ## Rollback
 
