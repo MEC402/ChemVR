@@ -95,7 +95,7 @@ public class Glassware_Use_Overview : MonoBehaviour
                     /*21*/"Empty the glassware into the sink.\n\nFill the glassware with the DI bottle.",
                     /*22*/"Empty the glassware into the sink.",
                     /*23*/"Return materials to the cabinet on your right, and close the glass doors.\n\nThis will protect them from dust and contaminants.",
-                    /*24*/"Go to the trash to remove your gloves. Place you hands inside the trashcan and press the trigger buttons.\n\n Then wash your hands in the sink.",
+                    /*24*/"Go to the trash to remove your gloves. Place your hands inside the trashcan and press the trigger buttons.\n\n Then wash your hands in the sink.",
                     /*25*/"This concludes the glassware use module. Thank you for your time.\n\n(Y) Hides Popup\n(Hamburger Button) Opens Menu"
                 };
 
