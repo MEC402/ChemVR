@@ -70,7 +70,7 @@ public class Glassware_Use_Overview : MonoBehaviour
                     /*4*/"Set the scale units to grams by pressing the mode button on the front of the scale.",
                     /*5*/"Press the tare button on the front of the scale to reset the weight to zero.",
                     /*6*/"Take the lid off the Copper Sulfate jar.  Pour 1.500g copper sulfate from the jar into the weigh boat.\n\nRotate the jar upside down to pour.",
-                    /*7*/"Pick up the Jar Lid and put the lid back on the jar. \n\n You can also press the trigger button while holding the lid to put it on the jar.",
+                    /*7*/"Pick up the Jar Lid and put the lid back on the jar.",
                     /*8*/"Pour the contents of the weigh paper boat into the 250mL beaker. \n\nRotate the weigh boat over the beaker to pour.",
                     /*9*/"Turn off the balance and clean it with the brush. \nPickup the brush and press it to the surface of the scale.",
                     /*10*/"Using the DI water bottle, \nfill the graduated cylinder \nuntil the meniscus is at 50mL.  Pouring will stop when full.",
