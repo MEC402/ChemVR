@@ -11519,6 +11519,11 @@ Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: ced141a368a098e4c8b0b211478d1111, type: 3}
   m_PrefabInstance: {fileID: 780681178}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &800403389 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2323752812130465848, guid: 7ae2fe770eb1b6145b15f4213f7d37b4, type: 3}
+  m_PrefabInstance: {fileID: 1022052976}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &805021964
 GameObject:
   m_ObjectHideFlags: 0
@@ -12117,6 +12122,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 453678361}
     m_Modifications:
+    - target: {fileID: 2181811497632892686, guid: aacf76680d2b5d942bf65c8ae79b5d70, type: 3}
+      propertyPath: scale
+      value: 
+      objectReference: {fileID: 800403389}
     - target: {fileID: 3450608233143295964, guid: aacf76680d2b5d942bf65c8ae79b5d70, type: 3}
       propertyPath: m_ExcludeLayers.m_Bits
       value: 524416
@@ -14214,6 +14223,30 @@ PrefabInstance:
     - target: {fileID: 3131251277643227778, guid: 7ae2fe770eb1b6145b15f4213f7d37b4, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3910657566660383329, guid: 7ae2fe770eb1b6145b15f4213f7d37b4, type: 3}
+      propertyPath: m_Size.x
+      value: 1.1483158
+      objectReference: {fileID: 0}
+    - target: {fileID: 3910657566660383329, guid: 7ae2fe770eb1b6145b15f4213f7d37b4, type: 3}
+      propertyPath: m_Size.y
+      value: 0.11177758
+      objectReference: {fileID: 0}
+    - target: {fileID: 3910657566660383329, guid: 7ae2fe770eb1b6145b15f4213f7d37b4, type: 3}
+      propertyPath: m_Size.z
+      value: 1.1287956
+      objectReference: {fileID: 0}
+    - target: {fileID: 3910657566660383329, guid: 7ae2fe770eb1b6145b15f4213f7d37b4, type: 3}
+      propertyPath: m_Center.x
+      value: 0.26050028
+      objectReference: {fileID: 0}
+    - target: {fileID: 3910657566660383329, guid: 7ae2fe770eb1b6145b15f4213f7d37b4, type: 3}
+      propertyPath: m_Center.y
+      value: 0.4858888
+      objectReference: {fileID: 0}
+    - target: {fileID: 3910657566660383329, guid: 7ae2fe770eb1b6145b15f4213f7d37b4, type: 3}
+      propertyPath: m_Center.z
+      value: 0.022160212
       objectReference: {fileID: 0}
     - target: {fileID: 6053621979484949320, guid: 7ae2fe770eb1b6145b15f4213f7d37b4, type: 3}
       propertyPath: boatLocation
