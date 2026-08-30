@@ -93,16 +93,26 @@ public class SnapBulbToPipet : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.CompareTag("PipetteBulb") && !snap)
+        //Identity check against this bulb's own paired pipette (not just any PipetteBulb-tagged
+        //collider) so the blue bulb only ever attaches to its 15mL pipette and red only to its
+        //10mL pipette, never to the other pipette's collider.
+        if (other.gameObject == pipetteCollider && !snap)
         {
             touching = true;
             GameEventsManager.instance.miscEvents.PippetConnectedFirst();
+
+            //Touching the correct pipette while already holding the bulb attaches it immediately,
+            //instead of requiring the player to let go of the grab button first.
+            if (isGrabbed)
+            {
+                AttachToPipette();
+            }
         }
     }
 
     private void OnTriggerExit(Collider other)
     {
-        if (other.gameObject.CompareTag("PipetteBulb"))
+        if (other.gameObject == pipetteCollider)
         {
             touching = false;
             if (isGrabbed)
@@ -125,13 +135,18 @@ public class SnapBulbToPipet : MonoBehaviour
         isGrabbed = false;
         if (touching)
         {
-            snap = true;
-            myRb.useGravity = false;
+            AttachToPipette();
         }
         else
         {
             LetGo();
         }
+    }
+
+    private void AttachToPipette()
+    {
+        snap = true;
+        myRb.useGravity = false;
     }
 
     // WebGL Grab Handlers, these allow for pressing the F key to attach the bulbs, instead of holding the two objects like you do in VR.
@@ -155,8 +170,7 @@ public class SnapBulbToPipet : MonoBehaviour
             isHeld = false;
             if (touching)
             {
-                snap = true;
-                myRb.useGravity = false;
+                AttachToPipette();
             }
             else
             {
@@ -183,8 +197,7 @@ public class SnapBulbToPipet : MonoBehaviour
                     webGrab.ForceReleaseObject();
                     isHeld = false;
                     isGrabbed = false;
-                    snap = true;
-                    myRb.useGravity = false;
+                    AttachToPipette();
                     GameEventsManager.instance.miscEvents.PippetConnectedFirst();
                     if (GameEventsManager.instance != null && GameEventsManager.instance.inputEvents != null)
                         GameEventsManager.instance.inputEvents.onRTriggerPressed -= AttachBulb;
