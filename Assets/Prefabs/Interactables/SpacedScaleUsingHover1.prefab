@@ -866,6 +866,7 @@ GameObject:
   - component: {fileID: 3131251277643227778}
   - component: {fileID: 6053621979484949320}
   - component: {fileID: 3910657566660383329}
+  - component: {fileID: 3910657566660383330}
   m_Layer: 0
   m_Name: SpacedScaleUsingHover1
   m_TagString: Scale
@@ -920,6 +921,27 @@ MonoBehaviour:
   boatLocation: {fileID: 1720754329575613777}
   weighBoatObject: {fileID: 0}
 --- !u!65 &3910657566660383329
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2323752812130465848}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 1, y: 0.1, z: 1}
+  m_Center: {x: 0.27, y: 0.48, z: 0}
+--- !u!65 &3910657566660383330
 BoxCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
