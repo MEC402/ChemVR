@@ -2,11 +2,9 @@ using UnityEngine;
 
 public class BrushScale : MonoBehaviour
 {
-    [SerializeField] private GameObject scale;
-
     void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject == scale)
+        if (other.CompareTag("Scale"))
             GameEventsManager.instance.miscEvents.CleanScale();
     }
 }

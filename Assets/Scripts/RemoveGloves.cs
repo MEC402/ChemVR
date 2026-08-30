@@ -91,11 +91,11 @@ public class RemoveGloves : MonoBehaviour
     }
     private void OnTriggerEnter(Collider other)
     {
-        if (other.name.Contains("right") && other.name.Contains("hand"))
+        if (rightHand != null && other.transform.IsChildOf(rightHand.transform))
         {
             rightIsTouching = true;
         }
-        else if (other.name.Contains("left") && other.name.Contains("hand"))
+        else if (leftHand != null && other.transform.IsChildOf(leftHand.transform))
         {
             leftIsTouching = true;
         }
@@ -106,11 +106,11 @@ public class RemoveGloves : MonoBehaviour
     }
     private void OnTriggerExit(Collider other)
     {
-        if (other.name.Contains("right") && other.name.Contains("hand"))
+        if (rightHand != null && other.transform.IsChildOf(rightHand.transform))
         {
             rightIsTouching = false;
         }
-        else if (other.name.Contains("left") && other.name.Contains("hand"))
+        else if (leftHand != null && other.transform.IsChildOf(leftHand.transform))
         {
             leftIsTouching = false;
         }
