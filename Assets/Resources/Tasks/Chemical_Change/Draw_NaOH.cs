@@ -19,10 +19,12 @@ public class Draw_NaOH : TaskStep
     void OnEnable()
     {
         GameEventsManager.instance.inputEvents.onAButtonPressed += SkipTask;
+        GameEventsManager.instance.inputEvents.onWebGLSkipTask += SkipTask;
     }
     void OnDisable()
     {
         GameEventsManager.instance.inputEvents.onAButtonPressed -= SkipTask;
+        GameEventsManager.instance.inputEvents.onWebGLSkipTask -= SkipTask;
     }
     private void SkipTask(InputAction.CallbackContext obj)
     {

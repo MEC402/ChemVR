@@ -17,12 +17,14 @@ public class Add_And_Tare : TaskStep
         GameEventsManager.instance.miscEvents.OnPaperInBoat += SetPaperInBoat;
         GameEventsManager.instance.miscEvents.OnObjectOnScale += SetObjectOnScale;
         GameEventsManager.instance.miscEvents.OnScaleTare += CheckFinishTaskStep;
+        GameEventsManager.instance.inputEvents.onWebGLSkipTask += SkipTask;
     }
     void OnDisable()
     {
         GameEventsManager.instance.miscEvents.OnPaperInBoat -= SetPaperInBoat;
         GameEventsManager.instance.miscEvents.OnObjectOnScale -= SetObjectOnScale;
         GameEventsManager.instance.miscEvents.OnScaleTare -= CheckFinishTaskStep;
+        GameEventsManager.instance.inputEvents.onWebGLSkipTask -= SkipTask;
     }
     private void SetPaperInBoat(bool isInBoat)
     {
@@ -40,5 +42,10 @@ public class Add_And_Tare : TaskStep
         //Debug.Log("CheckFinishTaskStep is called? IDK how we got here tho.");
         if (isBoatPrepared && isBoatOnScale)
             FinishTaskStep();
+    }
+
+    private void SkipTask(InputAction.CallbackContext obj)
+    {
+        FinishTaskStep();
     }
 }

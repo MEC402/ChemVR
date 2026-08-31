@@ -441,7 +441,7 @@ Rigidbody:
   m_IsKinematic: 0
   m_Interpolate: 0
   m_Constraints: 0
-  m_CollisionDetection: 0
+  m_CollisionDetection: 1
 --- !u!114 &4127531764939669553
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -637,7 +637,7 @@ MonoBehaviour:
   pourActivator: {fileID: 0}
   maxVolume: 250
   currentVolume: 0
-  pourRate: 25
+  pourRate: 100
   pourAngle: 90
   flags:
     pouringUsesActivator: 0

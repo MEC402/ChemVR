@@ -33,9 +33,11 @@ public class Inspect_Glassware : TaskStep
     #region Unity Methods
     void OnEnable()
     {
-        //This cursed line of code needs fixed it makes the whole script fail if not in WebGl mode.
-        //isWebGL = GameObject.Find("Glassware Use").GetComponent<Glassware_Use_Overview>().isWebGL;
+        //IsRunningOnWebGL doesn't seem to work very well inside the Unity editor. It works in build I think, so we can keep using it,
+        // but this commented out line is just for when needing to debug stuff inside Unity (or in my case, potentially record the reset checkpoints)
+        //isWebGL = true; 
 	isWebGL = IsRunningOnWebGL();
+    
 
         GameEventsManager.instance.inputEvents.onWebGLSkipTask += SkipTask;
 
@@ -93,6 +95,7 @@ public class Inspect_Glassware : TaskStep
     {
         if(arg0 != null)
         {
+            Debug.Log(arg0.interactableObject);
            MarkObjectAsInspected(arg0.interactableObject.transform.gameObject); 
         }
     }

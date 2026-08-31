@@ -13,10 +13,17 @@ public class Put_On_Hot_Plate : TaskStep
     void OnEnable()
     {
         GameEventsManager.instance.miscEvents.OnBeakerOnHotPlate += FinishTaskStep;
+        GameEventsManager.instance.inputEvents.onWebGLSkipTask += SkipTask;
     }
     void OnDisable()
     {
         GameEventsManager.instance.miscEvents.OnBeakerOnHotPlate -= FinishTaskStep;
+        GameEventsManager.instance.inputEvents.onWebGLSkipTask -= SkipTask;
+    }
+
+    private void SkipTask(InputAction.CallbackContext obj)
+    {
+        FinishTaskStep();
     }
 
 }

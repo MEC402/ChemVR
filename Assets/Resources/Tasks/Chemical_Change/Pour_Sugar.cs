@@ -13,11 +13,13 @@ public class Pour_Sugar : TaskStep
     }
     void OnEnable()
     {
-        GameEventsManager.instance.chemistryEvents.onPourOut += removeChem; 
+        GameEventsManager.instance.chemistryEvents.onPourOut += removeChem;
+        GameEventsManager.instance.inputEvents.onWebGLSkipTask += SkipTask;
     }
     void OnDisable()
     {
         GameEventsManager.instance.chemistryEvents.onPourOut -= removeChem;
+        GameEventsManager.instance.inputEvents.onWebGLSkipTask -= SkipTask;
     }
     private void removeChem(ChemContainer container, ChemFluid chemMix)
     {
@@ -46,5 +48,10 @@ public class Pour_Sugar : TaskStep
                 }
             }
         }
+    }
+
+    private void SkipTask(InputAction.CallbackContext obj)
+    {
+        FinishTaskStep();
     }
 }

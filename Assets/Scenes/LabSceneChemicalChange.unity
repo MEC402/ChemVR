@@ -38,7 +38,6 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 1699667958}
-  m_IndirectSpecularColor: {r: 0.3130029, g: 0.5501603, b: 0.8220557, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -29239,6 +29238,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: Sugar_Jar_PCC
       objectReference: {fileID: 0}
+    - target: {fileID: 3412064137415904442, guid: 99ef9d8067d5af0429c2264de125fa4f, type: 3}
+      propertyPath: jarRB
+      value: 
+      objectReference: {fileID: 2295573241542676140}
+    - target: {fileID: 3412064137415904442, guid: 99ef9d8067d5af0429c2264de125fa4f, type: 3}
+      propertyPath: lidRB
+      value: 
+      objectReference: {fileID: 2295573241542676141}
     - target: {fileID: 4559314830128959419, guid: 99ef9d8067d5af0429c2264de125fa4f, type: 3}
       propertyPath: m_LocalPosition.x
       value: -2.507
@@ -29284,6 +29291,16 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 99ef9d8067d5af0429c2264de125fa4f, type: 3}
+--- !u!54 &2295573241542676140 stripped
+Rigidbody:
+  m_CorrespondingSourceObject: {fileID: 5475917470786388875, guid: 99ef9d8067d5af0429c2264de125fa4f, type: 3}
+  m_PrefabInstance: {fileID: 2295573241542676139}
+  m_PrefabAsset: {fileID: 0}
+--- !u!54 &2295573241542676141 stripped
+Rigidbody:
+  m_CorrespondingSourceObject: {fileID: 3943991922639596017, guid: 99ef9d8067d5af0429c2264de125fa4f, type: 3}
+  m_PrefabInstance: {fileID: 2295573241542676139}
+  m_PrefabAsset: {fileID: 0}
 --- !u!54 &2737982631141622419
 Rigidbody:
   m_ObjectHideFlags: 0

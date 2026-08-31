@@ -13,11 +13,13 @@ public class Stir_NaOH : TaskStep
     void OnEnable()
     {
         GameEventsManager.instance.miscEvents.OnStirBeaker += StirEvent;
+        GameEventsManager.instance.inputEvents.onWebGLSkipTask += SkipTask;
     }
 
     void OnDisable()
     {
         GameEventsManager.instance.miscEvents.OnStirBeaker -= StirEvent;
+        GameEventsManager.instance.inputEvents.onWebGLSkipTask -= SkipTask;
     }
 
     void StirEvent()
@@ -45,6 +47,11 @@ public class Stir_NaOH : TaskStep
         {
             Debug.LogWarning("ChemFluid not found!");
         }
+        FinishTaskStep();
+    }
+
+    private void SkipTask(InputAction.CallbackContext obj)
+    {
         FinishTaskStep();
     }
 }

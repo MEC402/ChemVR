@@ -146,7 +146,7 @@ Rigidbody:
   m_IsKinematic: 0
   m_Interpolate: 0
   m_Constraints: 0
-  m_CollisionDetection: 0
+  m_CollisionDetection: 1
 --- !u!114 &1730680846511485329
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -388,7 +388,7 @@ MonoBehaviour:
   pourActivator: {fileID: 0}
   maxVolume: 300
   currentVolume: 300
-  pourRate: 10
+  pourRate: 25
   pourAngle: 45
   flags:
     pouringUsesActivator: 0
@@ -5634,7 +5634,7 @@ Rigidbody:
   m_IsKinematic: 0
   m_Interpolate: 0
   m_Constraints: 0
-  m_CollisionDetection: 0
+  m_CollisionDetection: 1
 --- !u!114 &4746320904914963641
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5800,6 +5800,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   parentJar: {fileID: 555641471651291790}
+  jarRB: {fileID: 5475917470786388875}
+  lidRB: {fileID: 3943991922639596017}
 --- !u!1 &4629265859227504079
 GameObject:
   m_ObjectHideFlags: 0

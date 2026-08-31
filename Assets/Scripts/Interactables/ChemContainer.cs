@@ -90,6 +90,24 @@ public class ChemContainer : MonoBehaviour {
     [Tooltip("The angle (from the world +y-axis) at which to activate pouring")]
     public float pourAngle = 90;
 
+    [Header("POUR TARGETING")]
+    [Tooltip("Radius (in metres) of the cast used to find what this container is pouring into.\n" +
+             "A zero-radius ray requires the pour point to be lined up exactly, which makes " +
+             "narrow-necked glassware very hard to aim at. Raise this to make pouring more forgiving.\n\n" +
+             "When several containers fall inside the radius, the one nearest the pour point's " +
+             "vertical axis wins, so widening this does not make aiming vaguer - it just adds slack.")]
+    public float pourCastRadius = 0.06f;
+    [Tooltip("Layers the pour cast considers. Must include \"Chem\", the layer container openings sit on.\n" +
+             "Leave empty to use \"Chem\" only.")]
+    public LayerMask pourCastMask = 0;
+    [Tooltip("How far below the pour point a container can be and still receive the pour.\n" +
+             "The cast only looks at the Chem layer, so solid geometry no longer blocks it - this " +
+             "is what stops you pouring through a bench into something stored underneath.")]
+    public float pourCastMaxDistance = 1.5f;
+    [Tooltip("Fraction of pourAngle at which the aim guide appears, so the player can line up " +
+             "before fluid starts flowing. Only used when a PourAimGuide is attached.")]
+    [Range(0f, 1f)] public float aimGuideTiltFraction = 0.5f;
+
 
     [Header("DEV OPTIONS")]
     [SerializeField, Tooltip("Various settings for changing the behavior of the ChemContainer.")]
@@ -170,6 +188,35 @@ public class ChemContainer : MonoBehaviour {
             pourEffect.gameObject.transform.localPosition = pourPoint.transform.localPosition;
             pourEffect.gameObject.SetActive(true);
         }
+
+        // Optional pour feedback. Both are opt-in: add the component to make it appear.
+        aimGuide = GetComponent<PourAimGuide>();
+
+        // Held tracking, so the aim guide only appears while the player has the container.
+        // VR selection is read straight off the interactable, which needs no inspector wiring.
+        grabInteractable = GetComponent<XRBaseInteractable>();
+
+        // WebGL has no interactable selection - WebGLGrab reparents the object and raises these.
+        if (GameEventsManager.instance != null && GameEventsManager.instance.webGLEvents != null) {
+            GameEventsManager.instance.webGLEvents.OnObjectGrabbed += WebGLGrabbed;
+            GameEventsManager.instance.webGLEvents.OnObjectReleased += WebGLReleased;
+        }
+    }
+
+    private void OnDestroy() {
+        if (GameEventsManager.instance != null && GameEventsManager.instance.webGLEvents != null) {
+            GameEventsManager.instance.webGLEvents.OnObjectGrabbed -= WebGLGrabbed;
+            GameEventsManager.instance.webGLEvents.OnObjectReleased -= WebGLReleased;
+        }
+    }
+
+    // WebGLGrab hands us whichever collider the player's raycast hit, which may be a child.
+    private void WebGLGrabbed(GameObject grabbed) {
+        if (grabbed != null && grabbed.GetComponentInParent<ChemContainer>() == this) webGLHeld = true;
+    }
+
+    private void WebGLReleased(GameObject released) {
+        if (released != null && released.GetComponentInParent<ChemContainer>() == this) webGLHeld = false;
     }
 
     // Update is called once per frame
@@ -204,10 +251,24 @@ public class ChemContainer : MonoBehaviour {
                 pouringPossible = true;
             }
         }
+        // Find what is underneath the pour point. This uses a thick cast rather than a thin ray
+        // so the player does not have to line the pour point up exactly - tilting to pour swings
+        // the pour point through an arc, so an exact-aim requirement fights the pour gesture.
         RaycastHit hit;
-        if (Physics.Raycast(pourPoint.transform.position, Vector3.down, out hit, Mathf.Infinity)) {
-            pouringPossible = pouringPossible && (hit.collider.gameObject.layer == LayerMask.NameToLayer("Chem"));
-        }
+        ChemContainer recipient;
+        bool hasTarget = TryFindPourTarget(out hit, out recipient);
+        pouringPossible = pouringPossible && hasTarget;
+
+        // Aim feedback is driven by the same test the pour uses, so the guide and the highlight
+        // are truthful: if they say the pour will land, it lands.
+        // Tilt-poured containers only show feedback while actually in hand - a bottle left
+        // resting at an angle on a bench should not sit there drawing a guide. Activator-poured
+        // containers (the burette) are fixed in a holder, so an open stopcock is intent enough.
+        bool aiming = flags.pouringUsesActivator
+            ? (pourActivator != null && pourActivator.IsActivated())
+            : (IsHeld && tilt >= pourAngle * aimGuideTiltFraction);
+        UpdatePourFeedback(aiming, hasTarget, hit, recipient);
+
         if (pouringPossible) {
             float particleSize = 0.1f;
             float particleScale = 1.0f;
@@ -222,10 +283,10 @@ public class ChemContainer : MonoBehaviour {
             }
 
 
-            if (hit.collider != null) //Added all of this into this if statement to try to catch the bug that is occassionally thrown.
+            // recipient is guaranteed non-null here: TryFindPourTarget only reports a target when
+            // it resolves to a ChemContainer, which also fixes the intermittent null deref that
+            // used to throw when a container was dropped mid-pour.
             {
-                //the receiving obj has to have the chemContainer script attatched? AW
-                ChemContainer recipient = hit.collider.gameObject.GetComponentInParent<ChemContainer>();            // BUG! Every now and again if you drop a chem container a null error throws here. I'm trying to find it above.
                 float amountPoured = Mathf.Min(pourRate * Time.fixedDeltaTime, currentVolume, (recipient.flags.infiniteCapacity ? float.MaxValue : recipient.maxVolume - recipient.currentVolume));
 
                 //Adjust amount poured to match how much the turner is opened
@@ -278,6 +339,104 @@ public class ChemContainer : MonoBehaviour {
             }
         } else {
             pourEffect.Stop(true, ParticleSystemStopBehavior.StopEmittingAndClear);
+        }
+    }
+
+    // Shared scratch buffer so the per-frame cast in FixedUpdate does not allocate.
+    // Safe to share: FixedUpdate is single-threaded and results are consumed immediately.
+    private static readonly RaycastHit[] pourCastHits = new RaycastHit[16];
+
+    private PourAimGuide aimGuide;
+    private PourTargetHighlight litTarget;
+
+    private XRBaseInteractable grabInteractable;
+    private bool webGLHeld;
+
+    /// <summary>
+    /// True while the player is holding this container, on either platform.
+    /// </summary>
+    public bool IsHeld => (grabInteractable != null && grabInteractable.isSelected) || webGLHeld;
+
+    private int PourCastMask =>
+        (pourCastMask.value != 0) ? pourCastMask.value : (1 << LayerMask.NameToLayer("Chem"));
+
+    private float PourCastRadius => Mathf.Max(pourCastRadius, 0.001f);
+
+    /// <summary>
+    /// Finds the ChemContainer this one is currently positioned to pour into.
+    /// Casts a sphere straight down from the pour point, ignoring this container's own colliders.
+    ///
+    /// Where several containers fall inside the cast, the winner is the one whose opening is
+    /// closest to the pour point's vertical axis - not the one the sphere happens to reach first.
+    /// Sphere-cast distance is travel along the ray, so without this a container sitting lower but
+    /// well off to one side would beat the one you are holding the bottle directly over. Selecting
+    /// on lateral offset is what makes a generous pourCastRadius safe next to crowded glassware.
+    /// </summary>
+    private bool TryFindPourTarget(out RaycastHit hit, out ChemContainer recipient) {
+        hit = default;
+        recipient = null;
+        float bestOffset = float.MaxValue;
+
+        Vector3 origin = pourPoint.transform.position;
+        int count = Physics.SphereCastNonAlloc(
+            origin, PourCastRadius, Vector3.down,
+            pourCastHits, Mathf.Max(pourCastMaxDistance, 0.01f), PourCastMask,
+            QueryTriggerInteraction.Ignore);
+
+        for (int i = 0; i < count; i++) {
+            RaycastHit candidate = pourCastHits[i];
+            if (candidate.collider == null) continue;
+
+            ChemContainer candidateContainer = candidate.collider.GetComponentInParent<ChemContainer>();
+            // The cast starts at our own lip, so without this we would always hit ourselves first.
+            if (candidateContainer == null || candidateContainer == this) continue;
+
+            // Horizontal distance from the pour axis to the target's opening.
+            Vector3 target = (candidateContainer.opening != null)
+                ? candidateContainer.opening.transform.position
+                : candidate.point;
+            float offset = Vector2.Distance(new Vector2(origin.x, origin.z),
+                                            new Vector2(target.x, target.z));
+
+            if (offset < bestOffset) {
+                bestOffset = offset;
+                hit = candidate;
+                recipient = candidateContainer;
+            }
+        }
+
+        return recipient != null;
+    }
+
+    /// <summary>
+    /// Drives the optional aim guide on this container and the optional highlight on whatever
+    /// it is aimed at. Both are no-ops unless the relevant component has been attached.
+    /// </summary>
+    private void UpdatePourFeedback(bool aiming, bool hasTarget, RaycastHit hit, ChemContainer recipient) {
+        if (aimGuide != null) {
+            aimGuide.SetAim(aiming, pourPoint.transform.position, hit.point, hasTarget);
+        }
+
+        PourTargetHighlight next = (aiming && hasTarget && recipient != null)
+            ? recipient.GetComponent<PourTargetHighlight>()
+            : null;
+
+        if (next == litTarget) return;
+        // Requests are made in this container's name so that dropping ours never cancels a glow
+        // another container - or a pipette lined up on the same target - still wants.
+        if (litTarget != null) litTarget.SetHighlighted(this, false, litTarget.highlightColor);
+        litTarget = next;
+        if (litTarget != null) litTarget.SetHighlighted(this, true, litTarget.highlightColor);
+    }
+
+    private void OnDisable() {
+        // Do not leave a target glowing if this container is disabled or destroyed mid-pour.
+        if (litTarget != null) {
+            litTarget.SetHighlighted(this, false, litTarget.highlightColor);
+            litTarget = null;
+        }
+        if (aimGuide != null) {
+            aimGuide.SetAim(false, Vector3.zero, Vector3.zero, false);
         }
     }
 
@@ -344,5 +503,11 @@ public class ChemContainer : MonoBehaviour {
         internalFluid.fill = (flags.infiniteFluid) ? 1 : currentVolume / maxVolume;
     }
     public void EmptyChem() => chemFluid.SetToEmpty();
+    public void SetChem(ChemFluid setChem) => chemFluid.AssignNewChemFluid(setChem);
+
+    public float GetPourAngle()
+    {
+        return pourAngle;
+    }
 
 }

@@ -18,12 +18,14 @@ public class Set_Up_Two_Pipettes : TaskStep
         GameEventsManager.instance.miscEvents.OnPippetConnectedFirst += () => First_PipetConnected = true;
 
         GameEventsManager.instance.miscEvents.OnPippetConnectedSecond += () => Second_PipetConnected = true;
+        GameEventsManager.instance.inputEvents.onWebGLSkipTask += SkipTask;
     }
     void OnDisable()
     {
         GameEventsManager.instance.miscEvents.OnPippetConnectedFirst -= () => First_PipetConnected = true;
 
         GameEventsManager.instance.miscEvents.OnPippetConnectedSecond -= () => Second_PipetConnected = true;
+        GameEventsManager.instance.inputEvents.onWebGLSkipTask -= SkipTask;
     }
 
     private void Update()
@@ -32,6 +34,11 @@ public class Set_Up_Two_Pipettes : TaskStep
         {
             FinishTaskStep();
         }
+    }
+
+    private void SkipTask(InputAction.CallbackContext obj)
+    {
+        FinishTaskStep();
     }
     
 }

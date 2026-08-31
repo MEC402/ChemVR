@@ -299,8 +299,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   internalFluid: {fileID: 6350758990787444843}
   bulbCollider: {fileID: 8529766450172895420}
-  LockChemFluid: 0
-  lockDispenseAmount: 0
+  LockChemFluid: 1
+  lockDispenseAmount: 1
   isHeld: 0
   dispenseAmount: 15
   currentFluids:
@@ -437,6 +437,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 05a84ca55a7c8ed4f8feb22a0b9a5b5d, type: 3}
       insertIndex: -1
       addedObject: {fileID: 9099617103816078401}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 05a84ca55a7c8ed4f8feb22a0b9a5b5d, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 5199607210990126099}
   m_SourcePrefab: {fileID: 100100000, guid: 05a84ca55a7c8ed4f8feb22a0b9a5b5d, type: 3}
 --- !u!1 &3803306813619197290 stripped
 GameObject:
@@ -491,7 +494,7 @@ Rigidbody:
   m_IsKinematic: 0
   m_Interpolate: 0
   m_Constraints: 0
-  m_CollisionDetection: 0
+  m_CollisionDetection: 1
 --- !u!114 &9099617103816078401
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -668,6 +671,18 @@ MonoBehaviour:
   m_StartingSingleGrabTransformers: []
   m_StartingMultipleGrabTransformers: []
   m_AddDefaultGrabTransformers: 1
+--- !u!114 &5199607210990126099
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3803306813619197290}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0b2ae48a83146e14b97dccfb20e5c074, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!4 &4576747704866574288 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 05a84ca55a7c8ed4f8feb22a0b9a5b5d, type: 3}

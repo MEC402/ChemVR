@@ -11,6 +11,9 @@ public class HelpMenuController : MonoBehaviour
     [Header("Menus")]
     public GameObject pauseMenu;
 
+    [Header("Instructions")]
+    public ToggleTextSimple instructionsPopup;
+
     [Header("Hands")]
     public GameObject leftHand;
     public GameObject rightHand;
@@ -72,10 +75,14 @@ public class HelpMenuController : MonoBehaviour
         {
             pauseMenu.SetActive(true);
             setHandActions(false);
+            if (instructionsPopup != null)
+                instructionsPopup.HideText();
         } else
         {
             pauseMenu.SetActive(false);
             setHandActions(true);
+            if (instructionsPopup != null)
+                instructionsPopup.ShowText();
         }
         menuOpen = !menuOpen;
     }

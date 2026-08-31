@@ -190,6 +190,7 @@ public class WebGLGrab : MonoBehaviour
         isHoldingObject = false;
 
         objectRotationController.objectToRotate = null;
+        objectRotationController.currentlyTrackedObject = null;
 
         // Update the icon
         playerIcon.sprite = defaultIcon;
