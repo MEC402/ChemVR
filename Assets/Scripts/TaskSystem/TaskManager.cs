@@ -130,6 +130,11 @@ public class TaskManager : MonoBehaviour
         {
             // if there are more steps, instantiate the next one
             task.InstantiateCurrentTaskStep(this.transform);
+
+            if (task.info.canFinishOnFinalStep && task.IsCurrentStepLast())
+            {
+                ChangeTaskState(task.info.id, TaskState.CAN_FINISH);
+            }
         }
         else
         {

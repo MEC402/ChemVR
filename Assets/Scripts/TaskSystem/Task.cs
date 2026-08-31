@@ -88,6 +88,11 @@ public class Task
         return (currentTaskStepIndex < info.taskStepPrefabs.Length);
     }
 
+    public bool IsCurrentStepLast()
+    {
+        return currentTaskStepIndex == info.taskStepPrefabs.Length - 1;
+    }
+
     public void InstantiateCurrentTaskStep(Transform parentTransform)
     {
         GameObject taskStepPrefab = GetCurrentTaskStepPrefab();

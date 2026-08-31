@@ -64,7 +64,7 @@ public class Glassware_Use_Overview : MonoBehaviour
                     //"Next bring:\n1 100mL Graduated Cylinder\n1 Glass Stir Rod\n1 10mL Volumetric Pipette\n to the table.\n\n\nSkip with A", //disabled task step 3 (add to TaskInfoSO block and uncomment to undo)
                     //"Finally you will need:\nSmall Weigh Boat With Paper\nCopper Sulfate\nPaper Towels\n\n\nSkip with A", //disabled task step 4 (add to TaskInfoSO block and uncomment to undo)
                     //"Locate these tools that you will need in the lab:\nAnalytical Balance\nBalance Brush\nDI water\nWhen you are ready to continue, press (A).\n\n\nSkip with A", //disabled task step 5 (add to TaskInfoSO block and uncomment to undo)
-                    /*1*/"Move over to the main work table and inspect the 250 ml Beaker for chips and cracks.\n\n\nPick it up to inspect it.",
+                    /*1*/"Move over to the main work table on your right and inspect the 250 ml Beaker for chips and cracks.\n\n\nPick it up to inspect it.",
                     /*2*/"Turn on the analytical balance, and allow for it to stabilize.\n\n\nTo do this, press the on button on the left side of the scale.",
                     /*3*/"Place the weigh paper in the weigh boat, and then place the weigh boat on the scale.",
                     /*4*/"Set the scale units to grams by pressing the mode button on the front of the scale.",
@@ -106,7 +106,7 @@ public class Glassware_Use_Overview : MonoBehaviour
                     //"Next bring:\n1 100mL Graduated Cylinder\n1 Glass Stir Rod\n1 10mL Volumetric Pipette\n to the table.\n\n\nSkip with A", //disabled task step 3 (add to TaskInfoSO block and uncomment to undo)
                     //"Finally you will need:\nSmall Weigh Boat With Paper\nCopper Sulfate\nPaper Towels\n\n\nSkip with A", //disabled task step 4 (add to TaskInfoSO block and uncomment to undo)
                     //"Locate these tools that you will need in the lab:\nAnalytical Balance\nBalance Brush\nDI water\nWhen you are ready to continue, press (A).\n\n\nSkip with A", //disabled task step 5 (add to TaskInfoSO block and uncomment to undo)
-                    /*1*/"Move over to the main work table and inspect the 250 ml Beaker for chips and cracks.\n\n\nPick it up to inspect it.",
+                    /*1*/"Move over to the main work table on your right and inspect the 250 ml Beaker for chips and cracks.\n\n\nPick it up to inspect it.",
                     /*2*/"Turn on the analytical balance, and allow for it to stabilize.\n\n\nTo do this, press the on button on the left side of the scale.",
                     /*3*/"Place the weigh paper in the weigh boat, and then place the weigh boat on the scale.",
                     /*4*/"Set the scale units to grams by pressing the mode button on the front of the scale.",
