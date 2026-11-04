@@ -212,6 +212,110 @@ public class ResetTaskManager : MonoBehaviour
     }
 
 
+    //Kind of messy, but this function should be nearly idendical to the Reset All function, except instead it can be called by a single object to only reset one thing. Still does all the same checks, in case you drop
+    //something that should not be reset if it's attached, such as the bulb if you drop the entire pipette.
+    public void ResetSingleObject(GameObject sender)
+    {
+        Transform senderTransform = sender.transform;
+        int currentTaskNumber = taskManager.GetCurrentStepIndex(taskInfoObjectID);
+
+        TaskCheckpointSO currentCheckpoint = CheckpointContainer.GetCheckpoint(currentTaskNumber);
+        List<ObjectState> statesToRestore = new List<ObjectState>();
+        foreach (ObjectState storedState in currentCheckpoint.objectStates)
+        {
+            statesToRestore.Add(storedState);
+            Debug.Log("Added state for " + storedState.objectName);
+        }
+
+        foreach (ObjectState resetState in statesToRestore)
+        {
+            if (resetState.objectName == sender.gameObject.name)
+            {
+
+                if (senderTransform.gameObject.TryGetComponent<XRGrabInteractable>(out XRGrabInteractable grab)) //Check if Object is currently being held, if so, don't reset the position.
+                {
+                    if (grab != null && grab.isSelected)
+                    {
+                        continue;
+                    } //Do nothing. If the object is held, we don't want to try and move it out of the user's hands.
+                    else
+                    {
+                        if (senderTransform.gameObject.TryGetComponent<SnapBulbToPipet>(out SnapBulbToPipet bulbScript)) //Make sure object even has the component
+                        {
+                            if (bulbScript.GetSnap())//Is the bulb currently attached to a pipette?
+                            {
+                                //Do nothing. The bulb is snapped to a pipette and will move with it. 
+                                //(This might be a problem, if the bulb starts clipping into stuff again. May need to force bulb to detatch on reset.)   
+                            }
+                            else
+                            {   //If not attached, do all the normal stuff.
+                                //Stored position data
+                                senderTransform.transform.position = resetState.position;
+                                senderTransform.transform.rotation = resetState.rotation;
+                                //Stored velocity data (by all means this should ALWAYS be 0, just forcing all the objects into resting positions upon reset)
+                                Rigidbody rb = senderTransform.GetComponent<Rigidbody>();
+                                rb.linearVelocity = resetState.velocity;
+                                rb.angularVelocity = resetState.angularVelocity;
+                            }
+                        }
+                        else if (senderTransform.gameObject.TryGetComponent<Put_Paper_on_Boat>(out Put_Paper_on_Boat paperScript))
+                        {
+                            if (paperScript.GetHasSnapped())
+                            {
+                                //Again, like the bulbs, do nothing. The object is nested in something else 
+                            }
+                            else
+                            {
+                                //Stored position data
+                                senderTransform.transform.position = resetState.position;
+                                senderTransform.transform.rotation = resetState.rotation;
+                                //Stored velocity data (by all means this should ALWAYS be 0, just forcing all the objects into resting positions upon reset)
+                                Rigidbody rb = senderTransform.GetComponent<Rigidbody>();
+                                rb.linearVelocity = resetState.velocity;
+                                rb.angularVelocity = resetState.angularVelocity;
+                            }
+                        }
+                        else if (senderTransform.TryGetComponent<SnapToTray>(out SnapToTray trayScript))
+                        {
+                            if (trayScript.GetIsSnapped())
+                            {
+                                //Once more, do nothing. Objects that can be attached to the carrying tray don't need to be reset if they're currently attached to the tray.
+                                //In the very rare case that the tray is lost inside the lab with objects on top of it...resetting the tray would bring both back anyway.
+                            }
+                            else
+                            {//Once more, normal reset stuff if not.
+                             //Stored position data
+                                senderTransform.transform.position = resetState.position;
+                                senderTransform.transform.rotation = resetState.rotation;
+                                //Stored velocity data (by all means this should ALWAYS be 0, just forcing all the objects into resting positions upon reset)
+                                Rigidbody rb = senderTransform.GetComponent<Rigidbody>();
+                                rb.linearVelocity = resetState.velocity;
+                                rb.angularVelocity = resetState.angularVelocity;
+                            }
+                        }
+                        else //If none of the above things apply to the given object, just reset.
+                        {
+                            //Stored position data
+                            senderTransform.transform.position = resetState.position;
+                            senderTransform.transform.rotation = resetState.rotation;
+                            //Stored velocity data (by all means this should ALWAYS be 0, just forcing all the objects into resting positions upon reset)
+                            Rigidbody rb = senderTransform.GetComponent<Rigidbody>();
+                            rb.linearVelocity = resetState.velocity;
+                            rb.angularVelocity = resetState.angularVelocity;
+                        }
+                    }
+                }
+                //Debug.Log(senderTransform.gameObject.name + " has been reset to last step.");
+            }
+            else
+                continue;
+        }
+
+
+
+    }
+
+
 
 
 

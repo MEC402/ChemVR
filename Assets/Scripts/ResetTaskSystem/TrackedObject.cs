@@ -37,6 +37,14 @@ public class TrackedObject : MonoBehaviour
         isRotated = false;
     }
 
+    private void OnCollisionEnter(Collision other)
+    {
+        if(other.gameObject.CompareTag("Ground"))
+        {
+            ResetTaskManager.instance.ResetSingleObject(this.gameObject);
+        }
+    }
+
 
 
 }
