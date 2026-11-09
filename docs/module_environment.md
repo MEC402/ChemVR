@@ -21,41 +21,28 @@ The module has three segments:
 
 ## 1.1 Stations and location map
 
-The glassware module already has four stations, each with a teleport anchor (`TeleAnchor_*`) under one shared parent transform. Module 3 reuses all four; no new rooms or buildings are needed.
+Module 3 uses five numbered stations. Each is a teleport anchor under the `Station Anchors` root in `WebLabSceneChemicalChange`, with a floating number + name label above it. The anchors and labels are created by the Editor menu item `ChemVR > Add Station Labels` (`Assets/Editor/AddStationLabels.cs`); the first four started at the glassware scene's `TeleAnchor_*` positions and were then moved next to the workbenches. Refer to stations by number.
 
-| Station | Anchor | Local pos (x, y, z) | What lives here (Module 3) |
-|---|---|---|---|
-| **PPE** | `TeleAnchor_PPE` | (0.02, 0, 3.59) | `goggles`, `labcoat`, `glovebox` on the PPE table (≈ z 6.3–7.1 in the scene) |
-| **Mixing station** (bench) | `TeleAnchor_Glassware` | (-1.51, 0, 3.53) | Test tube rack, test tubes, stir rod, graduated cylinder, squirt bottle, lab notebook + pen, Sharpie, pH/litmus paper. The existing `Glassware_Table` / bench area is the working surface. |
-| **Fume hood** | `TeleAnchor_Hood` | (1.91, 0, -2.85) | Two secondary-containment trays (Acids, Bases) holding the reagent bottles, each with a taped pipette; metal-ion/chemical waste container. `Fume Hood.prefab` |
-| **Sink & cleanup** | `TeleAnchor_Sink` | (-7.68, 0, -7.94) | Sink, soap, drying rack, glass-waste bin (`glassDisposalTrash`), trash |
-| *Lab drawer* (new) | none; part of the mixing bench | — | Drawer under the bench holding the test tubes, rack and stir rod (Step 1 says "inside your lab drawer"). Reuse the cabinet/`DoorOpen` pattern. |
+| # | Station | Anchor | World pos (x, y, z) | Facing (yaw) | What lives here (Module 3) |
+|---|---|---|---|---|---|
+| 1 | **PPE** | `Station1_PPE` | (-1.77, 0.21, -3.26) | 180° | `goggles`, `labcoat`, `glovebox` on the PPE table |
+| 2 | **MIXING** (bench) | `Station2_MIXING` | (-1.79, 0.21, 0.87) | 180° | Graduated cylinder, squirt bottle, lab notebook + pen, Sharpie, pH/litmus paper, DI pipette. This is the working surface (the old Glassware station). |
+| 3 | **HOOD** (fume hood) | `Station3_HOOD` | (-4.08, 0.21, -0.07) | 90° | Two secondary-containment trays (Acids, Bases) holding the reagent bottles, each with a taped pipette; metal-ion/chemical waste container. `Fume Hood.prefab` |
+| 4 | **SINK** (cleanup) | `Station4_SINK` | (-9.26, 0.21, 14.50) | -90° | Sink, soap, drying rack, glass-waste bin (`glassDisposalTrash`), trash |
+| 5 | **TUBE** | `Station5_TUBE` | (2.05, 0.21, 0.68) | about -19° | Test tube rack and test tubes (the existing `FlasksInHolder`, labeled `Flask (Particle)` in the scene). They sit on a table, not in a drawer. Stir rod location to be confirmed. |
 
-Coordinates are copied from the `LabSceneGlasswareUse` scene file and are local to the shared anchor parent, so use them for relative layout, not as world positions. Verify in the Editor before placing objects. `TeleAnchor_Scale` and `TeleAnchor_Jar` (balance and solids jar) are not used by this module and can be hidden or removed.
+Positions are read from the saved scene (anchors sit under a root at the origin, so local = world). They were hand-placed in the Editor, so re-read the scene if they move again. `TeleAnchor_Scale` and `TeleAnchor_Jar` (balance and solids jar) from the glassware scene are not used by this module.
 
-### Floor plan (schematic, not to scale)
+### Floor plan (schematic, top-down, x right, z up, not to scale)
 
 ```
-                       ┌──────────────────────────────┐
-                       │          LAB ROOM            │
-                       │                              │
-   SINK & CLEANUP      │                  FUME HOOD   │
-   ┌───────────────┐   │               ┌────────────┐ │
-   │ sink · soap   │   │               │ Acid tray  │ │
-   │ drying rack   │   │               │ Base tray  │ │
-   │ glass waste   │   │               │ waste jug  │ │
-   └───────────────┘   │               └────────────┘ │
-   (-7.7, -7.9)        │               (1.9, -2.8)    │
-                       │                              │
-                       │      MIXING STATION (bench)  │
-                       │      rack · tubes · stir rod │
-                       │      cylinder · notebook     │
-                       │          (-1.5, 3.5)         │
-                       │                              │
-                       │      PPE STATION             │
-                       │      goggles · coat · gloves │
-                       │          (0.0, 3.6)          │
-                       └──────────────────────────────┘
+   4 SINK  (-9.3, 14.5)          [far end of the lab, ~14 m from the rest]
+      .
+      .
+      .
+   2 MIXING (-1.8, 0.9)                      5 TUBE (2.1, 0.7)
+          3 HOOD (-4.1, -0.1)
+   1 PPE  (-1.8, -3.3)
 ```
 
 ### Glassware and item placement
@@ -63,41 +50,41 @@ Coordinates are copied from the `LabSceneGlasswareUse` scene file and are local 
 | Item | Starts at | Moves to |
 |---|---|---|
 | Goggles, lab coat, gloves | PPE station | Player (auto-equip) |
-| Test tubes ×2, test tube rack, stir rod | Lab drawer (mixing bench) | Mixing bench, tubes in rack |
+| Test tubes ×2, test tube rack, stir rod | TUBE station (table) | Mixing bench, tubes in rack |
 | Squirt bottle (DI water), disposable pipette, Sharpie, pen, lab notebook | Mixing bench (already out) | Stay on bench |
 | 0.1 M K₂CrO₄, 1 M NaOH, 3 M H₂SO₄ bottles (each with a taped pipette) | Fume hood trays (K₂CrO₄ and NaOH in the Bases tray, H₂SO₄ in the Acids tray). **Confirm tray assignment with the lab coordinator.** | Carried to the mixing bench, returned to hood |
 | Graduated cylinder (10 mL) | Mixing bench | Stays on bench |
 | Used test tubes | Rack | Glass-waste bin at the sink |
 | Chemical waste (acid/base/chromate) | Test tubes | Waste container in the fume hood |
 
-## 1.2 Master labware list
+## 1.2 Master labware list (grouped by station; item numbers are unchanged)
 
-| # | Item | Qty | Status | Existing asset / notes |
-|---|---|---|---|---|
-| 1 | Safety goggles | 1 | ✅ | `Prefabs/goggles.prefab`; `WearGoggles` script |
-| 2 | Lab coat | 1 | ✅ | `Prefabs/labcoat.prefab`; `WearCoat` script |
-| 3 | Gloves (hands turn blue) | 1 pair | ✅ | `Prefabs/glovebox.prefab`; `AddGloves` script |
-| 4 | Test tube (19 mL, 120 mm) | 2 | 🆕 | No test tube prefab exists. Model + `ChemContainer` + `ResizeFluid`; needs a writable label surface for Sharpie labels |
-| 5 | Test tube rack | 1 | 🆕 | Needs snap sockets for 2 tubes (follow the `SnapToTray` pattern) |
-| 6 | Glass stir rod | 1 | ✅ | `Interactables/StirRod.prefab`, `Not_Ready/glass_stir_rod.prefab` |
-| 7 | Graduated cylinder, 10 mL | 1 | ✅ | `Graduated_Glassware/GraduatedCylinderMesh_Fluid.prefab` |
-| 8 | Squirt bottle, DI water | 1 | 🔧 | `DI_Water_New_Two.prefab` is a bottle, not a squirt bottle; confirm whether it is acceptable |
-| 9 | Disposable plastic pipette (bench, for the 1 mL estimate) | 1 | 🔧 | Based on the `titration_dropper` model; add 1 mL fill behavior |
-| 10 | Reagent bottle — 0.1 M potassium chromate (yellow) | 1 | 🔧 | `Tools (Static)/Yellow ChemBottle Variant`; `ChemContainer` solution |
-| 11 | Reagent bottle — 1 M sodium hydroxide (colorless) | 1 | 🔧 | `Tools (Static)/White ChemBottle Variant` or `ChemBottle`; relabel |
-| 12 | Reagent bottle — 3 M sulfuric acid (colorless) | 1 | 🔧 | `Tools (Static)/ChemBottle`; relabel |
-| 13 | Taped dropper pipettes ×3 (one per reagent, held in a glass tube) | 3 | 🆕 | `titration_dropper.prefab` base; needs the auto-drop (4 drops) behavior |
-| 14 | Secondary-containment trays (Acids, Bases) | 2 | 🔧 | `Interactables/tray.prefab`; new labels |
-| 15 | Fume hood | 1 | ✅ | `Fume Hood.prefab` (`DoorOpen`/sash logic already exists) |
-| 16 | Lab notebook (with selectable observation statements) | 1 | 🆕 | A `Pencil_To_Paper` script exists for the glove module; the notebook UI is new |
-| 17 | Pen / pencil | 1 | ✅ | Existing pencil from the glove hygiene module |
-| 18 | Black Sharpie | 1 | 🆕 | Model + label-write interaction (can reuse the pen mechanic) |
-| 19 | pH paper / litmus paper | 1 pack | 🆕 | Not yet used by any step (see 2.9, open item) |
-| 20 | Chemical (metal-ion/acid/base) waste container | 1 | 🆕 | Sits in the fume hood; accepts tube contents |
-| 21 | Glass-waste bin | 1 | ✅ | `glassDisposalTrash.prefab`, `GlassDisposal.cs` |
-| 22 | Sink, soap, drying rack | 1 set | ✅ | `sink_base`, `soapBottle`, `Drying_rack` |
-| 23 | Lab drawer (bench) | 1 | 🔧 | Cabinet pattern (`DoorOpen`) |
-| 24 | Educational-note popups, hint and instruction UI | — | ✅ | `Chemical_Change_Overview` / `Start_Module`; add `webGLText[]` since the existing module has none |
+| # | Item | Station | Qty | Status | Existing asset / notes |
+|---|---|---|---|---|---|
+| 1 | Safety goggles | 1 PPE | 1 | ✅ | `Prefabs/goggles.prefab`; `WearGoggles` script |
+| 2 | Lab coat | 1 PPE | 1 | ✅ | `Prefabs/labcoat.prefab`; `WearCoat` script |
+| 3 | Gloves (hands turn blue) | 1 PPE | 1 pair | ✅ | `Prefabs/glovebox.prefab`; `AddGloves` script |
+| 7 | Graduated cylinder, 10 mL | 2 MIXING | 1 | ✅ | `Graduated_Glassware/GraduatedCylinderMesh_Fluid.prefab` |
+| 8 | Squirt bottle, DI water | 2 MIXING | 1 | 🔧 | `DI_Water_New_Two.prefab` is a bottle, not a squirt bottle; confirm whether it is acceptable |
+| 9 | Disposable plastic pipette (bench, for the 1 mL estimate) | 2 MIXING | 1 | 🔧 | Based on the `titration_dropper` model; add 1 mL fill behavior |
+| 16 | Lab notebook (with selectable observation statements) | 2 MIXING | 1 | 🆕 | A `Pencil_To_Paper` script exists for the glove module; the notebook UI is new |
+| 17 | Pen / pencil | 2 MIXING | 1 | ✅ | Existing pencil from the glove hygiene module |
+| 18 | Black Sharpie | 2 MIXING | 1 | 🆕 | Model + label-write interaction (can reuse the pen mechanic) |
+| 19 | pH paper / litmus paper | 2 MIXING | 1 pack | 🆕 | Not yet used by any step (see 2.9, open item) |
+| 10 | Reagent bottle — 0.1 M potassium chromate (yellow) | 3 HOOD | 1 | 🔧 | `Tools (Static)/Yellow ChemBottle Variant`; `ChemContainer` solution |
+| 11 | Reagent bottle — 1 M sodium hydroxide (colorless) | 3 HOOD | 1 | 🔧 | `Tools (Static)/White ChemBottle Variant` or `ChemBottle`; relabel |
+| 12 | Reagent bottle — 3 M sulfuric acid (colorless) | 3 HOOD | 1 | 🔧 | `Tools (Static)/ChemBottle`; relabel |
+| 13 | Taped dropper pipettes ×3 (one per reagent, held in a glass tube) | 3 HOOD | 3 | 🆕 | `titration_dropper.prefab` base; needs the auto-drop (4 drops) behavior |
+| 14 | Secondary-containment trays (Acids, Bases) | 3 HOOD | 2 | 🔧 | `Interactables/tray.prefab`; new labels |
+| 15 | Fume hood | 3 HOOD | 1 | ✅ | `Fume Hood.prefab` (`DoorOpen`/sash logic already exists) |
+| 20 | Chemical (metal-ion/acid/base) waste container | 3 HOOD | 1 | 🆕 | Sits in the fume hood; accepts tube contents |
+| 21 | Glass-waste bin | 4 SINK | 1 | ✅ | `glassDisposalTrash.prefab`, `GlassDisposal.cs` |
+| 22 | Sink, soap, drying rack | 4 SINK | 1 set | ✅ | `sink_base`, `soapBottle`, `Drying_rack` |
+| 4 | Test tube (19 mL, 120 mm) | 5 TUBE | 2 | 🆕 | No test tube prefab exists. Model + `ChemContainer` + `ResizeFluid`; needs a writable label surface for Sharpie labels |
+| 5 | Test tube rack | 5 TUBE | 1 | 🆕 | Needs snap sockets for 2 tubes (follow the `SnapToTray` pattern) |
+| 6 | Glass stir rod | 5 TUBE (confirm) | 1 | ✅ | `Interactables/StirRod.prefab`, `Not_Ready/glass_stir_rod.prefab` |
+| 23 | Lab drawer (bench) | 5 TUBE (replaces drawer) | 1 | 🔧 | Cabinet pattern (`DoorOpen`) |
+| 24 | Educational-note popups, hint and instruction UI | n/a (UI) | — | ✅ | `Chemical_Change_Overview` / `Start_Module`; add `webGLText[]` since the existing module has none |
 
 **Totals:** 24 labware/UI groups; 7 ready to use as-is (✅), 9 needing variants or small changes (🔧), 8 to be built from scratch (🆕, items 4, 5, 13, 16, 18, 19, 20 plus the drawer interaction).
 
@@ -110,7 +97,7 @@ Each entry lists the **station**, **labware needed for that step**, then the **a
 ## SEGMENT A — Preparation
 
 ### Step 0: Background
-- **Station:** PPE (start position, `TeleAnchor_PPE`)
+- **Station:** 1 PPE (start position, `Station1_PPE`)
 - **Labware:** none (UI only)
 - **Action tasks:**
   1. Show educational popup 1: nine equilibria are perturbed in the full lab, this module does #1; physical vs. chemical change.
@@ -133,11 +120,11 @@ Each entry lists the **station**, **labware needed for that step**, then the **a
 ## SEGMENT B — Reaction #1: The chromate–dichromate equilibrium
 
 ### Step 1: Gather Equipment
-- **Station:** Mixing bench, lab drawer, fume hood
+- **Station:** TUBE station (5), Mixing bench (2), fume hood (3)
 - **Labware:** test tubes ×2, test tube rack, stir rod, squirt bottle (DI), disposable pipette, Sharpie, 3 reagent bottles with droppers, notebook + pen
 - **Action tasks:**
   1. Show the "approximately 1 mL" qualitative-lab popup.
-  2. Player opens the bench drawer and takes out two test tubes, the rack and the stir rod.
+  2. Player picks up two test tubes, the rack and the stir rod from the TUBE station.
   3. Player places the two tubes in the rack.
   4. Player uses the bench pipette to draw ~1 mL from the squirt bottle into a tube as a size reference (display the 1 mL reference image), then empties it.
   5. Player labels tube #1 and tube #2 with the Sharpie (auto-label on contact).

@@ -26,7 +26,7 @@ The old sugar / CrCl3 step scripts and prefabs are still in the folder, unrefere
 |---|---|---|---|---|---|
 | 0 | `M3_Step00_Background` | Background | PPE | - | Popup dismiss (button press). Keep click-through or use a dismiss-popup step. |
 | 1 | `M3_Step01_PPE` | Put on PPE | PPE | goggles, lab coat, gloves | Copy Put_On_Gear_CC: miscEvents.onPutOnRightGlove/onPutOnLeftGlove + WearCoat/WearGoggles.IsWearing(). |
-| 2 | `M3_Step02_Gather` | Gather equipment | Mixing bench, lab drawer, fume hood | 2 test tubes, test tube rack, stir rod, squirt bottle (DI), bench pipette, Sharpie, K2CrO4, NaOH, H2SO4 bottles, notebook + pen | Copy Gather_More_Tools / Bring_To_Hood: interactableEvents.onPlayerGrabInteractable per item (WebGL: webGLEvents.OnObjectGrabbed). |
+| 2 | `M3_Step02_Gather` | Gather equipment | TUBE station (5), Mixing bench (2), fume hood (3) | 2 test tubes, test tube rack, stir rod, squirt bottle (DI), bench pipette, Sharpie, K2CrO4, NaOH, H2SO4 bottles, notebook + pen | Copy Gather_More_Tools / Bring_To_Hood: interactableEvents.onPlayerGrabInteractable per item (WebGL: webGLEvents.OnObjectGrabbed). |
 | 3 | `M3_Step03_MeasureChromate` | Measure 1 mL potassium chromate | Mixing bench | graduated cylinder, K2CrO4 bottle, test tubes #1 and #2 | chemistryEvents.onPourIn / onPourOut with a 1 mL auto-stop (PourActivator). |
 | 4 | `M3_Step04_AddNaOH_Tube1` | Add 4 drops of 1 M NaOH to test tube #1 | Mixing bench | 1 M NaOH bottle + dropper, test tube #1 | chemistryEvents.onPipetteDispense counted to 4 drops (auto-stop). |
 | 5 | `M3_Step05_Stir` | Stir the solution | Mixing bench | stir rod, test tube #1 | Copy Stir_NaOH: miscEvents.OnStirBeaker accumulated to 5 s. |
