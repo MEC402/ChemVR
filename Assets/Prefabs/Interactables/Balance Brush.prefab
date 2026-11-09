@@ -15,6 +15,7 @@ GameObject:
   - component: {fileID: 3788668200218086363}
   - component: {fileID: 2181811497632892686}
   - component: {fileID: 2260603203059825717}
+  - component: {fileID: 2260603203059825718}
   m_Layer: 7
   m_Name: Balance Brush
   m_TagString: Untagged
@@ -285,8 +286,21 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 0b2ae48a83146e14b97dccfb20e5c074, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
+  m_Name:
+  m_EditorClassIdentifier:
+--- !u!114 &2260603203059825718
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5839083832399988291}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e529d1170b9b443b885689c5fac62bbd, type: 3}
+  m_Name:
+  m_EditorClassIdentifier:
+  physicalCollider: {fileID: 3450608233143295964}
 --- !u!1001 &3551679119141456933
 PrefabInstance:
   m_ObjectHideFlags: 0

@@ -13,6 +13,7 @@ public class Scale_Manager : MonoBehaviour
     private float taredMassInGrams = 0;
 
     private bool power = false;
+    public bool IsPoweredOn => power;
 
     [SerializeField] private GameObject boatLocation, weighBoatObject;
 

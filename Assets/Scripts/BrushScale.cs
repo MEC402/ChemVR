@@ -4,7 +4,7 @@ public class BrushScale : MonoBehaviour
 {
     void OnTriggerEnter(Collider other)
     {
-        if (other.name.Contains("Scale"))
+        if (other.CompareTag("Scale"))
             GameEventsManager.instance.miscEvents.CleanScale();
     }
 }

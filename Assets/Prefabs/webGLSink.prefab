@@ -5899,8 +5899,9 @@ MonoBehaviour:
   pourActivator: {fileID: 7658923382629765661}
   maxVolume: 1000
   currentVolume: 1000
-  pourRate: 30
+  pourRate: 120
   pourAngle: -90
+  pourCastRadius: 0.11
   flags:
     pouringUsesActivator: 1
     infiniteFluid: 1
@@ -13060,7 +13061,7 @@ Transform:
   m_GameObject: {fileID: 8957648317923486943}
   serializedVersion: 2
   m_LocalRotation: {x: 0.7071069, y: -0, z: -0, w: 0.70710677}
-  m_LocalPosition: {x: -0.3113, y: 0, z: 0.7966}
+  m_LocalPosition: {x: -0.50695, y: 0, z: 0.7966}
   m_LocalScale: {x: 0.062499993, y: 0.062499993, z: 0.06249998}
   m_ConstrainProportionsScale: 1
   m_Children: []

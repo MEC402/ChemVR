@@ -17,6 +17,11 @@ public class TaskInfoSO : ScriptableObject
 
     [Header("Steps")]
     public GameObject[] taskStepPrefabs;
+    [Tooltip("If true, the task reaches CAN_FINISH as soon as its last step becomes active, " +
+        "instead of waiting for that step to call FinishTaskStep(). Use when the final step's " +
+        "own panel/UI should stay displayed while something else (e.g. a hold-to-continue gesture) " +
+        "drives the actual completion.")]
+    public bool canFinishOnFinalStep = false;
 
     [Header("Rewards")]
     public int pointsReward; // optional: award progress points to track completion or unlock stuff

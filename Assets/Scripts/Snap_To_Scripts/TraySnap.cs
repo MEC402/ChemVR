@@ -10,19 +10,28 @@ public class TraySnap : MonoBehaviour
 
     public void AddMe(SnapToTray obj)
     {
-        bool pointTaken = false;
-        //Find the first available snap point
+        //Find the nearest available snap point to where the object was released
+        int nearestIndex = -1;
+        float nearestDistance = float.MaxValue;
         for (int i = 0; i < ObjectPoints.Length; i++)
         {
             if (snappedObjects[i] == null)
             {
-                obj.SetObject(ObjectPoints[i], i);
-                snappedObjects[i] = obj;
-                pointTaken = true;
-                break;
+                float distance = Vector3.Distance(obj.transform.position, ObjectPoints[i].transform.position);
+                if (distance < nearestDistance)
+                {
+                    nearestDistance = distance;
+                    nearestIndex = i;
+                }
             }
         }
-        if (!pointTaken)
+
+        if (nearestIndex >= 0)
+        {
+            obj.SetObject(ObjectPoints[nearestIndex], nearestIndex);
+            snappedObjects[nearestIndex] = obj;
+        }
+        else
         {
             obj.LetGo();
         }

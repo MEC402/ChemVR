@@ -51,4 +51,19 @@ public class ToggleTextSimple : MonoBehaviour
     {
         text.SetActive(!text.activeInHierarchy);
     }
+
+    public void HideText()
+    {
+        text.SetActive(false);
+    }
+
+    public void ShowText()
+    {
+        text.SetActive(true);
+    }
+
+    public bool IsTextVisible()
+    {
+        return text.activeInHierarchy;
+    }
 }
