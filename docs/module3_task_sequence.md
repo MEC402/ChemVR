@@ -1,22 +1,24 @@
-# Module 3 - Click-Through Task Sequence
+# Physical & Chemical Changes (Lab 3, Reaction #1) - Click-Through Task Sequence
 
-A runnable skeleton of the Module 3 task sequence ([module_environment.md](module_environment.md)). Every step is a **placeholder that advances on a click**, so the whole module can be walked end to end with the instruction text on screen. Each step is then replaced, one at a time, by its real working piece.
+The `Chemical_Change` module now runs the chromate-dichromate task sequence from [module_environment.md](module_environment.md). Every step is currently a **click-through placeholder** that advances on a click, so the whole module can be walked end to end (including in a WebGL build) with the instruction text on screen. Each step is then replaced, one at a time, by its real working piece.
 
-Built on the existing task system ([TaskSystem.md](TaskSystem.md)): a `TaskInfoSO` of step prefabs, an overview popup, and the `GameEventsManager` event bus.
+Built on the existing task system ([TaskSystem.md](TaskSystem.md)): `Chemical_Change_Task.asset` (a `TaskInfoSO` of step prefabs), the `Chemical_Change_Overview` popup, and the `GameEventsManager` event bus.
 
-## What was added
+## What changed
 
-| File (under `Assets/Resources/Tasks/Module3/`) | Role |
+| File | Change |
 |---|---|
-| `Module3_Steps.cs` | Step table: title, station, labware, VR/WebGL text, and what replaces each placeholder. Single source of truth for the popup text. |
-| `Module3_ClickThroughStep.cs` | Generic placeholder `TaskStep`. Finishes on the **A button** (VR), the **WebGL skip key**, a **UI Next button**, or **B** (dev mode). |
-| `Module3_Overview.cs` | Popup driver, modeled on `Chemical_Change_Overview`. Starts `Module3_Task`, shows the current step, and exposes `ClickNext()` for a UI button. |
-| `Module3_Task.asset` | `TaskInfoSO` with id `Module3_Task` and the 11 step prefabs in order. |
-| `Prefabs/M3_Step00_...` to `M3_Step10_...` | One placeholder prefab per step. |
+| `Resources/Tasks/Chemical_Change/Chemical_Change_Overview.cs` | `text[]` replaced with the 11 new steps + completion message. New `webGLText[]`, chosen automatically on WebGL builds (`Application.platform`). New `ClickNext()` for a UI button. Serialized fields (`ccText`, `taskPreper`) unchanged, so both Chemical Change scenes keep their wiring. |
+| `Resources/Tasks/Chemical_Change/Chemical_Change_Task.asset` | `taskStepPrefabs` now lists the 11 placeholder prefabs (was the 24 sugar / CrCl3 steps). Task id unchanged, so menus and `StartTasks` still work. |
+| `Resources/Tasks/Chemical_Change/Module3_ClickThroughStep.cs` | Generic placeholder `TaskStep`. Finishes on the **A button** (VR), the **N key** (WebGL skip), a UI Next button, or **B** (dev mode). |
+| `Resources/Tasks/Chemical_Change/Prefabs/M3_Step00_...` to `M3_Step10_...` | One placeholder prefab per step. |
+| `Scripts/Events/MiscellaneousEvents.cs` | New `OnClickThroughNext` / `ClickThroughNext()` event. |
 
-Outside that folder, `Scripts/Events/MiscellaneousEvents.cs` gained `OnClickThroughNext` / `ClickThroughNext()`.
+The old sugar / CrCl3 step scripts and prefabs are still in the folder, unreferenced, so they can be copied from. Their old popup text is in git history (before the commit that introduced this change).
 
-**Why the id is `Module3_Task`:** `Chemical_Change_Overview.cc_abandonMe` and `SpawnAtStation` match task ids by substring (`"Chemical"`, `"che"`, `"gla"`, `"glo"`, `"tut"`). An id that avoids those words cannot be picked up by another module's listeners. **Why the prefabs are `M3_StepNN_...`:** `StartTasks.RemoveUnstarted()` destroys any `TaskManager` child whose name contains `"_0"`.
+**Constraint:** `text[]` and `webGLText[]` must always have exactly one more entry than `taskStepPrefabs` (the last entry is the completion message), or the popup runs off the end of the array. Nothing checks this at build time.
+
+**Name notes:** the prefabs are named `M3_StepNN_...` because `StartTasks.RemoveUnstarted()` destroys any `TaskManager` child whose name contains `"_0"`. The task id is still `Chemical_Change_Task`, and `Chemical_Change_Overview.cc_abandonMe` matches any id containing `"Chemical"`.
 
 ## Steps and what replaces each placeholder
 
@@ -34,31 +36,31 @@ Outside that folder, `Scripts/Events/MiscellaneousEvents.cs` gained `OnClickThro
 | 9 | `M3_Step09_Waste` | Waste disposal | Fume hood, sink and cleanup | both test tubes, chemical waste container, glass waste bin, sink + soap | chemistryEvents.onFluidDispose + GlassDisposal; wash hands via Wash_Hands. |
 | 10 | `M3_Step10_WrapUp` | Wrap-up | Any | - | Keep click-through; end of module. |
 
-## Scene setup (one-time, in the Unity Editor)
-
-Not done yet; it needs the Editor.
-
-1. Fork the module scene from the Unity 6 copy of `LabSceneGlasswareUse` (VR) or `WebLabGlassware-Aayushi` (WebGL). Do not fork from `LabSceneBase`.
-2. Make sure the scene has `The Managers` (with `TaskManager`) and a `GameEventsManager`. `TaskManager` loads `Module3_Task` automatically from `Resources/Tasks`.
-3. Duplicate the Chemical Change popup canvas object. Replace `Chemical_Change_Overview` with `Module3_Overview` on it, assign **M3 Text** (the TMP text) and **Task Preper** (`Start_Module`), and tick **Is WebGL** for the web scene. `ToggleTextSimple` stays on the same object.
-4. Optional: add a UI Button to the popup and set its OnClick to `Module3_Overview.ClickNext()`.
-5. Add the scene to build settings and to the menu, if wanted.
-
 ## Walking through it
 
 - **VR:** read the popup, press **A** to advance.
-- **WebGL:** press the skip key (the `skipTask` action bound in `WebGLInput`).
-- **Any platform:** the on-screen Next button, if you add one.
+- **WebGL:** press **N** (the `SkipTask` binding in `WebGL.inputactions`).
+- **Any platform:** an on-screen Next button wired to `Chemical_Change_Overview.ClickNext()`, if you add one.
 - **Dev:** **B**, only when dev-ops mode is on.
 
 The popup shows `Step n of 11`, the station, the labware needed, and the instruction.
 
+## Building for WebGL
+
+The Chemical Change scenes are currently **disabled** in `ProjectSettings/EditorBuildSettings.asset`.
+
+1. In Build Settings, enable `Scenes/WebGL/WebLabSceneChemicalChange.unity` (and disable the others you don't want).
+2. Make sure that scene's `Chemical_Change_Overview` has `ccText` and `taskPreper` assigned (they were set in the scene before this change).
+3. Build WebGL. The `Resources/Tasks` content is picked up automatically.
+
+`WebLabSceneChemicalChange` is an older port (April 2025) and lacks `WebGLInput` and `IconHider`, which the newer glassware WebGL scenes have. `WebGLInput` is what turns the N key into the skip event, so **the N key will not advance steps until that scene has a `WebGLInput` object**. If it is missing, use the on-screen button or copy the object over from `WebLabGlassware-Aayushi`.
+
 ## Dropping in a working piece
 
-1. Write the real step as a `TaskStep` subclass. Copy the closest existing step (see the table above and [TaskSystem.md](TaskSystem.md#adding-a-new-step)). Do not declare `Start()` or `OnDestroy()`; the base class owns them.
-2. Make a prefab for it.
-3. Open `Module3_Task.asset` and replace that index's prefab with the new one. Keep the order from the table.
-4. Update the step text in `Module3_Steps.cs` if the wording changes. Once no placeholders remain, remove the placeholder footer in `BuildText`.
+1. Write the real step as a `TaskStep` subclass. Copy the closest existing step from this folder (see the table above and [TaskSystem.md](TaskSystem.md#adding-a-new-step)). Do not declare `Start()` or `OnDestroy()`; the base class owns them.
+2. Make a prefab for it in `Chemical_Change/Prefabs/`.
+3. Open `Chemical_Change_Task.asset` and replace that index's placeholder with the new prefab. Keep the order from the table.
+4. Update that step's strings in `Chemical_Change_Overview.cs` (both `text[]` and `webGLText[]`) and remove the "[placeholder step ...]" line.
 
 Steps not yet replaced keep working as click-through, so the module is always runnable.
 
@@ -67,4 +69,5 @@ Steps not yet replaced keep working as click-through, so the module is always ru
 - The C# and the generated prefab/asset YAML were written without a Unity Editor and have **not been compiled or opened**. First open in Unity 6 to confirm the console is clean and no step slot on the asset shows "Missing".
 - Placeholder steps verify nothing, so the module cannot yet teach or grade. Step 6's correct answers are still undecided (see [Module3-MajorSteps.md](Module3-MajorSteps.md)).
 - No reset checkpoints exist for this module yet (`ResetTaskSystem` needs one per step).
+- The old sugar / CrCl3 experiment is no longer reachable from the menu. Recover it from git history if it is needed again.
 - `Task.StartOver()` and `Task.Kill()` find step clones by name. Each placeholder prefab has a distinct name, so this should be fine, but it is untested.

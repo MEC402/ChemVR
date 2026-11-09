@@ -186,7 +186,7 @@ public class MiscellaneousEvents
     public event Action OnScrubWithBrush;
     public void ScrubWithBrush() => OnScrubWithBrush?.Invoke();
 
-    // Module 3 click-through scaffolding: raised by a UI "Next" button (Module3_Overview.ClickNext)
+    // Module 3 click-through scaffolding: raised by a UI "Next" button (Chemical_Change_Overview.ClickNext)
     // so a placeholder step can advance without its real lab interaction being built yet.
     public event Action OnClickThroughNext;
     public void ClickThroughNext() => OnClickThroughNext?.Invoke();

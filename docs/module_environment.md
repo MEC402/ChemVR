@@ -250,7 +250,7 @@ Each entry lists the **station**, **labware needed for that step**, then the **a
 ## 3.3 Scripts and task steps
 
 - [ ] 11 new `TaskStep` subclasses + prefabs (one each for Steps 0, 0b, 1, 2, 3, 4, 5, 6, 7, 8, 9); Steps 6 and 7 can subclass Step 3/4/5 with parameters
-- [ ] New `Module3_Overview` with `text[]` and `webGLText[]` arrays of size N+1
+- [x] `Chemical_Change_Overview` now carries `text[]` and `webGLText[]` arrays of size N+1 (see [module3_task_sequence.md](module3_task_sequence.md))
 - [ ] `TaskInfoSO` asset with the ordered step prefabs
 - [ ] Reaction logic: chromate/dichromate color state machine driven by H⁺/OH⁻ drops (yellow ⇄ orange); used by Steps 3, 6, 7
 - [ ] Auto-stop pouring (1 mL) and 4-drop dispensing

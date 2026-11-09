@@ -4,6 +4,13 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
+// Instruction popup for the Physical & Chemical Changes module (Lab 3, Reaction #1:
+// the chromate-dichromate equilibrium). Step list: docs/module_environment.md.
+// Every step is currently a click-through placeholder (Module3_ClickThroughStep);
+// see docs/module3_task_sequence.md for how to replace each with its working piece.
+//
+// IMPORTANT: text[] and webGLText[] must have exactly one more entry than the number of
+// taskStepPrefabs on Chemical_Change_Task.asset (the extra last entry is the completion message).
 public class Chemical_Change_Overview : MonoBehaviour
 {
     public TextMeshProUGUI ccText;
@@ -12,6 +19,10 @@ public class Chemical_Change_Overview : MonoBehaviour
     // Controllers for starting tasks
     [Header("Start Task Controllers")]
     public Start_Module taskPreper;
+
+    // WebGL builds show the keyboard/mouse wording.
+    static bool IsWebGL => Application.platform == RuntimePlatform.WebGLPlayer;
+    string[] CurrentText => IsWebGL ? webGLText : text;
 
     void OnEnable()
     {
@@ -29,7 +40,7 @@ public class Chemical_Change_Overview : MonoBehaviour
         taskPreper.Show();
         this.gameObject.GetComponent<ToggleTextSimple>().enabled = true;
         GameEventsManager.instance.taskEvents.StartTask("Chemical_Change_Task");
-        ccText.text = text[curStep];
+        ccText.text = CurrentText[curStep];
     }
 
     void OnDisable()
@@ -45,40 +56,51 @@ public class Chemical_Change_Overview : MonoBehaviour
         this.gameObject.GetComponent<ToggleTextSimple>().enabled = true;
     }
 
-    string[] text = {"Welcome to the Physical & Chemical Change Lab!\nBefore we begin, you need to put on your lab gear.\n\nYou should be wearing closed toed shoes and have your hair tied back.\n\nFind gloves, goggles, and a lab coat and put them on with (X/A).",
-                    //"For this lab, bring the following to a table in the yellow zone:\n250mL beaker\n100mL graduated cylinder\nGlass stir rod\nStock Container of sugar (C6H12O6)\nWeigh boat and paper\n\n\nSkip with B", //disabled task step 2 (add to TaskInfoSO block and uncomment to undo)
-                    //"Locate these tools that you will need in the lab:\nAnalytical Balance\nDI water\nWhen you are ready to continue, press (A).\n\n\nSkip with B", //disabled task step 3 (add to TaskInfoSO block and uncomment to undo)
-                    "Pour 50mL of DI water into graduated cylinder.",
-                    "Turn on the scale, and set the mode to grams.",
-                    "Add weigh paper to analytical balance and tare to 0.000g.",
-                    "Weigh out 2g of sugar (White Jar).",
-                    "Fold up sugar in weigh paper and add to empty beaker.",
-                    "Pour in 50mL water from Graduated Cylinder into beaker.",
-                    "Stir with glass rod.", //Solution is clear and transparent.
-                    "Is this a chemical change?\nYes or no?\n\n\nSkip with B", //TODO: Make this chooseable
-                    "Gather\n250mL beaker\nGlass stir rod\n2 volumetric pipettes\nStock Containers of:\nCrCl3\nNaOH\nH2O2",
-                    "Weigh out 2g of CrCl3 (Green Jar) on weigh paper on analytical balance.\n\n\nSkip with B", //CrCl3 is Dark green crystalline dry flakes
-                    "Fold paper and dump into an empty beaker.\n\n\nSkip with B",
-                    "Set up 2 volumetric pipettes with a bulb on top.\n\n\nSkip with B",
-                    "Using a volumetric pipette,\n You draw up 25mL of NaOH (Yellow) stock solution. \nPress A to continue to next step",
-                    "Pour 25mL of NaOH (Yellow) stock solution into the 250mL beaker.\n\n\nSkip with B", //NaOH is Yellow liquid
-                    "Mix with a glass stir rod.\n\n\nSkip with B", //Color changes forming green solid clumps and the liquid is light green tinted.
-                    "Using a new volumetric pipette,\n You draw up 25mL of H2O2 (Clear) stock solution. \nPress A to continue to next step",
-                    "Pour 25mL H2O2 (Clear) solution into the 250mL beaker.\n\n\nSkip with B", //H2O2 is clear, transparent liquid
-                    "Mix with a glass stir rod.\n\n\nSkip with B", //Color changes from green to dark blue with fizzy bubbles on top.
-                    "Is this a chemical change?\nYes or no?\n\n\nSkip with B", 
-                    "Place the 250mL beaker of solution on a hot plate.\n\n\nSkip with B",
-                    "Turns the dial to ON, level 3 on the hot plate.\n\n\nSkip with B", //Liquid slowly boils and vapor comes off top of the beaker.
-                    "Is this a chemical change?\nYes or no?\n\n\nSkip with B", //Tell them if correct for each
-                    "This concludes the chemical change use module. Thank you for your time.\n\n(Y) Hides Popup\n(Hamburger Button) Opens Menu"
+    // Hook a UI Button's OnClick to this to advance a click-through placeholder step.
+    public void ClickNext()
+    {
+        GameEventsManager.instance.miscEvents.ClickThroughNext();
+    }
+
+    // VR wording (controllers)
+    string[] text = {
+                    /*0*/"Step 1 of 11: Background\nStation: PPE\n\nWelcome to Physical and Chemical Changes, Reaction #1: the chromate-dichromate equilibrium.\nLe Chatelier's Principle: if stress is applied to a system at equilibrium, it shifts to relieve the stress.\n\n[placeholder step - press A to continue]",
+                    /*1*/"Step 2 of 11: Put on PPE\nStation: PPE\nLabware: goggles, lab coat, gloves\n\nPut on your safety goggles, lab coat and gloves.\n\n[placeholder step - press A to continue]",
+                    /*2*/"Step 3 of 11: Gather equipment\nStation: Mixing bench, lab drawer, fume hood\nLabware: 2 test tubes, test tube rack, stir rod, squirt bottle (DI), bench pipette, Sharpie, K2CrO4, NaOH, H2SO4 bottles, notebook + pen\n\nGather your equipment. Label two test tubes #1 and #2 and bring the three reagent bottles from the fume hood to the bench.\n\n[placeholder step - press A to continue]",
+                    /*3*/"Step 4 of 11: Measure 1 mL potassium chromate\nStation: Mixing bench\nLabware: graduated cylinder, K2CrO4 bottle, test tubes #1 and #2\n\nUse the graduated cylinder to measure 1 mL of 0.1 M potassium chromate and pour it into test tubes #1 and #2.\n\n[placeholder step - press A to continue]",
+                    /*4*/"Step 5 of 11: Add 4 drops of 1 M NaOH to test tube #1\nStation: Mixing bench\nLabware: 1 M NaOH bottle + dropper, test tube #1\n\nHold the NaOH dropper over test tube #1 and add 4 drops. The solution should stay yellow.\n\n[placeholder step - press A to continue]",
+                    /*5*/"Step 6 of 11: Stir the solution\nStation: Mixing bench\nLabware: stir rod, test tube #1\n\nStir test tube #1 with the glass rod for at least 5 seconds.\n\n[placeholder step - press A to continue]",
+                    /*6*/"Step 7 of 11: Record observations\nStation: Mixing bench\nLabware: lab notebook, pen, test tube #1\n\nIs this a physical or a chemical change? Then record what you see in the lab notebook.\n\n[placeholder step - press A to continue]",
+                    /*7*/"Step 8 of 11: Add 3 M sulfuric acid to test tube #2\nStation: Mixing bench\nLabware: 3 M H2SO4 bottle + dropper, test tube #2, stir rod, notebook + pen\n\nAdd 4 drops of 3 M sulfuric acid to test tube #2, stir, and record what you see. The solution should turn orange.\n\n[placeholder step - press A to continue]",
+                    /*8*/"Step 9 of 11: Add 1 M NaOH to test tube #2\nStation: Mixing bench\nLabware: 1 M NaOH bottle + dropper, test tube #2, stir rod, notebook + pen\n\nAdd 4 drops of 1 M NaOH to test tube #2, stir, and record what you see. The solution should return to yellow.\n\n[placeholder step - press A to continue]",
+                    /*9*/"Step 10 of 11: Waste disposal\nStation: Fume hood, sink and cleanup\nLabware: both test tubes, chemical waste container, glass waste bin, sink + soap\n\nEmpty both test tubes into the chemical waste container in the fume hood, then put the tubes in the glass waste. Never pour metal ion waste down the drain.\n\n[placeholder step - press A to continue]",
+                    /*10*/"Step 11 of 11: Wrap-up\nStation: Any\n\nNaOH removes H+, shifting the equilibrium toward yellow chromate; acid shifts it toward orange dichromate. No precipitate forms.\n\n[placeholder step - press A to continue]",
+                    /*11*/"This concludes the Physical and Chemical Changes module. Thank you for your time.\n\n(Y) Hides Popup\n(Hamburger Button) Opens Menu"
             };
+
+    // WebGL wording (keyboard / mouse)
+    string[] webGLText = {
+                    /*0*/"Step 1 of 11: Background\nStation: PPE\n\nWelcome to Physical and Chemical Changes, Reaction #1: the chromate-dichromate equilibrium.\nLe Chatelier's Principle: if stress is applied to a system at equilibrium, it shifts to relieve the stress.\n\n[placeholder step - press N to continue]",
+                    /*1*/"Step 2 of 11: Put on PPE\nStation: PPE\nLabware: goggles, lab coat, gloves\n\nPut on your safety goggles, lab coat and gloves.\n\n[placeholder step - press N to continue]",
+                    /*2*/"Step 3 of 11: Gather equipment\nStation: Mixing bench, lab drawer, fume hood\nLabware: 2 test tubes, test tube rack, stir rod, squirt bottle (DI), bench pipette, Sharpie, K2CrO4, NaOH, H2SO4 bottles, notebook + pen\n\nGather your equipment. Label two test tubes #1 and #2 and bring the three reagent bottles from the fume hood to the bench.\n\n[placeholder step - press N to continue]",
+                    /*3*/"Step 4 of 11: Measure 1 mL potassium chromate\nStation: Mixing bench\nLabware: graduated cylinder, K2CrO4 bottle, test tubes #1 and #2\n\nUse the graduated cylinder to measure 1 mL of 0.1 M potassium chromate and pour it into test tubes #1 and #2.\n\n[placeholder step - press N to continue]",
+                    /*4*/"Step 5 of 11: Add 4 drops of 1 M NaOH to test tube #1\nStation: Mixing bench\nLabware: 1 M NaOH bottle + dropper, test tube #1\n\nHold the NaOH dropper over test tube #1 and add 4 drops. The solution should stay yellow.\n\n[placeholder step - press N to continue]",
+                    /*5*/"Step 6 of 11: Stir the solution\nStation: Mixing bench\nLabware: stir rod, test tube #1\n\nStir test tube #1 with the glass rod for at least 5 seconds.\n\n[placeholder step - press N to continue]",
+                    /*6*/"Step 7 of 11: Record observations\nStation: Mixing bench\nLabware: lab notebook, pen, test tube #1\n\nIs this a physical or a chemical change? Then record what you see in the lab notebook.\n\n[placeholder step - press N to continue]",
+                    /*7*/"Step 8 of 11: Add 3 M sulfuric acid to test tube #2\nStation: Mixing bench\nLabware: 3 M H2SO4 bottle + dropper, test tube #2, stir rod, notebook + pen\n\nAdd 4 drops of 3 M sulfuric acid to test tube #2, stir, and record what you see. The solution should turn orange.\n\n[placeholder step - press N to continue]",
+                    /*8*/"Step 9 of 11: Add 1 M NaOH to test tube #2\nStation: Mixing bench\nLabware: 1 M NaOH bottle + dropper, test tube #2, stir rod, notebook + pen\n\nAdd 4 drops of 1 M NaOH to test tube #2, stir, and record what you see. The solution should return to yellow.\n\n[placeholder step - press N to continue]",
+                    /*9*/"Step 10 of 11: Waste disposal\nStation: Fume hood, sink and cleanup\nLabware: both test tubes, chemical waste container, glass waste bin, sink + soap\n\nEmpty both test tubes into the chemical waste container in the fume hood, then put the tubes in the glass waste. Never pour metal ion waste down the drain.\n\n[placeholder step - press N to continue]",
+                    /*10*/"Step 11 of 11: Wrap-up\nStation: Any\n\nNaOH removes H+, shifting the equilibrium toward yellow chromate; acid shifts it toward orange dichromate. No precipitate forms.\n\n[placeholder step - press N to continue]",
+                    /*11*/"This concludes the Physical and Chemical Changes module. Thank you for your time.\n\n(Y) Hides Popup\n(Hamburger Button) Opens Menu"
+            };
+
     void AdvanceCheTask(string context)
     {
         if (context.Contains("Chemical_Change_Task"))
         {
             this.gameObject.GetComponent<ToggleTextSimple>().enabled = true;
             curStep += 1;
-            ccText.text = text[curStep];
+            ccText.text = CurrentText[Mathf.Min(curStep, CurrentText.Length - 1)];
         }
     }
     public void cc_abandonMe(string context)

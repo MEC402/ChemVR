@@ -2,10 +2,10 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 
 /// <summary>
-/// Placeholder step for Module 3. Completes on a "click":
+/// Placeholder step for the Physical & Chemical Changes module (Chemical_Change_Task). Completes on a "click":
 ///   - VR:     A button (inputEvents.onAButtonPressed)
 ///   - WebGL:  skip key (inputEvents.onWebGLSkipTask)
-///   - UI:     a Next button calling Module3_Overview.ClickNext() (miscEvents.OnClickThroughNext)
+///   - UI:     a Next button calling Chemical_Change_Overview.ClickNext() (miscEvents.OnClickThroughNext)
 ///   - Dev:    B button, via the TaskStep base class when dev-ops is on.
 /// To make a step real, build the working piece as its own TaskStep subclass and swap its
 /// prefab into taskStepPrefabs at the same index (see docs/module3_task_sequence.md).
