@@ -80,13 +80,13 @@ Positions are read from the saved scene (anchors sit under a root at the origin,
 | 20 | Chemical (metal-ion/acid/base) waste container | 3 HOOD | 1 | 🆕 | Sits in the fume hood; accepts tube contents |
 | 21 | Glass-waste bin | 4 SINK | 1 | ✅ | `glassDisposalTrash.prefab`, `GlassDisposal.cs` |
 | 22 | Sink, soap, drying rack | 4 SINK | 1 set | ✅ | `sink_base`, `soapBottle`, `Drying_rack` |
-| 4 | Test tube (19 mL, 120 mm) | 5 TUBE | 2 | 🆕 | No test tube prefab exists. Model + `ChemContainer` + `ResizeFluid`; needs a writable label surface for Sharpie labels |
-| 5 | Test tube rack | 5 TUBE | 1 | 🆕 | Needs snap sockets for 2 tubes (follow the `SnapToTray` pattern) |
-| 6 | Glass stir rod | 5 TUBE (confirm) | 1 | ✅ | `Interactables/StirRod.prefab`, `Not_Ready/glass_stir_rod.prefab` |
-| 23 | Lab drawer (bench) | 5 TUBE (replaces drawer) | 1 | 🔧 | Cabinet pattern (`DoorOpen`) |
+| 4 | Test tube (19 mL, 120 mm) | 5 TUBE | 2 | 🔧 | No test tube prefab exists. Model + `ChemContainer` + `ResizeFluid`; needs a writable label surface for Sharpie labels **Stand-in in the scene:** `FlasksInHolder` (objects named `Flask (Particle) (#)`) at the TUBE station; real test tube model still needed (see module_models.md, M1) |
+| 5 | Test tube rack | 5 TUBE | 1 | 🔧 | Needs snap sockets for 2 tubes (follow the `SnapToTray` pattern) **Stand-in in the scene:** the holder in `FlasksInHolder` (see module_models.md, M2) |
+| 6 | Glass stir rod | 5 TUBE | 1 | ✅ | `Interactables/StirRod.prefab`, `Not_Ready/glass_stir_rod.prefab` |
+| 23 | ~~Lab drawer (bench)~~ | 5 TUBE | — | ❌ | Dropped: the TUBE station uses a standard bench, so no drawer is needed |
 | 24 | Educational-note popups, hint and instruction UI | n/a (UI) | — | ✅ | `Chemical_Change_Overview` / `Start_Module`; add `webGLText[]` since the existing module has none |
 
-**Totals:** 24 labware/UI groups; 7 ready to use as-is (✅), 9 needing variants or small changes (🔧), 8 to be built from scratch (🆕, items 4, 5, 13, 16, 18, 19, 20 plus the drawer interaction).
+**Totals (as of 2026-11-09):** 23 active labware/UI groups (item 23, the lab drawer, was dropped): 10 ready to use as-is (✅), 8 needing variants, small changes or stand-in replacement (🔧), 5 still to be built from scratch (🆕, items 16, 18, 19, 13, 20).
 
 ---
 

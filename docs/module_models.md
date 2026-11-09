@@ -20,6 +20,25 @@ Correction to `module_environment.md`: its master list showed the reagent bottle
 
 ---
 
+## 1a. Status in the Module 3 scene (updated 2026-11-09)
+
+Scene: `Assets/Scenes/WebGL/WebLabSceneChemicalChange.unity`. Stations are the numbered anchors under `Station Anchors` (see [module_environment.md](module_environment.md#11-stations-and-location-map)); copies of existing prefabs were placed on the benches under `Station Models` by `ChemVR > Place Station Models`. Positions were then adjusted by hand.
+
+| Station | Placed in scene | Prefab | Notes |
+|---|---|---|---|
+| 1 PPE | goggles, lab coat, glove box (already in the environment) | `goggles`, `labcoat`, `glovebox` | Not copied; the existing objects carry the task wiring |
+| 2 MIXING | graduated cylinder, DI-water bottle (squirt-bottle stand-in), 1 dropper (bench pipette), pencil | `GraduatedCylinderMesh_Fluid`, `DI_Water_New_Two`, `titration_dropper`, `pencil` | Notebook, Sharpie, pH paper: no model yet (M5, M6, M8) |
+| 3 HOOD | 3 reagent bottles (yellow K₂CrO₄, white NaOH, plain H₂SO₄), 2 trays, 3 droppers | `Yellow/White ChemBottle Variant`, `ChemBottle`, `tray`, `titration_dropper` | Fume Hood is in the environment (`Environment/Lab/Building/Fume Hood`). Waste container missing (M7). Bottles are still the primitive-cylinder placeholders (E11) |
+| 4 SINK | nothing added | none | Sink, soap, drying rack and glass-waste bin were already in the scene |
+| 5 TUBE | stir rod; the test tubes and rack already exist as `FlasksInHolder` | `StirRod`; `Tools (Particle)/FlasksInHolder` (nested in `WebGL/Lab/Lab.prefab`) | The tubes appear in the scene as `Flask (Particle) (#)`. They are flask models standing in for test tubes; M1/M2 stay open until real test tube and rack models exist |
+
+Fixes made while placing these (worth knowing for any new prop):
+- The dropper and stir-rod prefabs use layers `ChemIgnore` / `HoldableCollision`, which the player camera does not render. The placed copies were moved to `Holdable`, otherwise they are invisible in the Game view.
+- The dropper prefab is tall and tips over when upright, so the copies lie flat. The prefab also has a missing-script reference that should be cleaned up.
+- The lab drawer no longer exists; the TUBE station is a standard bench.
+
+---
+
 ## 2. Existing models
 
 | # | Item | Model source | Prefab(s) | Used by | Status | Notes |
@@ -27,7 +46,7 @@ Correction to `module_environment.md`: its master list showed the reagent bottle
 | E1 | Safety goggles | `Prefabs/Models` (via prefab) | `Prefabs/goggles.prefab`, `goggles 1.prefab` | All modules (`WearGoggles`) | ✅ | Two prefabs; confirm which is current |
 | E2 | Lab coat | `Prefabs/Models/Lab_Coat_base01.blend` (+ `_base.blend`) | `Prefabs/labcoat.prefab` | All modules (`WearCoat`) | ✅ | |
 | E3 | Glove box (PPE glove dispenser) | `Prefabs/Models/glovebox.fbx` | `Prefabs/glovebox.prefab` | All modules (`AddGloves`) | ✅ | |
-| E4 | Fume hood | `3D Models/Fume_Hood.fbx` | `Prefabs/Fume Hood.prefab` | Glassware module | ✅ | Sash logic exists. Needs reagent trays added inside |
+| E4 | Fume hood | `3D Models/Fume_Hood.fbx` | `Prefabs/Fume Hood.prefab` | Glassware module | ✅ | Sash logic exists. Present in the Module 3 scene; 2 trays placed at the HOOD station |
 | E5 | Glass stir rod | `Prefabs/Models/glass_stir_rod.blend`, `stirRod.fbx` | `Interactables/StirRod.prefab`, `Not_Ready/glass_stir_rod.prefab`, `WebGL/Glassware/glass_stir_rod.prefab` | Glassware, Chemical Change | ✅ | Three prefabs; the WebGL one is the lighter version |
 | E6 | Graduated cylinder | `Prefabs/Models/Graduated_Glassware/graduatedCylinderLabeled.fbx` | `Interactables/Graduated_Glassware/GraduatedCylinderMesh_Fluid.prefab` | Glassware | ✅ | Confirm the labeled 10 mL variant; the project may only have the larger size |
 | E7 | Pencil | `Prefabs/Models/pencil.blend` | `WebGL/Glove Hygiene Items/pencil.prefab` | Glove Hygiene (`Pencil_To_Paper`) | ✅ | Used for notebook writing; no Sharpie or pen exists |
@@ -88,7 +107,7 @@ These budgets are my suggested starting points, not values taken from the projec
 
 | # | Question | Affects | Who decides |
 |---|---|---|---|
-| D1 | Are the `chem_rack` models usable as a test tube rack? Open them in Unity and check. | M2 | Art / Steve |
+| D1 | Are the `chem_rack` models usable as a test tube rack? Open them in Unity and check. (A stand-in `FlasksInHolder` is in the scene at the TUBE station.) | M2 | Art / Steve |
 | D2 | Is the clipboard acceptable as the lab notebook, or do we need a book? | M5 | Lab coordinator / design |
 | D3 | Is the DI-water bottle acceptable as the squirt bottle? | E14 | Lab coordinator |
 | D4 | Which reagent goes in which tray, and how many waste streams exist? | E10, M7 | Lab coordinator |
