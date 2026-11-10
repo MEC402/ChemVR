@@ -8,33 +8,35 @@ Built on the existing task system ([TaskSystem.md](TaskSystem.md)): `Chemical_Ch
 
 | File | Change |
 |---|---|
-| `Resources/Tasks/Chemical_Change/Chemical_Change_Overview.cs` | `text[]` holds the 11 steps + completion message. The wording follows the module document (the .docx in this folder, written up in [chemmodule_tasks.md](chemmodule_tasks.md)), which is the source of truth for the steps. New `webGLText[]`, chosen automatically on WebGL builds (`Application.platform`). New `ClickNext()` for a UI button. Serialized fields (`ccText`, `taskPreper`) unchanged, so both Chemical Change scenes keep their wiring. |
-| `Resources/Tasks/Chemical_Change/Chemical_Change_Task.asset` | `taskStepPrefabs` now lists the 11 placeholder prefabs (was the 24 sugar / CrCl3 steps). Task id unchanged, so menus and `StartTasks` still work. |
+| `Resources/Tasks/Chemical_Change/Chemical_Change_Overview.cs` | `text[]` holds one popup per task (33) + the completion message. The wording follows the module document (the .docx in this folder, written up in [chemmodule_tasks.md](chemmodule_tasks.md)), which is the source of truth for the steps. New `webGLText[]`, chosen automatically on WebGL builds (`Application.platform`). New `ClickNext()` for a UI button. Serialized fields (`ccText`, `taskPreper`) unchanged, so both Chemical Change scenes keep their wiring. |
+| `Resources/Tasks/Chemical_Change/Chemical_Change_Task.asset` | `taskStepPrefabs` now lists the 33 task prefabs (was the 24 sugar / CrCl3 steps). Task id unchanged, so menus and `StartTasks` still work. |
 | `Resources/Tasks/Chemical_Change/Module3_ClickThroughStep.cs` | Generic placeholder `TaskStep`. Finishes on the **A button** (VR), the **N key** (WebGL skip), a UI Next button, or **B** (dev mode). |
-| `Resources/Tasks/Chemical_Change/Prefabs/M3_Step00_...` to `M3_Step10_...` | One placeholder prefab per step. |
+| `Resources/Tasks/Chemical_Change/Prefabs/M3_T01_...` to `M3_T33_...` | One placeholder prefab per task (replaces the 11 `M3_StepNN_...` prefabs). |
 | `Scripts/Events/MiscellaneousEvents.cs` | New `OnClickThroughNext` / `ClickThroughNext()` event. |
 
 The old sugar / CrCl3 step scripts and prefabs are still in the folder, unreferenced, so they can be copied from. Their old popup text is in git history (before the commit that introduced this change).
 
 **Constraint:** `text[]` and `webGLText[]` must always have exactly one more entry than `taskStepPrefabs` (the last entry is the completion message), or the popup runs off the end of the array. Nothing checks this at build time.
 
-**Name notes:** the prefabs are named `M3_StepNN_...` because `StartTasks.RemoveUnstarted()` destroys any `TaskManager` child whose name contains `"_0"`. The task id is still `Chemical_Change_Task`, and `Chemical_Change_Overview.cc_abandonMe` matches any id containing `"Chemical"`.
+**Name notes:** the prefabs are named `M3_Tnn_...` because `StartTasks.RemoveUnstarted()` destroys any `TaskManager` child whose name contains `"_0"`. The task id is still `Chemical_Change_Task`, and `Chemical_Change_Overview.cc_abandonMe` matches any id containing `"Chemical"`.
 
-## Steps and what replaces each placeholder
+## Tasks and what replaces each placeholder
 
-| # | Prefab | Step | Station | Labware | Replace with |
-|---|---|---|---|---|---|
-| 0 | `M3_Step00_Background` | Background | PPE | - | Popup dismiss (button press). Keep click-through or use a dismiss-popup step. |
-| 1 | `M3_Step01_PPE` | Put on PPE | PPE | goggles, lab coat, gloves | Copy Put_On_Gear_CC: miscEvents.onPutOnRightGlove/onPutOnLeftGlove + WearCoat/WearGoggles.IsWearing(). |
-| 2 | `M3_Step02_Gather` | Gather equipment | TUBE station (5), Mixing bench (2), fume hood (3) | 2 test tubes, test tube rack, stir rod, squirt bottle (DI), bench pipette, Sharpie, K2CrO4, NaOH, H2SO4 bottles, notebook + pen | Copy Gather_More_Tools / Bring_To_Hood: interactableEvents.onPlayerGrabInteractable per item (WebGL: webGLEvents.OnObjectGrabbed). |
-| 3 | `M3_Step03_MeasureChromate` | Measure 1 mL potassium chromate | Mixing bench | graduated cylinder, K2CrO4 bottle, test tubes #1 and #2 | chemistryEvents.onPourIn / onPourOut with a 1 mL auto-stop (PourActivator). |
-| 4 | `M3_Step04_AddNaOH_Tube1` | Add 1 M NaOH to test tube #1 (4 drops) | Mixing bench | 1 M NaOH bottle + dropper, test tube #1 | chemistryEvents.onPipetteDispense counted to 4 drops (auto-stop). |
-| 5 | `M3_Step05_Stir` | Stir the solution | Mixing bench | stir rod, test tube #1 | Copy Stir_NaOH: miscEvents.OnStirBeaker accumulated to 5 s. |
-| 6 | `M3_Step06_Record` | Record observations | Mixing bench | lab notebook, pen, test tube #1 | Copy Ask_Q1 (yes/no buttons) + notebook statement picker. Correct answer for each tube is still undecided. |
-| 7 | `M3_Step07_AddH2SO4_Tube2` | Add 3 M sulfuric acid to test tube #2 | Mixing bench | 3 M H2SO4 bottle + dropper, test tube #2, stir rod, notebook + pen | Same pieces as steps 04-06 with the H2SO4 dropper. |
-| 8 | `M3_Step08_AddNaOH_Tube2` | Add 1 M NaOH to test tube #2 | Mixing bench | 1 M NaOH bottle + dropper, test tube #2, stir rod, notebook + pen | Same pieces as steps 04-06 (4 drops, 5 s stir, record). The document only says "repeat all steps above", so the drop count is assumed to match. |
-| 9 | `M3_Step09_Waste` | Waste disposal (the document's waste reminder) | Fume hood (3), sink (4) | both test tubes, chemical waste container, glass waste bin, sink + soap | chemistryEvents.onFluidDispose + GlassDisposal; wash hands via Wash_Hands. |
-| 10 | `M3_Step10_WrapUp` | Wrap-up | Any | - | Keep click-through; shows the document's Answer and safety recap, then ends the module. |
+| Tasks | What they are | Replace with |
+|---|---|---|
+| 1-3, 6, 29, 32-33 | Read-and-dismiss popups (background, safety, lab notes, waste reminder, answer, safety and handling) | Keep click-through, or a dismiss-popup step. |
+| 4-5 | Put on goggles and lab coat; put on gloves | Copy Put_On_Gear_CC: miscEvents.onPutOnRightGlove/onPutOnLeftGlove + WearCoat/WearGoggles.IsWearing(). |
+| 7, 10 | Collect equipment (rack, tubes, stir rod; three reagent bottles from the hood) | Copy Gather_More_Tools / Bring_To_Hood: interactableEvents.onPlayerGrabInteractable per item (WebGL: webGLEvents.OnObjectGrabbed). |
+| 8-9 | Measure 1 mL of water with the pipette; label tubes #1 and #2 | Pipette fill event; Sharpie auto-label on contact (not built yet). |
+| 11-13 | Measure 1 mL of chromate and pour into each tube | chemistryEvents.onPourIn / onPourOut with a 1 mL auto-stop (PourActivator). |
+| 14, 19, 24 | Get a reagent bottle and its dropper | Grab / release events. |
+| 15, 20, 25 | Add 4 drops to the tube | chemistryEvents.onPipetteDispense counted to 4 drops (auto-stop). |
+| 16, 21, 26 | Stir 5 s, rod back on the counter | Copy Stir_NaOH: miscEvents.OnStirBeaker accumulated to 5 s. |
+| 17, 22, 27 | Physical or chemical question | Copy Ask_Q1 (buttons). Correct answers still undecided. |
+| 18, 23, 28 | Choose the observation and write it in the notebook | Notebook statement picker + Pencil_To_Paper pattern. |
+| 30-31 | Empty both tubes into chemical waste; tubes to glass waste | chemistryEvents.onFluidDispose + GlassDisposal. |
+
+The full numbered list, with each task's station and instruction, is in [chemmodule_tasks.md](chemmodule_tasks.md).
 
 ## Walking through it
 
@@ -43,7 +45,7 @@ The old sugar / CrCl3 step scripts and prefabs are still in the folder, unrefere
 - **Any platform:** an on-screen Next button wired to `Chemical_Change_Overview.ClickNext()`, if you add one.
 - **Dev:** **B**, only when dev-ops mode is on.
 
-The popup shows `Step n of 11`, the station, the labware needed, and the instruction.
+The popup shows `Task n of 33`, the station, and the single instruction for that task.
 
 ## Building for WebGL
 
@@ -59,7 +61,7 @@ The Chemical Change scenes are currently **disabled** in `ProjectSettings/Editor
 
 1. Write the real step as a `TaskStep` subclass. Copy the closest existing step from this folder (see the table above and [TaskSystem.md](TaskSystem.md#adding-a-new-step)). Do not declare `Start()` or `OnDestroy()`; the base class owns them.
 2. Make a prefab for it in `Chemical_Change/Prefabs/`.
-3. Open `Chemical_Change_Task.asset` and replace that index's placeholder with the new prefab. Keep the order from the table.
+3. Open `Chemical_Change_Task.asset` and replace that index's placeholder with the new prefab. Keep the task order from chemmodule_tasks.md.
 4. Update that step's strings in `Chemical_Change_Overview.cs` (both `text[]` and `webGLText[]`) and remove the "[placeholder step ...]" line.
 
 Steps not yet replaced keep working as click-through, so the module is always runnable.
