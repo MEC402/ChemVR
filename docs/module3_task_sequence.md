@@ -8,7 +8,7 @@ Built on the existing task system ([TaskSystem.md](TaskSystem.md)): `Chemical_Ch
 
 | File | Change |
 |---|---|
-| `Resources/Tasks/Chemical_Change/Chemical_Change_Overview.cs` | `text[]` replaced with the 11 new steps + completion message. New `webGLText[]`, chosen automatically on WebGL builds (`Application.platform`). New `ClickNext()` for a UI button. Serialized fields (`ccText`, `taskPreper`) unchanged, so both Chemical Change scenes keep their wiring. |
+| `Resources/Tasks/Chemical_Change/Chemical_Change_Overview.cs` | `text[]` holds the 11 steps + completion message. The wording follows the module document (the .docx in this folder, written up in [chemmodule_tasks.md](chemmodule_tasks.md)), which is the source of truth for the steps. New `webGLText[]`, chosen automatically on WebGL builds (`Application.platform`). New `ClickNext()` for a UI button. Serialized fields (`ccText`, `taskPreper`) unchanged, so both Chemical Change scenes keep their wiring. |
 | `Resources/Tasks/Chemical_Change/Chemical_Change_Task.asset` | `taskStepPrefabs` now lists the 11 placeholder prefabs (was the 24 sugar / CrCl3 steps). Task id unchanged, so menus and `StartTasks` still work. |
 | `Resources/Tasks/Chemical_Change/Module3_ClickThroughStep.cs` | Generic placeholder `TaskStep`. Finishes on the **A button** (VR), the **N key** (WebGL skip), a UI Next button, or **B** (dev mode). |
 | `Resources/Tasks/Chemical_Change/Prefabs/M3_Step00_...` to `M3_Step10_...` | One placeholder prefab per step. |
@@ -28,13 +28,13 @@ The old sugar / CrCl3 step scripts and prefabs are still in the folder, unrefere
 | 1 | `M3_Step01_PPE` | Put on PPE | PPE | goggles, lab coat, gloves | Copy Put_On_Gear_CC: miscEvents.onPutOnRightGlove/onPutOnLeftGlove + WearCoat/WearGoggles.IsWearing(). |
 | 2 | `M3_Step02_Gather` | Gather equipment | TUBE station (5), Mixing bench (2), fume hood (3) | 2 test tubes, test tube rack, stir rod, squirt bottle (DI), bench pipette, Sharpie, K2CrO4, NaOH, H2SO4 bottles, notebook + pen | Copy Gather_More_Tools / Bring_To_Hood: interactableEvents.onPlayerGrabInteractable per item (WebGL: webGLEvents.OnObjectGrabbed). |
 | 3 | `M3_Step03_MeasureChromate` | Measure 1 mL potassium chromate | Mixing bench | graduated cylinder, K2CrO4 bottle, test tubes #1 and #2 | chemistryEvents.onPourIn / onPourOut with a 1 mL auto-stop (PourActivator). |
-| 4 | `M3_Step04_AddNaOH_Tube1` | Add 4 drops of 1 M NaOH to test tube #1 | Mixing bench | 1 M NaOH bottle + dropper, test tube #1 | chemistryEvents.onPipetteDispense counted to 4 drops (auto-stop). |
+| 4 | `M3_Step04_AddNaOH_Tube1` | Add 1 M NaOH to test tube #1 (4 drops) | Mixing bench | 1 M NaOH bottle + dropper, test tube #1 | chemistryEvents.onPipetteDispense counted to 4 drops (auto-stop). |
 | 5 | `M3_Step05_Stir` | Stir the solution | Mixing bench | stir rod, test tube #1 | Copy Stir_NaOH: miscEvents.OnStirBeaker accumulated to 5 s. |
 | 6 | `M3_Step06_Record` | Record observations | Mixing bench | lab notebook, pen, test tube #1 | Copy Ask_Q1 (yes/no buttons) + notebook statement picker. Correct answer for each tube is still undecided. |
 | 7 | `M3_Step07_AddH2SO4_Tube2` | Add 3 M sulfuric acid to test tube #2 | Mixing bench | 3 M H2SO4 bottle + dropper, test tube #2, stir rod, notebook + pen | Same pieces as steps 04-06 with the H2SO4 dropper. |
-| 8 | `M3_Step08_AddNaOH_Tube2` | Add 1 M NaOH to test tube #2 | Mixing bench | 1 M NaOH bottle + dropper, test tube #2, stir rod, notebook + pen | Same pieces as steps 04-06; drop count still to be confirmed. |
-| 9 | `M3_Step09_Waste` | Waste disposal | Fume hood, sink and cleanup | both test tubes, chemical waste container, glass waste bin, sink + soap | chemistryEvents.onFluidDispose + GlassDisposal; wash hands via Wash_Hands. |
-| 10 | `M3_Step10_WrapUp` | Wrap-up | Any | - | Keep click-through; end of module. |
+| 8 | `M3_Step08_AddNaOH_Tube2` | Add 1 M NaOH to test tube #2 | Mixing bench | 1 M NaOH bottle + dropper, test tube #2, stir rod, notebook + pen | Same pieces as steps 04-06 (4 drops, 5 s stir, record). The document only says "repeat all steps above", so the drop count is assumed to match. |
+| 9 | `M3_Step09_Waste` | Waste disposal (the document's waste reminder) | Fume hood (3), sink (4) | both test tubes, chemical waste container, glass waste bin, sink + soap | chemistryEvents.onFluidDispose + GlassDisposal; wash hands via Wash_Hands. |
+| 10 | `M3_Step10_WrapUp` | Wrap-up | Any | - | Keep click-through; shows the document's Answer and safety recap, then ends the module. |
 
 ## Walking through it
 

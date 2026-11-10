@@ -205,10 +205,10 @@ public static class PlaceStationModels
         return n;
     }
 
-    static bool Mine(Transform t, Transform ignoreRoot) { return t != null && t.IsChildOf(ignoreRoot); }
+    internal static bool Mine(Transform t, Transform ignoreRoot) { return t != null && t.IsChildOf(ignoreRoot); }
 
     // Sample rays on rings around the anchor; the most common surface height 0.7-1.2 m above the floor is the bench.
-    static bool FindBench(Transform a, Transform ignoreRoot, out Vector3 center, out float topY)
+    internal static bool FindBench(Transform a, Transform ignoreRoot, out Vector3 center, out float topY)
     {
         var pts = new List<Vector3>();
         for (float r = 0.5f; r <= 1.8f; r += 0.2f)
@@ -240,7 +240,7 @@ public static class PlaceStationModels
     }
 
     // Height of the surface at p near the bench height; falls back to the bench's average height.
-    static float SurfaceAt(Vector3 p, float topY)
+    internal static float SurfaceAt(Vector3 p, float topY)
     {
         foreach (var h in Physics.RaycastAll(new Vector3(p.x, topY + 1.0f, p.z), Vector3.down, 2f, ~0, QueryTriggerInteraction.Ignore))
             if (Mathf.Abs(h.point.y - topY) < 0.06f) return h.point.y;
@@ -248,7 +248,7 @@ public static class PlaceStationModels
     }
 
     // Lift the object so its lowest collider/renderer point rests on y (pivots are often not at the base).
-    static void SitOnSurface(GameObject go, float y)
+    internal static void SitOnSurface(GameObject go, float y)
     {
         var rs = go.GetComponentsInChildren<Renderer>();
         if (rs.Length == 0) return;
