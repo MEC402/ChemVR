@@ -207,7 +207,8 @@ public class WebGLGrab : MonoBehaviour
     private void ProcessHoldableObject(RaycastHit hit)
     {
         //Transform heldObject = null;
-        heldObject = hit.collider.transform;
+        // Compound objects (collider on a child, Rigidbody on the root) must be grabbed as a whole.
+        heldObject = hit.collider.attachedRigidbody != null ? hit.collider.attachedRigidbody.transform : hit.collider.transform;
         isHoldingObject = true;
         objectRotationController.ReceiveHeldObject(heldObject); // returning the transform to ORC to find the name and perform rotations from there. Does this line need to go below the parent info for that stuff to run?
 
