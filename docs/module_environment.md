@@ -29,7 +29,7 @@ Module 3 uses five numbered stations. Each is a teleport anchor under the `Stati
 | 2 | **MIXING** (bench) | `Station2_MIXING` | (-1.79, 0.21, 0.87) | 180° | Graduated cylinder, squirt bottle, lab notebook + pen, Sharpie, pH/litmus paper, DI pipette. This is the working surface (the old Glassware station). |
 | 3 | **HOOD** (fume hood) | `Station3_HOOD` | (-4.08, 0.21, -0.07) | 90° | Two secondary-containment trays (Acids, Bases) holding the reagent bottles, each with a taped pipette; metal-ion/chemical waste container. `Fume Hood.prefab` |
 | 4 | **SINK** (cleanup) | `Station4_SINK` | (-9.26, 0.21, 14.50) | -90° | Sink, soap, drying rack, glass-waste bin (`glassDisposalTrash`), trash |
-| 5 | **TUBE** | `Station5_TUBE` | (2.05, 0.21, 0.68) | about -19° | Test tube rack and test tubes (the existing `FlasksInHolder`, labeled `Flask (Particle)` in the scene). They sit on a table, not in a drawer. Stir rod location to be confirmed. |
+| 5 | **TUBE** | `Station5_TUBE` | (2.05, 0.21, 0.68) | about -19° | Test tube rack and test tubes (the existing `TubesInHolder`, labeled `Tube (Particle)` in the scene). They sit on a table, not in a drawer. Stir rod location to be confirmed. |
 
 Positions are read from the saved scene (anchors sit under a root at the origin, so local = world). They were hand-placed in the Editor, so re-read the scene if they move again. `TeleAnchor_Scale` and `TeleAnchor_Jar` (balance and solids jar) from the glassware scene are not used by this module.
 
@@ -80,8 +80,8 @@ Positions are read from the saved scene (anchors sit under a root at the origin,
 | 20 | Chemical (metal-ion/acid/base) waste container | 3 HOOD | 1 | 🆕 | Sits in the fume hood; accepts tube contents |
 | 21 | Glass-waste bin | 4 SINK | 1 | ✅ | `glassDisposalTrash.prefab`, `GlassDisposal.cs` |
 | 22 | Sink, soap, drying rack | 4 SINK | 1 set | ✅ | `sink_base`, `soapBottle`, `Drying_rack` |
-| 4 | Test tube (19 mL, 120 mm) | 5 TUBE | 2 | 🔧 | No test tube prefab exists. Model + `ChemContainer` + `ResizeFluid`; needs a writable label surface for Sharpie labels **Stand-in in the scene:** `FlasksInHolder` (objects named `Flask (Particle) (#)`) at the TUBE station; real test tube model still needed (see module_models.md, M1) |
-| 5 | Test tube rack | 5 TUBE | 1 | 🔧 | Needs snap sockets for 2 tubes (follow the `SnapToTray` pattern) **Stand-in in the scene:** the holder in `FlasksInHolder` (see module_models.md, M2) |
+| 4 | Test tube (19 mL, 120 mm) | 5 TUBE | 2 | 🔧 | No test tube prefab exists. Model + `ChemContainer` + `ResizeFluid`; needs a writable label surface for Sharpie labels **Stand-in in the scene:** `TubesInHolder` (objects named `Tube (Particle) (#)`) at the TUBE station; real test tube model still needed (see module_models.md, M1) |
+| 5 | Test tube rack | 5 TUBE | 1 | 🔧 | Needs snap sockets for 2 tubes (follow the `SnapToTray` pattern) **Stand-in in the scene:** the holder in `TubesInHolder` (see module_models.md, M2) |
 | 6 | Glass stir rod | 5 TUBE | 1 | ✅ | `Interactables/StirRod.prefab`, `Not_Ready/glass_stir_rod.prefab` |
 | 23 | ~~Lab drawer (bench)~~ | 5 TUBE | — | ❌ | Dropped: the TUBE station uses a standard bench, so no drawer is needed |
 | 24 | Educational-note popups, hint and instruction UI | n/a (UI) | — | ✅ | `Chemical_Change_Overview` / `Start_Module`; add `webGLText[]` since the existing module has none |

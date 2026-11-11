@@ -32,7 +32,7 @@ public static class PlaceStationModels
             new Item { prefab = "Assets/Prefabs/Tools (Particle)/titration_dropper.prefab", count = 1 }, // bench pipette
             new Item { prefab = "Assets/Prefabs/WebGL/Glove Hygiene Items/pencil.prefab", count = 1 },
         }},
-        // TUBE bench: FlasksInHolder (tubes + rack) already exists; add the stir rod.
+        // TUBE bench: TubesInHolder (tubes + rack) already exists; add the stir rod.
         { "Station5_TUBE", new[] {
             new Item { prefab = "Assets/Prefabs/Interactables/StirRod.prefab", count = 1 },
         }},

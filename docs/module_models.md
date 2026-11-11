@@ -30,7 +30,7 @@ Scene: `Assets/Scenes/WebGL/WebLabSceneChemicalChange.unity`. Stations are the n
 | 2 MIXING | graduated cylinder, DI-water bottle (squirt-bottle stand-in), 1 dropper (bench pipette), pencil | `GraduatedCylinderMesh_Fluid`, `DI_Water_New_Two`, `titration_dropper`, `pencil` | Notebook, Sharpie, pH paper: no model yet (M5, M6, M8) |
 | 3 HOOD | 3 reagent bottles (yellow K₂CrO₄, white NaOH, plain H₂SO₄), 2 trays, 3 droppers | `Yellow/White ChemBottle Variant`, `ChemBottle`, `tray`, `titration_dropper` | Fume Hood is in the environment (`Environment/Lab/Building/Fume Hood`). Waste container missing (M7). Bottles are still the primitive-cylinder placeholders (E11) |
 | 4 SINK | nothing added | none | Sink, soap, drying rack and glass-waste bin were already in the scene |
-| 5 TUBE | stir rod; the test tubes and rack already exist as `FlasksInHolder` | `StirRod`; `Tools (Particle)/FlasksInHolder` (nested in `WebGL/Lab/Lab.prefab`) | The tubes appear in the scene as `Flask (Particle) (#)`. They are flask models standing in for test tubes; M1/M2 stay open until real test tube and rack models exist |
+| 5 TUBE | stir rod; the test tubes and rack already exist as `TubesInHolder` | `StirRod`; `Tools (Particle)/TubesInHolder` (nested in `WebGL/Lab/Lab.prefab`) | The tubes appear in the scene as `Tube (Particle) (#)`. They are flask models standing in for test tubes; M1/M2 stay open until real test tube and rack models exist |
 
 Fixes made while placing these (worth knowing for any new prop):
 - The dropper and stir-rod prefabs use layers `ChemIgnore` / `HoldableCollision`, which the player camera does not render. The placed copies were moved to `Holdable`, otherwise they are invisible in the Game view.
@@ -107,7 +107,7 @@ These budgets are my suggested starting points, not values taken from the projec
 
 | # | Question | Affects | Who decides |
 |---|---|---|---|
-| D1 | Are the `chem_rack` models usable as a test tube rack? Open them in Unity and check. (A stand-in `FlasksInHolder` is in the scene at the TUBE station.) | M2 | Art / Steve |
+| D1 | Are the `chem_rack` models usable as a test tube rack? Open them in Unity and check. (A stand-in `TubesInHolder` is in the scene at the TUBE station.) | M2 | Art / Steve |
 | D2 | Is the clipboard acceptable as the lab notebook, or do we need a book? | M5 | Lab coordinator / design |
 | D3 | Is the DI-water bottle acceptable as the squirt bottle? | E14 | Lab coordinator |
 | D4 | Which reagent goes in which tray, and how many waste streams exist? | E10, M7 | Lab coordinator |

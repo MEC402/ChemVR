@@ -73,9 +73,9 @@ public static class AddStationLabels
         var mixing = poses["TeleAnchor_Glassware"];
 
         // TUBE station: stand ~1 m from the existing test-tube holder, on the MIXING side, facing it.
-        // Falls back to a fixed offset from MIXING if "FlasksInHolder" is not in the scene.
+        // Falls back to a fixed offset from MIXING if "TubesInHolder" is not in the scene.
         (Vector3 p, Quaternion r) tube = (mixing.p + mixing.r * TubeOffsetFromMixing, mixing.r);
-        GameObject holder = GameObject.Find("FlasksInHolder");
+        GameObject holder = GameObject.Find("TubesInHolder");
         if (holder != null)
         {
             Vector3 h = holder.transform.position;
@@ -84,9 +84,9 @@ public static class AddStationLabels
             toMixing.Normalize();
             Vector3 stand = new Vector3(h.x, mixing.p.y, h.z) + toMixing * TubeStandDistance;
             tube = (stand, Quaternion.LookRotation(-toMixing));
-            Debug.Log("TUBE station placed at FlasksInHolder " + h);
+            Debug.Log("TUBE station placed at TubesInHolder " + h);
         }
-        else Debug.LogWarning("FlasksInHolder not found; TUBE station placed by fixed offset from MIXING.");
+        else Debug.LogWarning("TubesInHolder not found; TUBE station placed by fixed offset from MIXING.");
         foreach (var s in Stations)
         {
             (Vector3 p, Quaternion r) pose = s.source != null ? poses[s.source] : tube;
