@@ -90,7 +90,9 @@ GameObject:
   - component: {fileID: 6810110492345635318}
   - component: {fileID: 6843312134381442644}
   - component: {fileID: 6836074127161434046}
-  m_Layer: 0
+  - component: {fileID: 6836074127161434100}
+  - component: {fileID: 6836074127161434101}
+  m_Layer: 7
   m_Name: ChemBottle
   m_TagString: Tool
   m_Icon: {fileID: 0}
@@ -160,6 +162,36 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+--- !u!64 &6836074127161434100
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6812680722664279240}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 4
+  m_Convex: 1
+  m_CookingOptions: 30
+  m_Mesh: {fileID: 4300000, guid: d8fafffe727d6c241a606d309b77af7d, type: 3}
+--- !u!54 &6836074127161434101
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6812680722664279240}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 1
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
 --- !u!1001 &6529072732498057912
 PrefabInstance:
   m_ObjectHideFlags: 0
