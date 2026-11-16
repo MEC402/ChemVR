@@ -40,6 +40,7 @@ public class Chemical_Change_Overview : MonoBehaviour
     bool centered;
     RectTransform advanceRect;
     Camera cam;
+    FirstPersonMovement firstPerson;
 
     // WebGL builds show the keyboard/mouse wording.
     static bool IsWebGL => Application.platform == RuntimePlatform.WebGLPlayer;
@@ -140,12 +141,35 @@ public class Chemical_Change_Overview : MonoBehaviour
             PlaceCentered();
         }
         if (advanceRect != null) advanceRect.gameObject.SetActive(info);
+        SetCursorFree(info);
+    }
+
+    // WebGL locks the cursor for mouse-look. While the centered panel is up, free the cursor
+    // (and freeze look/move) so the Advance button can be clicked; re-lock afterwards.
+    void SetCursorFree(bool free)
+    {
+        if (!IsWebGL && !Application.isEditor) return;
+        if (firstPerson == null) firstPerson = FindFirstObjectByType<FirstPersonMovement>();
+        if (firstPerson == null) return; // VR scenes: nothing to do
+        if (free)
+        {
+            firstPerson.enabled = false;
+            Cursor.lockState = CursorLockMode.None;
+            Cursor.visible = true;
+        }
+        else if (Time.timeScale != 0f) // not while the pause menu owns the cursor
+        {
+            firstPerson.enabled = true;
+            Cursor.lockState = CursorLockMode.Locked;
+            Cursor.visible = false;
+        }
     }
 
     void RestoreCorner()
     {
         if (!poseCaptured || popup == null) return;
         centered = false;
+        SetCursorFree(false);
         popup.localPosition = cornerLocalPos;
         popup.localRotation = cornerLocalRot;
         popup.localScale = cornerLocalScale;
