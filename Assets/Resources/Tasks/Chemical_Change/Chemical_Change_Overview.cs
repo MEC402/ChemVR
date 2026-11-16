@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.UI;
 
 // Instruction popup for the Physical & Chemical Changes module (Lab 3, Reaction #1:
 // the chromate-dichromate equilibrium). Popup text follows the module document
@@ -21,6 +22,24 @@ public class Chemical_Change_Overview : MonoBehaviour
     // Controllers for starting tasks
     [Header("Start Task Controllers")]
     public Start_Module taskPreper;
+
+    // Read-and-dismiss tasks (0-based indices into text[]; see docs/module3_task_sequence.md:
+    // tasks 1-3, 6, 29, 32-33). They show in a large centered panel with an Advance button.
+    // Real tasks (task 4 onward) use the normal small corner popup.
+    [Header("Info-only (read and Advance) panel")]
+    [SerializeField] float centerScaleMultiplier = 2.5f;
+    static readonly HashSet<int> infoSteps = new HashSet<int> { 0, 1, 2, 5, 28, 31, 32 };
+
+    Transform popup;            // the object moved between corner and center
+    Vector3 cornerLocalPos;
+    Quaternion cornerLocalRot;
+    Vector3 cornerLocalScale;
+    float cornerDistance = 1f;
+    Quaternion camRelativeRot = Quaternion.identity;
+    bool poseCaptured;
+    bool centered;
+    RectTransform advanceRect;
+    Camera cam;
 
     // WebGL builds show the keyboard/mouse wording.
     static bool IsWebGL => Application.platform == RuntimePlatform.WebGLPlayer;
@@ -43,15 +62,123 @@ public class Chemical_Change_Overview : MonoBehaviour
         this.gameObject.GetComponent<ToggleTextSimple>().enabled = true;
         GameEventsManager.instance.taskEvents.StartTask("Chemical_Change_Task");
         ccText.text = CurrentText[curStep];
+        CapturePose();
+        BuildAdvanceButton();
+        UpdateMode();
     }
 
     void OnDisable()
     {
+        RestoreCorner();
         //Remove any listeners
         this.gameObject.GetComponent<ToggleTextSimple>().enabled = false;
         GameEventsManager.instance.taskEvents.onAbandonTask -= cc_abandonMe;
         GameEventsManager.instance.taskEvents.onAdvanceTask -= AdvanceCheTask;
     }
+    bool IsInfoStep(int step) => infoSteps.Contains(step);
+
+    void CapturePose()
+    {
+        if (poseCaptured || ccText == null) return;
+        // Walk up from the text's canvas to the child of this object (the popup quad).
+        Transform t = ccText.canvas != null ? ccText.canvas.transform : ccText.transform;
+        while (t.parent != null && t.parent != transform) t = t.parent;
+        popup = t;
+        cornerLocalPos = popup.localPosition;
+        cornerLocalRot = popup.localRotation;
+        cornerLocalScale = popup.localScale;
+        cam = Camera.main;
+        if (cam != null)
+        {
+            cornerDistance = Mathf.Max(0.3f, Vector3.Distance(cam.transform.position, popup.position));
+            camRelativeRot = Quaternion.Inverse(cam.transform.rotation) * popup.rotation;
+        }
+        poseCaptured = true;
+    }
+
+    void BuildAdvanceButton()
+    {
+        if (advanceRect != null || ccText == null || ccText.canvas == null) return;
+        Transform canvasT = ccText.canvas.transform;
+        var go = new GameObject("Advance Button (runtime)", typeof(RectTransform), typeof(Image));
+        go.layer = ccText.gameObject.layer;
+        go.transform.SetParent(canvasT, false);
+        advanceRect = go.GetComponent<RectTransform>();
+        advanceRect.anchorMin = advanceRect.anchorMax = new Vector2(0.5f, 0f);
+        advanceRect.pivot = new Vector2(0.5f, 0f);
+        advanceRect.sizeDelta = new Vector2(260f, 70f);
+        advanceRect.anchoredPosition = new Vector2(0f, 25f);
+        advanceRect.localPosition = new Vector3(advanceRect.localPosition.x, advanceRect.localPosition.y, -8f);
+        go.GetComponent<Image>().color = new Color(0.15f, 0.55f, 0.25f, 1f);
+
+        var label = new GameObject("Label", typeof(RectTransform), typeof(TextMeshProUGUI));
+        label.layer = go.layer;
+        label.transform.SetParent(go.transform, false);
+        var lr = label.GetComponent<RectTransform>();
+        lr.anchorMin = Vector2.zero; lr.anchorMax = Vector2.one;
+        lr.offsetMin = lr.offsetMax = Vector2.zero;
+        var tmp = label.GetComponent<TextMeshProUGUI>();
+        tmp.font = ccText.font;
+        tmp.text = IsWebGL ? "Advance (N)" : "Advance (A)";
+        tmp.alignment = TextAlignmentOptions.Center;
+        tmp.fontSize = 36f;
+        tmp.color = Color.white;
+        tmp.raycastTarget = false;
+        go.SetActive(false);
+    }
+
+    // Corner popup for real tasks, large centered panel + Advance button for info-only tasks.
+    void UpdateMode()
+    {
+        if (!poseCaptured) return;
+        bool info = IsInfoStep(curStep) && curStep < CurrentText.Length - 1;
+        if (!info) RestoreCorner();
+        else
+        {
+            centered = true;
+            popup.localScale = cornerLocalScale * centerScaleMultiplier;
+            PlaceCentered();
+        }
+        if (advanceRect != null) advanceRect.gameObject.SetActive(info);
+    }
+
+    void RestoreCorner()
+    {
+        if (!poseCaptured || popup == null) return;
+        centered = false;
+        popup.localPosition = cornerLocalPos;
+        popup.localRotation = cornerLocalRot;
+        popup.localScale = cornerLocalScale;
+        if (advanceRect != null) advanceRect.gameObject.SetActive(false);
+    }
+
+    void PlaceCentered()
+    {
+        if (cam == null) cam = Camera.main;
+        if (cam == null || popup == null) return;
+        popup.position = cam.transform.position + cam.transform.forward * cornerDistance;
+        popup.rotation = cam.transform.rotation * camRelativeRot;
+    }
+
+    void LateUpdate()
+    {
+        // Keep the centered panel locked in front of the viewer.
+        if (centered) PlaceCentered();
+    }
+
+    void Update()
+    {
+        // Mouse click on the Advance button (no EventSystem needed on this world-space canvas).
+        if (!centered || advanceRect == null || !advanceRect.gameObject.activeInHierarchy) return;
+        var mouse = Mouse.current;
+        if (mouse == null || !mouse.leftButton.wasPressedThisFrame || cam == null) return;
+        if (RectTransformUtility.ScreenPointToLocalPointInRectangle(advanceRect, mouse.position.ReadValue(), cam, out Vector2 local)
+            && advanceRect.rect.Contains(local))
+        {
+            ClickNext();
+        }
+    }
+
     public void restart()
     {
         cc_abandonMe("Chemical_Change_Overview");
@@ -147,6 +274,7 @@ public class Chemical_Change_Overview : MonoBehaviour
             this.gameObject.GetComponent<ToggleTextSimple>().enabled = true;
             curStep += 1;
             ccText.text = CurrentText[Mathf.Min(curStep, CurrentText.Length - 1)];
+            UpdateMode();
         }
     }
     public void cc_abandonMe(string context)
@@ -161,6 +289,7 @@ public class Chemical_Change_Overview : MonoBehaviour
                 ccPop.SetActive(false);
             }
             curStep = 0;
+            RestoreCorner();
         }
     }
 }
