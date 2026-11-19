@@ -63,6 +63,10 @@ public class ChemistryManager : MonoBehaviour
                 return new Color(0.1478891f, 0.3686274f, 0f); //lime green
             case ChemType.Soap:
                 return new Color(0.08f, 0.7924528f, 0.01868992f); //soapy bright green
+            case ChemType.POTASSIUM_CHROMATE:
+                return new Color(0.95f, 0.8f, 0f); //yellow
+            case ChemType.SULFURIC_ACID:
+                return new Color(0.8f, 0.85f, 0.9f); //pale, near-colourless
             default:
                 return Color.black;
         }

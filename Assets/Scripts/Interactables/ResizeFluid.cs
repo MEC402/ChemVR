@@ -30,6 +30,13 @@ public class ResizeFluid : MonoBehaviour
         material.SetColor("_TopColor", topColor);
         material.SetColor("_SideColor", sideColor);
         material.SetVector("_RemapBounds", remapBounds);
+
+        // Plain Lit materials (no Chem Fluid shader) have no _TopColor/_SideColor, so tint
+        // them directly. Lets simple meshes such as the dropper's liquid column show the chem colour.
+        if (!material.HasProperty("_SideColor") && material.HasProperty("_BaseColor"))
+        {
+            material.SetColor("_BaseColor", color);
+        }
     }
 
     private void OnDestroy()
@@ -39,6 +46,8 @@ public class ResizeFluid : MonoBehaviour
 
     public void SetColor(Color newColor)
     {
+        // A fluid that starts hidden is activated and tinted in the same call, before Start has run.
+        if (material == null) material = GetComponent<Renderer>().material;
         color = newColor;
         sideColor = color;
         topColor = color * 1.1f;

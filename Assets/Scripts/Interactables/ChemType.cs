@@ -18,6 +18,8 @@ public enum ChemType : int
     ChemicalMix = 9,
     ChemicalMix2 = 10,
     Soap = 11,
+    POTASSIUM_CHROMATE = 12,
+    SULFURIC_ACID = 13,
 
     /* Abbreviation Aliases */
     H2O = WATER,
@@ -32,4 +34,6 @@ public enum ChemType : int
     ChemMix = ChemicalMix,
     ChemMix2 = ChemicalMix2,
     SOAP = Soap,
+    K2CrO4 = POTASSIUM_CHROMATE,
+    H2SO4 = SULFURIC_ACID,
 }
