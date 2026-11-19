@@ -32,10 +32,23 @@ public abstract class TaskStep : MonoBehaviour
     {
         this.taskId = taskId;
         this.stepIndex = stepIndex;
+        // WebGL: the N key skips whatever step is active. Subscribed here (not in Start/OnEnable) so
+        // subclasses that define their own Start/OnEnable cannot hide it.
+        GameEventsManager.instance.inputEvents.onWebGLSkipTask += WebGLSkip;
         if (taskStepState != null && taskStepState != "")
         {
             SetTaskStepState(taskStepState);
         }
+    }
+
+    private void WebGLSkip(InputAction.CallbackContext obj)
+    {
+        if (this == null || isFinished)
+        {
+            GameEventsManager.instance.inputEvents.onWebGLSkipTask -= WebGLSkip;
+            return;
+        }
+        FinishTaskStep();
     }
 
     protected void FinishTaskStep()
@@ -43,6 +56,7 @@ public abstract class TaskStep : MonoBehaviour
         if (!isFinished)
         {
             isFinished = true;
+            GameEventsManager.instance.inputEvents.onWebGLSkipTask -= WebGLSkip;
             GameEventsManager.instance.taskEvents.AdvanceTask(taskId);
             Destroy(this.gameObject);
         }
@@ -53,6 +67,7 @@ public abstract class TaskStep : MonoBehaviour
         if (!isFinished)
         {
             isFinished = true;
+            GameEventsManager.instance.inputEvents.onWebGLSkipTask -= WebGLSkip;
             StartCoroutine(DelayedFinish(minDelay, maxDelay));
         }
     }

@@ -42,6 +42,11 @@ public class Chemical_Change_Overview : MonoBehaviour
     bool panelShown;
     bool useOverlay;            // screen overlay (WebGL) vs world-space (VR)
     GameObject panelRoot;
+    Image panelBg;
+    static readonly Color PanelColor = new Color(0.05f, 0.09f, 0.14f, 0.96f);
+    static readonly Color PanelFlashColor = new Color(0.25f, 0.45f, 0.65f, 0.96f);
+    // True while the large centered panel (not the corner popup) is the active display.
+    public static bool InfoModeActive { get; private set; }
     TextMeshProUGUI panelText;
     RectTransform advanceRect;
     ToggleTextSimple toggle;
@@ -63,6 +68,7 @@ public class Chemical_Change_Overview : MonoBehaviour
         }
         GameEventsManager.instance.taskEvents.onAbandonTask += cc_abandonMe;
         GameEventsManager.instance.taskEvents.onAdvanceTask += AdvanceCheTask;
+        GameEventsManager.instance.miscEvents.onTextPopUp += FlashPanel;
 
         //Start the Module on opening this scene
         taskPreper.Show();
@@ -81,6 +87,8 @@ public class Chemical_Change_Overview : MonoBehaviour
         this.gameObject.GetComponent<ToggleTextSimple>().enabled = false;
         GameEventsManager.instance.taskEvents.onAbandonTask -= cc_abandonMe;
         GameEventsManager.instance.taskEvents.onAdvanceTask -= AdvanceCheTask;
+        GameEventsManager.instance.miscEvents.onTextPopUp -= FlashPanel;
+        InfoModeActive = false;
     }
     bool IsInfoStep(int step) => infoSteps.Contains(step);
 
@@ -132,7 +140,8 @@ public class Chemical_Change_Overview : MonoBehaviour
         float w = useOverlay ? 1920f * panelWidthFraction : PanelW;
         br.sizeDelta = new Vector2(w, w * 9f / 16f);
         br.anchoredPosition = Vector2.zero;
-        bg.GetComponent<Image>().color = new Color(0.05f, 0.09f, 0.14f, 0.96f);
+        panelBg = bg.GetComponent<Image>();
+        panelBg.color = PanelColor;
         float k = br.sizeDelta.x / PanelW; // scale layout metrics with panel size
 
         var textGo = new GameObject("Text", typeof(RectTransform), typeof(TextMeshProUGUI));
@@ -190,6 +199,7 @@ public class Chemical_Change_Overview : MonoBehaviour
     {
         if (!poseCaptured) return;
         infoMode = IsInfoStep(curStep) && curStep < CurrentText.Length - 1;
+        InfoModeActive = infoMode;
         popup.localScale = infoMode ? Vector3.zero : cornerLocalScale;
         if (infoMode) SetPanelText(ccText.text);
         RefreshPanelVisibility();
@@ -230,9 +240,30 @@ public class Chemical_Change_Overview : MonoBehaviour
     void RestoreCorner()
     {
         infoMode = false;
+        InfoModeActive = false;
         if (poseCaptured && popup != null) popup.localScale = cornerLocalScale;
         if (panelRoot != null) panelRoot.SetActive(false);
         if (panelShown) { panelShown = false; SetCursorFree(false); }
+    }
+
+    // The corner highlight flashes at the corner popup, which is hidden in info mode,
+    // so flash the large panel instead. Wait a frame so UpdateMode has run for the new step.
+    void FlashPanel()
+    {
+        if (isActiveAndEnabled) StartCoroutine(FlashPanelRoutine());
+    }
+
+    IEnumerator FlashPanelRoutine()
+    {
+        yield return null;
+        if (!infoMode || panelBg == null) yield break;
+        for (int i = 0; i < 2; i++)
+        {
+            panelBg.color = PanelFlashColor;
+            yield return new WaitForSeconds(0.175f);
+            panelBg.color = PanelColor;
+            yield return new WaitForSeconds(0.175f);
+        }
     }
 
     void PlaceWorldPanel()

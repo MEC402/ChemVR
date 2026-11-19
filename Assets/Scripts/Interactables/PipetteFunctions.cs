@@ -18,6 +18,15 @@ public class PipetteFunctions : MonoBehaviour
     public bool isHeld = false;
 
     [SerializeField]private float dispenseAmount = 10f; // Amount to dispense per interaction
+    [SerializeField, Tooltip("0 = original behaviour (one press draws, one press dispenses). Above 0 (bulb droppers) the dropper " +
+        "holds dispenseAmount, filled in this many presses and emptied in this many presses.")]
+    private int usesToFill = 0;
+    private int stepsHeld = 0; // presses' worth of fluid currently in a stepped dropper
+
+    /// <summary>Raised when a stepped (bulb) dropper has just been filled completely.</summary>
+    public static event Action<PipetteFunctions> OnFilled;
+    /// <summary>Raised when a stepped (bulb) dropper has just been emptied completely.</summary>
+    public static event Action<PipetteFunctions> OnEmptied;
     [SerializeField] public ChemFluid currentFluids;
 
     [Header("AIM FEEDBACK")]
@@ -293,6 +302,12 @@ public class PipetteFunctions : MonoBehaviour
             return;
         }
 
+        if (usesToFill > 0)
+        {
+            SteppedUse(target);
+            return;
+        }
+
         if (!lockDispenseAmount)
         {
             if (!LockChemFluid)
@@ -480,6 +495,60 @@ public class PipetteFunctions : MonoBehaviour
     }
 
 
+    /// <summary>
+    /// Bulb-dropper behaviour: each press draws (or releases) 1/usesToFill of dispenseAmount. Full after usesToFill
+    /// draws, empty after usesToFill releases.
+    /// </summary>
+    private void SteppedUse(ChemContainer target)
+    {
+        if (canDispense)
+        {
+            // Release one step: current contents divided by the steps left.
+            Chem[] cur = currentFluids.GetChemArray();
+            Chem[] left = new Chem[cur.Length];
+            for (int i = 0; i < cur.Length; i++)
+            {
+                float part = cur[i].volume / stepsHeld;
+                if (part > 0f) target.AddChem(cur[i].type, part);
+                left[i] = new Chem(cur[i].type, cur[i].volume - part);
+            }
+            target.UpdateChem();
+            GameEventsManager.instance.chemistryEvents.PipetteDispense(this, target, currentFluids);
+            GameEventsManager.instance.chemistryEvents.PourIn(target, target.GetChemFluid());
+            currentFluids.AssignNewChems(left);
+            stepsHeld--;
+            internalFluid.fill = (float)stepsHeld / usesToFill;
+            Debug.Log($"[Dropper] released step, {stepsHeld}/{usesToFill} left");
+            if (stepsHeld <= 0)
+            {
+                stepsHeld = 0;
+                canDispense = false;
+                currentFluids.SetToEmpty();
+                internalFluid.gameObject.SetActive(false);
+                OnEmptied?.Invoke(this);
+            }
+        }
+        else
+        {
+            Chem[] add = target.GetChemFluid(dispenseAmount / usesToFill);
+            Chem[] cur = currentFluids.GetChemArray();
+            Chem[] sum = new Chem[cur.Length];
+            for (int i = 0; i < cur.Length; i++)
+                sum[i] = new Chem(add[i].type, (stepsHeld > 0 ? cur[i].volume : 0f) + add[i].volume);
+            currentFluids.AssignNewChems(sum);
+            stepsHeld++;
+            internalFluid.gameObject.SetActive(true);
+            internalFluid.fill = (float)stepsHeld / usesToFill;
+            internalFluid.SetColor(ChemistryManager.instance.GetColor(currentFluids));
+            Debug.Log($"[Dropper] drew step, {stepsHeld}/{usesToFill}");
+            if (stepsHeld >= usesToFill)
+            {
+                canDispense = true;
+                OnFilled?.Invoke(this);
+            }
+        }
+    }
+
     //Used to reset pipettes during checkpoint reset. Assigned to the onResetCalled event from the Reset Task Manager.
     private void ResetPipette(object sender, EventArgs e)
     {
@@ -488,6 +557,7 @@ public class PipetteFunctions : MonoBehaviour
             currentFluids.SetToEmpty();
             internalFluid.gameObject.SetActive(false);
             canDispense = false;
+            stepsHeld = 0;
         }
     }
 

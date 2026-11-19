@@ -42,7 +42,12 @@ public class PopupHighlighter : MonoBehaviour
     }
 
     private IEnumerator FlashRoutine()
-    {        
+    {
+        // Let the module update its display mode first; the corner popup is hidden
+        // while the large centered panel is up, so don't flash its corner spot then.
+        yield return null;
+        if (Chemical_Change_Overview.InfoModeActive) yield break;
+
         // Make the object visible
         highlightRenderer.enabled = true;
         yield return new WaitForSeconds(flashDuration);
