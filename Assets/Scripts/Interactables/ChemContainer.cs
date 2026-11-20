@@ -222,6 +222,7 @@ public class ChemContainer : MonoBehaviour {
 
     // Update is called once per frame
     void Update() {
+        if (internalFluid == null) return; // disposal containers (e.g. the chemical waste jug) have no visible fluid
         if (currentVolume == 0) {
             internalFluid.gameObject.SetActive(false);
         } else {
