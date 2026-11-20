@@ -177,6 +177,8 @@ Each entry lists the **station**, **labware needed for that step**, then the **a
   5. Gate: correct classification + correct notebook entry.
 - **Open items:** the correct answer/wording for each tube is not yet defined in the source docx (see Module3-MajorSteps.md, Open Items).
 
+## SEGMENT B2 — Reaction #2: The Potasium Chromate and Sulfuric Acid and Sodium Hydroxide reaction
+
 ### Step 6: Add 3 M sulfuric acid to test tube #2
 - **Station:** Mixing bench
 - **Labware:** 3 M H₂SO₄ bottle + dropper, test tube #2, stir rod, notebook + pen

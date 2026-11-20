@@ -30,10 +30,10 @@ def esc(t):
 
 N = len(tasks)
 
-def arr(var, key):
+def arr(var):
     out = ["    string[] %s = {" % var]
     for i, (n, title, st, ins) in enumerate(tasks):
-        t = "Task %d of %d: %s\\nStation: %s\\n\\n%s\\n\\n[placeholder task - press %s to continue]" % (i + 1, N, esc(title), st, esc(ins), key)
+        t = "Task %d of %d: %s\\nStation: %s\\n\\n%s" % (i + 1, N, esc(title), st, esc(ins))
         out.append('                    /*%d*/"%s",' % (i, t))
     out.append('                    /*%d*/"%s"' % (N, esc(DONE)))
     out.append("            };")
@@ -42,10 +42,19 @@ def arr(var, key):
 src = open(CS, encoding="utf-8").read()
 a = src.index("    // VR wording (controllers)")
 b = src.index("    void AdvanceCheTask")
-new = "    // VR wording (controllers)\n" + arr("text", "A") + "\n\n    // WebGL wording (keyboard / mouse)\n" + arr("webGLText", "N") + "\n\n"
+new = "    // VR wording (controllers)\n" + arr("text") + "\n\n    // WebGL wording (keyboard / mouse)\n" + arr("webGLText") + "\n\n"
 open(CS, "w", encoding="utf-8").write(src[:a] + new + src[b:])
 
-prefabs = sum(1 for l in open(ASSET) if l.startswith("  - {fileID: 1100000000000000001"))
+prefabs = 0
+in_list = False
+for l in open(ASSET):
+    if l.startswith("  taskStepPrefabs:"):
+        in_list = True
+    elif in_list:
+        if l.startswith("  - "):
+            prefabs += 1
+        else:
+            break
 print("Wrote %d tasks (VR + WebGL) to %s" % (N, CS))
 if prefabs != N:
     print("WARNING: %s lists %d task prefabs but the doc has %d tasks. Add/remove prefabs to match." % (ASSET, prefabs, N))
